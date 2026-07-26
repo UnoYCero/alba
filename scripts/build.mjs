@@ -1,4 +1,4 @@
-import { cpSync, existsSync, mkdirSync, rmSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const source = resolve("public");
@@ -9,7 +9,13 @@ if (!existsSync(source)) {
 }
 
 rmSync(destination, { recursive: true, force: true });
-mkdirSync(destination, { recursive: true });
-cpSync(source, destination, { recursive: true });
+mkdirSync(resolve(destination, "assets"), { recursive: true });
+mkdirSync(resolve(destination, "server"), { recursive: true });
+mkdirSync(resolve(destination, ".openai"), { recursive: true });
 
-console.log("Static site prepared in dist/");
+cpSync(source, resolve(destination, "assets"), { recursive: true });
+copyFileSync(resolve("worker", "index.js"), resolve(destination, "server", "index.js"));
+copyFileSync(resolve(".openai", "hosting.json"), resolve(destination, ".openai", "hosting.json"));
+writeFileSync(resolve(destination, "package.json"), '{"type":"module"}\n');
+
+console.log("Sites worker and static assets prepared in dist/");
