@@ -225,6 +225,18 @@ img { max-width: 100%; display: block; }
 .venture-copy b i { margin-left: 18px; font-style: normal; }
 .venture-art { position: relative; min-height: 100%; opacity: .82; transition: transform .5s, opacity .4s; }
 .venture:hover .venture-art { transform: scale(1.035); opacity: 1; }
+.venture-product-art { display: grid; place-items: center; overflow: visible; }
+.venture-product-art::after {
+  content: ""; position: absolute; width: 245px; height: 245px;
+  border: 1px solid rgba(134,185,235,.22); border-radius: 50%;
+}
+.venture-product-art img {
+  width: min(128%, 720px); max-width: none; position: relative; z-index: 1;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 56% 54%, #000 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 68% at 56% 54%, #000 68%, transparent 100%);
+  filter: invert(1) grayscale(1) contrast(1.12) brightness(.78) sepia(.08) hue-rotate(170deg);
+}
 .glasses-art { display: flex; align-items: center; justify-content: center; }
 .lens { width: 170px; height: 105px; border: 8px solid #8893a1; background: radial-gradient(circle at 70% 40%, rgba(123,168,211,.15), transparent 55%); }
 .lens.left { border-radius: 45% 42% 52% 40%; transform: rotate(4deg); }
