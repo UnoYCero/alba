@@ -39,7 +39,18 @@
   <main>
     <section class="hero" id="inicio">
       <div class="hero-visual" aria-hidden="true">
-        <img src="assets/hero-machine-vision.png" alt="">
+        <video
+          data-hero-video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="assets/hero-machine-vision.png"
+          tabindex="-1"
+        >
+          <source src="assets/cv-example.mp4" type="video/mp4">
+        </video>
         <div class="hero-scanline"></div>
       </div>
       <div class="hero-inner">

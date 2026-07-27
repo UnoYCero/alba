@@ -1,6 +1,7 @@
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector("[data-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
+const heroVideo = document.querySelector("[data-hero-video]");
 
 const onScroll = () => header?.classList.toggle("scrolled", window.scrollY > 24);
 onScroll();
@@ -38,3 +39,22 @@ document.querySelectorAll(".reveal").forEach((element, index) => {
 document.querySelectorAll("[data-year]").forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
+
+if (heroVideo) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reducedMotion) {
+    heroVideo.pause();
+    heroVideo.removeAttribute("autoplay");
+  } else {
+    const videoObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        heroVideo.play().catch(() => {});
+      } else {
+        heroVideo.pause();
+      }
+    }, { threshold: 0.05 });
+
+    videoObserver.observe(heroVideo);
+  }
+}
