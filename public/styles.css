@@ -280,6 +280,24 @@ footer { max-width: var(--max); margin: auto; padding: 52px var(--pad); display:
 .sub-art .glasses-art .bridge { border-color: #303a46; }
 .sub-art .satellite-art .solar { filter: brightness(.75); }
 .sub-art::before { content: ""; position: absolute; inset: 6%; border: 1px solid var(--line-dark); border-radius: 50%; }
+.unblind-product-visual {
+  height: 100%; display: grid; place-items: center; position: relative; z-index: 1;
+}
+.unblind-product-image {
+  width: min(135%, 780px); max-width: none; display: block;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 56% 54%, #000 68%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 68% at 56% 54%, #000 68%, transparent 100%);
+  filter: saturate(.72) contrast(1.04);
+  transform: translateX(-4%);
+  transition: transform .6s cubic-bezier(.2,.65,.25,1), filter .4s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .sub-art:hover .unblind-product-image {
+    transform: translateX(-4%) scale(1.025);
+    filter: saturate(.86) contrast(1.06);
+  }
+}
 .manifesto { background: var(--ink); color: var(--paper); padding: 130px var(--pad); }
 .manifesto-inner { max-width: 1100px; margin: auto; }
 .manifesto blockquote { font-size: clamp(38px, 5vw, 72px); line-height: 1.12; letter-spacing: -.04em; margin: 50px 0; }
@@ -368,6 +386,7 @@ footer { max-width: var(--max); margin: auto; padding: 52px var(--pad); display:
   .footer-links { flex-wrap: wrap; }
   .sub-hero h1 { font-size: 68px; }
   .sub-art { height: 270px; }
+  .unblind-product-image { width: 128%; transform: translateX(-2%); }
   .flow-step { grid-template-columns: 40px 1fr; padding: 25px 0; }
   .flow-step p { grid-column: 2; margin-top: 0; }
 }
