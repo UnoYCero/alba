@@ -3,132 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Alba Labs desarrolla smartglasses y módulos de visión open source, asistentes conectados, robótica educativa y tecnología accesible.">
-  <meta name="theme-color" content="#f3f5f6">
-  <title>Alba Labs — Tecnología abierta para construir</title>
+  <meta name="description" content="Compra smartglasses open source y descubre cámaras, robots y herramientas de inteligencia artificial creadas por Alba Labs.">
+  <meta name="theme-color" content="#eef1f3">
+  <title>Alba Labs — Inventos abiertos para una inteligencia cotidiana</title>
   <link rel="icon" href="../assets/alba-vision-logo.png">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../labs-store.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body class="venture-page labs-page">
+<body class="venture-page labs-page store-enabled">
   <div class="page-noise" aria-hidden="true"></div>
-  <header class="site-header" data-header>
+  <header class="site-header labs-header" data-header>
     <a class="brand" href="../" aria-label="Volver a Alba Vision"><img class="brand-lockup" src="../assets/alba-vision-lockup-on-light.png" alt="Alba Vision"></a>
     <nav class="desktop-nav" aria-label="Navegación principal">
-      <a href="#plataforma">Smartglasses</a>
-      <a href="#open-stack">Open stack</a>
-      <a href="#proyectos">Proyectos</a>
+      <a href="#smartglasses">Smartglasses</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#tienda">Tienda</a>
+      <a href="#inventos">Inventos</a>
       <a href="#unblind">Unblind</a>
-      <a href="../AlbaSpace/">Space</a>
     </nav>
-    <a class="header-cta" href="#colaborar">Construir con Labs <span>↗</span></a>
+    <button class="cart-trigger" type="button" data-cart-open aria-label="Abrir carrito">
+      Carrito <span data-cart-count>0</span>
+    </button>
     <button class="menu-button" type="button" data-menu-button aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
     <div class="mobile-menu" data-mobile-menu>
-      <a href="../">Alba Vision</a><a href="#plataforma">Smartglasses</a><a href="#open-stack">Open stack</a><a href="#proyectos">Proyectos</a><a href="#unblind">Unblind</a><a href="#colaborar">Colaborar</a>
+      <a href="../">Alba Vision</a><a href="#smartglasses">Smartglasses</a><a href="#como-funciona">Cómo funciona</a><a href="#tienda">Tienda</a><a href="#inventos">Inventos</a><a href="#unblind">Unblind</a>
+      <button type="button" data-cart-open>Ver carrito <span data-cart-count>0</span></button>
     </div>
   </header>
 
   <main>
-    <section class="sub-hero labs-hero">
-      <div class="sub-hero-inner">
-        <div>
-          <p class="section-kicker reveal">Alba / Investigación abierta</p>
-          <h1 class="reveal">ALBA<br>LABS<small>Build what you imagine</small></h1>
-          <p class="sub-hero-copy reveal">Hardware abierto para extender la percepción, conectar inteligencia y convertir ideas en sistemas que cualquiera pueda comprender y construir.</p>
-          <div class="sub-hero-meta reveal"><span>Open source</span><span>Human + AI</span><span>Made in México</span></div>
+    <div class="checkout-notice" data-checkout-notice hidden></div>
+
+    <section class="labs-new-hero" id="smartglasses">
+      <div class="labs-new-grid" aria-hidden="true"></div>
+      <div class="labs-hero-copy">
+        <p class="section-kicker reveal">Alba Labs / Open intelligence</p>
+        <h1 class="reveal">TUS OJOS.<br><em>CUALQUIER IA.</em></h1>
+        <p class="labs-hero-lead reveal">Smartglasses abiertos que ven contigo, recuerdan lo importante y conectan la inteligencia artificial con el mundo real.</p>
+        <div class="hero-actions reveal">
+          <a class="button labs-buy-primary" href="#tienda">Comprar por $5,900 MXN <span>↓</span></a>
+          <a class="text-link dark-link" href="#como-funciona">Entender en 30 segundos <span>↘</span></a>
         </div>
-        <div class="sub-art reveal">
-          <div class="labs-product-visual">
-            <div class="labs-grid" aria-hidden="true"></div>
-            <img src="../assets/armazon.png" alt="Plataforma abierta de smartglasses de Alba Labs">
-            <span class="dev-tag tag-camera">CAM / 02</span><span class="dev-tag tag-core">CORE / OPEN</span><span class="dev-tag tag-audio">AUDIO / I-O</span>
+        <div class="labs-promise reveal"><span>OPEN SOURCE</span><span>MODULAR</span><span>HECHO EN MÉXICO</span></div>
+      </div>
+      <div class="labs-hero-product reveal">
+        <div class="product-blueprint" aria-hidden="true"><i></i><i></i><span>VISION / 02</span><span>CORE / OPEN</span></div>
+        <img src="../assets/armazon.png" alt="Alba Smartglasses Dev Kit">
+        <div class="hero-price"><small>DEV KIT</small><strong>$5,900</strong><span>MXN</span></div>
+      </div>
+    </section>
+
+    <section class="labs-simple-flow" id="como-funciona">
+      <div class="simple-flow-heading reveal">
+        <p class="section-kicker">01 / Así de simple</p>
+        <h2>Ve. Recuerda.<br><em>Actúa.</em></h2>
+        <p>Alba une una cámara, memoria y herramientas de IA en un dispositivo que puedes llevar puesto y modificar.</p>
+      </div>
+      <div class="simple-flow-steps">
+        <article class="reveal"><span>01</span><div class="flow-eye" aria-hidden="true"></div><h3>Ve</h3><p>Captura texto, objetos, escenas y lo que tienes frente a ti.</p></article>
+        <article class="reveal"><span>02</span><div class="flow-memory" aria-hidden="true"><i></i><i></i><i></i></div><h3>Recuerda</h3><p>Guarda contexto para recuperar lugares, personas, objetos y tareas.</p></article>
+        <article class="reveal"><span>03</span><div class="flow-action" aria-hidden="true"><i></i></div><h3>Actúa</h3><p>Pregunta, recibe orientación o conecta herramientas mediante Hermes.</p></article>
+      </div>
+    </section>
+
+    <section class="labs-everyday">
+      <div class="everyday-device reveal">
+        <img src="../assets/armazon.png" alt="Smartglasses abiertos de Alba Labs vistos de cerca">
+        <div class="device-signal"><span></span><span></span><span></span></div>
+      </div>
+      <div class="everyday-copy reveal">
+        <p class="section-kicker">02 / Tu asistente diario</p>
+        <h2>Pregunta al mundo que tienes enfrente.</h2>
+        <div class="question-list">
+          <div><span>01</span><p>“¿Dónde dejé esta herramienta?”</p></div>
+          <div><span>02</span><p>“Lee y resume este documento.”</p></div>
+          <div><span>03</span><p>“Recuerda a esta persona y este contexto.”</p></div>
+          <div><span>04</span><p>“Guíame paso a paso mientras trabajo.”</p></div>
+        </div>
+        <p class="everyday-note">Conecta modelos locales o servicios de IA según tus necesidades de privacidad, velocidad y costo.</p>
+      </div>
+    </section>
+
+    <section class="labs-store" id="tienda">
+      <div class="store-heading reveal">
+        <div><p class="section-kicker">03 / Alba Store</p><h2>Llévate el laboratorio.</h2></div>
+        <p>Productos abiertos para crear asistentes, robots y sistemas de visión. Empezamos por los smartglasses; nuevos kits se habilitarán conforme entren a producción.</p>
+      </div>
+
+      <div class="featured-product reveal">
+        <div class="featured-product-media">
+          <span class="stock-badge"><i></i> Disponible</span>
+          <img src="../assets/armazon.png" alt="Alba Smartglasses Dev Kit en color negro">
+          <small>ALBA / SG-01</small>
+        </div>
+        <div class="featured-product-info">
+          <p class="section-kicker">Smartglasses / Dev Kit</p>
+          <h3>Una plataforma abierta,<br>lista para tus ideas.</h3>
+          <p>Smartglasses modulares para experimentar con visión artificial, asistentes multimodales y memoria contextual.</p>
+          <ul class="product-includes">
+            <li>Armazón con módulos de cámara</li>
+            <li>Audio y micrófono para interacción</li>
+            <li>Acceso al software y documentación</li>
+            <li>Compatibilidad con Hermes</li>
+          </ul>
+          <div class="buy-row">
+            <div class="product-price"><strong>$5,900</strong><span>MXN</span><small>Envío calculado por separado</small></div>
+            <button class="button add-cart-button" type="button" data-add-cart="smartglasses-dev-kit">Agregar al carrito <span>+</span></button>
           </div>
+          <p class="secure-note"><span>●</span> Pago seguro procesado por Stripe</p>
         </div>
       </div>
-    </section>
 
-    <section class="manifesto" id="plataforma">
-      <div class="manifesto-inner reveal">
-        <p class="section-kicker">La plataforma</p>
-        <blockquote>Un dispositivo que puede ver, escuchar, conectar y <em>recordar contigo.</em></blockquote>
-        <p>Los smartglasses de Alba Labs nacen como una plataforma modular para asistentes cotidianos, investigación y nuevas experiencias de IA. Su arquitectura abierta permite estudiar cada componente, modificarlo y construir encima.</p>
-      </div>
-    </section>
-
-    <section class="product-pillars open-stack" id="open-stack">
-      <div class="section-heading reveal">
-        <div><p class="section-kicker">01 / Open smartglasses</p><h2>Abierto desde<br>el primer tornillo</h2></div>
-        <p>Una base documentada de hardware y software para que desarrolladores, universidades y makers no tengan que comenzar desde cero.</p>
-      </div>
-      <div class="open-stack-grid">
-        <article class="stack-card reveal"><span>HW</span><h3>Hardware modular</h3><p>Cámaras, micrófonos, audio, batería, cómputo y montura organizados como módulos sustituibles.</p><small>CAD · BOM · Electrónica</small></article>
-        <article class="stack-card reveal"><span>FW</span><h3>Software abierto</h3><p>Firmware, control de dispositivos y ejemplos para captura, inferencia e interacción manos libres.</p><small>APIs · SDK · Ejemplos</small></article>
-        <article class="stack-card reveal"><span>AI</span><h3>IA interoperable</h3><p>Conecta modelos locales o servicios de IA según privacidad, latencia, costo y capacidad.</p><small>Local · Cloud · BYO model</small></article>
-        <article class="stack-card reveal"><span>MX</span><h3>Diseñado para fabricar</h3><p>Una arquitectura entendible, reparable y adaptable para prototipos, educación y lotes pequeños.</p><small>Build · Repair · Extend</small></article>
+      <div class="store-catalog" id="inventos">
+        <article class="store-card reveal">
+          <div class="catalog-art open-cam-art" aria-hidden="true"><i></i><b></b><span>CAM</span></div>
+          <div class="store-card-copy"><span>OPEN CAM / PRÓXIMAMENTE</span><h3>Módulo de cámara Edge</h3><p>Cámara, cómputo e inferencia local para prototipos de visión y robótica.</p><a href="mailto:hola@albavision.mx?subject=Interés%20en%20OpenCam%20Edge">Avisarme cuando esté disponible <i>↗</i></a></div>
+        </article>
+        <article class="store-card reveal">
+          <div class="catalog-art rover-catalog-art" aria-hidden="true"><i></i><i></i><b></b></div>
+          <div class="store-card-copy"><span>ALBA ROVER / PRÓXIMAMENTE</span><h3>Robot educativo</h3><p>Una plataforma móvil para aprender percepción, programación y autonomía.</p><a href="mailto:hola@albavision.mx?subject=Interés%20en%20Alba%20Rover">Avisarme cuando esté disponible <i>↗</i></a></div>
+        </article>
+        <article class="store-card reveal">
+          <div class="catalog-art vision-core-art" aria-hidden="true"><i></i><i></i><b>AI</b></div>
+          <div class="store-card-copy"><span>VISION CORE / EN DESARROLLO</span><h3>Núcleo de visión</h3><p>Un cerebro compacto para conectar cámaras, sensores y modelos de IA.</p><a href="mailto:hola@albavision.mx?subject=Interés%20en%20Vision%20Core">Conocer el proyecto <i>↗</i></a></div>
+        </article>
       </div>
     </section>
 
-    <section class="labs-memory-section">
-      <div class="labs-memory-inner">
-        <div class="memory-console reveal" aria-label="Representación de la memoria conectada de Alba Labs">
-          <div class="console-top"><span>HERMES / CONTEXT ENGINE</span><i></i></div>
-          <div class="memory-node main-node"><b>H</b><small>HERMES</small></div>
-          <div class="memory-node node-one"><b>01</b><small>VISIÓN</small></div>
-          <div class="memory-node node-two"><b>02</b><small>MEMORIA</small></div>
-          <div class="memory-node node-three"><b>03</b><small>IA</small></div>
-          <div class="memory-node node-four"><b>04</b><small>ACCIONES</small></div>
-          <svg viewBox="0 0 600 480" aria-hidden="true"><path d="M300 240L150 120M300 240L450 120M300 240L150 360M300 240L450 360"/></svg>
-        </div>
-        <div class="memory-copy reveal">
-          <p class="section-kicker">02 / Hermes + memoria</p>
-          <h2>Un asistente que no empieza de cero.</h2>
-          <p>Hermes funciona como capa de orquestación: conecta la visión de los lentes con modelos de IA, herramientas, datos y acciones. La memoria contextual permite recuperar personas, objetos, lugares y tareas cuando vuelven a ser relevantes.</p>
-          <ul class="check-list"><li>Conexión con modelos locales y servicios de IA</li><li>Memoria visual y contextual configurable</li><li>Automatizaciones, herramientas y mensajes</li><li>Controles de privacidad definidos por el proyecto</li></ul>
-        </div>
+    <section class="hermes-simple">
+      <div class="hermes-visual reveal" aria-hidden="true">
+        <div class="hermes-core">H<small>HERMES</small></div>
+        <span class="hermes-node node-vision">VISIÓN</span><span class="hermes-node node-memory">MEMORIA</span><span class="hermes-node node-models">MODELOS</span><span class="hermes-node node-tools">ACCIONES</span>
       </div>
+      <div class="hermes-copy reveal"><p class="section-kicker">04 / Hermes</p><h2>El puente entre lo que ves y lo que la IA puede hacer.</h2><p>Hermes conecta los smartglasses con memoria, modelos y herramientas. Cambia de IA sin cambiar de dispositivo y conserva el contexto que tú decidas.</p><div class="hermes-chips"><span>Modelos locales</span><span>Servicios de IA</span><span>Memoria</span><span>Automatizaciones</span></div></div>
     </section>
 
-    <section class="product-pillars labs-projects" id="proyectos">
-      <div class="section-heading reveal">
-        <div><p class="section-kicker">03 / Construye con Alba</p><h2>Del sensor<br>al primer prototipo</h2></div>
-        <p>Plataformas para aprender haciendo y llevar una idea de visión artificial hasta una demostración funcional.</p>
-      </div>
-      <div class="project-grid">
-        <article class="project-card project-camera reveal"><span>OPEN CAM / 01</span><div class="mini-camera-art" aria-hidden="true"><i></i><b></b></div><h3>Módulos de cámara</h3><p>Cámaras modulares con ejemplos de visión y Edge AI para robótica, inspección, monitoreo y experimentación.</p></article>
-        <article class="project-card project-robot reveal"><span>EDU ROBOT / 02</span><div class="robot-art" aria-hidden="true"><i></i><i></i><b></b></div><h3>Robots educativos</h3><p>Kits para comprender percepción, control y autonomía a través de proyectos que se pueden tocar, modificar y programar.</p></article>
-        <article class="project-card project-kit reveal"><span>DEV KIT / 03</span><div class="kit-art" aria-hidden="true"><i></i><i></i><i></i><b>AI</b></div><h3>Kits y formación</h3><p>Hardware, documentación, talleres y acompañamiento para universidades, laboratorios y equipos de innovación.</p></article>
-      </div>
-    </section>
-
-    <section class="unblind-feature" id="unblind">
+    <section class="unblind-feature labs-unblind" id="unblind">
       <div class="unblind-feature-inner">
-        <div class="unblind-copy reveal">
-          <p class="section-kicker">04 / Proyecto de Alba Labs</p>
-          <h2>UNBLIND</h2>
-          <blockquote>Tecnología que convierte el entorno en contexto útil y accesible.</blockquote>
-          <p>Unblind aplica smartglasses, visión artificial e interacción por audio para ampliar la autonomía de personas con discapacidad visual.</p>
-          <a class="button button-primary" href="../Unblind/">Conocer Unblind <span>↗</span></a>
-        </div>
+        <div class="unblind-copy reveal"><p class="section-kicker">05 / Tecnología con propósito</p><h2>UNBLIND</h2><blockquote>La misma plataforma abierta, aplicada a ampliar la autonomía.</blockquote><p>Unblind usa visión artificial e interacción por audio para convertir el entorno en información útil para personas con discapacidad visual.</p><a class="button button-primary" href="../Unblind/">Conocer Unblind <span>↗</span></a></div>
         <div class="unblind-lab-art reveal"><img src="../assets/armazon.png" alt="Smartglasses de asistencia visual Unblind"><span>PERCEPTION / EXPANDED</span></div>
       </div>
     </section>
 
-    <section class="detail-cta" id="colaborar">
-      <div class="reveal">
-        <p class="section-kicker">Kits · Formación · Colaboración</p>
-        <h2>¿Qué quieres<br>construir primero?</h2>
-        <p class="detail-cta-copy">Trabajamos con desarrolladores, universidades y equipos de innovación.</p>
-        <a class="button button-primary" href="mailto:hola@albavision.mx?subject=Construir%20con%20Alba%20Labs">Construir con Alba Labs <span>↗</span></a>
-      </div>
-    </section>
+    <section class="detail-cta" id="colaborar"><div class="reveal"><p class="section-kicker">Open hardware · Open possibilities</p><h2>Construye algo<br>que aún no existe.</h2><p class="detail-cta-copy">Compra el kit, colabora con Labs o lleva la plataforma a tu universidad.</p><div class="hero-actions centered-actions"><a class="button button-primary" href="#tienda">Ir a la tienda <span>↑</span></a><a class="text-link" href="mailto:hola@albavision.mx?subject=Colaborar%20con%20Alba%20Labs">Colaborar con Labs <span>↗</span></a></div></div></section>
   </main>
+
+  <aside class="cart-drawer" data-cart-drawer aria-hidden="true" aria-label="Carrito de compras">
+    <div class="cart-head"><div><span>ALBA STORE</span><h2>Tu carrito</h2></div><button type="button" data-cart-close aria-label="Cerrar carrito">×</button></div>
+    <div class="cart-body" data-cart-items></div>
+    <div class="cart-empty" data-cart-empty><div class="empty-orbit" aria-hidden="true"><i></i></div><h3>Tu carrito está vacío.</h3><p>Agrega un invento de Alba Labs para comenzar.</p></div>
+    <div class="cart-footer" data-cart-footer hidden>
+      <div class="cart-total"><span>Total</span><strong data-cart-total>$0 MXN</strong></div>
+      <p>El envío y los datos de entrega se confirmarán en Stripe.</p>
+      <button class="button cart-checkout" type="button" data-cart-checkout>Continuar a pago seguro <span>↗</span></button>
+      <small>Pago cifrado y procesado por Stripe.</small>
+    </div>
+  </aside>
+  <button class="cart-overlay" type="button" data-cart-overlay aria-label="Cerrar carrito" tabindex="-1"></button>
+  <div class="cart-toast" data-cart-toast role="status" aria-live="polite">Producto agregado al carrito.</div>
 
   <footer>
     <a class="brand footer-brand" href="../"><img class="brand-lockup" src="../assets/alba-vision-lockup-on-dark.png" alt="Alba Vision"></a>
-    <p>Investigación abierta de Alba Vision.</p>
-    <div class="footer-links"><a href="../">Industria</a><a href="../Unblind/">Unblind</a><a href="../AlbaSpace/">Space</a><a href="#colaborar">Contacto</a></div>
+    <p>Inventos abiertos de Alba Vision.</p>
+    <div class="footer-links"><a href="../">Industria</a><a href="#tienda">Tienda</a><a href="../Unblind/">Unblind</a><a href="../AlbaSpace/">Space</a></div>
     <span>© <span data-year></span> Alba Vision</span>
   </footer>
   <script src="../script.js"></script>
+  <script src="../labs-store.js"></script>
 </body>
 </html>
