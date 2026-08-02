@@ -3,113 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Alba Space desarrolla sistemas compactos de visión artificial para satélites CubeSat y procesamiento inteligente en órbita.">
-  <meta name="theme-color" content="#f3f5f6">
-  <title>Alba Space — Inteligencia visual en órbita</title>
+  <meta name="description" content="Alba Space desarrolla star trackers, visión para rendezvous y docking, cargas útiles de observación y análisis inteligente de imágenes satelitales.">
+  <meta name="theme-color" content="#07090c">
+  <title>Alba Space — Percepción para nuevas misiones</title>
   <link rel="icon" href="../assets/alba-vision-logo.png">
   <link rel="stylesheet" href="../styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body class="venture-page">
+<body class="space-page">
   <div class="page-noise" aria-hidden="true"></div>
   <header class="site-header" data-header>
-    <a class="brand" href="../" aria-label="Volver a Alba Vision">
-      <img class="brand-lockup" src="../assets/alba-vision-lockup-on-light.png" alt="Alba Vision">
-    </a>
+    <a class="brand" href="../" aria-label="Volver a Alba Vision"><img class="brand-lockup" src="../assets/alba-vision-lockup-on-dark.png" alt="Alba Vision"></a>
     <nav class="desktop-nav" aria-label="Navegación principal">
-      <a href="../#capacidades">Qué hacemos</a>
-      <a href="../#soluciones">Soluciones</a>
-      <a href="../#proyectos">Proyectos</a>
-      <a href="../#ventures">Ventures</a>
+      <a href="#sistemas">Sistemas</a><a href="#navegacion">Navegación</a><a href="#observacion">Observación</a><a href="#mision">Integración</a><a href="../AlbaLabs/">Labs</a>
     </nav>
-    <a class="header-cta" href="mailto:hola@albavision.mx?subject=Alba%20Space">Conversemos <span>↗</span></a>
+    <a class="header-cta" href="#contacto-space">Planear una misión <span>↗</span></a>
     <button class="menu-button" type="button" data-menu-button aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="../">Alba Vision</a>
-      <a href="#mision">Misión</a>
-      <a href="#tecnologia">Tecnología</a>
-      <a href="#arquitectura">Arquitectura</a>
-    </div>
+    <div class="mobile-menu" data-mobile-menu><a href="../">Alba Vision</a><a href="#sistemas">Sistemas</a><a href="#navegacion">Navegación</a><a href="#observacion">Observación</a><a href="#mision">Integración</a><a href="#contacto-space">Contacto</a></div>
   </header>
 
   <main>
-    <section class="sub-hero">
-      <div class="sub-hero-inner">
-        <div>
-          <p class="section-kicker reveal">Alba Ventures / 02</p>
-          <h1 class="reveal">ALBA<br>SPACE<small>Vision beyond Earth</small></h1>
-          <p class="sub-hero-copy reveal">Sistemas de visión compactos para observar, interpretar y decidir desde satélites CubeSat.</p>
-          <div class="sub-hero-meta reveal"><span>New Space</span><span>Edge AI orbital</span><span>México</span></div>
-        </div>
-        <div class="sub-art reveal" aria-label="Representación conceptual de un satélite CubeSat">
-          <div class="satellite-art">
-            <div class="sat-core"><i></i></div><div class="solar left"></div><div class="solar right"></div>
-            <span class="orbit"></span>
-          </div>
-        </div>
+    <section class="space-hero">
+      <div class="space-hero-visual" aria-hidden="true"><img src="../assets/alba-space-rendezvous.png" alt=""></div>
+      <div class="space-hero-inner">
+        <p class="section-kicker reveal">Alba / Sistemas espaciales</p>
+        <h1 class="reveal">PERCEPCIÓN<br><em>MÁS ALLÁ.</em></h1>
+        <p class="space-lead reveal">Sensores y software de visión para orientar, aproximar, observar y decidir en misiones satelitales.</p>
+        <div class="hero-actions reveal"><a class="button button-primary" href="#sistemas">Explorar sistemas <span>↓</span></a><a class="text-link" href="#contacto-space">Cuéntanos la misión <span>↗</span></a></div>
       </div>
+      <div class="space-coordinates"><span>LEO / READY</span><span>OPTICAL NAVIGATION</span><span>ONBOARD VISION</span></div>
     </section>
 
-    <section class="manifesto" id="mision">
-      <div class="manifesto-inner reveal">
-        <p class="section-kicker">La misión</p>
-        <blockquote>Si el dato se comprende en órbita, la decisión puede llegar a Tierra <em>más rápido.</em></blockquote>
-        <p>Alba Space lleva la experiencia de Alba Vision en óptica, IA embebida y hardware inteligente a plataformas CubeSat. Diseñamos cargas útiles visuales compactas que aprovechan cada gramo, watt y byte disponible.</p>
-      </div>
-    </section>
-
-    <section class="product-pillars" id="tecnologia">
+    <section class="section space-systems" id="sistemas">
       <div class="section-heading reveal">
-        <div><p class="section-kicker">Capacidades orbitales</p><h2>Visión diseñada<br>para el espacio</h2></div>
-        <p>Una arquitectura modular para misiones de observación, navegación y validación tecnológica.</p>
+        <div><p class="section-kicker">01 / Sistemas visuales</p><h2>De las estrellas<br>al objetivo</h2></div>
+        <p>Una familia modular de cámaras, cómputo y algoritmos que convierte fotones en orientación, distancia e información útil para la misión.</p>
       </div>
-      <div class="pillar-grid">
-        <article class="pillar reveal">
-          <span class="cap-number">01 / Captura</span>
-          <h3>Óptica compacta</h3>
-          <p>Sensores y óptica seleccionados para equilibrar resolución, campo de visión, masa y consumo energético.</p>
+      <div class="space-product-grid">
+        <article class="space-product star-product reveal" id="navegacion">
+          <span class="space-product-index">AVS / 01</span><div class="star-map" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><svg viewBox="0 0 300 220"><path d="M36 164L98 72L174 108L252 40M98 72L132 190L220 174"/></svg></div>
+          <div><p class="section-kicker">Attitude determination</p><h3>Star Tracker</h3><p>Captura y procesamiento de campos estelares para estimar la orientación del vehículo con una arquitectura compacta y configurable.</p><ul><li>Óptica y sensor integrados</li><li>Catálogo y reconocimiento estelar</li><li>Estimación de actitud</li></ul></div>
         </article>
-        <article class="pillar reveal">
-          <span class="cap-number">02 / Cómputo</span>
-          <h3>Procesamiento a bordo</h3>
-          <p>Edge AI para clasificar, comprimir y priorizar imágenes antes de utilizar el enlace de comunicación.</p>
+        <article class="space-product docking-product reveal">
+          <span class="space-product-index">AVS / 02</span><div class="dock-graphic" aria-hidden="true"><i></i><i></i><b></b><span>REL NAV</span></div>
+          <div><p class="section-kicker">Relative navigation</p><h3>Rendezvous &amp; Docking</h3><p>Percepción visual para detectar un objetivo, estimar su pose y acompañar maniobras de aproximación, inspección y acoplamiento.</p><ul><li>Detección y tracking del objetivo</li><li>Estimación de pose relativa</li><li>Validación Hardware-in-the-Loop</li></ul></div>
         </article>
-        <article class="pillar reveal">
-          <span class="cap-number">03 / Integración</span>
-          <h3>Formato CubeSat</h3>
-          <p>Electrónica y software preparados para integrarse con buses compactos y restricciones reales de misión.</p>
+        <article class="space-product earth-product reveal">
+          <span class="space-product-index">AVS / 03</span><div class="earth-scan" aria-hidden="true"><i></i><b></b><span></span></div>
+          <div><p class="section-kicker">Earth observation</p><h3>Imaging Payload</h3><p>Cargas útiles compactas para adquirir imágenes, calibrarlas y extraer información antes de ocupar el enlace de comunicación.</p><ul><li>Adquisición y calibración</li><li>Compresión y priorización</li><li>Inferencia a bordo</li></ul></div>
         </article>
       </div>
     </section>
 
-    <section class="product-flow" id="arquitectura">
-      <div class="flow-inner">
-        <div class="section-heading reveal">
-          <div><p class="section-kicker">Arquitectura de misión</p><h2>Observar menos.<br>Entender más.</h2></div>
-          <p>El procesamiento en el borde reduce datos innecesarios y aumenta el valor de cada ventana de comunicación.</p>
-        </div>
-        <div class="flow-list">
-          <article class="flow-step reveal"><span>01</span><h3>Adquisición</h3><p>La carga útil captura imágenes según el plan de misión y las condiciones orbitales.</p></article>
-          <article class="flow-step reveal"><span>02</span><h3>Calibración</h3><p>El sistema corrige y normaliza la señal antes de ejecutar modelos de análisis.</p></article>
-          <article class="flow-step reveal"><span>03</span><h3>Inferencia</h3><p>Los algoritmos detectan eventos, zonas o patrones de interés directamente a bordo.</p></article>
-          <article class="flow-step reveal"><span>04</span><h3>Priorización</h3><p>Se transmiten primero los resultados y datos con mayor valor para la misión.</p></article>
-        </div>
+    <section class="orbital-intelligence" id="observacion">
+      <div class="orbital-image reveal"><img src="../assets/alba-space-rendezvous.png" alt="Satélites compactos realizando navegación relativa en órbita"><div class="orbital-overlay"><span>TRACK / 02</span><span>RANGE LOCKED</span><span>EARTH OBSERVATION</span></div></div>
+      <div class="orbital-copy reveal">
+        <p class="section-kicker">02 / Inteligencia orbital</p>
+        <h2>No sólo capturar.<br><em>Comprender.</em></h2>
+        <p>La imagen se convierte en un producto de información: regiones de interés, eventos, cambios o condiciones que pueden priorizarse a bordo y analizarse en tierra.</p>
+        <div class="data-capabilities"><div><span>01</span><p>Detección de cambios y eventos</p></div><div><span>02</span><p>Clasificación de superficie y objetos</p></div><div><span>03</span><p>Monitoreo agroambiental</p></div><div><span>04</span><p>Productos visuales de misión</p></div></div>
       </div>
     </section>
 
-    <section class="detail-cta">
-      <div class="reveal">
-        <p class="section-kicker">Nueva misión</p>
-        <h2>Llevemos una nueva<br>mirada a órbita.</h2>
-        <a class="button button-primary" href="mailto:hola@albavision.mx?subject=Colaboración%20con%20Alba%20Space">Conversemos sobre Alba Space <span>↗</span></a>
+    <section class="section mission-flow" id="mision">
+      <div class="section-heading reveal">
+        <div><p class="section-kicker">03 / De componente a misión</p><h2>Integramos con<br>restricciones reales</h2></div>
+        <p>Masa, potencia, cómputo, comunicaciones y ambiente dejan de ser notas al pie: son parte del diseño desde el primer día.</p>
       </div>
+      <div class="flow-list">
+        <article class="flow-step reveal"><span>01</span><h3>Definir</h3><p>Objetivo de misión, escenario, interfaces y métricas de desempeño.</p></article>
+        <article class="flow-step reveal"><span>02</span><h3>Prototipar</h3><p>Óptica, electrónica y algoritmos validados en un banco representativo.</p></article>
+        <article class="flow-step reveal"><span>03</span><h3>Integrar</h3><p>Hardware y software conectados al bus, telemetría y operación de misión.</p></article>
+        <article class="flow-step reveal"><span>04</span><h3>Validar</h3><p>Ensayos y evidencia para reducir riesgo antes de la siguiente etapa.</p></article>
+      </div>
+    </section>
+
+    <section class="detail-cta space-cta" id="contacto-space">
+      <div class="reveal"><p class="section-kicker">Nueva misión</p><h2>Diseñemos lo que<br>la misión debe ver.</h2><p class="detail-cta-copy">Componentes, cargas útiles, software de navegación y análisis de imágenes.</p><a class="button button-primary" href="mailto:hola@albavision.mx?subject=Nueva%20misión%20Alba%20Space">Planear una misión <span>↗</span></a></div>
     </section>
   </main>
 
   <footer>
     <a class="brand footer-brand" href="../"><img class="brand-lockup" src="../assets/alba-vision-lockup-on-dark.png" alt="Alba Vision"></a>
-    <p>Una venture de Alba Vision.</p>
-    <div class="footer-links"><a href="../">Inicio</a><a href="../Unblind/">Unblind</a><a href="../#contacto">Contacto</a></div>
+    <p>Sistemas espaciales de Alba Vision.</p>
+    <div class="footer-links"><a href="../">Industria</a><a href="../AlbaLabs/">Labs</a><a href="../Unblind/">Unblind</a><a href="#contacto-space">Contacto</a></div>
     <span>© <span data-year></span> Alba Vision</span>
   </footer>
   <script src="../script.js"></script>

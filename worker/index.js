@@ -2,6 +2,8 @@ const pageRoutes = new Map([
   ["/", "/index.html"],
   ["/Unblind", "/Unblind/index.html"],
   ["/Unblind/", "/Unblind/index.html"],
+  ["/AlbaLabs", "/AlbaLabs/index.html"],
+  ["/AlbaLabs/", "/AlbaLabs/index.html"],
   ["/AlbaSpace", "/AlbaSpace/index.html"],
   ["/AlbaSpace/", "/AlbaSpace/index.html"]
 ]);
