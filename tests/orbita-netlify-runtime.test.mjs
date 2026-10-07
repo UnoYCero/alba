@@ -12,14 +12,35 @@ test('storage errors cannot be misreported as successful conditional writes',asy
 });
 test('preview, unpublished and unrelated sites cannot open the production store',async()=>{
   let opens=0;const getStore=()=>{opens++;throw new Error('UNEXPECTED');};
-  const handler=createNetlifyHandler({env,getStore}); const recovery=createNetlifyRecovery({env,getStore});
+  const handler=createNetlifyHandler({env,getStore});
   for (const invalid of [{...context,deploy:{context:'deploy-preview',published:false}},{...context,deploy:{context:'production',published:false}},
     {...context,site:{id:'customer-site'}},{...context,account:{id:'customer-team'}}]) {
     assert.equal((await handler(new Request('https://preview.test/orbita/api/operator/status'),invalid)).status,503);
     assert.equal((await (await handler(new Request('https://preview.test/orbita/api/health'),invalid)).json()).enabled,false);
-    await recovery(new Request('https://preview.test/'),invalid);
   }
   assert.equal(opens,0);
+});
+test('scheduled production recovery dispatches only to the guarded canonical receiver',async()=>{
+  let reads=0, dispatches=0;const tasks=[];
+  const receiver=createNetlifyHandler({env,getStore:()=>({getWithMetadata:async()=>{reads++;return null;}})});
+  const recovery=createNetlifyRecovery({env,getStore:()=>{throw new Error('SCHEDULER_MUST_NOT_OPEN_STORAGE');},
+    fetcher:async(url,options)=>{
+      dispatches++;assert.equal(url,'https://albavision.tech/orbita/api/jobs/run');
+      assert.equal(options.redirect,'error');assert.equal(options.headers.Authorization,`Bearer ${env.ORBITA_WORKER_TOKEN}`);
+      return receiver(new Request(url,options),{...context,waitUntil:task=>tasks.push(task)});
+    }});
+  await recovery(new Request('https://scheduled.test/'),{...context,deploy:{context:'production',published:false}});
+  await Promise.all(tasks);assert.equal(dispatches,1);assert.equal(reads,1);
+  for (const invalid of [{...context,deploy:{context:'deploy-preview',published:false}},
+    {...context,site:{id:'customer-site'}},{...context,account:{id:'customer-team'}}]) {
+    await recovery(new Request('https://scheduled.test/'),invalid);
+  }
+  assert.equal(dispatches,1);
+  for (const overrides of [{ORBITA_ENABLED:'false'},{ORBITA_WORKER_TOKEN:''}]) {
+    await createNetlifyRecovery({env:{...env,...overrides},fetcher:()=>{throw new Error('MUST_NOT_DISPATCH');}})(null,context);
+  }
+  assert.equal((await receiver(new Request('https://albavision.tech/orbita/api/jobs/run',{method:'POST',
+    headers:{Authorization:`Bearer ${env.ORBITA_WORKER_TOKEN}`}}),{...context,deploy:{context:'production',published:false}})).status,503);
 });
 test('domain route retains the exact webhook bytes and rejects unsigned posts without reading storage',async()=>{
   let reads=0;const getStore=options=>{assert.equal(options.name,'orbita-private-v1');assert.equal(options.consistency,'strong');return {

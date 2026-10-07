@@ -19,7 +19,11 @@ y el usuario confirmó su recepción. El número real de Alba Vision sigue pendi
 - Netlify Blobs, almacén `orbita-private-v1`: estado operativo cifrado, conservado entre despliegues.
 
 El webhook persiste antes de devolver éxito y procesa un mensaje mediante `context.waitUntil`.
-La recuperación programada atiende trabajo pendiente si esa ejecución se interrumpe. No utiliza
+La recuperación programada invoca `/orbita/api/jobs/run` con el token privado del trabajador.
+Netlify reporta `published=false` en la tarea programada de producción; por eso esta tarea nunca
+abre el almacén directamente. El receptor canónico exige su propia condición de despliegue
+publicado antes de abrir datos o enviar mensajes. Así atiende trabajo pendiente si la ejecución
+inicial se interrumpe. No utiliza
 Background Functions ni cambia el plan Free Legacy existente. No promete envíos exactamente
 una vez: un resultado de Meta incierto se marca para revisión y no se reenvía automáticamente.
 
