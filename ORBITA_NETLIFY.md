@@ -7,7 +7,7 @@ No requiere crear una base de datos de Órbita, instalar SQL ni cambiar Nutrihi 
 SDK `@netlify/blobs` fijado a `11.1.3`; Node 22 en Netlify. Compilación Next.js existente conservada.
 Servicio publicado y canal de prueba activado el 7 de octubre de 2026. Meta usa el webhook
 `https://albavision.tech/orbita/api/webhooks/whatsapp`. El número de prueba es `+1 555 178-9080`,
-limitado al cliente autorizado `+52 55 7620 5613`. Una consulta en lenguaje natural fue recibida,
+limitado al destinatario autorizado configurado en el canal privado. Una consulta en lenguaje natural fue recibida,
 clasificada por Jev y respondida con el menú anterior de Sankalpa; Meta registró la respuesta leída
 y el usuario confirmó su recepción. El número real de Alba Vision sigue pendiente de coexistencia.
 
