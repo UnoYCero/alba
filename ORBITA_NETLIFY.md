@@ -44,6 +44,11 @@ exclusivamente a Functions: también los recibe el código de Builds y Runtime d
 sitio. Es una ampliación explícita del acceso del código de producción y requiere
 autorización antes de cargar valores. No cambiar el plan de forma automática.
 
+Netlify no permite reclasificar una variable una vez marcada como secreta. El ID
+público de la app de Meta figura en la documentación, por lo que `netlify.toml`
+excluye únicamente `ORBITA_META_APP_ID` del escaneo de valores secretos. Las claves,
+tokens y secretos reales siguen sujetos al detector; el escaneo permanece activo.
+
 `ORBITA_CREDENTIAL_KEY`, `ORBITA_OPERATOR_TOKEN`, `ORBITA_WORKER_TOKEN`,
 `ORBITA_META_APP_ID`, `ORBITA_META_APP_SECRET`, `ORBITA_META_VERIFY_TOKEN`,
 `ORBITA_TYPESAFE_API_KEY`; opcional `ORBITA_MONTHLY_BUDGET_USD`.
