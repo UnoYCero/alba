@@ -37,10 +37,18 @@ export function createNetlifyHandler({env,getStore,fetcher=fetch}) {
 }
 export function createNetlifyRecovery({env,getStore,fetcher=fetch}) {
   return async (_request,context) => {
-    if (!available(context) || env.ORBITA_ENABLED!=='true') return;
+    if (!available(context) || env.ORBITA_ENABLED!=='true') {
+      console.info('ORBITA_RECOVERY_SKIPPED',JSON.stringify({siteMatches:context?.site?.id===SITE,
+        accountMatches:context?.account?.id===TEAM,production:context?.deploy?.context==='production',
+        published:context?.deploy?.published===true,enabled:env.ORBITA_ENABLED==='true'}));
+      return;
+    }
     // One job per scheduled invocation. The published receiver processes arrivals
     // immediately with waitUntil; this is the recovery path for interrupted work.
-    try { await runOneJob(env,state(env,getStore),{fetcher}); }
+    try {
+      const result=await runOneJob(env,state(env,getStore),{fetcher});
+      console.info('ORBITA_RECOVERY_COMPLETED',JSON.stringify(result));
+    }
     catch { console.error('ORBITA_RECOVERY_FAILED'); }
   };
 }
