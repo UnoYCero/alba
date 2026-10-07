@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "node scripts/build.mjs",
     "build:next": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:orbita": "node --test tests/orbita-*.test.mjs"
   },
   "dependencies": {
+    "@netlify/blobs": "11.1.3",
     "next": "^16.2.12",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
