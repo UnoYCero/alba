@@ -37,7 +37,12 @@ El panel local sin autenticación no se publica. Las rutas del operador requiere
 
 ## Configuración pendiente
 
-Secretos de Functions **solo para producción**, en el proyecto de Alba Vision:
+Secretos **solo para producción**, en el proyecto de Alba Vision, marcados como
+`Contains secret values`. Excluir Deploy Previews, Branch deploys, Preview Server,
+Agent Runners y desarrollo local. El plan Free Legacy no permite limitar el ámbito
+exclusivamente a Functions: también los recibe el código de Builds y Runtime de este
+sitio. Es una ampliación explícita del acceso del código de producción y requiere
+autorización antes de cargar valores. No cambiar el plan de forma automática.
 
 `ORBITA_CREDENTIAL_KEY`, `ORBITA_OPERATOR_TOKEN`, `ORBITA_WORKER_TOKEN`,
 `ORBITA_META_APP_ID`, `ORBITA_META_APP_SECRET`, `ORBITA_META_VERIFY_TOKEN`,
