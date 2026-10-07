@@ -154,7 +154,11 @@ export function createBlobState(store,env,{clock=Date.now,maxBytes=8*1024*1024,r
   const configured=env.ORBITA_MONTHLY_BUDGET_USD;
   const platformBudget=configured===undefined || configured==='' ? null : Number(configured);
   if (platformBudget!==null && (!Number.isFinite(platformBudget) || platformBudget<0)) error('BUDGET_INVALID');
-  return {async rpc(name,p={}) {
+  return {async exportSnapshot() {
+    const current=await store.getWithMetadata(KEY,{type:'text',consistency:'strong'});
+    if (!current) error('SNAPSHOT_NOT_FOUND');
+    return {ciphertext:current.data,etag:current.etag};
+  },async rpc(name,p={}) {
     if (!/^orbita_[a-z_]+$/.test(name)) error('OPERATION_NOT_ALLOWED');
     for (let attempt=0;attempt<retries;attempt++) {
       const current=await store.getWithMetadata(KEY,{type:'text',consistency:'strong'});

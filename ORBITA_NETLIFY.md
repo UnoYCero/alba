@@ -3,7 +3,8 @@
 Despliegue preparado en el proyecto Netlify `albavision`, ID
 `aa3eb206-3126-4e99-bc91-46a4bb2d59d2`, cuenta del equipo `6864502cf6cc9967e3dac6db`.
 Este ID procede del registro de compilación de producción; el ID del editor visual es distinto.
-No requiere crear una base de datos de Órbita, instalar SQL ni cambiar Nutrihi o Sankalpa.
+El servicio inicial usa Blobs; la migración preparada utiliza la nueva base dedicada
+de Órbita. Nutrihi y Sankalpa conservan sus bases y configuración.
 SDK `@netlify/blobs` fijado a `11.1.3`; Node 22 en Netlify. Compilación Next.js existente conservada.
 Servicio publicado y canal de prueba activado el 7 de octubre de 2026. Meta usa el webhook
 `https://albavision.tech/orbita/api/webhooks/whatsapp`. El número de prueba es `+1 555 178-9080`,
@@ -17,6 +18,32 @@ y el usuario confirmó su recepción. El número real de Alba Vision sigue pendi
 - `orbita-recovery.mjs`: recuperación programada cada minuto, un mensaje por invocación.
 - `orbita-server/`: clasificación Jev, cifrado, enrutamiento y conector comercial de Sankalpa.
 - Netlify Blobs, almacén `orbita-private-v1`: estado operativo cifrado, conservado entre despliegues.
+
+## Cambio preparado a Supabase
+
+Alba Vision creó el proyecto dedicado `pfptagachuwclcxkmldb` en su organización
+`dgcoyccqqeyjhfatcasa`. El backend sigue siendo Blobs por defecto. Para seleccionar
+Supabase se necesita `ORBITA_STATE_BACKEND=supabase`, esos IDs exactos en
+`ORBITA_PROJECT_REF` y `ORBITA_ORGANIZATION_ID`, la URL correspondiente en
+`ORBITA_SUPABASE_URL` y una clave privada de servidor en `ORBITA_SUPABASE_SECRET_KEY`.
+Una configuración inválida devuelve error; nunca alterna silenciosamente de almacén.
+
+El esquema base y `orbita-database/encrypted-cutover.sql` ya se instalaron en la base
+nueva, inicialmente vacía. Hay ocho tablas privadas, todas con RLS; la clave pública
+no puede ejecutar las funciones y el asesor marca cero errores y advertencias.
+La nueva credencial y el cambio de backend siguen pendientes de autorización.
+
+`encrypted-database.mjs` conserva AES-GCM para cuerpo, nombre, teléfono, archivos,
+respuestas y cotizaciones. PostgreSQL guarda registros independientes e índices
+HMAC de teléfono. La clave de cifrado permanece fuera de Supabase. Sus tablas privadas
+y funciones de servidor niegan acceso a los roles anónimo y autenticado.
+
+El operador privado puede obtener `/operator/snapshot` mientras el backend sea Blobs;
+devuelve exclusivamente el documento cifrado y su ETag. La migración verifica que
+el origen esté detenido y no haya cambiado, importa todo en una transacción a un
+destino vacío y conserva IDs y estados de entrega. El respaldo no se elimina.
+La activación del destino debe realizarse después de verificar el esquema, la
+importación y las credenciales nuevas. El receptor de WhatsApp conserva su URL.
 
 El webhook persiste antes de devolver éxito y procesa un mensaje mediante `context.waitUntil`.
 La recuperación programada invoca `/orbita/api/jobs/run` con el token privado del trabajador.

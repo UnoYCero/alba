@@ -1,5 +1,7 @@
 import {createBlobState} from './blob-state.mjs';
 import {createHandler} from './handler.mjs';
+import {createEncryptedDatabase} from './encrypted-database.mjs';
+import {equalSecret} from './security.mjs';
 const SITE = 'aa3eb206-3126-4e99-bc91-46a4bb2d59d2';
 // accountId from this site's Netlify production build, not its Visual Editor team ID.
 const TEAM = '6864502cf6cc9967e3dac6db';
@@ -15,7 +17,13 @@ export function checkedStorageFetch(fetcher=fetch) {
     return response;
   };
 }
-function state(env,getStore) {
+function state(env,getStore,fetcher) {
+  const backend=env.ORBITA_STATE_BACKEND || 'blobs';
+  if (backend==='supabase') {
+    if (env.ORBITA_PROJECT_REF!=='pfptagachuwclcxkmldb' || env.ORBITA_ORGANIZATION_ID!=='dgcoyccqqeyjhfatcasa') throw new Error('DATABASE_TARGET_REJECTED');
+    return createEncryptedDatabase(env,fetcher);
+  }
+  if (backend!=='blobs') throw new Error('STORAGE_BACKEND_INVALID');
   return createBlobState(getStore({name:'orbita-private-v1',consistency:'strong',fetch:checkedStorageFetch()}),env);
 }
 export function createNetlifyHandler({env,getStore,fetcher=fetch}) {
@@ -28,7 +36,13 @@ export function createNetlifyHandler({env,getStore,fetcher=fetch}) {
       return json({error:'DEPLOYMENT_NOT_ACTIVE'},503);
     }
     try {
-      const database=state(env,getStore);
+      const database=state(env,getStore,fetcher);
+      if (url.pathname==='/operator/snapshot' && request.method==='GET') {
+        if (!/^[A-Za-z0-9_-]{32,256}$/.test(env.ORBITA_OPERATOR_TOKEN || '') ||
+          !await equalSecret(request.headers.get('authorization'),`Bearer ${env.ORBITA_OPERATOR_TOKEN}`)) return json({error:'FORBIDDEN'},403);
+        if (!database.exportSnapshot) return json({error:'SNAPSHOT_NOT_AVAILABLE'},409);
+        return json(await database.exportSnapshot());
+      }
       const handler=createHandler({env,database,fetcher,waitUntil:typeof context.waitUntil==='function'?task=>context.waitUntil(task):undefined});
       return await handler(new Request(url,request));
     } catch { return json({error:'SERVICE_UNAVAILABLE'},503); }
