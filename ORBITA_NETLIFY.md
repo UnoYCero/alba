@@ -5,7 +5,11 @@ Despliegue preparado en el proyecto Netlify `albavision`, ID
 Este ID procede del registro de compilación de producción; el ID del editor visual es distinto.
 No requiere crear una base de datos de Órbita, instalar SQL ni cambiar Nutrihi o Sankalpa.
 SDK `@netlify/blobs` fijado a `11.1.3`; Node 22 en Netlify. Compilación Next.js existente conservada.
-No se ha publicado ni activado este servicio todavía.
+Servicio publicado y canal de prueba activado el 7 de octubre de 2026. Meta usa el webhook
+`https://albavision.tech/orbita/api/webhooks/whatsapp`. El número de prueba es `+1 555 178-9080`,
+limitado al cliente autorizado `+52 55 7620 5613`. Una consulta en lenguaje natural fue recibida,
+clasificada por Jev y respondida con el menú anterior de Sankalpa; Meta registró la respuesta leída
+y el usuario confirmó su recepción. El número real de Alba Vision sigue pendiente de coexistencia.
 
 ## Componentes
 
@@ -35,7 +39,7 @@ Los teléfonos y mensajes permanecen cifrados en el blob; los tokens de cada can
 cifrado con contexto de cliente/canal. Nunca guardar secretos en `public`, `NEXT_PUBLIC_*` o Git.
 El panel local sin autenticación no se publica. Las rutas del operador requieren su token propio.
 
-## Configuración pendiente
+## Configuración de producción
 
 Secretos **solo para producción**, en el proyecto de Alba Vision, marcados como
 `Contains secret values`. Excluir Deploy Previews, Branch deploys, Preview Server,
