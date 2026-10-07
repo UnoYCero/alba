@@ -52,3 +52,30 @@ test('domain route retains the exact webhook bytes and rejects unsigned posts wi
   assert.equal((await handler(new Request('https://albavision.tech/orbita/api/operator/status'),context)).status,403);
   assert.equal(reads,0);
 });
+test('Supabase selection is explicit, locked to the selected platform project and never falls back to Blobs',async()=>{
+  let calls=0;const configured={...env,ORBITA_STATE_BACKEND:'supabase',ORBITA_PROJECT_REF:'pfptagachuwclcxkmldb',
+    ORBITA_ORGANIZATION_ID:'dgcoyccqqeyjhfatcasa',ORBITA_SUPABASE_URL:'https://pfptagachuwclcxkmldb.supabase.co',
+    ORBITA_SUPABASE_SECRET_KEY:'sb_secret_fixture',ORBITA_META_APP_ID:'1782537496230918'};
+  const getStore=()=>{throw new Error('NO_BLOBS_FALLBACK');};
+  const fetcher=async(url,options)=>{calls++;assert.equal(url,'https://pfptagachuwclcxkmldb.supabase.co/rest/v1/rpc/orbita_status');
+    assert.equal(options.headers.apikey,configured.ORBITA_SUPABASE_SECRET_KEY);return Response.json({tenants:[],channels:[],messages:{}});};
+  const request=()=>new Request('https://albavision.tech/orbita/api/operator/status',{headers:{Authorization:`Bearer ${env.ORBITA_OPERATOR_TOKEN}`}});
+  assert.equal((await createNetlifyHandler({env:configured,getStore,fetcher})(request(),context)).status,200);
+  assert.equal(calls,1);
+  for(const invalid of [{ORBITA_PROJECT_REF:'lajstcbseugkjmkasnjd'},{ORBITA_ORGANIZATION_ID:'cqkvpdutzjkidfqjeyav'},
+    {ORBITA_SUPABASE_URL:'https://other.supabase.co'},{ORBITA_SUPABASE_SECRET_KEY:''},{ORBITA_STATE_BACKEND:'unknown'}]) {
+    assert.equal((await createNetlifyHandler({env:{...configured,...invalid},getStore,fetcher})(request(),context)).status,503);
+  }
+  assert.equal(calls,1);
+});
+test('snapshot endpoint exposes only ciphertext to the private operator and remains unavailable in previews',async()=>{
+  let reads=0;const getStore=()=>({getWithMetadata:async()=>{reads++;return {data:'encrypted-fixture',etag:'one'};}});
+  const handler=createNetlifyHandler({env,getStore});
+  const request=token=>new Request('https://albavision.tech/orbita/api/operator/snapshot',{headers:token?{Authorization:`Bearer ${token}`}:{}});
+  for(const token of [undefined,'wrong',env.ORBITA_WORKER_TOKEN]) assert.equal((await handler(request(token),context)).status,403);
+  assert.equal(reads,0);
+  const response=await handler(request(env.ORBITA_OPERATOR_TOKEN),context);assert.equal(response.status,200);
+  assert.deepEqual(await response.json(),{ciphertext:'encrypted-fixture',etag:'one'});assert.equal(reads,1);
+  assert.equal((await handler(request(env.ORBITA_OPERATOR_TOKEN),{...context,deploy:{context:'deploy-preview',published:false}})).status,503);
+  assert.equal(reads,1);
+});
