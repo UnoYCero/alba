@@ -1,5 +1,8 @@
 [build.environment]
   NODE_VERSION = "22"
+  # Public Meta application ID is also documented in the repository.
+  # Keep scanning every actual credential; omit only this public identifier.
+  SECRETS_SCAN_OMIT_KEYS = "ORBITA_META_APP_ID"
 
 [functions]
   directory = "netlify/functions"
