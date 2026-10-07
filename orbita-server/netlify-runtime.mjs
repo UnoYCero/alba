@@ -1,6 +1,5 @@
 import {createBlobState} from './blob-state.mjs';
 import {createHandler} from './handler.mjs';
-import {runOneJob} from './engine.mjs';
 const SITE = 'aa3eb206-3126-4e99-bc91-46a4bb2d59d2';
 // accountId from this site's Netlify production build, not its Visual Editor team ID.
 const TEAM = '6864502cf6cc9967e3dac6db';
@@ -35,19 +34,29 @@ export function createNetlifyHandler({env,getStore,fetcher=fetch}) {
     } catch { return json({error:'SERVICE_UNAVAILABLE'},503); }
   };
 }
-export function createNetlifyRecovery({env,getStore,fetcher=fetch}) {
+export function createNetlifyRecovery({env,fetcher=fetch}) {
   return async (_request,context) => {
-    if (!available(context) || env.ORBITA_ENABLED!=='true') {
+    // Scheduled invocations report published=false even for the current production
+    // deploy. They must never open storage directly. Dispatch to the canonical
+    // receiver, which independently enforces its published-deployment guard.
+    const permitted=context?.site?.id===SITE && context?.account?.id===TEAM &&
+      context?.deploy?.context==='production' && env.ORBITA_ENABLED==='true' &&
+      /^[A-Za-z0-9_-]{32,256}$/.test(env.ORBITA_WORKER_TOKEN || '');
+    if (!permitted) {
       console.info('ORBITA_RECOVERY_SKIPPED',JSON.stringify({siteMatches:context?.site?.id===SITE,
         accountMatches:context?.account?.id===TEAM,production:context?.deploy?.context==='production',
         published:context?.deploy?.published===true,enabled:env.ORBITA_ENABLED==='true'}));
       return;
     }
-    // One job per scheduled invocation. The published receiver processes arrivals
-    // immediately with waitUntil; this is the recovery path for interrupted work.
+    // One job per scheduled invocation, processed by the published receiver.
     try {
-      const result=await runOneJob(env,state(env,getStore),{fetcher});
-      console.info('ORBITA_RECOVERY_COMPLETED',JSON.stringify(result));
+      const response=await fetcher('https://albavision.tech/orbita/api/jobs/run',{
+        method:'POST',redirect:'error',headers:{Authorization:`Bearer ${env.ORBITA_WORKER_TOKEN}`},
+        signal:AbortSignal.timeout(15000)});
+      if (!response.ok) throw new Error('RECOVERY_TRIGGER_FAILED');
+      const result=await response.json();
+      if (response.status!==202 || result.scheduled!==true) throw new Error('RECOVERY_NOT_SCHEDULED');
+      console.info('ORBITA_RECOVERY_DISPATCHED');
     }
     catch { console.error('ORBITA_RECOVERY_FAILED'); }
   };
