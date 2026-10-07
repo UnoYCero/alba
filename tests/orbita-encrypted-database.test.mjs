@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {PGlite} from '@electric-sql/pglite';
 import {createEncryptedDatabase} from '../orbita-server/encrypted-database.mjs';
+import {createDatabase} from '../orbita-server/database.mjs';
 import {createBlobState} from '../orbita-server/blob-state.mjs';
 import {openCredentials,sealCredentials} from '../orbita-server/security.mjs';
 import {runOneJob} from '../orbita-server/engine.mjs';
@@ -11,7 +12,7 @@ const tenant=id(1),channel=id(2),app='1782537496230918',phone='111111111',sender
 const env={ORBITA_CREDENTIAL_KEY:'ab'.repeat(32),ORBITA_META_APP_ID:app};
 const event=(provider='wamid.fixture')=>({kind:'inbound',id:provider,wabaId:phone,phoneNumberId:phone,from:sender,
   name:'Nombre privado ficticio',body:'Texto privado único ficticio',mediaId:null,type:'text',receivedAt:new Date().toISOString()});
-async function fixture(t) {
+async function fixture(t,http=false) {
   const pg=new PGlite();t.after(()=>pg.close());
   await pg.exec('create role anon; create role authenticated; create role service_role bypassrls;');
   await pg.exec(await readFile(new URL('../orbita-database/schema.sql',import.meta.url),'utf8'));
@@ -24,7 +25,12 @@ async function fixture(t) {
       key==='p_allowed' && value!==null?'{'+value.join(',')+'}':value);
     return (await pg.query(`select public.${name}(${args}) as result`,values)).rows[0].result;
   }};
-  return {pg,raw,db:createEncryptedDatabase(env,fetch,raw)};
+  const voidFunctions=new Set(['orbita_handoff','orbita_prepare_reply','orbita_mark_sending','orbita_finish','orbita_fail_job','orbita_save_decision','orbita_submit_case','orbita_require_lease']);
+  const transport=http?createDatabase({ORBITA_PROJECT_REF:'pfptagachuwclcxkmldb',ORBITA_SUPABASE_URL:'https://pfptagachuwclcxkmldb.supabase.co',ORBITA_SUPABASE_SECRET_KEY:'sb_secret_fixture'},async(url,options)=>{
+    const name=new URL(url).pathname.split('/').at(-1),result=await raw.rpc(name,JSON.parse(options.body));
+    return voidFunctions.has(name)?new Response(null,{status:204}):Response.json(result);
+  }):raw;
+  return {pg,raw,db:createEncryptedDatabase(env,fetch,transport)};
 }
 async function register(db) {
   await db.rpc('orbita_create_tenant',{p_id:tenant,p_slug:'fixture',p_name:'Negocio ficticio',p_budget:1});
@@ -33,8 +39,8 @@ async function register(db) {
   await db.rpc('orbita_activate_channel',{p_id:channel,p_credentials:credentials});
   await db.rpc('orbita_tenant_state',{p_id:tenant,p_paused:false});
 }
-test('encrypted Postgres routing preserves recipient policy and provider delivery without plaintext payloads',async t=>{
-  const {pg,db}=await fixture(t);await register(db);
+test('PostgREST void responses preserve one send, recipient policy and encrypted provider delivery',async t=>{
+  const {pg,db}=await fixture(t,true);await register(db);
   const incoming=event();
   assert.equal((await db.rpc('orbita_ingest',{p_app_id:app,p_events:[{...incoming,from:'525500000099'}]})).added,0);
   assert.equal((await db.rpc('orbita_ingest',{p_app_id:app,p_events:[{...incoming,from:'5215500000001'}]})).added,1);

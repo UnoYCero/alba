@@ -19,10 +19,12 @@ y el usuario confirmó su recepción. El número real de Alba Vision sigue pendi
 - `orbita-server/`: clasificación Jev, cifrado, enrutamiento y conector comercial de Sankalpa.
 - Netlify Blobs, almacén `orbita-private-v1`: estado operativo cifrado, conservado entre despliegues.
 
-## Cambio preparado a Supabase
+## Almacenamiento activo en Supabase
 
 Alba Vision creó el proyecto dedicado `pfptagachuwclcxkmldb` en su organización
-`dgcoyccqqeyjhfatcasa`. El backend sigue siendo Blobs por defecto. Para seleccionar
+`dgcoyccqqeyjhfatcasa`. El backend de producción usa Supabase desde el corte autorizado
+del 7 de octubre de 2026; Blobs es el valor por defecto del código para una instalación
+sin configurar, pero no es una alternativa automática. Para seleccionar
 Supabase se necesita `ORBITA_STATE_BACKEND=supabase`, esos IDs exactos en
 `ORBITA_PROJECT_REF` y `ORBITA_ORGANIZATION_ID`, la URL correspondiente en
 `ORBITA_SUPABASE_URL` y una clave privada de servidor en `ORBITA_SUPABASE_SECRET_KEY`.
@@ -31,7 +33,12 @@ Una configuración inválida devuelve error; nunca alterna silenciosamente de al
 El esquema base y `orbita-database/encrypted-cutover.sql` ya se instalaron en la base
 nueva, inicialmente vacía. Hay ocho tablas privadas, todas con RLS; la clave pública
 no puede ejecutar las funciones y el asesor marca cero errores y advertencias.
-La nueva credencial y el cambio de backend siguen pendientes de autorización.
+La credencial nueva está en producción únicamente, con el alcance Builds, Functions
+y Runtime autorizado por el usuario. El estado inicial importado contiene un cliente,
+un canal, cuatro mensajes leídos, cuatro recibos y cuatro registros de uso.
+Se conservaron IDs, estados y credenciales cifradas; el respaldo de Blobs permanece.
+Las funciones SQL que devuelven `void` responden HTTP 204: el transporte acepta esa
+confirmación sin intentar leer JSON, para no convertir escrituras correctas en reintentos.
 
 `encrypted-database.mjs` conserva AES-GCM para cuerpo, nombre, teléfono, archivos,
 respuestas y cotizaciones. PostgreSQL guarda registros independientes e índices

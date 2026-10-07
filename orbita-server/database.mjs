@@ -12,6 +12,9 @@ export function createDatabase(env, fetcher = fetch) {
       headers:{apikey:key, ...(key.startsWith('sb_secret_') ? {} : {Authorization:`Bearer ${key}`}), 'Content-Type':'application/json'},
       body:JSON.stringify(parameters), signal:AbortSignal.timeout(8000)});
     if (!response.ok) throw new Error('DATABASE_OPERATION_FAILED');
+    // PostgREST returns 204 for void functions after committing the write.
+    // Parsing that empty body would turn a successful transition into a retry.
+    if (response.status === 204) return null;
     return response.json();
   }
   return {rpc};
