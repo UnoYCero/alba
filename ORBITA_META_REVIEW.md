@@ -1,73 +1,60 @@
-# Prepared reviewer access
+# Isolated Meta reviewer access
 
-Órbita belongs to Alba Vision. Sankalpa is a client; its live database and
-configuration must not be changed for app-review preparation.
+Órbita is Alba Vision's platform; Sankalpa is a client. The client database
+and existing WhatsApp configuration must remain unchanged.
 
-The proposed separate Netlify function serves `/orbita/review/`. It is
-disabled by default and in every preview, unpublished deployment, other
-Netlify site or account, and on another origin. It uses a separate access
-code and session key; it does not accept the operator or worker credentials.
-Sessions expire after one hour. Cookies are Secure, HttpOnly and SameSite
-Strict; write operations require the canonical Origin and a session nonce.
+Published reviewer URL: https://albavision.tech/orbita/review
+Both entry slash forms and subpaths are explicitly routed. Other prefixes,
+origins, previews, unpublished deployments and sites/accounts are denied.
+The source defaults to disabled unless production configuration is complete.
 
-The only allowed Meta assets are app `1782537496230918`, test WABA
-`1791155449006041`, test phone `1265673903305629` and the demonstration
-template `orbita_revision_demo_20261008`. The reviewer can inspect that test
-phone and create/retrieve that fixed template. It cannot choose a different
-asset, inspect client conversations, send a message, modify client settings,
-access Supabase, import history or connect a real phone. Existing templates
-are returned without being changed or duplicated.
+Access uses a separately generated 32-byte code, SHA-256 hash and independent
+session HMAC key. One-hour cookies are Secure, HttpOnly and SameSite Strict.
+Writes require canonical Origin, exact body schema and session CSRF nonce.
 
-## Production activation prerequisites
+Allowed assets: app 1782537496230918, test WABA 1791155449006041, test phone
+1265673903305629, template orbita_revision_demo_20261008. Only phone inspection
+and fixed-template creation/retrieval are available. Existing templates are
+returned unchanged. No chats, message sending, orders, database access or
+real-number onboarding are exposed.
 
-This source change alone neither publishes the updated privacy page nor
-activates reviewer access. Prepare and verify these values privately:
+## Authorized production configuration
 
-| Production Functions/Runtime variable | Required value |
-| --- | --- |
-| `ORBITA_REVIEW_ENABLED` | Leave unset or `false` until activation is authorized |
-| `ORBITA_REVIEW_ACCESS_HASH` | SHA-256 hex digest of a separately generated, cryptographically random review access code of at least 32 random bytes |
-| `ORBITA_REVIEW_SESSION_KEY` | Independent random base64url secret, at least 43 characters; never reuse an operator, worker or master key |
-| `ORBITA_REVIEW_META_TOKEN` | Dedicated credential for the test account with actual permission to retrieve/manage its templates |
+- ORBITA_REVIEW_ENABLED=true
+- ORBITA_REVIEW_ACCESS_HASH: SHA-256 hex of private random access code
+- ORBITA_REVIEW_SESSION_KEY: separate random base64url secret
+- ORBITA_REVIEW_META_TOKEN: separate system-user API credential for test assets
 
-`ORBITA_META_APP_ID` retains the existing app ID. New reviewer secrets must
-not be placed in static assets, client-side JavaScript, source control,
-review archives or preview/build environments. The human-facing review
-access code must be supplied only through Meta's private reviewer
-instructions when its destination and access are authorized; do not give
-the reviewer the Meta token, session key, operator or database credentials.
+Values are marked secrets only in production. The existing Netlify plan
+does not allow narrower custom scopes; they are available to production
+Builds, Functions and Runtime, never previews. Do not put them in static
+assets, browser JavaScript, source control or review archives. Only the
+human review code belongs in Meta's authorized private instructions.
 
-The existing durable messaging system-user token returned HTTP 403 / Meta
-code 200 on the template endpoint. It must not be treated as a verified
-template-management credential. A separate temporary review token was
-renewed and successfully retrieved the previously approved test template.
-That temporary token is suitable for the local recording, not for assuming
-stable reviewer access. Resolve durable test-account template access before
-enabling the proposed production reviewer function. Refreshing the local
-recording token does not replace the deployed messaging token.
+The separate credential was verified after the owner authorized test-WABA
+template management. Meta's issuance requires management and messaging;
+public_profile is automatic. The portal restricts operations independently
+of token scopes. The existing messaging token was not replaced.
+The review token expires 7 December 2026 (1796667865). Renew it before expiry
+to maintain the year of access Meta requests; no automatic renewal is set up.
 
-## Review evidence and remaining requirements
+## Validation and evidence
 
-The functional recording creates template `1076740648470416` and then
-retrieves its PENDING state. It uses real calls and chronological captures,
-not a simulated provider result. The separate phone recording must show
-the authorized recipient sending the catalog question and receiving the
-actual reply from the Meta test number. The real Alba Vision number remains
-unconnected, blocked by advanced-permission error 2655111.
+47 tests pass, including both normalized entries, default/preview denial,
+neighboring-prefix denial, forged/expired sessions, Origin/CSRF, body limits,
+asset isolation, no credential disclosure and template idempotency.
+Next.js production build passes. Production login, phone lookup, APPROVED
+template retrieval, existing-template return, unauthenticated denial,
+wrong-code denial and unavailable chat/message endpoints were verified.
+No database migration is required.
 
-Meta's screencast guide also requires the applicable sign-in and permission
-authorization flow. The functional template recording alone is not a claim
-that this complete flow has been recorded. Keep incomplete artifacts and
-the externally inaccessible access path marked as preparation drafts.
+Template ID 1076740648470416 was PENDING in the original creation recording;
+Meta later approved it. The public English portal recording shows APPROVED.
+The owner's phone recording shows the actual closed-menu response. Neither
+recording claims successful real-number coexistence or completed Meta OAuth.
 
-Only the owner's confirmed data-minimization practice was selected in the
-Meta draft. Complete all processor locations from verified sources before
-declaring the processor list exhaustive. The corrected privacy source
-describes the actual Netlify/Supabase operation and the outstanding real
-phone onboarding; it no longer describes the old temporary tunnel as the
-current receiver.
-
-Validation: 46 tests pass, including default/preview denial, forged/expired
-sessions, Origin/CSRF and body limits, fixed-asset isolation, no token
-disclosure, template idempotency and prevention of message/order endpoints.
-The Next.js production build passes. No database migration is needed.
+Meta review remains a draft. Outstanding: authentic Meta authorization
+recording, complete processor-country list, maintaining reviewer credential
+availability, permitted-use attestations and final submission. public_profile
+requires the automatic-scope attestation, no invented profile feature.
+Real Alba Vision onboarding remains blocked by advanced-access error 2655111.
