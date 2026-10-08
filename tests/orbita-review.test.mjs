@@ -8,6 +8,14 @@ const env={ORBITA_META_APP_ID:'1782537496230918',ORBITA_REVIEW_ENABLED:'true',OR
 const context={site:{id:'aa3eb206-3126-4e99-bc91-46a4bb2d59d2'},account:{id:'6864502cf6cc9967e3dac6db'},deploy:{context:'production',published:true}};
 const post=(route,body,headers={})=>new Request(root+route,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',...headers},body:JSON.stringify(body)});
 async function authenticate(handler){const r=await handler(post('/session',{accessCode:access}),context);assert.equal(r.status,200);const cookie=r.headers.get('set-cookie');assert.match(cookie,/HttpOnly; Secure; SameSite=Strict/);return {cookie:cookie.split(';')[0],csrf:(await r.json()).csrf};}
+
+test('the review entry survives Next.js trailing-slash normalization without admitting neighboring paths',async()=>{
+  let calls=0;const handler=createReviewHandler({env,fetcher:()=>{calls++;throw new Error('MUST_NOT_CALL_META');}});
+  for(const suffix of ['', '/']){const r=await handler(new Request(root+suffix),context);assert.equal(r.status,200);assert.match(r.headers.get('content-type'),/text\/html/);assert.match(await r.text(),/Reviewer sign-in/);}
+  for(const suffix of ['-other','evil','?asset=client'])assert.ok([400,404].includes((await handler(new Request(root+suffix),context)).status));
+  assert.equal((await createReviewHandler({env:{...env,ORBITA_REVIEW_ENABLED:'false'}})(new Request(root),context)).status,503);
+  assert.equal(calls,0);
+});
 test('review access is disabled by default and cannot activate in previews, another site or another app',async()=>{
   let calls=0;const fetcher=()=>{calls++;throw new Error('MUST_NOT_CALL_META');};
   for(const overrides of [{ORBITA_REVIEW_ENABLED:undefined},{ORBITA_REVIEW_META_TOKEN:''},{ORBITA_REVIEW_ACCESS_HASH:''},{ORBITA_REVIEW_SESSION_KEY:''},{ORBITA_META_APP_ID:'different'}])assert.equal((await createReviewHandler({env:{...env,...overrides},fetcher})(new Request(root+'/'),context)).status,503);

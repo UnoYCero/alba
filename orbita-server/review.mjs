@@ -33,10 +33,10 @@ export function createReviewHandler({env,fetcher=fetch,now=()=>Date.now()}={}) {
   const selected=t=>t?{id:t.id,name:t.name||NAME,status:t.status||'PENDING',category:t.category||'UTILITY',language:t.language||'es_MX'}:null;
   return async(request,context)=>{
     try{
-      const url=new URL(request.url);if(url.origin!==ORIGIN||!url.pathname.startsWith(ROOT+'/'))return json({error:'NOT_FOUND'},404);
+      const url=new URL(request.url);if(url.origin!==ORIGIN||(url.pathname!==ROOT&&!url.pathname.startsWith(ROOT+'/')))return json({error:'NOT_FOUND'},404);
       if(!isPublishedProduction(context)||!configured())return json({error:'REVIEW_DISABLED'},503);
       const route=url.pathname.slice(ROOT.length);if(url.search)return json({error:'QUERY_NOT_ALLOWED'},400);
-      if(request.method==='GET'&&route==='/')return new Response(page,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
+      if(request.method==='GET'&&(route===''||route==='/'))return new Response(page,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
       let body;
       if(request.method==='POST'){
         if(request.headers.get('origin')!==ORIGIN||request.headers.get('content-type')!=='application/json')return json({error:'ORIGIN_NOT_ALLOWED'},403);
