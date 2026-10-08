@@ -25,11 +25,15 @@ export function createEncryptedDatabase(env,fetcher=fetch,transport) {
   async function rpc(name,parameters) {
     let p=structuredClone(parameters);
     if (name==='orbita_create_channel' && p.p_allowed!==null) p.p_allowed=await Promise.all(p.p_allowed.map(phoneIndex));
-    if (name==='orbita_ingest') {
+    if (['orbita_configure_coexistence','orbita_conversation_state'].includes(name)) {
+      const field=name==='orbita_configure_coexistence'?'p_business_phone':'p_sender';
+      p[field]=await phoneIndex(p[field]);
+    }
+    if (name==='orbita_ingest' || name==='orbita_ingest_coexistence') {
       if (p.p_app_id!==app || !Array.isArray(p.p_events) || p.p_events.length>1000) throw new Error('INVALID_EVENTS');
       p.p_events=await Promise.all(p.p_events.map(async e=>{
-        const indexed={...e,from:await phoneIndex(e.from)};
-        if (e.kind==='inbound') Object.assign(indexed,{name:'',mediaId:null,body:await encryptInbound(e,e.phoneNumberId)});
+        const indexed={...e,from:e.from===null?null:await phoneIndex(e.from)};
+        if (e.kind==='inbound' || e.kind==='manual') Object.assign(indexed,{name:'',mediaId:null,body:await encryptInbound(e,e.phoneNumberId)});
         return indexed;
       }));
     }

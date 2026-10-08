@@ -7,6 +7,7 @@ import {createDatabase} from '../orbita-server/database.mjs';
 import {createBlobState} from '../orbita-server/blob-state.mjs';
 import {openCredentials,sealCredentials} from '../orbita-server/security.mjs';
 import {runOneJob} from '../orbita-server/engine.mjs';
+import {extractCoexistenceEvents} from '../orbita-server/webhook.mjs';
 const id=n=>`00000000-0000-4000-8000-${String(n).padStart(12,'0')}`;
 const tenant=id(1),channel=id(2),app='1782537496230918',phone='111111111',sender='525500000001';
 const env={ORBITA_CREDENTIAL_KEY:'ab'.repeat(32),ORBITA_META_APP_ID:app};
@@ -17,6 +18,7 @@ async function fixture(t,http=false) {
   await pg.exec('create role anon; create role authenticated; create role service_role bypassrls;');
   await pg.exec(await readFile(new URL('../orbita-database/schema.sql',import.meta.url),'utf8'));
   await pg.exec(await readFile(new URL('../orbita-database/encrypted-cutover.sql',import.meta.url),'utf8'));
+  await pg.exec(await readFile(new URL('../orbita-database/coexistence.sql',import.meta.url),'utf8'));
   await pg.exec('set role service_role');
   const raw={rpc:async(name,p)=>{
     const entries=Object.entries(p);assert.match(name,/^orbita_[a-z_]+$/);
@@ -25,7 +27,7 @@ async function fixture(t,http=false) {
       key==='p_allowed' && value!==null?'{'+value.join(',')+'}':value);
     return (await pg.query(`select public.${name}(${args}) as result`,values)).rows[0].result;
   }};
-  const voidFunctions=new Set(['orbita_handoff','orbita_prepare_reply','orbita_mark_sending','orbita_finish','orbita_fail_job','orbita_save_decision','orbita_submit_case','orbita_require_lease']);
+  const voidFunctions=new Set(['orbita_handoff','orbita_prepare_reply','orbita_mark_sending','orbita_finish','orbita_fail_job','orbita_save_decision','orbita_submit_case','orbita_require_lease','orbita_configure_coexistence','orbita_coexistence_skip']);
   const transport=http?createDatabase({ORBITA_PROJECT_REF:'pfptagachuwclcxkmldb',ORBITA_SUPABASE_URL:'https://pfptagachuwclcxkmldb.supabase.co',ORBITA_SUPABASE_SECRET_KEY:'sb_secret_fixture'},async(url,options)=>{
     const name=new URL(url).pathname.split('/').at(-1),result=await raw.rpc(name,JSON.parse(options.body));
     return voidFunctions.has(name)?new Response(null,{status:204}):Response.json(result);
@@ -62,6 +64,73 @@ test('PostgREST void responses preserve one send, recipient policy and encrypted
     await assert.rejects(pg.query('select * from orbita.messages'),/permission denied/);
     await assert.rejects(pg.query("select public.orbita_import_snapshot('{}'::jsonb,repeat('a',64))"),/permission denied/);
   }
+});
+
+const manual=(provider='wamid.manual',recipient=sender)=>({kind:'manual',id:provider,wabaId:phone,phoneNumberId:phone,from:recipient,
+  name:'',body:'Respuesta humana privada ficticia',mediaId:null,type:'text',receivedAt:new Date().toISOString()});
+test('coexistence stores encrypted manual echoes, pauses only that conversation and opens production to other senders',async t=>{
+  const {pg,db}=await fixture(t,true);await register(db);
+  await pg.exec("update orbita.channels set mode='production',allowed_senders=null");
+  await db.rpc('orbita_configure_coexistence',{p_channel_id:channel,p_business_phone:'525500000088'});
+  const echo=manual();
+  assert.equal((await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[{...echo,wabaId:'999999'}]})).added,0);
+  assert.equal((await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[echo,echo]})).added,1);
+  const stored=(await pg.query('select * from orbita.manual_messages')).rows[0];
+  assert(!JSON.stringify(stored).includes(echo.body));assert(!JSON.stringify(stored).includes(sender));
+  assert.equal((await db.rpc('orbita_ingest',{p_app_id:app,p_events:[event('wamid.held')]})).added,1);
+  let sent=0;
+  assert.deepEqual(await runOneJob(env,db,{fetcher:()=>{throw new Error('NO_LLM_OR_SEND_WHILE_HELD');}}),{processed:1,status:'held'});
+  assert.equal((await db.rpc('orbita_ingest',{p_app_id:app,p_events:[{...event('wamid.other'),from:'525500000099'}]})).added,1);
+  assert.equal((await runOneJob(env,db,{fetcher:async(_url,options)=>{
+    assert.equal(JSON.parse(options.body).to,'525500000099');sent++;return Response.json({messages:[{id:'wamid.other.reply'}]});
+  }})).status,'accepted');assert.equal(sent,1);
+  await db.rpc('orbita_conversation_state',{p_channel_id:channel,p_sender:'525500000099',p_held:false});
+  await db.rpc('orbita_ingest',{p_app_id:app,p_events:[{kind:'receipt',wabaId:phone,phoneNumberId:phone,id:'wamid.other.reply',from:'525500000099',status:'read'}]});
+  assert.equal((await pg.query('select held from orbita.conversations where sender=$1',[await db.phoneIndex('525500000099')])).rows[0].held,false);
+  await db.rpc('orbita_conversation_state',{p_channel_id:channel,p_sender:sender,p_held:false});
+  assert.equal((await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[echo]})).added,0);
+  const late={...manual('wamid.old-delayed'),receivedAt:new Date(Date.now()-60000).toISOString()};
+  await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[late]});
+  assert.equal((await pg.query('select held from orbita.conversations where sender=$1',[await db.phoneIndex(sender)])).rows[0].held,false);
+  for (const role of ['anon','authenticated']) {
+    await pg.exec(`set role ${role}`);
+    await assert.rejects(pg.query('select * from orbita.manual_messages'),/permission denied/);
+    await assert.rejects(pg.query('select public.orbita_conversation_state($1,$2,false)',[channel,await db.phoneIndex(sender)]),/permission denied/);
+  }
+});
+
+test('a manual answer arriving during reply preparation stops the final Meta call',async t=>{
+  const {db,pg}=await fixture(t,true);await register(db);
+  await db.rpc('orbita_configure_coexistence',{p_channel_id:channel,p_business_phone:'525500000088'});
+  await db.rpc('orbita_ingest',{p_app_id:app,p_events:[event('wamid.race')]});
+  const wrapped={rpc:async(name,p)=>{
+    const result=await db.rpc(name,p);
+    if(name==='orbita_prepare_reply') await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[manual()]});
+    return result;
+  }};
+  assert.equal((await runOneJob(env,wrapped,{fetcher:()=>{throw new Error('MUST_NOT_SEND');}})).status,'held');
+  const message=(await pg.query('select delivery,outbound_id,needs_human from orbita.messages')).rows[0];
+  assert.equal(message.delivery,'expired');assert.equal(message.outbound_id,null);assert.equal(message.needs_human,true);
+});
+
+test('signed lifecycle events disable only the verified business-app channel',async t=>{
+  const {db,pg}=await fixture(t);await register(db);
+  await db.rpc('orbita_configure_coexistence',{p_channel_id:channel,p_business_phone:'525500000088'});
+  const disconnect={kind:'disconnect',wabaId:phone,from:'525500000077',event:'PARTNER_REMOVED'};
+  assert.equal((await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[disconnect]})).disconnected,0);
+  assert.equal((await db.rpc('orbita_ingest_coexistence',{p_app_id:app,p_events:[{...disconnect,from:'525500000088'}]})).disconnected,1);
+  assert.equal((await pg.query('select enabled from orbita.channels')).rows[0].enabled,false);
+  assert.equal(await db.rpc('orbita_claim',{p_owner:id(7)}),null);
+});
+
+test('business-app echoes never become inbound jobs and unsupported history cannot trigger replies',()=>{
+  const payload={object:'whatsapp_business_account',entry:[{id:phone,changes:[
+    {field:'smb_message_echoes',value:{metadata:{phone_number_id:phone},message_echoes:[{id:'wamid.manual',from:'525500000088',to:sender,timestamp:String(Math.floor(Date.now()/1000)),type:'text',text:{body:'Respuesta humana'}}]}},
+    {field:'history',value:{messages:[{id:'old',from:sender}]}},
+    {field:'account_update',value:{event:'ACCOUNT_OFFBOARDED'}}
+  ]}]};
+  const events=extractCoexistenceEvents(payload);assert.equal(events.length,2);assert.equal(events[0].kind,'manual');
+  assert.equal(events[0].from,sender);assert.equal(events[1].kind,'disconnect');assert.equal(events[1].from,null);
 });
 test('encrypted unicode replies survive retry and a moved inbound ciphertext fails authentication',async t=>{
   const {pg,db,raw}=await fixture(t);await register(db);

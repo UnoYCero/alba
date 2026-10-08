@@ -27,6 +27,34 @@ export function extractEvents(payload) {
   }
   return events;
 }
+// Business-app echoes are outbound human messages, never customer input for Jev.
+export function extractCoexistenceEvents(payload) {
+  if (payload?.object !== 'whatsapp_business_account') return [];
+  const events=[];
+  for (const entry of Array.isArray(payload.entry)?payload.entry:[]) {
+    const wabaId=String(entry.id || ''); if (!/^\d{6,30}$/.test(wabaId)) continue;
+    for (const change of Array.isArray(entry.changes)?entry.changes:[]) {
+      const value=change.value || {};
+      if (change.field==='smb_message_echoes') {
+        const phoneNumberId=String(value.metadata?.phone_number_id || '');
+        if (!/^\d{6,30}$/.test(phoneNumberId)) continue;
+        for (const echo of Array.isArray(value.message_echoes)?value.message_echoes:[]) {
+          const from=canonicalPhone(echo.to), time=Number(echo.timestamp);
+          if (!/^\d{10,15}$/.test(from) || typeof echo.id!=='string' || !echo.id || echo.id.length>220 ||
+            !Number.isFinite(time) || time<=0 || time*1000>Date.now()+300000) continue;
+          events.push({kind:'manual',wabaId,phoneNumberId,id:echo.id,from,name:'',
+            body:String(echo.text?.body || echo[echo.type]?.caption || '').slice(0,4000),
+            mediaId:null,type:String(echo.type || 'unknown').slice(0,30),receivedAt:new Date(time*1000).toISOString()});
+        }
+      } else if (change.field==='account_update' && ['PARTNER_REMOVED','ACCOUNT_OFFBOARDED'].includes(value.event)) {
+        const from=value.phone_number?canonicalPhone(value.phone_number):null;
+        if (from!==null && !/^\d{10,15}$/.test(from)) continue;
+        events.push({kind:'disconnect',wabaId,from,event:value.event});
+      }
+    }
+  }
+  return events;
+}
 export async function receiveWebhook(request, env, database) {
   if (request.method === 'GET') {
     const url = new URL(request.url);
@@ -41,6 +69,8 @@ export async function receiveWebhook(request, env, database) {
   let payload;
   try { payload = JSON.parse(new TextDecoder().decode(bytes)); } catch { return new Response('Invalid JSON',{status:400}); }
   // Tenant ownership comes from the server registry, never the customer text.
+  const coexistence=extractCoexistenceEvents(payload);
+  if (coexistence.length) await database.rpc('orbita_ingest_coexistence',{p_app_id:env.ORBITA_META_APP_ID,p_events:coexistence});
   const events = extractEvents(payload);
   const result = await database.rpc('orbita_ingest',{p_app_id:env.ORBITA_META_APP_ID,p_events:events});
   return Response.json({received:true,added:result.added},{headers:{'Cache-Control':'no-store'}});

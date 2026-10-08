@@ -13,5 +13,10 @@ export async function verifyDurableMetaCredential(credentials, channel, env, fet
     !info.scopes?.includes('whatsapp_business_messaging') || !info.scopes?.includes('whatsapp_business_management')) throw new Error('META_DURABLE_CREDENTIAL_REQUIRED');
   const phones = await read(`https://graph.facebook.com/v25.0/${channel.wabaId}/phone_numbers?fields=id&limit=100`,token);
   if (!phones?.data?.some(phone=>String(phone.id)===channel.phoneNumberId)) throw new Error('META_ASSET_NOT_OWNED');
+  if (channel.coexistence===true) {
+    const phone=await read(`https://graph.facebook.com/v26.0/${channel.phoneNumberId}?fields=id,is_on_biz_app,platform_type,display_phone_number`,token);
+    if (String(phone.id)!==channel.phoneNumberId || phone.is_on_biz_app!==true || phone.platform_type!=='CLOUD_API') throw new Error('META_COEXISTENCE_NOT_VERIFIED');
+    return {...credentials,coexistence:true,businessPhone:phone.display_phone_number,tokenExpiresAt:0,tokenVerifiedAt:new Date().toISOString()};
+  }
   return {...credentials,tokenExpiresAt:0,tokenVerifiedAt:new Date().toISOString()};
 }

@@ -128,3 +128,11 @@ test('activation rejects temporary and wrong-asset Meta credentials',async()=>{
   const verified=await verifyDurableMetaCredential(credentialFixture,channel,env,async(url)=>url.includes('debug_token')?Response.json({data:info}):Response.json({data:[{id:'222222'}]}));
   assert.equal(verified.tokenExpiresAt,0);assert(verified.tokenVerifiedAt);
 });
+
+test('coexistence activation requires Meta to confirm the existing app and Cloud API on the same number',async()=>{
+  const channel={wabaId:'111111',phoneNumberId:'222222',coexistence:true};
+  const info={is_valid:true,app_id:env.ORBITA_META_APP_ID,expires_at:0,scopes:['whatsapp_business_messaging','whatsapp_business_management']};
+  const fetcher=state=>async url=>Response.json(url.includes('debug_token')?{data:info}:url.includes('/phone_numbers')?{data:[{id:'222222'}]}:{id:'222222',platform_type:'CLOUD_API',display_phone_number:'+52 55 0000 0088',is_on_biz_app:state});
+  await assert.rejects(verifyDurableMetaCredential(credentialFixture,channel,env,fetcher(false)),/COEXISTENCE_NOT_VERIFIED/);
+  const result=await verifyDurableMetaCredential(credentialFixture,channel,env,fetcher(true));assert.equal(result.coexistence,true);
+});

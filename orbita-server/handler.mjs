@@ -53,9 +53,16 @@ export function createHandler({env,database,fetcher=fetch,waitUntil,scheduleJob}
           const channel = await db.rpc('orbita_operator_channel',{p_id:activate[1]});
           if (!channel) return json({error:'CHANNEL_NOT_FOUND'},404);
           const previous = await openCredentials(channel.credentials,env.ORBITA_CREDENTIAL_KEY,channel.tenantId,channel.id);
-          const credentials = await verifyDurableMetaCredential({...previous,...(typeof data.metaAccessToken==='string'?{metaAccessToken:data.metaAccessToken}:{})},channel,env,fetcher);
+          const credentials = await verifyDurableMetaCredential({...previous,...(typeof data.metaAccessToken==='string'?{metaAccessToken:data.metaAccessToken}:{})},
+            {...channel,coexistence:data.coexistence===true || previous.coexistence===true},env,fetcher);
+          if (credentials.coexistence===true) await db.rpc('orbita_configure_coexistence',{p_channel_id:channel.id,p_business_phone:canonicalPhone(credentials.businessPhone)});
           const ciphertext = await sealCredentials(credentials,env.ORBITA_CREDENTIAL_KEY,channel.tenantId,channel.id);
           return json(await db.rpc('orbita_activate_channel',{p_id:channel.id,p_credentials:ciphertext}));
+        }
+        const conversation = path.match(/^\/operator\/channels\/([a-f0-9-]{36})\/conversation-state$/i);
+        if (conversation && UUID.test(conversation[1])) {
+          if (typeof data.sender!=='string' || !/^\d{10,15}$/.test(canonicalPhone(data.sender)) || typeof data.held!=='boolean') return json({error:'INVALID_CONVERSATION'},400);
+          return json(await db.rpc('orbita_conversation_state',{p_channel_id:conversation[1],p_sender:canonicalPhone(data.sender),p_held:data.held}));
         }
         if (path === '/operator/tenants') {
           if (!/^[a-z0-9][a-z0-9_-]{0,39}$/.test(data.slug || '') || typeof data.name !== 'string' || !data.name.trim() || data.name.length > 80 ||

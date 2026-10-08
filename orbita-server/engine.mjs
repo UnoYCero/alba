@@ -24,6 +24,10 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
   if (!job) return {processed:0};
   let sending = false;
   try {
+    if (job.coexistence && !await database.rpc('orbita_coexistence_check',{p_message_id:job.id,p_owner:owner})) {
+      await database.rpc('orbita_coexistence_skip',{p_message_id:job.id,p_owner:owner});
+      return {processed:1,status:'held'};
+    }
     const credentials = await openCredentials(job.credentials,env.ORBITA_CREDENTIAL_KEY,job.tenantId,job.channelId);
     let decision = job.decision;
     if (!job.reply && !decision && !job.message.mediaId && job.message.body && job.jevEnabled) {
@@ -45,7 +49,10 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
       await database.rpc('orbita_prepare_reply',{p_message_id:job.id,p_owner:owner,p_reply:reply});
     }
     // Persist the uncertain state before the irreversible provider call.
-    await database.rpc('orbita_mark_sending',{p_message_id:job.id,p_owner:owner}); sending = true;
+    if (job.coexistence) {
+      if (!await database.rpc('orbita_coexistence_begin_send',{p_message_id:job.id,p_owner:owner})) return {processed:1,status:'held'};
+    } else await database.rpc('orbita_mark_sending',{p_message_id:job.id,p_owner:owner});
+    sending = true;
     const delivery = await sendReply(job,reply,credentials,fetcher);
     await database.rpc('orbita_finish',{p_message_id:job.id,p_owner:owner,p_delivery:{...delivery,credentialRevision:job.credentialRevision}});
     return {processed:1,status:delivery.status};
