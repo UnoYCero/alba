@@ -6,6 +6,7 @@ const SITE = 'aa3eb206-3126-4e99-bc91-46a4bb2d59d2';
 // accountId from this site's Netlify production build, not its Visual Editor team ID.
 const TEAM = '6864502cf6cc9967e3dac6db';
 const available = context => context?.site?.id===SITE && context?.account?.id===TEAM && context?.deploy?.context==='production' && context?.deploy?.published===true;
+export function isPublishedProduction(context) { return available(context); }
 const json = (data,status=200) => Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
 export function checkedStorageFetch(fetcher=fetch) {
   return async (input,options={}) => {
