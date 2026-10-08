@@ -111,3 +111,33 @@ configuración y los datos del cliente no son el destino de este despliegue.
 La API de Sankalpa conserva su responsabilidad sobre catálogo, cotizaciones y solicitudes
 pendientes; Órbita no confirma pagos, inventario ni entregas. El registro de clientes y los canales
 permiten agregar negocios, pero cada negocio necesita su conector y credencial verificadas.
+# Coexistencia de WhatsApp Business
+
+Alba Vision es la empresa, Órbita su herramienta y Sankalpa el cliente. El
+número +52 56 1690 8570 de Alba Vision se usará para probar el conector de
+Sankalpa. El número del cliente se conectará después de validar esa prueba.
+
+La ampliación `orbita-database/coexistence.sql` es aditiva y exclusiva del
+proyecto Orbita de Alba Vision. El canal de prueba de Meta conserva su lista
+actual. Un nuevo canal verificado puede usar `mode=production` y
+`allowedSenders=null` para atender cualquier remitente.
+
+Al activar ese canal, enviar `coexistence:true` en la API privada de activación.
+El servidor exige que Meta confirme `is_on_biz_app=true` y
+`platform_type=CLOUD_API` para el mismo activo y verifica el token duradero.
+Suscribir `smb_message_echoes` y `account_update` después de autorizar la
+conexión del número real. No solicitar ni importar historial o contactos sin
+autorización aparte.
+
+Los ecos manuales se guardan cifrados y pausan solo esa conversación. Nunca
+se envían a Jev como mensajes de cliente. Una derivación humana también
+pausa la conversación después de su respuesta de confirmación. La pausa
+se comprueba antes de procesar y en la transición final de envío; una
+llamada a Meta ya iniciada no puede retirarse. Los mensajes recibidos durante
+la pausa se conservan para revisión y no se contestan en lote al reanudar.
+
+Reanudar mediante el operador autenticado:
+`POST /orbita/api/operator/channels/<UUID>/conversation-state`
+con `{"sender":"<teléfono del cliente>","held":false}`. Solo el operador
+privado puede cambiar esta política; no existe un panel público de control.
+Los eventos de baja de Meta deshabilitan los canales de coexistencia afectados.
