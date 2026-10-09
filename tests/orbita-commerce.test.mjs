@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {commerceFixture,tenant,channel,sender,otherTenant,accessCode} from '../scripts/commerce-fixture.mjs';
 import {prepareCommerceReply,parseQuantity} from '../orbita-server/commerce.mjs';
 import {createPortalHandler} from '../orbita-server/portal.mjs';
+import {runOneJob} from '../orbita-server/engine.mjs';
 async function setup(t){const f=await commerceFixture();t.after(()=>f.pg.close());return f;}
 async function buy(f){
  assert.match((await f.receive('Quiero dos paquetes en CDMX',{intent:'pedido'})).reply,/nombre/);
@@ -90,4 +91,15 @@ test('unknown remote result keeps the immutable review and reference for reconci
  const uncertain=(await f.store.list(tenant))[0];assert.equal(uncertain.status,'uncertain');fail=false;
  assert.equal((await p.handler(p.request('/approve',{...body,revision:uncertain.revision,paymentReference:'changed-proof'},p.session))).status,200);
  assert.equal(calls[0].reference,calls[1].reference);assert.equal(calls[1].review.paymentReference,'original-proof');assert.equal(f.orders.size,1);
+});
+
+test('panel operates with commerce disabled and cannot approve an order; paused legacy agent makes no provider call',async t=>{
+ const f=await setup(t),r=await buy(f);f.env.ORBITA_COMMERCE_ENABLED='false';
+ const p=await portal(f);const session=await (await p.handler(p.request('/session',null,p.session))).json();assert.equal(session.commerceEnabled,false);
+ assert.equal((await p.handler(p.request('/inbox',null,p.session))).status,200);
+ assert.equal((await p.handler(p.request('/approve',{id:r.id,revision:r.revision},p.session))).status,503);assert.equal(f.orders.size,0);
+ await f.database.rpc('orbita_commerce_hold',{p_tenant_id:tenant,p_channel_id:channel,p_sender:sender,p_held:true});
+ await f.database.rpc('orbita_ingest',{p_app_id:f.env.ORBITA_META_APP_ID,p_events:[{kind:'inbound',id:'wamid.panel-held',wabaId:'123456789',phoneNumberId:'123456789',from:sender,name:'Cliente ficticio',body:'¿Qué comida tienen?',mediaId:null,type:'text',receivedAt:new Date().toISOString()}]});
+ let calls=0;const result=await runOneJob(f.env,f.database,{fetcher:async()=>{calls++;throw new Error('No provider allowed');}});
+ assert.equal(result.status,'held');assert.equal(calls,0);
 });

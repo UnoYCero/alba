@@ -12,7 +12,8 @@ const enc=new TextEncoder();
 const cookie=v=>`${COOKIE}=${v}; Path=${ROOT}; HttpOnly; Secure; SameSite=Strict; Max-Age=${v?3600:0}`;
 export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,productionCheck=isPublishedProduction}={}) {
  let accounts;try{accounts=JSON.parse(env.ORBITA_PORTAL_ACCOUNTS||'[]');}catch{accounts=[];}
- const ready=env.ORBITA_PORTAL_ENABLED==='true' && env.ORBITA_COMMERCE_ENABLED==='true' &&
+ const commerceEnabled=env.ORBITA_COMMERCE_ENABLED==='true';
+ const ready=env.ORBITA_PORTAL_ENABLED==='true' &&
   /^[a-f0-9]{64}$/i.test(env.ORBITA_PORTAL_SESSION_KEY||'') && accounts.length>0 && accounts.length<=50 &&
   accounts.every(a=>/^[a-z0-9_-]{1,40}$/.test(a.id) && uuid(a.tenantId) && /^[a-f0-9]{64}$/.test(a.accessHash||'') && typeof a.name==='string' && a.name.length<=80) &&
   new Set(accounts.map(a=>a.id)).size===accounts.length;
@@ -43,12 +44,12 @@ export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,pro
     const hashed=hex(await crypto.subtle.digest('SHA-256',enc.encode(body.code)));
     if(!await equalSecret(hashed,a.accessHash))return json({error:'ACCESS_DENIED'},403);
     const csrf=hex(crypto.getRandomValues(new Uint8Array(16))),value=[a.id,a.tenantId,Math.floor(now()/1000)+3600,csrf,a.accessHash.slice(0,16)].join('.');
-    return json({name:a.name,csrf},200,{'Set-Cookie':cookie(value+'.'+await sign(value))});
+    return json({name:a.name,csrf,commerceEnabled},200,{'Set-Cookie':cookie(value+'.'+await sign(value))});
    }
    const s=await session(request);if(!s)return json({error:'SIGN_IN_REQUIRED'},403);
    if(request.method==='POST'&&!await equalSecret(request.headers.get('x-orbita-csrf'),s.csrf))return json({error:'ACTION_NOT_ALLOWED'},403);
    const tenant=s.account.tenantId,store=commerceStoreFor(database,env);
-   if(route==='/session'&&request.method==='GET')return json({name:s.account.name,csrf:s.csrf});
+   if(route==='/session'&&request.method==='GET')return json({name:s.account.name,csrf:s.csrf,commerceEnabled});
    if(route==='/logout'&&request.method==='POST')return json({signedOut:true},200,{'Set-Cookie':cookie('')});
    if(route==='/requests'&&request.method==='GET')return json({requests:await store.list(tenant)});
    if(route==='/inbox'&&request.method==='GET')return json({conversations:await store.inbox(tenant)});
@@ -63,6 +64,7 @@ export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,pro
     return json({held:body.held});
    }
    if((route==='/cancel'||route==='/approve')&&request.method==='POST') {
+    if(route==='/approve'&&!commerceEnabled)return json({error:'COMMERCE_DISABLED',message:'La creación de pedidos todavía no está activada.'},503);
     if(!uuid(body.id)||!Number.isSafeInteger(body.revision)||body.revision<0)return json({error:'INVALID_REQUEST'},400);
     if(route==='/cancel') {await database.rpc('orbita_commerce_cancel',{p_tenant_id:tenant,p_request_id:body.id,p_revision:body.revision});return json({cancelled:true});}
     if(body.inventoryReviewed!==true||body.paymentReviewed!==true||!['transferencia','efectivo'].includes(body.paymentMethod)||

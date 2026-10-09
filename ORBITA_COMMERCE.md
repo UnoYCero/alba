@@ -1,6 +1,6 @@
 # Órbita: solicitudes y revisión de pedidos
 
-Alba Vision es la empresa, Órbita la plataforma y Sankalpa su primer conector comercial. Esta construcción está preparada para revisión; no activa el flujo nuevo en producción ni conecta un teléfono real.
+Alba Vision es la empresa, Órbita la plataforma y Sankalpa su primer conector comercial. El panel se puede publicar independientemente del flujo comercial; habilitarlo no activa la creación de pedidos ni conecta un teléfono real.
 
 ## Comportamiento
 
@@ -15,12 +15,12 @@ Alba Vision es la empresa, Órbita la plataforma y Sankalpa su primer conector c
 ## Configuración y activación pendientes
 
 1. Aplicar `orbita-database/commerce.sql` **solo** al proyecto de plataforma `pfptagachuwclcxkmldb` (Alba Vision). Es una ampliación privada del esquema Órbita existente, no una migración de la base de Sankalpa.
-2. Revisar y desplegar la ampliación del conector comercial documentada en el repositorio de Sankalpa. No activar Órbita antes de que ese conector esté listo.
+2. Para publicar solo el panel, conservar `ORBITA_COMMERCE_ENABLED` desactivado. El panel muestra las conversaciones existentes y permite pausar/reanudar el agente. La API y el formulario de aprobación comercial permanecen bloqueados. Revisar y desplegar el conector de Sankalpa antes de activar el flujo comercial.
 3. Configurar exclusivamente en las funciones de producción de Netlify:
-   - `ORBITA_COMMERCE_ENABLED=true` y `ORBITA_PORTAL_ENABLED=true`.
+   - `ORBITA_PORTAL_ENABLED=true`. Usar `ORBITA_COMMERCE_ENABLED=true` únicamente al activar el flujo comercial completo.
    - `ORBITA_PORTAL_SESSION_KEY`: 32 bytes aleatorios representados como 64 caracteres hexadecimales.
    - `ORBITA_PORTAL_ACCOUNTS`: JSON con `{id,name,tenantId,accessHash}`. `accessHash` es SHA-256 de un código aleatorio de al menos 32 caracteres entregado privadamente al responsable. No guardar el código en este repositorio.
-   - `ORBITA_COMMERCE_REVIEW_TOKENS`: objeto JSON que asigna al tenant la autorización comercial de revisión, independiente del token de catálogo.
+   - Para activar aprobación comercial: `ORBITA_COMMERCE_REVIEW_TOKENS`, objeto JSON que asigna al tenant la autorización comercial de revisión, independiente del token de catálogo. No se necesita para consultar conversaciones desde el panel.
    - Conservar la configuración existente de Supabase, cifrado, webhook y canal. Se requiere `ORBITA_STATE_BACKEND=supabase` y despliegue publicado de producción; los previews no abren el panel.
 4. Desplegar el código y habilitar el flujo primero en el canal de prueba autorizado. Verificar conversación, solicitud, revisión y pedido antes de conectar Alba Vision por coexistencia.
 
