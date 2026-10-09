@@ -17,7 +17,7 @@ export async function commerceFixture(){
  accessHash:createHash('sha256').update(accessCode).digest('hex')},{id:'other',name:'Otro negocio',tenantId:otherTenant,
  accessHash:createHash('sha256').update(accessCode).digest('hex')}]);
  await pg.exec('create role anon;create role authenticated;create role service_role bypassrls;');
- for(const file of ['schema.sql','encrypted-cutover.sql','coexistence.sql','commerce.sql'])await pg.exec(await readFile(new URL('../orbita-database/'+file,import.meta.url),'utf8'));
+ for(const file of ['schema.sql','encrypted-cutover.sql','coexistence.sql','commerce.sql','management.sql'])await pg.exec(await readFile(new URL('../orbita-database/'+file,import.meta.url),'utf8'));
  await pg.exec('set role service_role');
  const raw={rpc:async(name,p)=>{
   if(!/^orbita_[a-z_]+$/.test(name))throw new Error('Invalid test RPC');
