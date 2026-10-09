@@ -25,10 +25,11 @@ export function createEncryptedDatabase(env,fetcher=fetch,transport) {
   async function rpc(name,parameters) {
     let p=structuredClone(parameters);
     if (name==='orbita_create_channel' && p.p_allowed!==null) p.p_allowed=await Promise.all(p.p_allowed.map(phoneIndex));
-    if (['orbita_configure_coexistence','orbita_conversation_state'].includes(name)) {
+    if (['orbita_configure_coexistence','orbita_conversation_state','orbita_commerce_hold'].includes(name)) {
       const field=name==='orbita_configure_coexistence'?'p_business_phone':'p_sender';
       p[field]=await phoneIndex(p[field]);
     }
+    if(name==='orbita_commerce_conversations' && p.p_sender!==null) p.p_sender=await phoneIndex(p.p_sender);
     if (name==='orbita_ingest' || name==='orbita_ingest_coexistence') {
       if (p.p_app_id!==app || !Array.isArray(p.p_events) || p.p_events.length>1000) throw new Error('INVALID_EVENTS');
       p.p_events=await Promise.all(p.p_events.map(async e=>{
