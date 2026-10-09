@@ -18,7 +18,7 @@ export function checkedStorageFetch(fetcher=fetch) {
     return response;
   };
 }
-function state(env,getStore,fetcher) {
+export function createPlatformState(env,getStore,fetcher=fetch) {
   const backend=env.ORBITA_STATE_BACKEND || 'blobs';
   if (backend==='supabase') {
     if (env.ORBITA_PROJECT_REF!=='pfptagachuwclcxkmldb' || env.ORBITA_ORGANIZATION_ID!=='dgcoyccqqeyjhfatcasa') throw new Error('DATABASE_TARGET_REJECTED');
@@ -37,7 +37,7 @@ export function createNetlifyHandler({env,getStore,fetcher=fetch}) {
       return json({error:'DEPLOYMENT_NOT_ACTIVE'},503);
     }
     try {
-      const database=state(env,getStore,fetcher);
+      const database=createPlatformState(env,getStore,fetcher);
       if (url.pathname==='/operator/snapshot' && request.method==='GET') {
         if (!/^[A-Za-z0-9_-]{32,256}$/.test(env.ORBITA_OPERATOR_TOKEN || '') ||
           !await equalSecret(request.headers.get('authorization'),`Bearer ${env.ORBITA_OPERATOR_TOKEN}`)) return json({error:'FORBIDDEN'},403);

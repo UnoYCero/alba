@@ -1,6 +1,7 @@
 import {openCredentials,canonicalPhone} from './security.mjs';
 import {classify,intentRequest,MODEL} from './jev.mjs';
 import {createSankalpaConnector,prepareSankalpaReply} from './sankalpa.mjs';
+import {prepareCommerceReply,createCommerceConnector,commerceStoreFor} from './commerce.mjs';
 export async function sendReply(job, reply, credentials, fetcher = fetch) {
   const age = Date.now()-Date.parse(job.message.receivedAt);
   if (!Number.isFinite(age) || age < -300000 || age >= 24*60*60*1000) return {status:'expired',error:'REPLY_WINDOW_CLOSED'};
@@ -28,6 +29,10 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
       await database.rpc('orbita_coexistence_skip',{p_message_id:job.id,p_owner:owner});
       return {processed:1,status:'held'};
     }
+    if (!job.coexistence && env.ORBITA_PORTAL_ENABLED==='true') {
+      const context=await database.rpc('orbita_commerce_context',{p_message_id:job.id,p_owner:owner});
+      if(context.held){await database.rpc('orbita_commerce_skip',{p_message_id:job.id,p_owner:owner});return {processed:1,status:'held'};}
+    }
     const credentials = await openCredentials(job.credentials,env.ORBITA_CREDENTIAL_KEY,job.tenantId,job.channelId);
     let decision = job.decision;
     if (!job.reply && !decision && !job.message.mediaId && job.message.body && job.jevEnabled) {
@@ -41,7 +46,15 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
     }
     let reply = job.reply;
     if (!reply) {
-      if (job.connector === 'sankalpa-guided-v1') reply = await prepareSankalpaReply(job,decision,createSankalpaConnector(credentials,fetcher),database,owner);
+      if (job.connector === 'sankalpa-guided-v1') {
+        if (env.ORBITA_COMMERCE_ENABLED==='true') {
+          const result=await prepareCommerceReply(job,decision,createCommerceConnector(credentials,fetcher),database,owner,
+            {store:commerceStoreFor(database,env)});
+          if(result?.held)return {processed:1,status:'held'};
+          reply=result?.reply;
+        }
+        if(!reply)reply=await prepareSankalpaReply(job,decision,createSankalpaConnector(credentials,fetcher),database,owner);
+      }
       else if (job.connector === 'human-review-v1') {
         await database.rpc('orbita_handoff',{p_message_id:job.id,p_owner:owner});
         reply = 'Recibimos tu mensaje. Un responsable del negocio debe revisar esta conversación.';
@@ -51,6 +64,8 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
     // Persist the uncertain state before the irreversible provider call.
     if (job.coexistence) {
       if (!await database.rpc('orbita_coexistence_begin_send',{p_message_id:job.id,p_owner:owner})) return {processed:1,status:'held'};
+    } else if(env.ORBITA_COMMERCE_ENABLED==='true'||env.ORBITA_PORTAL_ENABLED==='true') {
+      if(!await database.rpc('orbita_commerce_begin_send',{p_message_id:job.id,p_owner:owner}))return {processed:1,status:'held'};
     } else await database.rpc('orbita_mark_sending',{p_message_id:job.id,p_owner:owner});
     sending = true;
     const delivery = await sendReply(job,reply,credentials,fetcher);
