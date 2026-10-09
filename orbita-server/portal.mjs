@@ -9,13 +9,15 @@ const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Re
 const json=(v,status=200,extra={})=>Response.json(v,{status,headers:{...headers,...extra}});
 const hex=b=>Array.from(new Uint8Array(b),v=>v.toString(16).padStart(2,'0')).join('');
 const enc=new TextEncoder();
+const role=a=>a.role==='admin'?'admin':'tenant';
+const scope=a=>role(a)==='admin'?'platform':a.tenantId;
 const cookie=v=>`${COOKIE}=${v}; Path=${ROOT}; HttpOnly; Secure; SameSite=Strict; Max-Age=${v?3600:0}`;
 export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,productionCheck=isPublishedProduction}={}) {
  let accounts;try{accounts=JSON.parse(env.ORBITA_PORTAL_ACCOUNTS||'[]');}catch{accounts=[];}
  const commerceEnabled=env.ORBITA_COMMERCE_ENABLED==='true';
  const ready=env.ORBITA_PORTAL_ENABLED==='true' &&
   /^[a-f0-9]{64}$/i.test(env.ORBITA_PORTAL_SESSION_KEY||'') && accounts.length>0 && accounts.length<=50 &&
-  accounts.every(a=>/^[a-z0-9_-]{1,40}$/.test(a.id) && uuid(a.tenantId) && /^[a-f0-9]{64}$/.test(a.accessHash||'') && typeof a.name==='string' && a.name.length<=80) &&
+  accounts.every(a=>/^[a-z0-9_-]{1,40}$/.test(a.id) && (a.role===undefined||['admin','tenant'].includes(a.role)) && (role(a)==='admin'||uuid(a.tenantId)) && /^[a-f0-9]{64}$/.test(a.accessHash||'') && typeof a.name==='string' && a.name.length<=80) &&
   new Set(accounts.map(a=>a.id)).size===accounts.length;
  async function sign(value){const key=await crypto.subtle.importKey('raw',Uint8Array.from(env.ORBITA_PORTAL_SESSION_KEY.match(/../g),x=>parseInt(x,16)),{name:'HMAC',hash:'SHA-256'},false,['sign']);
   return hex(await crypto.subtle.sign('HMAC',key,enc.encode(value)));}
@@ -23,7 +25,7 @@ export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,pro
   const raw=request.headers.get('cookie')?.split(';').map(x=>x.trim()).find(x=>x.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);
   if(!raw)return null;const [id,tenantId,expires,csrf,version,signature,...rest]=raw.split('.');
   const account=accounts.find(a=>a.id===id);
-  if(!account || account.tenantId!==tenantId || rest.length || !/^\d+$/.test(expires) || Number(expires)<=now()/1000 || Number(expires)>now()/1000+3600 ||
+  if(!account || scope(account)!==tenantId || rest.length || !/^\d+$/.test(expires) || Number(expires)<=now()/1000 || Number(expires)>now()/1000+3600 ||
    !/^[a-f0-9]{32}$/.test(csrf||'') || version!==account.accessHash.slice(0,16) || !await equalSecret(signature,await sign([id,tenantId,expires,csrf,version].join('.'))))return null;
   return {account,csrf};
  }
@@ -43,14 +45,33 @@ export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,pro
     if(!a||typeof body.code!=='string'||body.code.length<32||body.code.length>256||Object.keys(body).length!==2)return json({error:'ACCESS_DENIED'},403);
     const hashed=hex(await crypto.subtle.digest('SHA-256',enc.encode(body.code)));
     if(!await equalSecret(hashed,a.accessHash))return json({error:'ACCESS_DENIED'},403);
-    const csrf=hex(crypto.getRandomValues(new Uint8Array(16))),value=[a.id,a.tenantId,Math.floor(now()/1000)+3600,csrf,a.accessHash.slice(0,16)].join('.');
-    return json({name:a.name,csrf,commerceEnabled},200,{'Set-Cookie':cookie(value+'.'+await sign(value))});
+    const csrf=hex(crypto.getRandomValues(new Uint8Array(16))),value=[a.id,scope(a),Math.floor(now()/1000)+3600,csrf,a.accessHash.slice(0,16)].join('.');
+    return json({name:a.name,role:role(a),tenantId:role(a)==='tenant'?a.tenantId:null,csrf,commerceEnabled},200,{'Set-Cookie':cookie(value+'.'+await sign(value))});
    }
    const s=await session(request);if(!s)return json({error:'SIGN_IN_REQUIRED'},403);
    if(request.method==='POST'&&!await equalSecret(request.headers.get('x-orbita-csrf'),s.csrf))return json({error:'ACTION_NOT_ALLOWED'},403);
-   const tenant=s.account.tenantId,store=commerceStoreFor(database,env);
-   if(route==='/session'&&request.method==='GET')return json({name:s.account.name,csrf:s.csrf,commerceEnabled});
+   const admin=role(s.account)==='admin',selected=url.searchParams.get('tenant');
+   if(!admin && ((selected!==null&&selected!==s.account.tenantId)||(body?.tenantId!==undefined&&body.tenantId!==s.account.tenantId)))return json({error:'TENANT_FORBIDDEN'},403);
+   const tenant=admin?(body?.tenantId||selected):s.account.tenantId,store=commerceStoreFor(database,env);
+   if(route==='/session'&&request.method==='GET')return json({name:s.account.name,role:role(s.account),tenantId:admin?null:tenant,csrf:s.csrf,commerceEnabled});
    if(route==='/logout'&&request.method==='POST')return json({signedOut:true},200,{'Set-Cookie':cookie('')});
+   if(route==='/agents'&&request.method==='GET')return json(await database.rpc('orbita_management_summary',{p_tenant_id:admin?null:tenant}));
+   if(['/tenant-settings','/clients'].includes(route)&&!admin)return json({error:'ADMIN_REQUIRED'},403);
+   if(route==='/clients'&&request.method==='POST') {
+    if(Object.keys(body).some(k=>!['name','slug','budgetUsd'].includes(k))||typeof body.name!=='string'||!body.name.trim()||body.name.length>80||!/^[a-z0-9][a-z0-9_-]{0,39}$/.test(body.slug||'')||
+     (body.budgetUsd!==null&&(!Number.isFinite(body.budgetUsd)||body.budgetUsd<0||body.budgetUsd>1000000)))return json({error:'INVALID_CLIENT'},400);
+    return json(await database.rpc('orbita_create_tenant',{p_id:crypto.randomUUID(),p_slug:body.slug,p_name:body.name.trim(),p_budget:body.budgetUsd}),201);
+   }
+   if(!uuid(tenant))return json({error:'SELECT_TENANT',message:'Selecciona un cliente.'},400);
+   if(route==='/tenant-settings'&&request.method==='POST') {
+    if(Object.keys(body).some(k=>!['tenantId','budgetUsd','paused'].includes(k))||typeof body.paused!=='boolean'||(body.budgetUsd!==null&&(!Number.isFinite(body.budgetUsd)||body.budgetUsd<0||body.budgetUsd>1000000)))return json({error:'INVALID_SETTINGS'},400);
+    return json(await database.rpc('orbita_management_tenant',{p_tenant_id:tenant,p_budget:body.budgetUsd,p_paused:body.paused,p_actor:s.account.id}));
+   }
+   if(route==='/agent-state'&&request.method==='POST') {
+    if(!admin&&body.jevEnabled!==undefined)return json({error:'ADMIN_REQUIRED'},403);
+    if(Object.keys(body).some(k=>!['tenantId','channelId','enabled','jevEnabled'].includes(k))||!uuid(body.channelId)||typeof body.enabled!=='boolean'||(body.jevEnabled!==undefined&&typeof body.jevEnabled!=='boolean'))return json({error:'INVALID_AGENT'},400);
+    return json(await database.rpc('orbita_management_agent',{p_tenant_id:tenant,p_channel_id:body.channelId,p_enabled:body.enabled,p_jev_enabled:body.jevEnabled??null,p_actor:s.account.id}));
+   }
    if(route==='/requests'&&request.method==='GET')return json({requests:await store.list(tenant)});
    if(route==='/inbox'&&request.method==='GET')return json({conversations:await store.inbox(tenant)});
    if(route==='/conversations'&&request.method==='GET') {
