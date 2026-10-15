@@ -1,8 +1,9 @@
-// Portada de Alba Vision: menú flotante, origen y proyectos en pantallas fijas
-// que cambian al bajar, línea del tiempo, y el 3D cargado sólo cuando se va a ver.
+// Portada de Alba Vision: menú flotante, origen y Alba Vision en pantallas fijas
+// que cambian al bajar, collage de hitos, y el 3D cargado sólo cuando se va a ver.
 
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const punteroFino = matchMedia("(pointer: fine)").matches;
+const celular = matchMedia("(max-width: 760px)");
 document.documentElement.classList.toggle("reduce", reducir);
 const limitar = (v) => Math.min(1, Math.max(0, v));
 
@@ -33,24 +34,24 @@ function espiar() {
 
 // ── Menú del celular ──
 const boton = document.querySelector("[data-nav-toggle]");
-const panel = document.querySelector("[data-nav-panel]");
+const panelMenu = document.querySelector("[data-nav-panel]");
 const cerrarMenu = () => {
   boton.setAttribute("aria-expanded", "false");
   boton.setAttribute("aria-label", "Abrir menú");
-  panel.classList.remove("abierto");
+  panelMenu.classList.remove("abierto");
   document.body.style.overflow = "";
 };
 boton.addEventListener("click", () => {
   if (boton.getAttribute("aria-expanded") === "true") return cerrarMenu();
   boton.setAttribute("aria-expanded", "true");
   boton.setAttribute("aria-label", "Cerrar menú");
-  panel.classList.add("abierto");
+  panelMenu.classList.add("abierto");
   document.body.style.overflow = "hidden";
 });
-panel.querySelectorAll("a").forEach((a) => a.addEventListener("click", cerrarMenu));
+panelMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", cerrarMenu));
 addEventListener("keydown", (e) => { if (e.key === "Escape") cerrarMenu(); });
 
-// ── Apariciones sencillas ──
+// ── Apariciones ──
 const grupos = new Map();
 document.querySelectorAll(".reveal").forEach((el) => {
   const n = grupos.get(el.parentElement) || 0;
@@ -68,84 +69,81 @@ const avanceFijo = (seccion) => {
   return limitar(-r.top / (r.height - innerHeight));
 };
 
-// ── Origen: el texto se enciende palabra por palabra ──
+// ── Origen: el texto se enciende y luego aparecen misión y visión ──
 const origen = document.querySelector(".origen");
-const scrub = origen?.querySelector("[data-scrub]");
+const scrub = origen.querySelector("[data-scrub]");
 let palabras = [];
-if (scrub && !reducir) {
+if (!reducir) {
   scrub.innerHTML = scrub.textContent.trim().split(/\s+/).map((p) => `<span class="w">${p}</span>`).join(" ");
   palabras = [...scrub.querySelectorAll(".w")];
 }
 function encender() {
   if (!palabras.length) return;
   const p = avanceFijo(origen);
-  const hasta = Math.round(limitar(p / 0.8) * palabras.length);
+  const hasta = Math.round(limitar(p / 0.65) * palabras.length);
   palabras.forEach((w, i) => w.classList.toggle("on", i < hasta));
-  origen.classList.toggle("fin", p > 0.82);
+  origen.classList.toggle("fin", p > 0.68);
 }
 
-// ── Proyectos: una ventana que cambia de proyecto al bajar ──
-const works = document.querySelector("[data-works]");
-const tabs = [...works.querySelectorAll("[data-tab]")];
-const obras = [...works.querySelectorAll("[data-work]")];
-const visuales = [...works.querySelectorAll("[data-visual]")];
-const lienzoLentes = works.querySelector('canvas[data-3d="lentes"]');
-const lienzoCielo = works.querySelector('canvas[data-3d="cielo"]');
-let activoWorks = -1;
-function proyectos() {
+// ── Alba Vision: la ventana cambia de proyecto al bajar ──
+const ventana = document.querySelector("[data-window]");
+const menu = ventana.querySelector(".window-menu");
+const botones = [...ventana.querySelectorAll("[data-item]")];
+const paneles = [...ventana.querySelectorAll("[data-panel]")];
+const marcadorVentana = ventana.querySelector(".window-marker");
+const lienzoLentes = ventana.querySelector('canvas[data-3d="lentes"]');
+let activoVentana = -1;
+function colocarMarcador() {
+  const b = botones[Math.max(0, activoVentana)];
+  if (celular.matches) {
+    marcadorVentana.style.setProperty("--mx", `${b.offsetLeft}px`);
+    marcadorVentana.style.setProperty("--mw", (b.offsetWidth / 100).toFixed(3));
+  } else {
+    marcadorVentana.style.setProperty("--my", `${b.offsetTop}px`);
+    marcadorVentana.style.setProperty("--mh", (b.offsetHeight / 100).toFixed(3));
+  }
+}
+function ventanaAlBajar() {
   if (reducir) return;
-  const p = avanceFijo(works);
-  works.style.setProperty("--p", p.toFixed(3));
-  works.querySelector(".works-progress").style.setProperty("--p", p.toFixed(3));
-  const i = Math.min(2, Math.floor(p * 3));
-  if (i === activoWorks) return;
-  activoWorks = i;
-  works.dataset.activo = String(i);
-  obras.forEach((o, j) => o.classList.toggle("activo", j === i));
-  visuales.forEach((v, j) => v.classList.toggle("activo", j === i));
-  tabs.forEach((t, j) => t.setAttribute("aria-current", j === i ? "true" : "false"));
+  const i = Math.min(paneles.length - 1, Math.floor(avanceFijo(ventana) * paneles.length));
+  if (i === activoVentana) return;
+  activoVentana = i;
+  paneles.forEach((p, j) => p.classList.toggle("activo", j === i));
+  botones.forEach((b, j) => b.setAttribute("aria-current", j === i ? "true" : "false"));
+  colocarMarcador();
+  if (celular.matches) {
+    const b = botones[i];
+    menu.scrollTo({ left: b.offsetLeft - menu.clientWidth / 2 + b.offsetWidth / 2, behavior: "smooth" });
+  }
   if (lienzoLentes) lienzoLentes.pausado = i !== 0;
-  if (lienzoCielo) lienzoCielo.pausado = i !== 2;
 }
-tabs.forEach((t, j) => t.addEventListener("click", () => {
-  const recorrido = works.offsetHeight - innerHeight;
-  scrollTo({ top: works.offsetTop + recorrido * ((j + 0.5) / 3), behavior: reducir ? "auto" : "smooth" });
+botones.forEach((b, j) => b.addEventListener("click", () => {
+  const recorrido = ventana.offsetHeight - innerHeight;
+  scrollTo({ top: ventana.offsetTop + recorrido * ((j + 0.5) / paneles.length), behavior: reducir ? "auto" : "smooth" });
 }));
-if (reducir) obras.forEach((o) => o.classList.add("activo"));
-
-// ── Cómo trabajamos: la línea se llena al bajar ──
-const pasos = document.querySelector("[data-steps]");
-function llenarPasos() {
-  if (!pasos) return;
-  const r = pasos.getBoundingClientRect();
-  pasos.style.setProperty("--p", limitar((innerHeight * 0.85 - r.top) / (innerHeight * 0.5)).toFixed(3));
-}
+if (reducir) paneles.forEach((p) => p.classList.add("activo"));
+celular.addEventListener("change", colocarMarcador);
 
 // Un solo manejador de desplazamiento, una vez por cuadro
 let pendiente = false;
 function alDesplazar() {
   if (pendiente) return;
   pendiente = true;
-  requestAnimationFrame(() => { pendiente = false; espiar(); encender(); proyectos(); llenarPasos(); });
+  requestAnimationFrame(() => { pendiente = false; espiar(); encender(); ventanaAlBajar(); });
 }
 addEventListener("scroll", alDesplazar, { passive: true });
-addEventListener("resize", alDesplazar);
-espiar(); encender(); proyectos(); llenarPasos();
+addEventListener("resize", () => { colocarMarcador(); alDesplazar(); });
+espiar(); encender(); ventanaAlBajar();
 
-// ── Línea del tiempo: flechas que avanzan un hito ──
-const pista = document.querySelector(".timeline-track");
-const [atras, adelante] = document.querySelectorAll("[data-tl]");
-function flechas() {
-  atras.disabled = pista.scrollLeft < 8;
-  adelante.disabled = pista.scrollLeft > pista.scrollWidth - pista.clientWidth - 8;
+// ── Collage de hitos: se duplica para desfilar sin fin ──
+const fila = document.querySelector("[data-marquee]");
+if (fila && !reducir) {
+  [...fila.children].forEach((li) => {
+    const copia = li.cloneNode(true);
+    copia.setAttribute("aria-hidden", "true");
+    fila.appendChild(copia);
+  });
 }
-[atras, adelante].forEach((b) => b.addEventListener("click", () => {
-  const paso = pista.querySelector("li").offsetWidth;
-  pista.scrollBy({ left: paso * Number(b.dataset.tl), behavior: reducir ? "auto" : "smooth" });
-}));
-pista.addEventListener("scroll", flechas, { passive: true });
-addEventListener("resize", flechas);
-flechas();
 
 // ── Botón magnético (sólo con mouse) ──
 if (punteroFino && !reducir) {
@@ -159,7 +157,7 @@ if (punteroFino && !reducir) {
 }
 
 // ── 3D: cada lienzo se monta cuando su sección está cerca ──
-const lienzos = [...document.querySelectorAll("canvas[data-3d]")].filter((c) => !reducir || c.dataset["3d"] === "ojo");
+const lienzos = [...document.querySelectorAll("canvas[data-3d]")].filter((c) => !reducir || c.dataset["3d"] !== "lentes");
 if (lienzos.length) {
   let modulo;
   const montar = async (canvas) => {

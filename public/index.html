@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Alba Vision crea soluciones de visión e inteligencia artificial que acercan la tecnología a todos: UNBLIND para personas con discapacidad visual, Vision Ops para operaciones y Alba Space para satélites.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Alba Vision: ingenieros en visión e inteligencia artificial. Creamos soluciones que acercan la tecnología a todos, en la Tierra con Alba Vision y en el espacio con Alba Space.">
   <meta name="theme-color" content="#050d1c">
   <title>Alba Vision — Más allá de lo visible</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Alba Vision">
   <meta property="og:url" content="https://albavision.tech/">
   <meta property="og:title" content="Alba Vision — Más allá de lo visible">
-  <meta property="og:description" content="Soluciones de visión e inteligencia artificial que acercan la tecnología a todos: UNBLIND, Vision Ops y Alba Space.">
+  <meta property="og:description" content="Ingenieros en visión e inteligencia artificial. Soluciones que acercan la tecnología a todos: Alba Vision y Alba Space.">
   <meta property="og:image" content="https://albavision.tech/assets/og-alba-vision.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -34,24 +34,25 @@
         <img src="assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69">
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="#proyectos" data-spy="proyectos">Proyectos</a>
         <a href="#quienes-somos" data-spy="quienes-somos">Quiénes somos</a>
-        <a href="#como-trabajamos" data-spy="como-trabajamos">Cómo trabajamos</a>
+        <a href="#alba-vision" data-spy="alba-vision">Alba Vision</a>
+        <a href="#alba-space" data-spy="alba-space">Alba Space</a>
         <i class="nav-marker" aria-hidden="true"></i>
       </nav>
       <a class="btn btn-solid btn-small nav-cta" href="#contacto">Hablemos</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
     </div>
     <div class="nav-panel" id="menu-movil" data-nav-panel>
-      <a href="#proyectos">Proyectos</a>
       <a href="#quienes-somos">Quiénes somos</a>
-      <a href="#mas">Labs y Surface Ops</a>
-      <a href="#como-trabajamos">Cómo trabajamos</a>
+      <a href="#capacidades">Lo que hacemos</a>
+      <a href="#alba-vision">Alba Vision</a>
+      <a href="#alba-space">Alba Space</a>
       <a href="#contacto">Hablemos</a>
     </div>
   </header>
 
   <main id="contenido">
+    <!-- Portada -->
     <section class="hero" id="inicio">
       <canvas class="hero-canvas" data-3d="ojo" aria-hidden="true"></canvas>
       <div class="hero-veil" aria-hidden="true"></div>
@@ -60,178 +61,211 @@
           <span class="line"><span>La visión que</span></span>
           <span class="line"><span><em>acompaña el trabajo.</em></span></span>
         </h1>
-        <p class="hero-sub">Creamos soluciones de visión e inteligencia artificial que acercan la tecnología a todos.</p>
+        <p class="hero-sub">Somos ingenieros en visión e inteligencia artificial. Creamos soluciones que acercan la tecnología a todos.</p>
         <div class="hero-cta">
           <a class="btn btn-solid magnetic" href="#contacto">Hablemos</a>
-          <a class="btn-text" href="#proyectos">Ver proyectos</a>
+          <a class="btn-text" href="#capacidades">Lo que hacemos</a>
         </div>
       </div>
-      <div class="wrap hero-foot">
+      <div class="wrap hero-doors">
+        <a class="door" href="#alba-vision"><span class="door-name">Alba Vision</span><span class="door-line">Visión e IA aplicada en la Tierra</span></a>
+        <a class="door" href="#alba-space"><span class="door-name">Alba Space</span><span class="door-line">Visión para orientarse en el espacio</span></a>
         <span class="tagline"><i aria-hidden="true"></i>Más allá de lo visible</span>
-        <span class="scroll-cue" aria-hidden="true"><i></i></span>
       </div>
     </section>
 
-    <!-- El origen: una pantalla fija donde el texto se enciende al bajar -->
-    <section class="origen" id="origen" aria-label="Nuestro origen">
+    <!-- Origen, misión y visión: una pantalla -->
+    <section class="origen" id="origen" aria-label="Nuestro origen, misión y visión">
       <div class="origen-pin">
-        <div class="wrap">
-          <p class="origen-text" data-scrub>Alba nació para que una persona ciega supiera qué tiene enfrente. Hoy esa misma mirada mide el trabajo de una cocina y orienta satélites entre las estrellas.</p>
-          <p class="origen-vision">Un futuro en el que la tecnología nos permita ver más allá de lo que alcanzan nuestros ojos.</p>
+        <div class="wrap origen-inner">
+          <p class="origen-text" data-scrub>Alba nació intentando que una persona ciega supiera qué tiene enfrente. Ahí aprendimos a ver con máquinas; hoy llevamos esa visión a negocios, laboratorios y satélites.</p>
+          <dl class="mv">
+            <div><dt>Misión</dt><dd>Creamos soluciones de visión e inteligencia artificial que acercan la tecnología a todos.</dd></div>
+            <div><dt>Visión</dt><dd>Un futuro en el que la tecnología nos permita ver más allá de lo que alcanzan nuestros ojos.</dd></div>
+          </dl>
         </div>
       </div>
     </section>
 
-    <!-- Los tres proyectos: una sola ventana que cambia al bajar -->
-    <section class="works" id="proyectos" aria-label="Proyectos" data-works>
-      <div class="works-pin">
-        <canvas class="works-sky" data-3d="cielo" aria-hidden="true"></canvas>
-        <div class="wrap works-inner">
-          <nav class="works-tabs" aria-label="Elige un proyecto">
-            <button type="button" data-tab="0" aria-current="true">UNBLIND</button>
-            <button type="button" data-tab="1">Vision Ops</button>
-            <button type="button" data-tab="2">Alba Space</button>
-            <i class="works-progress" aria-hidden="true"><b></b></i>
-          </nav>
+    <!-- Quiénes somos: historia y collage de hitos -->
+    <section class="about" id="quienes-somos">
+      <div class="wrap about-head">
+        <h2 class="reveal">Empezamos con unos lentes. <em>Seguimos viendo más allá.</em></h2>
+        <p class="about-lead reveal">Somos un equipo de ingenieros. Lo que aprendimos construyendo UNBLIND, lentes para personas con discapacidad visual, hoy lo aplicamos a negocios, a la industria y al espacio.</p>
+      </div>
+      <div class="collage" aria-label="Hitos de Alba">
+        <ul class="collage-row" data-marquee>
+          <li class="postal p1"><span class="postal-year">2021</span><b>Solve for Tomorrow · Samsung</b><span>Participación destacada y reconocimiento de UNBLIND.</span></li>
+          <li class="postal p2"><span class="postal-year">2022–23</span><b>Premio ILAN a la Innovación</b><span>Reconocimiento a la innovación y al impacto social.</span></li>
+          <li class="postal p3"><span class="postal-year">2023</span><b>Premio UNITEC</b><span>Reconocimiento obtenido por UNBLIND.</span></li>
+          <li class="postal p4"><span class="postal-year">2024</span><b>eAwards México · NTT DATA Foundation</b><span>Ganador nacional, con pase a la final en Colombia.</span></li>
+          <li class="postal p2"><span class="postal-year">2025</span><b>Talent Land</b><span>Ganador en innovación tecnológica.</span></li>
+          <li class="postal p1"><span class="postal-year">2026</span><b>Copartank</b><span>Galardonados a la innovación.</span></li>
+          <li class="postal p3"><span class="postal-year">2026</span><b>Hult Prize</b><span>Galardonados a la innovación.</span></li>
+        </ul>
+      </div>
+    </section>
 
-          <div class="works-body">
-            <div class="works-copy">
-              <article class="work" data-work="0">
-                <h2>Tecnología para ver <em>por quien no ve.</em></h2>
-                <p class="work-lead">Aquí empezó Alba. UNBLIND lee, describe y ubica lo que tienes enfrente, en el teléfono o en unos lentes con cámara.</p>
-                <ul class="work-points">
-                  <li>Lee textos en voz alta y describe la escena</li>
-                  <li>Te guía con sonido hasta tus objetos</li>
-                  <li>Se usa con la voz y con TalkBack</li>
-                </ul>
-                <div class="work-foot">
-                  <span class="status"><i aria-hidden="true"></i>En desarrollo</span>
-                  <a class="btn-text" href="Unblind/">Conoce UNBLIND</a>
-                </div>
-              </article>
-              <article class="work" data-work="1">
-                <h2>Sabe en qué se va <em>el tiempo de tu cocina.</em></h2>
-                <p class="work-lead">Vision Ops convierte el vídeo de un turno en tiempos, esperas y uso de cada estación, con el fotograma que respalda cada número.</p>
-                <ul class="work-points">
-                  <li>Con la cámara que ya tienes, o una en el pecho</li>
-                  <li>Sin reconocimiento facial: mide estaciones, no personas</li>
-                  <li>Restaurantes, food trucks y taquerías</li>
-                </ul>
-                <div class="work-foot">
-                  <span class="status"><i aria-hidden="true"></i>En producción</span>
-                  <a class="btn-text" href="https://ops.albavision.tech" target="_blank" rel="noopener">Prueba con un vídeo</a>
-                </div>
-              </article>
-              <article class="work" data-work="2">
-                <h2>Visión para orientarse <em>entre las estrellas.</em></h2>
-                <p class="work-lead">Un solo sensor óptico para que un satélite pequeño sepa hacia dónde apunta, siga basura espacial y se acerque a otro objeto.</p>
-                <ul class="work-points">
-                  <li>Identifica estrellas y calcula hacia dónde mira</li>
-                  <li>Probado con una cámara comercial bajo el cielo real</li>
-                  <li>Algoritmo propio, comparado con los clásicos</li>
-                </ul>
-                <div class="work-foot">
-                  <span class="status"><i aria-hidden="true"></i>En pruebas en tierra</span>
-                  <a class="btn-text" href="AlbaSpace/">Explora Alba Space</a>
-                </div>
-              </article>
+    <!-- El corazón: lo que nuestra visión sabe hacer -->
+    <section class="caps" id="capacidades">
+      <div class="wrap">
+        <h2 class="caps-title reveal">Enseñamos a las máquinas <em>a ver y a entender.</em></h2>
+        <ul class="caps-grid">
+          <li class="cap reveal">
+            <div class="viz viz-leer" aria-hidden="true"><i></i><i></i><i></i><i></i><b class="viz-scan"></b><span class="viz-tag">«Salida de emergencia»</span></div>
+            <h3>Ver y describir</h3>
+            <p>Lee textos, describe escenas y reconoce productos y códigos.</p>
+            <small>En UNBLIND y Alba Labs</small>
+          </li>
+          <li class="cap reveal">
+            <div class="viz viz-detectar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><b class="viz-box"><span>detectado</span></b></div>
+            <h3>Detectar e inspeccionar</h3>
+            <p>Encuentra objetos, piezas y defectos, y sigue lo que se mueve.</p>
+            <small>En Vision Ops y soluciones a la medida</small>
+          </li>
+          <li class="cap reveal">
+            <div class="viz viz-medir" aria-hidden="true">
+              <svg viewBox="0 0 200 120"><path class="viz-contorno" d="M40 78 C38 50 62 30 96 34 C130 36 160 48 156 76 C152 98 118 102 92 98 C64 96 42 96 40 78 Z"/><path class="viz-cota" d="M40 108 H156 M40 103 V113 M156 103 V113"/></svg>
             </div>
+            <h3>Medir y contar</h3>
+            <p>Convierte una imagen en medidas, tiempos y conteos con evidencia.</p>
+            <small>En Vision Ops y Surface Ops</small>
+          </li>
+          <li class="cap reveal">
+            <div class="viz viz-orientar" aria-hidden="true">
+              <svg viewBox="0 0 200 120"><polyline class="viz-ruta" points="30,84 64,46 104,62 138,30 172,52"/><g class="viz-estrellas"><circle cx="30" cy="84" r="3"/><circle cx="64" cy="46" r="3.5"/><circle cx="104" cy="62" r="2.5"/><circle cx="138" cy="30" r="4"/><circle cx="172" cy="52" r="3"/><circle cx="52" cy="98" r="1.5"/><circle cx="120" cy="96" r="1.5"/><circle cx="180" cy="94" r="2"/><circle cx="88" cy="20" r="1.5"/></g></svg>
+            </div>
+            <h3>Orientarse</h3>
+            <p>Reconoce estrellas y entornos para saber dónde está y hacia dónde mira.</p>
+            <small>En Alba Space</small>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-            <div class="works-visual" aria-hidden="true">
-              <div class="visual" data-visual="0">
-                <canvas data-3d="lentes"></canvas>
-                <div class="sound"><i></i><i></i><i></i></div>
-                <span class="visual-note">Ilustración 3D · arrastra para girar</span>
-              </div>
-              <div class="visual" data-visual="1">
-                <div class="kitchen">
-                  <div class="floor">
-                    <div class="st" style="--x:6%;--y:8%;--w:36%;--h:22%;--d:0s"><span>Plancha</span></div>
-                    <div class="st" style="--x:60%;--y:6%;--w:30%;--h:20%;--d:1.2s"><span>Refrigerador</span></div>
-                    <div class="st" style="--x:6%;--y:44%;--w:24%;--h:22%;--d:2.4s"><span>Freidora</span></div>
-                    <div class="st" style="--x:42%;--y:40%;--w:48%;--h:22%;--d:.6s"><span>Mesa de armado</span></div>
-                    <div class="st" style="--x:28%;--y:76%;--w:40%;--h:16%;--d:1.8s"><span>Empaque</span></div>
-                    <i class="walker"></i><i class="walker walker-2"></i>
+    <!-- Alba Vision: ventana con menú lateral -->
+    <section class="window" id="alba-vision" aria-label="Alba Vision" data-window>
+      <div class="window-pin">
+        <div class="wrap window-inner">
+          <header class="window-head">
+            <h2>Alba Vision</h2>
+            <p>Visión e inteligencia artificial aplicada, de un laboratorio a un negocio.</p>
+          </header>
+          <div class="window-grid">
+            <nav class="window-menu" aria-label="Proyectos de Alba Vision">
+              <button type="button" data-item="0" aria-current="true"><b>UNBLIND</b><span>Lentes para ver por quien no ve</span></button>
+              <button type="button" data-item="1"><b>Vision Ops</b><span>Visión aplicada a negocios</span></button>
+              <button type="button" data-item="2"><b>Soluciones a la medida</b><span>Máquinas y sistemas de visión</span></button>
+              <button type="button" data-item="3"><b>Alba Labs</b><span>Lentes abiertos para construir</span></button>
+              <button type="button" data-item="4"><b>Surface Ops</b><span>Medir un bache con una foto</span></button>
+              <i class="window-marker" aria-hidden="true"></i>
+            </nav>
+
+            <div class="window-stage">
+              <article class="panel" data-panel="0">
+                <div class="panel-visual">
+                  <canvas data-3d="lentes" aria-hidden="true"></canvas>
+                  <div class="sound" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <span class="visual-note">Ilustración 3D · arrastra para girar</span>
+                </div>
+                <div class="panel-copy">
+                  <h3>Tecnología para ver <em>por quien no ve.</em></h3>
+                  <p>Aquí empezó Alba. UNBLIND lee, describe y ubica lo que tienes enfrente, en el teléfono o en unos lentes con cámara, y se usa con la voz.</p>
+                  <div class="panel-foot"><span class="status"><i aria-hidden="true"></i>En desarrollo</span><a class="btn-text" href="Unblind/">Conoce UNBLIND</a></div>
+                </div>
+              </article>
+
+              <article class="panel" data-panel="1">
+                <div class="panel-visual" aria-hidden="true">
+                  <div class="kitchen">
+                    <div class="floor">
+                      <div class="st" style="--x:6%;--y:8%;--w:36%;--h:22%;--d:0s"><span>Plancha</span></div>
+                      <div class="st" style="--x:60%;--y:6%;--w:30%;--h:20%;--d:1.2s"><span>Refrigerador</span></div>
+                      <div class="st" style="--x:6%;--y:44%;--w:24%;--h:22%;--d:2.4s"><span>Freidora</span></div>
+                      <div class="st" style="--x:42%;--y:40%;--w:48%;--h:22%;--d:.6s"><span>Mesa de armado</span></div>
+                      <div class="st" style="--x:28%;--y:76%;--w:40%;--h:16%;--d:1.8s"><span>Empaque</span></div>
+                      <i class="walker"></i><i class="walker walker-2"></i>
+                    </div>
                   </div>
+                  <div class="report">
+                    <p class="report-head"><span>Reporte del turno</span><span class="pill">Ejemplo</span></p>
+                    <div class="bar"><span>Plancha</span><i style="--v:.82"></i></div>
+                    <div class="bar"><span>Mesa de armado</span><i style="--v:.64"></i></div>
+                    <div class="bar"><span>Freidora</span><i style="--v:.38"></i></div>
+                  </div>
+                  <span class="visual-note">Ejemplo ilustrativo · sin datos reales</span>
                 </div>
-                <div class="report">
-                  <p class="report-head"><span>Reporte del turno</span><span class="pill">Ejemplo</span></p>
-                  <div class="bar"><span>Plancha</span><i style="--v:.82"></i></div>
-                  <div class="bar"><span>Mesa de armado</span><i style="--v:.64"></i></div>
-                  <div class="bar"><span>Freidora</span><i style="--v:.38"></i></div>
-                  <p class="report-finding"><small>Hallazgo</small>Pausa larga en la mesa de armado, con su fotograma para que tú decidas.</p>
+                <div class="panel-copy">
+                  <h3>Visión aplicada <em>a negocios.</em></h3>
+                  <p>Vision Ops convierte el vídeo de tus cámaras en tiempos, esperas y uso de cada área, con el fotograma que respalda cada número. Hoy empezamos por las cocinas: restaurantes, food trucks y taquerías. Sin reconocimiento facial.</p>
+                  <div class="panel-foot"><span class="status"><i aria-hidden="true"></i>En producción</span><a class="btn-text" href="https://ops.albavision.tech" target="_blank" rel="noopener">Prueba con un vídeo</a></div>
                 </div>
-                <span class="visual-note">Ejemplo ilustrativo · sin datos reales</span>
-              </div>
-              <div class="visual" data-visual="2">
-                <p class="sky-hud"><span>Identificando estrellas</span><span data-hud>—</span></p>
-                <span class="visual-note">Cielo ilustrativo · arrastra para mirar</span>
-              </div>
+              </article>
+
+              <article class="panel" data-panel="2">
+                <div class="panel-visual panel-photo">
+                  <img src="assets/alineacion-anahuac.webp" alt="Ilustración del sistema de alineación e inspección para la Universidad Anáhuac" loading="lazy" decoding="async" width="1600" height="900">
+                  <span class="visual-note">Ilustración · la foto real llega cuando termine la implementación</span>
+                </div>
+                <div class="panel-copy">
+                  <h3>Si tu reto se puede ver, <em>lo diseñamos.</em></h3>
+                  <p>Para la Universidad Anáhuac estamos integrando visión a una máquina de laboratorio que alinea e inspecciona muestras con captura controlada y análisis automático. Así trabajamos: diagnóstico, prueba, piloto e integración.</p>
+                  <div class="panel-foot"><span class="status"><i aria-hidden="true"></i>En desarrollo</span><a class="btn-text" href="#contacto">Cuéntanos tu reto</a></div>
+                </div>
+              </article>
+
+              <article class="panel" data-panel="3">
+                <div class="panel-visual panel-photo panel-light">
+                  <img src="assets/armazon.webp" alt="Smartglasses del Dev Kit de Alba Labs (imagen ilustrativa)" loading="lazy" decoding="async" width="1600" height="900">
+                </div>
+                <div class="panel-copy">
+                  <h3>Ve. Recuerda. <em>Actúa.</em></h3>
+                  <p>El Dev Kit de Alba Labs son lentes abiertos para crear tus propias aplicaciones con visión e inteligencia artificial. También hay módulos de cámara y un robot educativo. En la industria, los lentes van como piloto bajo pedido.</p>
+                  <div class="panel-foot"><span class="status status-price">Dev Kit · $5,900 MXN</span><a class="btn-text" href="AlbaLabs/">Entra al laboratorio</a></div>
+                </div>
+              </article>
+
+              <article class="panel" data-panel="4">
+                <div class="panel-visual panel-phone">
+                  <img src="assets/surface-ops-resultado.webp" alt="Captura de la app de Surface Ops: el plano del corte de un bache con sus medidas, sobre una foto de prueba" loading="lazy" decoding="async" width="520" height="1012">
+                  <span class="visual-note">Captura de la app · foto de prueba</span>
+                </div>
+                <div class="panel-copy">
+                  <h3>Mide un bache <em>con una foto.</em></h3>
+                  <p>La cuadrilla toma la foto en la calle y la oficina recibe el contorno, el área, el corte y la ubicación, sin cinta ni croquis a mano. Funciona sin señal y entrega PDF y archivos para AutoCAD.</p>
+                  <div class="panel-foot"><a class="btn-text" href="#contacto">Agenda una prueba</a></div>
+                </div>
+              </article>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Quiénes somos: la historia en hitos -->
-    <section class="about" id="quienes-somos">
-      <div class="wrap about-head">
-        <h2 class="reveal">Empezamos con UNBLIND. <em>Seguimos viendo más allá.</em></h2>
-        <p class="about-lead reveal">Alba nació con una idea: que una persona ciega supiera qué tiene enfrente. Con ella llegaron los primeros concursos y los primeros aliados; hoy llevamos esa misma visión a cocinas, calles y satélites.</p>
+    <!-- Alba Space: la segunda cabeza -->
+    <section class="space" id="alba-space">
+      <canvas class="space-canvas" data-3d="cielo" aria-hidden="true"></canvas>
+      <div class="space-veil" aria-hidden="true"></div>
+      <div class="wrap space-inner">
+        <h2 class="reveal">Alba Space. <em>Percepción más allá.</em></h2>
+        <p class="space-lead reveal">Sistemas de visión para satélites pequeños: saber hacia dónde apuntan, acercarse a otro objeto y observar la Tierra.</p>
+        <ul class="systems">
+          <li class="reveal"><h3>Star Tracker</h3><p>Identifica estrellas en una foto del cielo y calcula la orientación del satélite. Algoritmo propio, probado con una cámara comercial bajo el cielo real.</p><span class="status"><i aria-hidden="true"></i>En pruebas en tierra</span></li>
+          <li class="reveal"><h3>Acercamiento y acoplamiento</h3><p>Visión para detectar un objetivo, estimar su posición y acompañar la maniobra de aproximación.</p><span class="status status-dim"><i aria-hidden="true"></i>En desarrollo</span></li>
+          <li class="reveal"><h3>Observación de la Tierra</h3><p>Cargas compactas para tomar imágenes, calibrarlas y extraer información antes de enviarlas.</p><span class="status status-dim"><i aria-hidden="true"></i>En desarrollo</span></li>
+        </ul>
+        <a class="btn btn-ghost reveal" href="AlbaSpace/">Explora Alba Space</a>
       </div>
-      <div class="timeline" data-timeline>
-        <ol class="timeline-track" tabindex="0" aria-label="Hitos de Alba, de 2021 a 2026">
-          <li><span class="year">2021</span><h3>Solve for Tomorrow · Samsung</h3><p>Participación destacada y reconocimiento de UNBLIND.</p></li>
-          <li><span class="year">2022–23</span><h3>Premio ILAN a la Innovación</h3><p>Reconocimiento a la innovación y al impacto social del proyecto.</p></li>
-          <li><span class="year">2023</span><h3>Premio UNITEC</h3><p>Reconocimiento obtenido por UNBLIND.</p></li>
-          <li><span class="year">2024</span><h3>eAwards México · NTT DATA Foundation</h3><p>Ganador nacional, con pase a la final internacional en Colombia.</p></li>
-          <li><span class="year">2025</span><h3>Talent Land</h3><p>Ganador en innovación tecnológica.</p></li>
-          <li><span class="year">2026</span><h3>Copartank</h3><p>Galardonados a la innovación.</p></li>
-          <li><span class="year">2026</span><h3>Hult Prize</h3><p>Galardonados a la innovación.</p></li>
-        </ol>
-        <div class="wrap timeline-controls">
-          <button type="button" data-tl="-1" aria-label="Hitos anteriores">←</button>
-          <button type="button" data-tl="1" aria-label="Hitos siguientes">→</button>
-        </div>
-      </div>
+      <p class="space-hud" aria-hidden="true"><span>Identificando estrellas</span><span data-hud>—</span></p>
+      <span class="visual-note space-note">Cielo ilustrativo · arrastra para mirar</span>
     </section>
 
-    <!-- También hacemos: Labs y Surface Ops -->
-    <section class="more" id="mas" aria-label="También hacemos">
-      <div class="wrap more-grid">
-        <article class="more-item reveal">
-          <figure class="more-figure more-glasses"><img src="assets/armazon.webp" alt="Smartglasses del Dev Kit de Alba Labs (imagen ilustrativa)" loading="lazy" decoding="async" width="1600" height="900"></figure>
-          <h3>Alba Labs</h3>
-          <p>El Dev Kit: lentes abiertos para crear tus propias aplicaciones con visión artificial. $5,900 MXN.</p>
-          <a class="btn-text" href="AlbaLabs/">Entra al laboratorio</a>
-        </article>
-        <article class="more-item reveal">
-          <figure class="more-figure more-phone"><img src="assets/surface-ops-resultado.webp" alt="Captura de la app de Surface Ops: el plano del corte de un bache con sus medidas, sobre una foto de prueba" loading="lazy" decoding="async" width="520" height="1012"></figure>
-          <h3>Surface Ops</h3>
-          <p>Mide un bache con una foto: contorno, área, corte y ubicación, sin cinta ni croquis a mano.</p>
-          <a class="btn-text" href="#contacto">Agenda una prueba</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="steps" id="como-trabajamos">
-      <div class="wrap">
-        <h2 class="reveal">Empezamos pequeño <em>y con datos reales.</em></h2>
-        <ol class="steps-list" data-steps>
-          <li class="reveal"><span>1</span><h3>Diagnóstico</h3><p>Vemos si la visión artificial resuelve algo concreto de tu operación.</p></li>
-          <li class="reveal"><span>2</span><h3>Prueba</h3><p>Medimos un caso real tuyo; en Vision Ops basta con subir un vídeo.</p></li>
-          <li class="reveal"><span>3</span><h3>Piloto</h3><p>Unas semanas con tu operación y un reporte que revisamos juntos.</p></li>
-          <li class="reveal"><span>4</span><h3>Integración</h3><p>Si funciona, lo conectamos a tu día a día.</p></li>
-        </ol>
-        <p class="case reveal"><em>Universidad Anáhuac:</em> visión integrada a una máquina de laboratorio para alinear e inspeccionar muestras, con captura controlada y análisis automático.</p>
-      </div>
-    </section>
-
+    <!-- Contacto -->
     <section class="contact" id="contacto">
       <div class="contact-orbits" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
       <div class="wrap contact-inner">
         <h2 class="contact-title reveal">¿Qué quieres <em>ver?</em></h2>
-        <p class="contact-lead reveal">Platícanos de tu operación y te decimos con honestidad si lo podemos medir.</p>
+        <p class="contact-lead reveal">Platícanos tu reto y te decimos con honestidad si lo podemos resolver con visión.</p>
         <div class="contact-actions reveal">
           <a class="btn btn-solid magnetic" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20gustar%C3%ADa%20platicar." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp al 56 1690 8570">Escríbenos por WhatsApp</a>
           <a class="btn btn-ghost" href="mailto:hola@albavision.mx?subject=Hola%20Alba%20Vision">Escríbenos un correo</a>
