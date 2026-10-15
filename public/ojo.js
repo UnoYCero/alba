@@ -99,6 +99,8 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
   ];
   let ancho = 1, alto = 1, fin = 1, avance = 0, objetivo = 0;
   let cuadroPendiente = 0, perdido = false, apertura = 1;
+  // 1 = presentación de marca (centrado, de frente, estrella encendida); 0 = su lugar en la portada
+  let presentacion = 0;
   let puntero = { x: 0, y: 0 };
   const quieto = () => preferencia.matches;
   const estado = (p) => {
@@ -120,26 +122,31 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
       y = mezcla(0.16, 0.11, suavizar(limitar(p / 0.62)));
       fraccion = mezcla(0.62, 0.34, suavizar(limitar(p / 0.7)));
     }
+    // Presentación: el ojo empieza centrado y de frente y viaja a su lugar
+    const pres = suavizar(presentacion);
+    x = mezcla(x, 0.5, pres);
+    y = mezcla(y, mobile ? 0.36 : 0.4, pres);
+    fraccion = mezcla(fraccion, mobile ? 0.58 : 0.28, pres);
     const escala = (anchuraMundo * fraccion) / 9.07;
     // Al abrir la página el ojo «despierta»: crece un poco y se endereza
     const despierta = suavizar(apertura);
     modelo.scale.set(escala * mezcla(0.9, 1, despierta), escala * mezcla(0.55, 1, despierta), escala);
     modelo.position.set((x - 0.5) * anchuraMundo, (0.5 - y) * alturaMundo, 0);
-    modelo.rotation.set(e.rx + (quieto() ? 0 : puntero.y * 0.025), e.ry + (quieto() ? 0 : puntero.x * 0.045), e.rz);
+    modelo.rotation.set(mezcla(e.rx + (quieto() ? 0 : puntero.y * 0.025), 0, pres), mezcla(e.ry + (quieto() ? 0 : puntero.x * 0.045), 0, pres), mezcla(e.rz, 0, pres));
     conjuntos.cintas.position.z = -e.fondo * 0.3;
     conjuntos.mira.position.z = e.fondo * 0.7;
     conjuntos.estrella.position.z = e.fondo * 1.5 + 0.1;
     borde.position.x = mezcla(7, -4, p);
     // La luz: la estrella pasa de apagada a encendida entre la portada y el final del origen
-    const luz = quieto() ? 0.7 : suavizar(limitar(p / 0.75)) * despierta;
+    const luz = Math.max(quieto() ? 0.7 : suavizar(limitar(p / 0.75)) * despierta, pres * despierta);
     materialEstrella.emissiveIntensity = mezcla(0.15, 1.6, luz);
     brillo.material.opacity = mezcla(0.05, 0.9, luz);
     brillo.scale.setScalar(mezcla(1, 3.6, luz));
     const desaparicion = quieto()
       ? 1 - suavizar(limitar(scrollY / Math.max(alto, hero.offsetHeight)))
       : 1 - suavizar(limitar((objetivo - 0.77) / 0.23));
-    host.style.opacity = String(desaparicion);
-    host.style.visibility = desaparicion > 0.005 ? "visible" : "hidden";
+    host.style.opacity = String(Math.max(desaparicion, pres));
+    host.style.visibility = Math.max(desaparicion, pres) > 0.005 ? "visible" : "hidden";
     renderer.render(escena, camara);
     host.dataset.listo = "true";
   }
@@ -183,6 +190,8 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
   ajustar();
 
   return {
+    // La apertura de la portada lo mueve de 1 (presentación) a 0 (su lugar)
+    presentar(valor) { presentacion = limitar(valor); pintar(); },
     // La apertura de ojos de la portada mueve este valor de 0 a 1
     despertar(duracion = 1600) {
       if (quieto()) { apertura = 1; pedir(); return; }

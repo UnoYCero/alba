@@ -91,3 +91,8 @@ main, .footer { position: relative; z-index: 2; }
 /* Si el JavaScript no corre, el cielo no cambia: cada sección lleva su propio fondo */
 html:not(.js) .tema-alba { background: #13366c; }
 html:not(.js) .tema-dia { background: #f4f6fa; }
+
+/* Presentación de marca: mientras dura, sólo se ven el ojo y las letras */
+main, .nav, .footer { transition: opacity 1s var(--ease); }
+.intro main, .intro .nav, .intro .footer { opacity: 0; }
+.intro-letras { position: fixed; left: 0; top: 0; z-index: 410; transform-origin: 0 0; pointer-events: none; opacity: 0; will-change: transform, opacity; }

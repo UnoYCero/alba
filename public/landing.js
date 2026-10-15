@@ -239,7 +239,9 @@ amanecer();
 let ojo = null;
 const ojoListo = import("./ojo.js").then((m) => { ojo = m.montarOjo(); return ojo; }).catch((err) => { console.warn("No se pudo cargar el ojo 3D:", err); return null; });
 
-// ── La apertura de ojos: sólo en la primera visita de la sesión ──
+// ── La presentación de marca: sólo en la primera visita de la sesión ──
+// Negro → se abren los ojos sobre el ojo de Alba → aparecen las letras →
+// el ojo viaja a su lugar, las letras suben al menú y la página se despliega.
 function primeraVisita() {
   try {
     if (sessionStorage.getItem("alba-ojos")) return false;
@@ -247,49 +249,98 @@ function primeraVisita() {
     return true;
   } catch { return true; }
 }
-function abrirOjos() {
+function presentarMarca() {
+  const raiz = document.documentElement;
+  raiz.classList.add("intro");
   const capa = document.createElement("div");
   capa.className = "apertura";
   capa.setAttribute("aria-hidden", "true");
   capa.innerHTML = '<svg><defs><mask id="mascara-ojos"><rect width="100%" height="100%" fill="#fff"/><path fill="#000"/></mask></defs><rect width="100%" height="100%" fill="#000" mask="url(#mascara-ojos)"/></svg><button type="button" class="apertura-saltar">Saltar</button>';
-  document.body.appendChild(capa);
+  const letras = document.createElement("img");
+  letras.className = "intro-letras";
+  letras.src = "assets/alba-vision-letras.webp";
+  letras.alt = "";
+  letras.setAttribute("aria-hidden", "true");
+  document.body.append(capa, letras);
   const almendra = capa.querySelector("path");
-  const DURACION = 2300;
-  let t0 = performance.now(), velocidad = 1, avance = 0, ultimo = t0, terminado = false;
+  const logoMenu = nav.querySelector(".nav-brand");
+
+  const DURACION = 3200;
+  let avance = 0, ultimo = performance.now(), velocidad = 1, terminado = false;
+  const hitos = new Set();
+  const una = (nombre, fn) => { if (!hitos.has(nombre)) { hitos.add(nombre); fn(); } };
   const suave = (x) => 1 - Math.pow(1 - x, 3);
+  const enSuave = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
   const tramo = (x, a, b) => limitar((x - a) / (b - a));
+  ojoListo.then((o) => o?.presentar(1));
+
+  // Dónde empiezan las letras (bajo el ojo) y a dónde vuelan (las letras del logo del menú)
+  const PROP = 26 / 353;
+  const inicioLetras = () => {
+    const movil = innerWidth <= 760;
+    const w = Math.min(innerWidth * (movil ? 0.62 : 0.34), 400);
+    return { x: (innerWidth - w) / 2, y: innerHeight * (movil ? 0.53 : 0.6), w };
+  };
+  const destinoLetras = () => {
+    const r = logoMenu.querySelector("img").getBoundingClientRect();
+    return { x: r.left + 0.2956 * r.width, y: r.top + 0.2899 * r.height, w: (0.996 - 0.2956) * r.width };
+  };
+
   function dibujar(x) {
-    const w = innerWidth, h = innerHeight, cx = w / 2, cy = h * 0.46;
-    // Se entreabre, parpadea y se abre del todo; al final la almendra crece hasta cubrir la pantalla
-    let alto = 0.07 * suave(tramo(x, 0.04, 0.24));
-    alto -= 0.05 * suave(tramo(x, 0.26, 0.34));
-    alto += 0.3 * suave(tramo(x, 0.38, 0.66));
-    const ancho = 0.34 + 0.06 * suave(tramo(x, 0.38, 0.66));
-    const crece = 1 + 7 * Math.pow(tramo(x, 0.7, 1), 2.2);
+    const w = innerWidth, h = innerHeight, cx = w / 2, cy = h * (w <= 760 ? 0.36 : 0.4);
+    // 1 · Se entreabre, parpadea y se abre sobre el ojo
+    let alto = 0.05 * suave(tramo(x, 0.02, 0.1));
+    alto -= 0.035 * suave(tramo(x, 0.11, 0.15));
+    alto += 0.17 * suave(tramo(x, 0.17, 0.3));
+    const ancho = w <= 760 ? 0.44 : 0.24;
+    // 2 · La almendra crece hasta cubrir todo y el negro se va
+    const crece = 1 + 8 * Math.pow(tramo(x, 0.32, 0.52), 2);
     const aw = w * ancho * crece, ah = h * Math.max(0, alto) * crece;
     almendra.setAttribute("d", `M${cx - aw} ${cy} Q${cx} ${cy - 2 * ah} ${cx + aw} ${cy} Q${cx} ${cy + 2 * ah} ${cx - aw} ${cy} Z`);
-    capa.style.opacity = String(1 - tramo(x, 0.86, 1));
+    capa.style.opacity = String(1 - tramo(x, 0.42, 0.54));
+    if (x > 0.06) una("despierta", () => ojoListo.then((o) => o?.despertar(900)));
+
+    // 3 · Las letras entran bajo el ojo, se quedan un momento y vuelan al menú
+    const a = inicioLetras();
+    const vuelo = enSuave(tramo(x, 0.62, 0.9));
+    let pos = a;
+    if (vuelo > 0) {
+      const b = destinoLetras();
+      pos = { x: a.x + (b.x - a.x) * vuelo, y: a.y + (b.y - a.y) * vuelo, w: a.w + (b.w - a.w) * vuelo };
+    }
+    const entra = suave(tramo(x, 0.34, 0.48));
+    letras.style.width = `${a.w}px`;
+    letras.style.height = `${a.w * PROP}px`;
+    letras.style.opacity = String(entra);
+    letras.style.transform = `translate(${pos.x}px, ${pos.y + (1 - entra) * 14}px) scale(${pos.w / a.w})`;
+
+    // 4 · El ojo viaja a su lugar y la página se despliega desde el logo
+    ojoListo.then((o) => o?.presentar(1 - enSuave(tramo(x, 0.62, 0.92))));
+    if (x > 0.64) una("despliega", () => raiz.classList.remove("intro"));
+    if (x > 0.7) una("portada", mostrarPortada);
   }
   function cuadro(ahora) {
     avance += ((ahora - ultimo) / DURACION) * velocidad;
     ultimo = ahora;
     dibujar(limitar(avance));
-    if (avance > 0.42 && !capa.dataset.portada) { capa.dataset.portada = "1"; mostrarPortada(); ojoListo.then((o) => o?.despertar(1400)); }
     if (avance < 1) requestAnimationFrame(cuadro);
     else terminar();
   }
   function terminar() {
     if (terminado) return;
     terminado = true;
+    raiz.classList.remove("intro");
     mostrarPortada();
+    ojoListo.then((o) => o?.presentar(0));
     capa.remove();
+    letras.remove();
     ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) => removeEventListener(ev, apurar));
   }
-  function apurar() { velocidad = 5; }
+  function apurar() { velocidad = 6; }
   ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) => addEventListener(ev, apurar, { passive: true }));
-  capa.querySelector(".apertura-saltar").addEventListener("click", () => { velocidad = 8; });
+  capa.querySelector(".apertura-saltar").addEventListener("click", () => { velocidad = 10; });
   dibujar(0);
   requestAnimationFrame(cuadro);
 }
-if (!reducir && primeraVisita()) abrirOjos();
+if (!reducir && primeraVisita()) presentarMarca();
 else requestAnimationFrame(mostrarPortada);
