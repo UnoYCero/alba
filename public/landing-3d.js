@@ -48,7 +48,8 @@ function bucle(canvas, cuadro, reducir) {
   let visible = true, id = 0;
   const t0 = performance.now();
   const paso = (ahora) => {
-    cuadro((ahora - t0) / 1000);
+    // «pausado» lo pone la portada cuando el proyecto de esta escena no está a la vista
+    if (!canvas.pausado) cuadro((ahora - t0) / 1000);
     if (visible && !reducir) id = requestAnimationFrame(paso);
   };
   new IntersectionObserver(([e]) => {
