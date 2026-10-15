@@ -144,7 +144,10 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 .postal:nth-child(3n) { --r: -.8deg; margin-top: var(--s7); }
 .postal:hover { transform: rotate(0deg) translateY(-6px); }
 .postal::before { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,8,26,.8) 0%, transparent 60%); pointer-events: none; opacity: 0; }
-.postal.con-foto::before { opacity: 1; }
+.postal.con-foto::before { opacity: 1; background: linear-gradient(0deg, rgba(3,8,26,.97) 0%, rgba(3,8,26,.92) 46%, rgba(3,8,26,.4) 66%, transparent 80%); }
+/* Con foto, el año baja junto al texto y la foto queda limpia arriba */
+.postal.con-foto .postal-year { margin-bottom: 0; font-size: clamp(30px,2.6vw,40px); }
+.postal.con-foto span:last-child { color: rgba(244,246,250,.9); }
 .postal > * { position: relative; }
 .p1 { background-color: #12284a; }
 .p2 { background-color: #173360; }
