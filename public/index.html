@@ -20,6 +20,7 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Logotipo de Alba Vision">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="landing.css">
   <script>document.documentElement.classList.add('js')</script>
@@ -31,7 +32,7 @@
   <header class="nav" data-nav>
     <div class="nav-pill">
       <a class="nav-brand" href="#inicio" aria-label="Alba Vision, inicio">
-        <img src="assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69">
+        <img src="assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" fetchpriority="high">
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
         <a href="#quienes-somos" data-spy="quienes-somos">Quiénes somos</a>
@@ -68,8 +69,8 @@
         </div>
       </div>
       <div class="wrap hero-doors">
-        <a class="door" href="#alba-vision"><span class="door-name">Alba Vision</span><span class="door-line">Visión e IA aplicada en la Tierra</span></a>
-        <a class="door" href="#alba-space"><span class="door-name">Alba Space</span><span class="door-line">Visión para orientarse en el espacio</span></a>
+        <a class="door" href="#alba-vision"><span class="door-name" translate="no">Alba Vision</span><span class="door-line">Visión e IA aplicada en la Tierra</span></a>
+        <a class="door" href="#alba-space"><span class="door-name" translate="no">Alba Space</span><span class="door-line">Visión para orientarse en el espacio</span></a>
         <span class="tagline"><i aria-hidden="true"></i>Más allá de lo visible</span>
       </div>
     </section>
@@ -93,6 +94,7 @@
         <h2 class="reveal">Empezamos con unos lentes. <em>Seguimos viendo más allá.</em></h2>
         <p class="about-lead reveal">Somos un equipo de ingenieros. Lo que aprendimos construyendo UNBLIND, lentes para personas con discapacidad visual, hoy lo aplicamos a negocios, a la industria y al espacio.</p>
       </div>
+      <div class="wrap collage-bar"><button type="button" class="collage-pause" data-pausa aria-pressed="false">Pausar los hitos</button></div>
       <div class="collage" aria-label="Hitos de Alba">
         <ul class="collage-row" data-marquee>
           <li class="postal p1"><span class="postal-year">2021</span><b>Solve for Tomorrow · Samsung</b><span>Participación destacada y reconocimiento de UNBLIND.</span></li>
@@ -148,16 +150,16 @@
       <div class="window-pin">
         <div class="wrap window-inner">
           <header class="window-head">
-            <h2>Alba Vision</h2>
+            <h2 translate="no">Alba Vision</h2>
             <p>Visión e inteligencia artificial aplicada, de un laboratorio a un negocio.</p>
           </header>
           <div class="window-grid">
             <nav class="window-menu" aria-label="Proyectos de Alba Vision">
-              <button type="button" data-item="0" aria-current="true"><b>UNBLIND</b><span>Lentes para ver por quien no ve</span></button>
-              <button type="button" data-item="1"><b>Vision Ops</b><span>Visión aplicada a negocios</span></button>
+              <button type="button" data-item="0" aria-current="true"><b translate="no">UNBLIND</b><span>Lentes para ver por quien no ve</span></button>
+              <button type="button" data-item="1"><b translate="no">Vision Ops</b><span>Visión aplicada a negocios</span></button>
               <button type="button" data-item="2"><b>Soluciones a la medida</b><span>Máquinas y sistemas de visión</span></button>
-              <button type="button" data-item="3"><b>Alba Labs</b><span>Lentes abiertos para construir</span></button>
-              <button type="button" data-item="4"><b>Surface Ops</b><span>Medir un bache con una foto</span></button>
+              <button type="button" data-item="3"><b translate="no">Alba Labs</b><span>Lentes abiertos para construir</span></button>
+              <button type="button" data-item="4"><b translate="no">Surface Ops</b><span>Medir un bache con una foto</span></button>
               <i class="window-marker" aria-hidden="true"></i>
             </nav>
 
@@ -247,7 +249,7 @@
       <canvas class="space-canvas" data-3d="cielo" aria-hidden="true"></canvas>
       <div class="space-veil" aria-hidden="true"></div>
       <div class="wrap space-inner">
-        <h2 class="reveal">Alba Space. <em>Percepción más allá.</em></h2>
+        <h2 class="reveal"><span translate="no">Alba Space.</span> <em>Percepción más allá.</em></h2>
         <p class="space-lead reveal">Sistemas de visión para satélites pequeños: saber hacia dónde apuntan, acercarse a otro objeto y observar la Tierra.</p>
         <ul class="systems">
           <li class="reveal"><h3>Star Tracker</h3><p>Identifica estrellas en una foto del cielo y calcula la orientación del satélite. Algoritmo propio, probado con una cámara comercial bajo el cielo real.</p><span class="status"><i aria-hidden="true"></i>En pruebas en tierra</span></li>

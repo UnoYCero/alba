@@ -137,12 +137,21 @@ espiar(); encender(); ventanaAlBajar();
 
 // ── Collage de hitos: se duplica para desfilar sin fin ──
 const fila = document.querySelector("[data-marquee]");
+const pausa = document.querySelector("[data-pausa]");
 if (fila && !reducir) {
   [...fila.children].forEach((li) => {
     const copia = li.cloneNode(true);
     copia.setAttribute("aria-hidden", "true");
     fila.appendChild(copia);
   });
+  // Lo que se mueve solo más de 5 s necesita poder detenerse
+  pausa.addEventListener("click", () => {
+    const pausado = fila.parentElement.classList.toggle("pausado");
+    pausa.setAttribute("aria-pressed", String(pausado));
+    pausa.textContent = pausado ? "Reanudar los hitos" : "Pausar los hitos";
+  });
+} else if (pausa) {
+  pausa.hidden = true;
 }
 
 // ── Botón magnético (sólo con mouse) ──
