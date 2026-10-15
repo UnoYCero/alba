@@ -43,6 +43,7 @@ function cerrarMenu({ devolverFoco = false } = {}) {
   boton.setAttribute("aria-expanded", "false");
   boton.setAttribute("aria-label", "Abrir menú");
   panelMenu.classList.remove("abierto");
+  nav.classList.remove("abierto");
   document.body.style.overflow = "";
   if (devolverFoco && anchoMenu.matches) boton.focus();
 }
@@ -51,6 +52,7 @@ boton.addEventListener("click", () => {
   boton.setAttribute("aria-expanded", "true");
   boton.setAttribute("aria-label", "Cerrar menú");
   panelMenu.classList.add("abierto");
+  nav.classList.add("abierto");
   document.body.style.overflow = "hidden";
 });
 panelMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => cerrarMenu()));

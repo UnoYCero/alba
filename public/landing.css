@@ -374,16 +374,16 @@ html:not(.js) .window-grid, .reduce .window-grid { grid-template-columns: 1fr; }
   .window-foot span { display: none; }
   .window-menu b { font-size: 14px; white-space: nowrap; }
   .window-menu span { display: none; }
-    .window-stage { height: calc(100svh - var(--nav-h) - 230px); }
-  .panel { grid-template-rows: auto auto; align-items: start; gap: var(--s4); }
-  .panel-visual { height: 33svh; }
+  .window-stage { height: calc(100svh - var(--nav-h) - 230px); }
+  /* La imagen toma el alto que sobra y el texto nunca se sale de la pantalla */
+  .panel { grid-template-rows: minmax(0,1fr) auto; align-items: stretch; gap: var(--s4); }
+  .panel-visual { height: auto; min-height: 0; overflow: hidden; }
   .panel-copy h3 { font-size: 25px; }
   .panel-copy p { font-size: 14.5px; margin-top: var(--s3); }
-  .panel-foot { margin-top: var(--s4); gap: var(--s4); }
-  .panel-photo img { height: calc(100% - 26px); align-self: start; }
+  .panel-foot { margin-top: var(--s3); gap: 0 var(--s4); }
+  .panel-photo img, .panel-phone img { position: absolute; top: 0; left: 0; right: 0; margin: 0 auto; height: calc(100% - 26px); }
   .panel-photo .visual-note { bottom: 0; }
   .panel-light img { height: 100%; aspect-ratio: auto; }
-  .panel-phone img { height: 31svh; }
   .kitchen { width: 100%; }
   .report { width: 46%; padding: var(--s3); bottom: 2%; }
   .report-head { font-size: 12px; margin-bottom: var(--s2); }
@@ -411,3 +411,4 @@ html:not(.js) .window-grid, .reduce .window-grid { grid-template-columns: 1fr; }
   .bar i { transform: none; }
   .viz-contorno, .viz-ruta { stroke-dashoffset: 0; }
 }
+.space-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5) var(--s6); }

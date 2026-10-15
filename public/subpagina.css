@@ -1,0 +1,150 @@
+/* Subpáginas de Alba (UNBLIND, Alba Space y Alba Labs) en el mundo del amanecer.
+   Se carga después de landing.css y amanecer.css. Cada página tiene un solo cielo:
+   UNBLIND al alba, Alba Space de noche y Alba Labs de día. */
+
+/* El cielo de cada página */
+.pagina-alba .cielo-alba { background: linear-gradient(180deg, #0b2142 0%, #13366c 55%, #102d5a 100%); }
+.pagina-noche .cielo-alba { background: #03081a; }
+body.pagina-dia { background: #f4f6fa; }
+html:has(body.pagina-dia) { color-scheme: light; scrollbar-color: rgba(11,31,59,.3) #f4f6fa; }
+.pagina-dia .cielo-alba { background: #f4f6fa; }
+
+/* Menú: la marca vuelve a la portada; el botón del carrito en Alba Labs */
+.nav-carrito { display: inline-flex; align-items: center; gap: var(--s2); min-height: 44px; padding: 0 var(--s4); border: 1px solid rgba(222,231,248,.3); border-radius: 999px; background: transparent; font-size: 14px; cursor: pointer; transition: background .3s, border-color .3s, color .3s; }
+.nav-carrito:hover { background: rgba(255,255,255,.06); }
+.nav-carrito [data-cart-count], .nav-panel [data-cart-count] { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--blue); color: #fff; font-size: 12px; font-variant-numeric: tabular-nums; }
+.nav.claro .nav-carrito { color: #0b1f3b; border-color: rgba(11,31,59,.22); }
+.nav.claro .nav-carrito:hover { background: rgba(11,31,59,.05); }
+.nav-panel button { display: inline-flex; align-items: center; gap: var(--s3); padding: 0; border: 0; background: none; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
+.nav.abierto.claro .nav-carrito { color: #f4f6fa; border-color: rgba(222,231,248,.3); }
+
+/* Portada de cada subpágina */
+.sub-hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--nav-h) + var(--s8)) 0 var(--s9); overflow: hidden; }
+.sub-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s8); align-items: center; }
+.sub-title { font-size: clamp(44px,6vw,84px); line-height: 1.02; letter-spacing: -.035em; }
+.sub-title em { color: var(--soft); }
+.sub-lead { margin: var(--s5) 0 0; max-width: 40ch; font-size: clamp(17px,1.5vw,21px); color: var(--dim); }
+.sub-hero .status { margin-top: var(--s5); }
+.sub-cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5) var(--s6); margin-top: var(--s7); }
+.sub-visual { position: relative; margin: 0; }
+.sub-visual img { width: 100%; height: auto; border-radius: 16px; }
+.sub-visual figcaption, .sub-figura figcaption { margin-top: var(--s3); font-size: 13px; font-style: italic; color: var(--faint); }
+
+/* El cielo 3D de Alba Space detrás de su portada */
+.sub-cielo { min-height: 100svh; }
+.sub-cielo .wrap { position: relative; z-index: 2; pointer-events: none; }
+.sub-cielo .wrap a { pointer-events: auto; }
+.sub-cielo .sub-title { max-width: 12ch; }
+.sub-cielo .space-hud { top: 22%; }
+
+/* Secciones */
+.sub-seccion { position: relative; padding: var(--s10) 0; }
+.sub-seccion h2 { max-width: 22ch; }
+.sub-intro { margin: var(--s5) 0 0; max-width: 46ch; font-size: clamp(16px,1.35vw,19px); color: var(--dim); }
+.rasgos { list-style: none; padding: 0; margin: var(--s8) 0 0; display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s7) var(--s6); }
+.rasgos.cuatro { grid-template-columns: repeat(4,1fr); }
+.rasgos h3 { font-size: 20px; letter-spacing: -.01em; }
+.rasgos p { margin: var(--s2) 0 0; font-size: 15px; color: var(--dim); }
+.rasgos .status { margin-top: var(--s4); }
+.rasgos .btn-text { margin-top: var(--s2); }
+.nota { margin: var(--s7) 0 0; max-width: 60ch; font-size: 15px; font-style: italic; color: var(--dim); }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s8); align-items: center; }
+.sub-figura { margin: 0; }
+.sub-figura img { width: 100%; height: auto; border-radius: 16px; }
+.preguntas { list-style: none; padding: 0; margin: var(--s6) 0 0; display: grid; gap: var(--s4); font-size: clamp(18px,1.6vw,22px); font-style: italic; color: var(--paper); }
+
+/* Una frase grande al centro */
+.cita { padding: var(--s10) 0; text-align: center; }
+.cita blockquote { margin: 0 auto; max-width: 24ch; font-size: clamp(30px,3.6vw,52px); line-height: 1.12; letter-spacing: -.03em; }
+
+/* El cierre: el mismo «¿Qué quieres ver?» de la portada */
+.pagina-alba .contact, .pagina-noche .contact { background: radial-gradient(circle at 50% 115%, rgba(37,99,235,.38), transparent 58%); }
+.pagina-dia .contact { background: radial-gradient(circle at 50% 115%, rgba(37,99,235,.38), transparent 58%), linear-gradient(180deg, #f4f6fa 0%, #050d1c 26%); }
+.contact .contact-title { max-width: 14ch; }
+
+/* Alba Labs: el Dev Kit y la tienda */
+.labs-foto img { width: 100%; height: auto; mix-blend-mode: multiply; }
+.sub-precio { margin: var(--s5) 0 0; font-size: 15px; color: var(--dim); }
+.sub-precio b { font-weight: 300; font-size: 22px; color: var(--paper); }
+.producto { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--s8); align-items: center; margin-top: var(--s8); }
+.producto h3 { font-size: clamp(28px,2.6vw,38px); line-height: 1.08; letter-spacing: -.025em; }
+.producto-copy > p { margin: var(--s4) 0 0; color: var(--dim); max-width: 44ch; }
+.incluye { list-style: none; padding: 0; margin: var(--s5) 0 0; display: grid; gap: var(--s2); font-size: 15px; color: var(--dim); }
+.incluye li { display: flex; gap: var(--s3); }
+.incluye li::before { content: "+"; color: var(--soft); }
+.precio { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s3); margin-top: var(--s6); }
+.precio strong { font-weight: 300; font-size: 44px; line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.precio span { font-size: 14px; color: var(--dim); }
+.compra { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s4) var(--s6); margin-top: var(--s5); }
+.compra .btn { cursor: pointer; border: 0; }
+.pago-nota { margin: var(--s4) 0 0; font-size: 13px; color: var(--dim); }
+
+/* El carrito (lo maneja labs-store.js; aquí sólo cambia su aspecto) */
+.cart-drawer { position: fixed; z-index: 300; top: 0; right: 0; width: min(460px,100%); height: 100dvh; display: flex; flex-direction: column; padding: var(--s6); background: #f4f6fa; color: #0b1f3b; box-shadow: -30px 0 80px rgba(3,8,26,.3); transform: translateX(105%); visibility: hidden; transition: transform .5s var(--ease), visibility 0s .5s; }
+.cart-drawer.open { transform: none; visibility: visible; transition-delay: 0s; }
+.cart-overlay { position: fixed; inset: 0; z-index: 290; border: 0; background: rgba(3,8,26,.55); opacity: 0; visibility: hidden; cursor: pointer; transition: opacity .35s, visibility 0s .35s; }
+.cart-overlay.open { opacity: 1; visibility: visible; transition-delay: 0s; }
+body.cart-open { overflow: hidden; }
+.cart-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--s5); }
+.cart-head h2 { font-size: 32px; }
+.cart-head button, .quantity-control button { width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(11,31,59,.07); color: inherit; font-size: 20px; cursor: pointer; transition: background .3s; }
+.cart-head button:hover, .quantity-control button:hover { background: rgba(11,31,59,.13); }
+.cart-body { overflow: auto; }
+.cart-item { display: grid; grid-template-columns: 104px 1fr; gap: var(--s4); padding: var(--s4) 0; }
+.cart-item-image { height: 96px; display: grid; place-items: center; overflow: hidden; border-radius: 12px; background: #e3ecf8; }
+.cart-item-image img { width: 140%; max-width: none; mix-blend-mode: multiply; }
+.cart-item-copy { position: relative; }
+.cart-item-copy small { font-size: 12px; color: rgba(11,31,59,.7); }
+.cart-item-copy h3 { margin: 2px 0 4px; font-size: 17px; }
+.cart-item-copy > strong { font-weight: 400; font-size: 15px; }
+.quantity-control { display: flex; align-items: center; gap: var(--s2); margin-top: var(--s3); }
+.quantity-control span { min-width: 24px; text-align: center; font-variant-numeric: tabular-nums; }
+.remove-item { display: block; margin-top: var(--s2); min-height: 44px; padding: 0; border: 0; background: none; color: rgba(11,31,59,.75); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.cart-empty { margin: auto; text-align: center; }
+.cart-empty h3 { font-size: 22px; }
+.cart-empty p { margin: var(--s2) 0 0; font-size: 15px; color: rgba(11,31,59,.75); }
+.cart-empty[hidden], .cart-footer[hidden] { display: none; }
+.cart-footer { margin-top: auto; padding-top: var(--s5); }
+.cart-total { display: flex; justify-content: space-between; align-items: baseline; }
+.cart-total strong { font-weight: 300; font-size: 28px; font-variant-numeric: tabular-nums; }
+.cart-footer > p, .cart-footer > small { display: block; margin: var(--s2) 0 0; font-size: 13px; color: rgba(11,31,59,.75); }
+.cart-checkout { width: 100%; margin-top: var(--s4); border: 0; cursor: pointer; }
+.cart-checkout:disabled { opacity: .6; cursor: wait; }
+.cart-toast { position: fixed; z-index: 320; left: 50%; bottom: var(--s6); width: max-content; max-width: min(420px, calc(100% - 32px)); padding: var(--s3) var(--s5); border-radius: 16px; text-align: center; background: #0b1f3b; color: #f4f6fa; font-size: 14px; box-shadow: 0 16px 40px rgba(3,8,26,.3); opacity: 0; visibility: hidden; transform: translate(-50%,16px); transition: opacity .3s, transform .4s var(--ease), visibility 0s .4s; }
+.cart-toast.show { opacity: 1; visibility: visible; transform: translate(-50%,0); transition-delay: 0s; }
+.checkout-notice { position: absolute; z-index: 5; left: 50%; top: calc(var(--nav-h) + var(--s3)); width: max-content; max-width: calc(100% - 32px); padding: var(--s3) var(--s5); border-radius: 16px; background: #0b1f3b; color: #f4f6fa; font-size: 14px; transform: translateX(-50%); box-shadow: 0 16px 40px rgba(3,8,26,.25); }
+.checkout-notice[hidden] { display: none; }
+main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav-h) + 120px); }
+
+/* Tableta */
+@media (max-width: 1080px) {
+  .nav-carrito { margin-left: auto; }
+  .nav-carrito + .nav-toggle { margin-left: 0; }
+  .rasgos.cuatro { grid-template-columns: 1fr 1fr; }
+}
+
+/* Celular */
+@media (max-width: 760px) {
+  .sub-hero { min-height: auto; padding: calc(var(--nav-h) + var(--s7)) 0 var(--s8); }
+  .sub-hero-grid, .dos, .producto { grid-template-columns: 1fr; gap: var(--s7); }
+  .sub-title { font-size: clamp(38px,11vw,52px); }
+  .sub-cielo { min-height: 100svh; align-items: flex-end; }
+  .sub-cielo .space-veil { background: linear-gradient(0deg, rgba(3,8,26,.95) 0%, rgba(3,8,26,.7) 55%, rgba(3,8,26,.2) 100%); }
+  .sub-seccion { padding: var(--s9) 0; }
+  .rasgos, .rasgos.cuatro { grid-template-columns: 1fr; gap: var(--s6); margin-top: var(--s7); }
+  .rasgos h3 { font-size: 19px; }
+  .rasgos p { font-size: 14.5px; }
+  .cita { padding: var(--s9) 0; }
+  .producto { margin-top: var(--s7); }
+  .precio strong { font-size: 38px; }
+  .compra .btn { width: 100%; }
+  .nav-carrito { padding: 0 var(--s3); }
+  .nav-carrito .nav-carrito-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .contact .contact-title { font-size: clamp(38px,11vw,52px); }
+  .cart-drawer { padding: var(--s5); }
+}
+
+/* La foto del Dev Kit trae su propio fondo gris: se desvanece en los bordes para que no se vea como caja */
+.labs-foto img { border-radius: 0; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
+.cart-whatsapp { margin-top: var(--s2); color: #0b1f3b; }
+.cart-whatsapp::after { color: #2563eb; }

@@ -96,3 +96,10 @@ html:not(.js) .tema-dia { background: #f4f6fa; }
 main, .nav, .footer { transition: opacity 1s var(--ease); }
 .intro main, .intro .nav, .intro .footer { opacity: 0; }
 .intro-letras { position: fixed; left: 0; top: 0; z-index: 410; transform-origin: 0 0; pointer-events: none; opacity: 0; will-change: transform, opacity; }
+
+/* Con el menú del celular abierto, el menú vuelve a ser de noche aunque esté sobre el día */
+.nav.abierto.claro .logo-noche { display: block; }
+.nav.abierto.claro .logo-dia { display: none; }
+.nav.abierto.claro .nav-pill { background: transparent; border-color: transparent; box-shadow: none; }
+.nav.abierto.claro .nav-toggle { border-color: var(--line); }
+.nav.abierto.claro .nav-toggle span { background: #f4f6fa; }

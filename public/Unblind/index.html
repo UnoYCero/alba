@@ -2,122 +2,143 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Unblind desarrolla smartglasses de asistencia visual para interpretar el entorno con visión artificial e inteligencia artificial.">
-  <meta name="theme-color" content="#f4f6fa">
-  <title>Unblind — Tecnología que amplía la percepción</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="UNBLIND: lentes y una app de visión artificial para personas con discapacidad visual. Leen, describen y ubican lo que tienes enfrente. En desarrollo.">
+  <meta name="theme-color" content="#0b2142">
+  <title>UNBLIND — Tecnología para ver por quien no ve</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="Alba Vision">
+  <meta property="og:url" content="https://albavision.tech/Unblind/">
+  <meta property="og:title" content="UNBLIND — Tecnología para ver por quien no ve">
+  <meta property="og:description" content="Lentes y una app de visión artificial para personas con discapacidad visual. En desarrollo.">
+  <meta property="og:image" content="https://albavision.tech/assets/og-alba-vision.jpg">
   <link rel="preload" href="../assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../landing.css">
+  <link rel="stylesheet" href="../amanecer.css">
+  <link rel="stylesheet" href="../subpagina.css">
   <script>document.documentElement.classList.add('js')</script>
+  <script type="module" src="../subpagina.js"></script>
 </head>
-<body class="venture-page">
-  <div class="page-noise" aria-hidden="true"></div>
-  <header class="site-header" data-header>
-    <a class="brand" href="../" aria-label="Volver a Alba Vision">
-      <img class="brand-lockup" src="../assets/alba-vision-lockup-on-light.webp" alt="Alba Vision">
-    </a>
-    <nav class="desktop-nav" aria-label="Navegación principal">
-      <a href="../#smartglasses">Industria</a>
-      <a href="../AlbaLabs/">Alba Labs</a>
-      <a href="../AlbaSpace/">Alba Space</a>
-      <a href="#proposito">Propósito</a>
-    </nav>
-    <a class="header-cta" href="mailto:hola@albavision.mx?subject=Unblind">Conversemos <span>↗</span></a>
-    <button class="menu-button" type="button" data-menu-button aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="../">Alba Vision</a>
-      <a href="#proposito">Propósito</a>
-      <a href="#tecnologia">Tecnología</a>
-      <a href="#funcionamiento">Cómo funciona</a>
+<body class="pagina-alba">
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="cielo-alba" aria-hidden="true"></div>
+
+  <header class="nav" data-nav>
+    <div class="nav-pill">
+      <a class="nav-brand" href="../" aria-label="Alba Vision, volver a la portada">
+        <img class="logo-noche" src="../assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69">
+        <img class="logo-dia" src="../assets/alba-vision-lockup-on-light.webp" alt="" width="504" height="69">
+      </a>
+      <nav class="nav-links" aria-label="Secciones de UNBLIND">
+        <a href="#que-hace">Lo que hace</a>
+        <a href="#como-se-usa">Cómo se usa</a>
+        <a href="#historia">Historia</a>
+      </nav>
+      <a class="btn btn-solid btn-small nav-cta" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20UNBLIND." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp sobre UNBLIND">Escríbenos</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
+    </div>
+    <div class="nav-panel" id="menu-movil" data-nav-panel>
+      <a href="#que-hace">Lo que hace</a>
+      <a href="#como-se-usa">Cómo se usa</a>
+      <a href="#historia">Historia</a>
+      <a href="#contacto">Escríbenos</a>
+      <a href="../">Volver a Alba Vision</a>
     </div>
   </header>
 
-  <main>
-    <section class="sub-hero">
-      <div class="sub-hero-inner">
+  <main id="contenido">
+    <section class="sub-hero tema-alba">
+      <div class="wrap sub-hero-grid">
         <div>
-          <p class="section-kicker reveal">Alba Labs / Accesibilidad</p>
-          <h1 class="reveal">UNBLIND<small>Perception, expanded</small></h1>
-          <p class="sub-hero-copy reveal">Smartglasses que usan visión artificial para convertir el entorno en contexto útil y accesible.</p>
-          <div class="sub-hero-meta reveal"><span>Asistencia visual</span><span>IA en el dispositivo</span><span>México</span></div>
-        </div>
-        <div class="sub-art reveal">
-          <div class="unblind-product-visual">
-            <img
-              class="unblind-product-image"
-              src="../assets/armazon.webp"
-              alt="Armazón inteligente Unblind con cámaras y módulos de asistencia visual"
-            >
+          <h1 class="sub-title reveal"><span translate="no">UNBLIND.</span> Tecnología para ver <em>por quien no ve.</em></h1>
+          <p class="sub-lead reveal">Lentes y una app para personas con discapacidad visual. Leen, describen y ubican lo que tienes enfrente, y se usan con la voz.</p>
+          <span class="status reveal"><i aria-hidden="true"></i>En desarrollo · todavía no está a la venta</span>
+          <div class="sub-cta reveal">
+            <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20UNBLIND." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp sobre UNBLIND">Escríbenos</a>
+            <a class="btn-text" href="#que-hace">Lo que hace</a>
           </div>
         </div>
+        <figure class="sub-visual reveal">
+          <img src="../assets/unblind-concepto.webp" alt="Ilustración conceptual de unos lentes con cámara; no es el diseño final de UNBLIND" width="1400" height="677" fetchpriority="high">
+          <figcaption>Ilustración conceptual · no es el diseño final</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="manifesto" id="proposito">
-      <div class="manifesto-inner reveal">
-        <p class="section-kicker">El propósito</p>
-        <blockquote>La tecnología no debería reemplazar la percepción. Debería <em>ampliar la autonomía.</em></blockquote>
-        <p>Unblind investiga y desarrolla asistencia visual portátil para personas con discapacidad visual. El sistema reconoce información relevante del entorno y la comunica de forma clara, discreta y oportuna.</p>
+    <section class="cita tema-alba" aria-label="Por qué existe UNBLIND">
+      <div class="wrap">
+        <blockquote class="reveal">La tecnología no debería reemplazar la percepción. Debería <em>ampliar la autonomía.</em></blockquote>
       </div>
     </section>
 
-    <section class="product-pillars" id="tecnologia">
-      <div class="section-heading reveal">
-        <div><p class="section-kicker">La tecnología</p><h2>Diseñado alrededor<br>de la persona</h2></div>
-        <p>Hardware y software trabajan juntos para ofrecer ayuda contextual sin aislar a la persona de su entorno.</p>
-      </div>
-      <div class="pillar-grid">
-        <article class="pillar reveal">
-          <span class="cap-number">01 / Percibir</span>
-          <h3>Visión contextual</h3>
-          <p>Las cámaras capturan únicamente la información necesaria para reconocer objetos, texto y situaciones relevantes.</p>
-        </article>
-        <article class="pillar reveal">
-          <span class="cap-number">02 / Comprender</span>
-          <h3>IA útil y selectiva</h3>
-          <p>Los modelos priorizan señales importantes para evitar saturación y entregar contexto que ayuda a decidir.</p>
-        </article>
-        <article class="pillar reveal">
-          <span class="cap-number">03 / Comunicar</span>
-          <h3>Interacción natural</h3>
-          <p>La información llega mediante audio y controles sencillos, manteniendo las manos libres y la atención en el entorno.</p>
-        </article>
+    <section class="sub-seccion tema-alba" id="que-hace">
+      <div class="wrap">
+        <h2 class="reveal">Lee, describe <em>y te ubica.</em></h2>
+        <p class="sub-intro reveal">Le apuntas con la cámara y le preguntas con la voz. Esto es lo que estamos construyendo:</p>
+        <ul class="rasgos">
+          <li class="reveal"><h3>Lee textos</h3><p>Letreros, etiquetas y documentos, en voz alta.</p></li>
+          <li class="reveal"><h3>Describe la escena</h3><p>Te cuenta qué hay frente a ti y responde lo que le preguntes.</p></li>
+          <li class="reveal"><h3>Reconoce productos y códigos</h3><p>Para saber qué tienes en la mano antes de usarlo.</p></li>
+          <li class="reveal"><h3>Te guía hasta tus cosas</h3><p>Recuerda dónde guardaste un objeto y te lleva hasta él con sonido.</p></li>
+          <li class="reveal"><h3>Reconoce a quien tú registres</h3><p>Te dice quién llegó, sólo entre las personas que tú diste de alta.</p></li>
+        </ul>
+        <p class="nota reveal">UNBLIND está en desarrollo: todavía no está a la venta ni en las tiendas de aplicaciones. No sustituye al bastón ni al perro guía, porque no detecta obstáculos.</p>
       </div>
     </section>
 
-    <section class="product-flow" id="funcionamiento">
-      <div class="flow-inner">
-        <div class="section-heading reveal">
-          <div><p class="section-kicker">Cómo funciona</p><h2>Del entorno<br>a una acción</h2></div>
-          <p>Una cadena de procesamiento compacta traduce luz en decisiones útiles en pocos instantes.</p>
+    <section class="sub-seccion tema-alba" id="como-se-usa">
+      <div class="wrap">
+        <h2 class="reveal">En el teléfono <em>o en unos lentes.</em></h2>
+        <p class="sub-intro reveal">Funciona con la cámara del teléfono o con unos lentes con cámara, para tener las manos libres. Todo se maneja con la voz y las respuestas llegan por audio.</p>
+        <ul class="rasgos">
+          <li class="reveal"><h3>Apunta</h3><p>Con el teléfono en la mano o con los lentes puestos, mira hacia lo que quieres conocer.</p></li>
+          <li class="reveal"><h3>Pregunta</h3><p>«¿Qué dice aquí?», «¿Qué hay enfrente?», «¿Dónde dejé mis llaves?».</p></li>
+          <li class="reveal"><h3>Escucha</h3><p>La respuesta llega por audio, breve y clara, sin pantallas que mirar.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-alba" id="historia">
+      <div class="wrap dos">
+        <h2 class="reveal">Aquí empezó <em>Alba.</em></h2>
+        <div>
+          <p class="sub-intro reveal">En 2021 nos preguntamos cómo podría una persona ciega saber qué tiene enfrente. De esa pregunta salió UNBLIND, y de UNBLIND aprendimos a ver con máquinas: hoy esa visión mide el trabajo de una cocina y orienta satélites.</p>
+          <p class="sub-intro reveal">UNBLIND tuvo una participación destacada en Solve for Tomorrow de Samsung (2021) y obtuvo el Premio UNITEC (2023).</p>
+          <p class="reveal"><a class="btn-text" href="../#quienes-somos">Conoce a Alba Vision</a></p>
         </div>
-        <div class="flow-list">
-          <article class="flow-step reveal"><span>01</span><h3>Captura</h3><p>La cámara observa el campo visual de la persona cuando necesita asistencia.</p></article>
-          <article class="flow-step reveal"><span>02</span><h3>Interpretación</h3><p>La IA identifica texto, objetos, obstáculos o escenas según el modo activo.</p></article>
-          <article class="flow-step reveal"><span>03</span><h3>Priorización</h3><p>El sistema filtra lo irrelevante y construye una respuesta breve y contextual.</p></article>
-          <article class="flow-step reveal"><span>04</span><h3>Asistencia</h3><p>La información se comunica por audio para apoyar una decisión independiente.</p></article>
-        </div>
       </div>
     </section>
 
-    <section class="detail-cta">
-      <div class="reveal">
-        <p class="section-kicker">Colaboración</p>
-        <h2>Construyamos una<br>experiencia más accesible.</h2>
-        <a class="button button-primary" href="mailto:hola@albavision.mx?subject=Colaboración%20con%20Unblind">Conversemos sobre Unblind <span>↗</span></a>
+    <section class="contact tema-noche" id="contacto">
+      <div class="contact-orbits" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+      <div class="wrap contact-inner">
+        <h2 class="contact-title reveal">Construyámoslo <em>contigo.</em></h2>
+        <p class="contact-lead reveal">Si tienes discapacidad visual, acompañas a alguien o representas a una institución, platícanos qué necesitas. Lo que nos cuentes guía lo que construimos.</p>
+        <div class="contact-actions reveal">
+          <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20UNBLIND." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp al 56 1690 8570">Escríbenos por WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:hola@albavision.mx?subject=UNBLIND">Escríbenos un correo</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <a class="brand footer-brand" href="../"><img class="brand-lockup" src="../assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision"></a>
-    <p>Un proyecto de Alba Labs.</p>
-    <div class="footer-links"><a href="../">Industria</a><a href="../AlbaLabs/">Alba Labs</a><a href="../AlbaSpace/">Space</a><a href="../#contacto">Contacto</a></div>
-    <span>© <span data-year></span> Alba Vision</span>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <img src="../assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
+      <p class="footer-tag"><em>Más allá de lo visible.</em></p>
+      <nav class="footer-links" aria-label="Otros sitios de Alba">
+        <a href="../">Portada</a>
+        <a href="../Unblind/" aria-current="page">UNBLIND</a>
+        <a href="https://ops.albavision.tech" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="../AlbaSpace/">Alba Space</a>
+        <a href="../AlbaLabs/">Alba Labs</a>
+      </nav>
+      <span class="footer-copy">© <span data-year></span> Alba Vision</span>
+    </div>
   </footer>
-  <script src="../script.js"></script>
 </body>
 </html>
