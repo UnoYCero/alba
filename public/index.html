@@ -94,8 +94,12 @@
         <h2 class="reveal">Empezamos con unos lentes. <em>Seguimos viendo más allá.</em></h2>
         <p class="about-lead reveal">Somos un equipo de ingenieros. Lo que aprendimos construyendo UNBLIND, lentes para personas con discapacidad visual, hoy lo aplicamos a negocios, a la industria y al espacio.</p>
       </div>
-      <div class="wrap collage-bar"><button type="button" class="collage-pause" data-pausa aria-pressed="false">Pausar los hitos</button></div>
-      <div class="collage" aria-label="Hitos de Alba">
+      <div class="wrap collage-bar">
+        <button type="button" class="collage-btn" data-hito="-1" aria-label="Hito anterior">←</button>
+        <button type="button" class="collage-pause" data-pausa aria-pressed="false">Pausar</button>
+        <button type="button" class="collage-btn" data-hito="1" aria-label="Hito siguiente">→</button>
+      </div>
+      <div class="collage" data-collage tabindex="0" aria-label="Hitos de Alba; se desplaza solo, puedes pausarlo o avanzar con las flechas">
         <ul class="collage-row" data-marquee>
           <li class="postal p1"><span class="postal-year">2021</span><b>Solve for Tomorrow · Samsung</b><span>Participación destacada y reconocimiento de UNBLIND.</span></li>
           <li class="postal p2"><span class="postal-year">2022–23</span><b>Premio ILAN a la Innovación</b><span>Reconocimiento a la innovación y al impacto social.</span></li>
@@ -155,20 +159,18 @@
           </header>
           <div class="window-grid">
             <nav class="window-menu" aria-label="Proyectos de Alba Vision">
-              <button type="button" data-item="0" aria-current="true"><b translate="no">UNBLIND</b><span>Lentes para ver por quien no ve</span></button>
-              <button type="button" data-item="1"><b translate="no">Vision Ops</b><span>Visión aplicada a negocios</span></button>
-              <button type="button" data-item="2"><b>Soluciones a la medida</b><span>Máquinas y sistemas de visión</span></button>
-              <button type="button" data-item="3"><b translate="no">Alba Labs</b><span>Lentes abiertos para construir</span></button>
-              <button type="button" data-item="4"><b translate="no">Surface Ops</b><span>Medir un bache con una foto</span></button>
-              <i class="window-marker" aria-hidden="true"></i>
+              <button type="button" data-item="0" aria-current="true"><b translate="no">UNBLIND</b><span>Lentes para ver por quien no ve</span><small>En desarrollo</small></button>
+              <button type="button" data-item="1"><b translate="no">Vision Ops</b><span>Visión aplicada a negocios</span><small class="vivo">En producción</small></button>
+              <button type="button" data-item="2"><b>Soluciones a la medida</b><span>Máquinas y sistemas de visión</span><small>Bajo pedido</small></button>
+              <button type="button" data-item="3"><b translate="no">Alba Labs</b><span>Lentes abiertos para construir</span><small>Dev Kit · $5,900 MXN</small></button>
+              <button type="button" data-item="4"><b translate="no">Surface Ops</b><span>Medir un bache con una foto</span><small>En pruebas</small></button>
             </nav>
 
             <div class="window-stage">
               <article class="panel" data-panel="0">
-                <div class="panel-visual">
-                  <canvas data-3d="lentes" aria-hidden="true"></canvas>
-                  <div class="sound" aria-hidden="true"><i></i><i></i><i></i></div>
-                  <span class="visual-note">Ilustración 3D · arrastra para girar</span>
+                <div class="panel-visual panel-photo">
+                  <img src="assets/unblind-concepto.webp" alt="Ilustración conceptual de unos lentes con cámara; no es el diseño final de UNBLIND" loading="lazy" decoding="async" width="1400" height="677">
+                  <span class="visual-note">Ilustración conceptual · no es el diseño final</span>
                 </div>
                 <div class="panel-copy">
                   <h3>Tecnología para ver <em>por quien no ve.</em></h3>
@@ -206,8 +208,8 @@
 
               <article class="panel" data-panel="2">
                 <div class="panel-visual panel-photo">
-                  <img src="assets/alineacion-anahuac.webp" alt="Ilustración del sistema de alineación e inspección para la Universidad Anáhuac" loading="lazy" decoding="async" width="1600" height="900">
-                  <span class="visual-note">Ilustración · la foto real llega cuando termine la implementación</span>
+                  <img src="assets/anahuac-concepto.webp" alt="Ilustración conceptual de un sistema de visión de laboratorio; no representa la máquina real" loading="lazy" decoding="async" width="1400" height="802">
+                  <span class="visual-note">Ilustración conceptual · no representa la máquina real</span>
                 </div>
                 <div class="panel-copy">
                   <h3>Si tu reto se puede ver, <em>lo diseñamos.</em></h3>
@@ -240,6 +242,7 @@
               </article>
             </div>
           </div>
+          <p class="window-foot"><span>Elige un proyecto o sigue bajando.</span><a class="btn-text btn-down" href="#alba-space">Seguir a Alba Space</a></p>
         </div>
       </div>
     </section>

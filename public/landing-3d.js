@@ -1,5 +1,5 @@
 // Escenas 3D de la portada, hechas sólo con trazos finos (como el logo):
-// el ojo de la portada, los lentes de UNBLIND y el cielo de Alba Space.
+// el ojo de la portada y el cielo de Alba Space.
 // Cada escena se pausa cuando no está en pantalla y, si la persona pidió menos
 // movimiento, se dibuja una sola vez.
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js";
@@ -174,59 +174,6 @@ function ojo(canvas, op) {
   }, op.reducir);
 }
 
-// ── Los lentes de UNBLIND ──────────────────────────────────────────────
-function lentes(canvas, op) {
-  const { renderer, scene, camera } = base(canvas, { fov: 32, z: 11.5 });
-  const g = new THREE.Group();
-  const cuerpo = new THREE.Group();
-  cuerpo.position.z = 1.4;
-  g.add(cuerpo);
-  scene.add(g);
-
-  for (const sx of [-1, 1]) {
-    const c = new V(sx * 1.05, 0, 0);
-    cuerpo.add(linea(arco(0.82, 0, Math.PI * 2, 96, c), PAPEL, 0.95, true));
-    cuerpo.add(linea(arco(0.74, 0, Math.PI * 2, 96, c), CLARO, 0.35, true));
-    const cristal = new THREE.Mesh(new THREE.CircleGeometry(0.74, 64), new THREE.MeshBasicMaterial({ color: CLARO, transparent: true, opacity: 0.07, side: THREE.DoubleSide, depthWrite: false }));
-    cristal.position.copy(c);
-    cuerpo.add(cristal);
-  }
-  cuerpo.add(linea(new THREE.QuadraticBezierCurve3(new V(-0.25, 0.3, 0), new V(0, 0.52, 0.05), new V(0.25, 0.3, 0)).getPoints(30), PAPEL, 0.95));
-  for (const sx of [-1, 1]) {
-    const x = sx * 1.87;
-    cuerpo.add(linea(new THREE.CatmullRomCurve3([new V(x, 0.22, 0), new V(x + sx * 0.05, 0.22, -1.4), new V(x + sx * 0.06, 0.18, -2.6), new V(x + sx * 0.04, -0.25, -3.15)]).getPoints(60), PAPEL, 0.85));
-    const caja = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.2, 0.3, 0.55)), new THREE.LineBasicMaterial({ color: CLARO, transparent: true, opacity: 0.8 }));
-    caja.position.set(x, 0.22, -0.2);
-    cuerpo.add(caja);
-  }
-  // La cámara de los lentes, en el módulo derecho
-  cuerpo.add(linea(arco(0.06, 0, Math.PI * 2, 24, new V(1.87, 0.22, 0.09)), CLARO, 1, true));
-  const luz = brillo(CLARO, 0.5, 0.9);
-  luz.position.set(1.87, 0.22, 0.12);
-  cuerpo.add(luz);
-  // Lo que «ve»: un marco tenue al frente
-  const vista = new THREE.Group();
-  const esquinas = [[-0.9, 0.7], [0.9, 0.7], [0.9, -0.6], [-0.9, -0.6]].map(([x, y]) => new V(1.87 + x, 0.22 + y, 2.6));
-  esquinas.forEach((e) => vista.add(linea([new V(1.87, 0.22, 0.12), e], CLARO, 0.12)));
-  vista.add(linea(esquinas, CLARO, 0.3, true));
-  cuerpo.add(vista);
-
-  const s = arrastre(canvas);
-  bucle(canvas, (t) => {
-    if (!s.activo) {
-      s.vx *= 0.94; s.vy *= 0.94;
-      s.x += s.vx + 0.0025; s.y += s.vy;
-    }
-    s.y = Math.max(-0.6, Math.min(0.6, s.y));
-    g.rotation.y = -0.6 + s.x;
-    g.rotation.x = 0.16 + s.y + Math.sin(t * 0.8) * 0.03;
-    g.position.y = Math.sin(t * 0.9) * 0.08;
-    luz.material.opacity = 0.55 + Math.sin(t * 3) * 0.35;
-    vista.children.forEach((l) => { l.material.opacity = (l.type === "LineLoop" ? 0.3 : 0.12) * (0.6 + Math.sin(t * 1.5) * 0.4); });
-    renderer.render(scene, camera);
-  }, op.reducir);
-}
-
 // ── El cielo de Alba Space ─────────────────────────────────────────────
 function cielo(canvas, op) {
   const { renderer, scene, camera } = base(canvas, { fov: 60, z: 0.01 });
@@ -331,7 +278,7 @@ function cielo(canvas, op) {
   }, op.reducir);
 }
 
-const escenas = { ojo, lentes, cielo };
+const escenas = { ojo, cielo };
 export function montar(canvas, tipo, op) {
   const escena = escenas[tipo];
   if (escena) escena(canvas, op);
