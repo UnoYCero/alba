@@ -265,7 +265,7 @@ function presentarMarca() {
   const almendra = capa.querySelector("path");
   const logoMenu = nav.querySelector(".nav-brand");
 
-  const DURACION = 3200;
+  const DURACION = 3800;
   let avance = 0, ultimo = performance.now(), velocidad = 1, terminado = false;
   const hitos = new Set();
   const una = (nombre, fn) => { if (!hitos.has(nombre)) { hitos.add(nombre); fn(); } };
@@ -289,35 +289,35 @@ function presentarMarca() {
   function dibujar(x) {
     const w = innerWidth, h = innerHeight, cx = w / 2, cy = h * (w <= 760 ? 0.36 : 0.4);
     // 1 · Se entreabre, parpadea y se abre sobre el ojo
-    let alto = 0.05 * suave(tramo(x, 0.02, 0.1));
-    alto -= 0.035 * suave(tramo(x, 0.11, 0.15));
-    alto += 0.17 * suave(tramo(x, 0.17, 0.3));
+    let alto = 0.05 * suave(tramo(x, 0.017, 0.084));
+    alto -= 0.035 * suave(tramo(x, 0.093, 0.126));
+    alto += 0.17 * suave(tramo(x, 0.143, 0.253));
     const ancho = w <= 760 ? 0.44 : 0.24;
     // 2 · La almendra crece hasta cubrir todo y el negro se va
-    const crece = 1 + 8 * Math.pow(tramo(x, 0.32, 0.52), 2);
+    const crece = 1 + 8 * Math.pow(tramo(x, 0.27, 0.44), 2);
     const aw = w * ancho * crece, ah = h * Math.max(0, alto) * crece;
     almendra.setAttribute("d", `M${cx - aw} ${cy} Q${cx} ${cy - 2 * ah} ${cx + aw} ${cy} Q${cx} ${cy + 2 * ah} ${cx - aw} ${cy} Z`);
-    capa.style.opacity = String(1 - tramo(x, 0.42, 0.54));
-    if (x > 0.06) una("despierta", () => ojoListo.then((o) => o?.despertar(900)));
+    capa.style.opacity = String(1 - tramo(x, 0.35, 0.45));
+    if (x > 0.05) una("despierta", () => ojoListo.then((o) => o?.despertar(900)));
 
     // 3 · Las letras entran bajo el ojo, se quedan un momento y vuelan al menú
     const a = inicioLetras();
-    const vuelo = enSuave(tramo(x, 0.62, 0.9));
+    const vuelo = enSuave(tramo(x, 0.71, 0.94));
     let pos = a;
     if (vuelo > 0) {
       const b = destinoLetras();
       pos = { x: a.x + (b.x - a.x) * vuelo, y: a.y + (b.y - a.y) * vuelo, w: a.w + (b.w - a.w) * vuelo };
     }
-    const entra = suave(tramo(x, 0.34, 0.48));
+    const entra = suave(tramo(x, 0.29, 0.41));
     letras.style.width = `${a.w}px`;
     letras.style.height = `${a.w * PROP}px`;
     letras.style.opacity = String(entra);
     letras.style.transform = `translate(${pos.x}px, ${pos.y + (1 - entra) * 14}px) scale(${pos.w / a.w})`;
 
     // 4 · El ojo viaja a su lugar y la página se despliega desde el logo
-    ojoListo.then((o) => o?.presentar(1 - enSuave(tramo(x, 0.62, 0.92))));
-    if (x > 0.64) una("despliega", () => raiz.classList.remove("intro"));
-    if (x > 0.7) una("portada", mostrarPortada);
+    ojoListo.then((o) => o?.presentar(1 - enSuave(tramo(x, 0.71, 0.95))));
+    if (x > 0.73) una("despliega", () => raiz.classList.remove("intro"));
+    if (x > 0.78) una("portada", mostrarPortada);
   }
   function cuadro(ahora) {
     avance += ((ahora - ultimo) / DURACION) * velocidad;
