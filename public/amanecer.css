@@ -87,3 +87,7 @@ main, .footer { position: relative; z-index: 2; }
 .nav.claro .nav-toggle { border-color: rgba(11,31,59,.2); }
 .nav.claro .nav-toggle span { background: #0b1f3b; }
 .nav-pill, .nav-links a, .nav-cta { transition: width .7s var(--ease), background .5s, border-color .5s, box-shadow .5s, color .5s; }
+
+/* Si el JavaScript no corre, el cielo no cambia: cada sección lleva su propio fondo */
+html:not(.js) .tema-alba { background: #13366c; }
+html:not(.js) .tema-dia { background: #f4f6fa; }
