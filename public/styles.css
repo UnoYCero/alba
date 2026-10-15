@@ -196,6 +196,26 @@ footer { max-width: var(--max); margin: auto; padding: 50px var(--pad); display:
 
 .reveal { opacity:1;transform:none }.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.65,.25,1),transform .8s cubic-bezier(.2,.65,.25,1)}.reveal.visible{opacity:1;transform:none}
 
+/* Portada: piezas nuevas (maqueta del reporte de Vision Ops, foto de los lentes, captura de Surface Ops) */
+.ops-report { position: relative; z-index: 2; width: min(86%,560px); padding: 28px; color: #eef1f4; background: #0f223e; box-shadow: 30px 45px 80px rgba(22,47,85,.2); }
+.ops-report-label { margin: 26px 0 12px; font: 9px Consolas,monospace; letter-spacing: .12em; text-transform: uppercase; color: #9eaabb; }
+.ops-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 13px; color: #d5dbe4; }
+.ops-row i { display: block; height: 8px; width: calc(var(--uso) * 100%); background: var(--blue-soft); }
+.ops-finding { display: grid; grid-template-columns: 92px 1fr; gap: 16px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+.ops-frame { height: 66px; position: relative; background: linear-gradient(135deg,#1c3557,#14294a); border: 1px solid rgba(143,178,255,.35); }
+.ops-frame b { position: absolute; left: 30%; top: 22%; width: 34%; height: 56%; border: 1px solid var(--blue-soft); }
+.ops-finding small { display: block; font: 9px Consolas,monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-soft); }
+.ops-finding strong { display: block; margin: 6px 0 4px; font-weight: 400; font-size: 15px; color: #fff; }
+.ops-finding span { font-size: 12px; color: #9eaabb; }
+.ops-link { margin-top: 34px; align-self: flex-start; }
+.lens-photo { background: #eee; }
+.lens-photo::after { display: none; }
+.lens-photo img { object-fit: contain; padding: 8% 4%; filter: none; }
+.lens-photo .camera-hud { color: #4a5b75; }
+.lens-actions { display: flex; gap: 34px; margin-top: 40px; }
+.surface-visual { display: flex; flex-direction: column; }
+.phone-shot { display: block; position: relative; z-index: 2; width: min(300px,70%); margin: 34px auto 0; border: 6px solid #1b3152; border-radius: 22px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+
 @media (max-width: 1050px) {
   .desktop-nav { gap:16px }.desktop-nav a{font-size:11px}.brand-lockup{width:250px}
   .glass-showcase,.camera-feature,.labs-memory-inner,.unblind-feature-inner { grid-template-columns:1fr }
@@ -213,5 +233,7 @@ footer { max-width: var(--max); margin: auto; padding: 50px var(--pad); display:
   .section{padding-top:90px;padding-bottom:90px}.section-heading{margin-bottom:50px}.section-heading h2{font-size:43px}.glass-showcase{border-left:0;border-right:0}.glass-product{min-height:360px}.glass-product img{width:135%}.product-callout{display:none}.glass-copy{padding:40px 24px}.glass-copy h3{font-size:32px;margin-top:30px}.glass-specs{grid-template-columns:1fr}.glass-specs div:nth-child(even){border-left:0;padding-left:0}.scan-section{padding-top:90px;padding-bottom:90px}.scan-copy h2{font-size:62px}.memory-map{min-height:450px;padding:20px}.shelf-grid{inset:88px 7% 145px}.map-result{left:20px;right:20px;bottom:20px;grid-template-columns:1fr}.map-result span{margin-top:6px}.camera-photo{min-height:420px}.camera-products article{padding:24px 20px}.consulting-photo{height:650px}.consulting-photo img{object-position:center}.consulting-labels{grid-template-columns:1fr}.consulting-labels span{padding:12px 20px}.consulting-grid{grid-template-columns:1fr}.consulting-grid article,.consulting-grid article+article{min-height:auto;padding:25px 0 35px;border-left:0}.consulting-grid h3{margin-top:35px}.case-story{grid-template-columns:1fr}.case-story>div:nth-child(even){border-left:0;padding-left:0}.ecosystem-card{min-height:550px;padding:32px}.ecosystem-card h3{margin-top:90px}.ecosystem-card>b{left:32px}.contact{min-height:650px}.contact h2{font-size:50px}
   .sub-hero h1{font-size:67px}.sub-art{height:265px}.labs-product-visual img{width:135%}.sub-hero-copy{font-size:19px}.sub-hero-meta span:nth-child(2){display:none}.manifesto{padding-top:95px;padding-bottom:95px}.product-pillars{padding-top:95px;padding-bottom:95px}.open-stack-grid{grid-template-columns:1fr}.memory-console{min-height:430px}.memory-node{width:58px;height:58px}.main-node{width:85px;height:85px}.node-one,.node-three{left:7%}.node-two,.node-four{right:7%}.unblind-copy h2{font-size:70px}.unblind-lab-art{min-height:340px}.detail-cta{min-height:560px}.flow-step{grid-template-columns:40px 1fr;padding:24px 0}.flow-step p{grid-column:2;margin-top:0}.space-hero{min-height:780px;padding-top:110px}.space-hero-inner{width:100%;margin-top:30px}.space-hero h1{font-size:58px}.space-coordinates span:nth-child(2){display:none}.space-product{grid-template-columns:1fr;gap:20px;padding:35px 0}.space-product>div:nth-child(2),.space-product>div:last-child{grid-column:1}.space-product h3{font-size:44px}.orbital-image{min-height:430px}.orbital-copy{padding:75px 24px}.orbital-copy h2{font-size:49px}footer{grid-template-columns:1fr}.footer-links{flex-wrap:wrap}
 }
+
+@media (max-width: 620px) { .ops-report{width:92%;padding:20px}.ops-row{grid-template-columns:96px 1fr;font-size:12px}.ops-finding{grid-template-columns:70px 1fr}.lens-actions{flex-direction:column;gap:16px}.phone-shot{width:78%} }
 
 @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none} }
