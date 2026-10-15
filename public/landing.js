@@ -10,7 +10,8 @@ document.documentElement.classList.toggle("reduce", reducir);
 const limitar = (v) => Math.min(1, Math.max(0, v));
 
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
-requestAnimationFrame(() => document.querySelector(".hero")?.classList.add("listo"));
+// El titular entra al cargar o, si hay apertura de ojos, cuando los ojos se abren
+const mostrarPortada = () => document.querySelector(".hero")?.classList.add("listo");
 
 // ── Menú: se compacta al bajar y marca la sección en la que estás ──
 const nav = document.querySelector("[data-nav]");
@@ -207,3 +208,88 @@ prefMovimiento.addEventListener("change", (e) => {
   if (!reducir) { paneles.forEach((p) => p.classList.remove("activo")); activoVentana = -1; }
   alDesplazar();
 });
+
+// ═══ Propuesta «amanecer» ═══
+
+// ── El cielo amanece al bajar: cada sección tiene su color y se mezclan en la frontera ──
+const cieloAlba = document.querySelector("[data-cielo-alba]");
+const coloresCielo = { inicio: "#03081a", origen: "#0b2142", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c" };
+const seccionesCielo = Object.keys(coloresCielo).map((id) => document.getElementById(id)).filter(Boolean);
+const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+function amanecer() {
+  const y = scrollY + innerHeight * 0.55;
+  let i = seccionesCielo.findIndex((s) => y >= s.offsetTop && y < s.offsetTop + s.offsetHeight);
+  if (i < 0) i = y < seccionesCielo[0].offsetTop ? 0 : seccionesCielo.length - 1;
+  const s = seccionesCielo[i];
+  const sig = seccionesCielo[Math.min(i + 1, seccionesCielo.length - 1)];
+  const zona = Math.min(innerHeight * 0.6, s.offsetHeight * 0.4);
+  const f = limitar((y - (s.offsetTop + s.offsetHeight - zona)) / zona);
+  const a = hexRgb(coloresCielo[s.id]), b = hexRgb(coloresCielo[sig.id]);
+  const c = a.map((v, k) => Math.round(v + (b[k] - v) * f));
+  cieloAlba.style.backgroundColor = `rgb(${c.join(",")})`;
+  // El menú flotante se aclara cuando pasa sobre una sección de día
+  const bajoMenu = seccionesCielo.find((x) => scrollY + 40 >= x.offsetTop && scrollY + 40 < x.offsetTop + x.offsetHeight);
+  nav.classList.toggle("claro", !!bajoMenu && bajoMenu.classList.contains("tema-dia"));
+}
+addEventListener("scroll", () => requestAnimationFrame(amanecer), { passive: true });
+addEventListener("resize", amanecer);
+amanecer();
+
+// ── El ojo 3D (se carga aparte: si falla, queda el símbolo fijo y la página sigue) ──
+let ojo = null;
+const ojoListo = import("./ojo.js").then((m) => { ojo = m.montarOjo(); return ojo; }).catch((err) => { console.warn("No se pudo cargar el ojo 3D:", err); return null; });
+
+// ── La apertura de ojos: sólo en la primera visita de la sesión ──
+function primeraVisita() {
+  try {
+    if (sessionStorage.getItem("alba-ojos")) return false;
+    sessionStorage.setItem("alba-ojos", "1");
+    return true;
+  } catch { return true; }
+}
+function abrirOjos() {
+  const capa = document.createElement("div");
+  capa.className = "apertura";
+  capa.setAttribute("aria-hidden", "true");
+  capa.innerHTML = '<svg><defs><mask id="mascara-ojos"><rect width="100%" height="100%" fill="#fff"/><path fill="#000"/></mask></defs><rect width="100%" height="100%" fill="#000" mask="url(#mascara-ojos)"/></svg><button type="button" class="apertura-saltar">Saltar</button>';
+  document.body.appendChild(capa);
+  const almendra = capa.querySelector("path");
+  const DURACION = 2300;
+  let t0 = performance.now(), velocidad = 1, avance = 0, ultimo = t0, terminado = false;
+  const suave = (x) => 1 - Math.pow(1 - x, 3);
+  const tramo = (x, a, b) => limitar((x - a) / (b - a));
+  function dibujar(x) {
+    const w = innerWidth, h = innerHeight, cx = w / 2, cy = h * 0.46;
+    // Se entreabre, parpadea y se abre del todo; al final la almendra crece hasta cubrir la pantalla
+    let alto = 0.07 * suave(tramo(x, 0.04, 0.24));
+    alto -= 0.05 * suave(tramo(x, 0.26, 0.34));
+    alto += 0.3 * suave(tramo(x, 0.38, 0.66));
+    const ancho = 0.34 + 0.06 * suave(tramo(x, 0.38, 0.66));
+    const crece = 1 + 7 * Math.pow(tramo(x, 0.7, 1), 2.2);
+    const aw = w * ancho * crece, ah = h * Math.max(0, alto) * crece;
+    almendra.setAttribute("d", `M${cx - aw} ${cy} Q${cx} ${cy - 2 * ah} ${cx + aw} ${cy} Q${cx} ${cy + 2 * ah} ${cx - aw} ${cy} Z`);
+    capa.style.opacity = String(1 - tramo(x, 0.86, 1));
+  }
+  function cuadro(ahora) {
+    avance += ((ahora - ultimo) / DURACION) * velocidad;
+    ultimo = ahora;
+    dibujar(limitar(avance));
+    if (avance > 0.42 && !capa.dataset.portada) { capa.dataset.portada = "1"; mostrarPortada(); ojoListo.then((o) => o?.despertar(1400)); }
+    if (avance < 1) requestAnimationFrame(cuadro);
+    else terminar();
+  }
+  function terminar() {
+    if (terminado) return;
+    terminado = true;
+    mostrarPortada();
+    capa.remove();
+    ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) => removeEventListener(ev, apurar));
+  }
+  function apurar() { velocidad = 5; }
+  ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) => addEventListener(ev, apurar, { passive: true }));
+  capa.querySelector(".apertura-saltar").addEventListener("click", () => { velocidad = 8; });
+  dibujar(0);
+  requestAnimationFrame(cuadro);
+}
+if (!reducir && primeraVisita()) abrirOjos();
+else requestAnimationFrame(mostrarPortada);

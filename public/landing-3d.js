@@ -1,8 +1,7 @@
-// Escenas 3D de la portada, hechas sólo con trazos finos (como el logo):
-// el ojo de la portada y el cielo de Alba Space.
+// Escena 3D del cielo de Alba Space, hecha sólo con trazos finos.
 // Cada escena se pausa cuando no está en pantalla y, si la persona pidió menos
 // movimiento, se dibuja una sola vez.
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js";
+import * as THREE from "three";
 
 const V = THREE.Vector3;
 const CLARO = 0x8fb2ff;
@@ -100,78 +99,6 @@ function brillo(color, escala, opacidad) {
   const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: puntoRedondo(), color, transparent: true, opacity: opacidad, blending: SUMA, depthWrite: false }));
   s.scale.setScalar(escala);
   return s;
-}
-
-// ── El ojo de la portada ───────────────────────────────────────────────
-function ojo(canvas, op) {
-  const { renderer, scene, camera } = base(canvas, { fov: 35, z: 11 });
-  const grupo = new THREE.Group();
-  scene.add(grupo);
-
-  const curva = (alto, recorte) => new THREE.QuadraticBezierCurve3(
-    new V(-3.4 + recorte, 0, 0), new V(0, alto, 0), new V(3.4 - recorte, 0, 0)).getPoints(90);
-  grupo.add(linea(curva(2.3, 0), PAPEL, 0.9), linea(curva(-2.3, 0), PAPEL, 0.9));
-  grupo.add(linea(curva(1.95, 0.4), CLARO, 0.32), linea(curva(-1.95, 0.4), CLARO, 0.32));
-
-  const mira = new THREE.Group();
-  for (let k = 0; k < 4; k++) {
-    const a0 = k * Math.PI / 2 + 0.24, a1 = (k + 1) * Math.PI / 2 - 0.24;
-    mira.add(linea(arco(1.15, a0, a1, 40), PAPEL, 0.85));
-  }
-  grupo.add(mira);
-  const anillo = linea(arco(0.78, 0, Math.PI * 2, 90), CLARO, 0.28, true);
-  grupo.add(anillo);
-
-  const s = 0.42, w = 0.085;
-  const forma = new THREE.Shape();
-  [[0, s], [w, w], [s, 0], [w, -w], [0, -s], [-w, -w], [-s, 0], [-w, w]].forEach(([x, y], i) => (i ? forma.lineTo(x, y) : forma.moveTo(x, y)));
-  forma.closePath();
-  const estrella = new THREE.Mesh(new THREE.ShapeGeometry(forma), new THREE.MeshBasicMaterial({ color: CLARO, transparent: true }));
-  const halo = brillo(CLARO, 2.4, 0.5);
-  grupo.add(halo, estrella);
-
-  const n = innerWidth < 700 ? 500 : 1100;
-  const pos = new Float32Array(n * 3);
-  for (let i = 0; i < n; i++) {
-    pos[i * 3] = (Math.random() - 0.5) * 28;
-    pos[i * 3 + 1] = (Math.random() - 0.5) * 16;
-    pos[i * 3 + 2] = -10 + Math.random() * 13;
-  }
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-  const polvo = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.06, map: puntoRedondo(), color: CLARO, transparent: true, opacity: 0.7, depthWrite: false, blending: SUMA }));
-  scene.add(polvo);
-
-  const colocar = () => {
-    const ancho = canvas.clientWidth;
-    if (ancho < 700) { grupo.position.set(0, 2.4, 0); grupo.scale.setScalar(0.6); }
-    else if (ancho < 1000) { grupo.position.set(2.2, 0.9, 0); grupo.scale.setScalar(0.8); }
-    else { grupo.position.set(4.4, 1.15, 0); grupo.scale.setScalar(0.95); }
-  };
-  colocar();
-  addEventListener("resize", colocar);
-
-  const p = { x: 0, y: 0, tx: 0, ty: 0 };
-  if (op.punteroFino) addEventListener("pointermove", (e) => { p.tx = e.clientX / innerWidth * 2 - 1; p.ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
-
-  bucle(canvas, (t) => {
-    p.x += (p.tx - p.x) * 0.05;
-    p.y += (p.ty - p.y) * 0.05;
-    grupo.rotation.y = p.x * 0.35 + Math.sin(t * 0.3) * 0.06;
-    grupo.rotation.x = p.y * 0.22;
-    mira.rotation.z = t * 0.12;
-    anillo.rotation.z = -t * 0.05;
-    const latido = Math.sin(t * 1.6);
-    estrella.scale.setScalar(1 + latido * 0.08);
-    halo.scale.setScalar(2.4 + latido * 0.4);
-    halo.material.opacity = 0.45 + latido * 0.15;
-    polvo.rotation.y = t * 0.012 + p.x * 0.08;
-    polvo.position.y = Math.sin(t * 0.2) * 0.3;
-    const avance = Math.min(1, scrollY / innerHeight);
-    camera.position.z = 11 - avance * 4;
-    canvas.style.opacity = String(1 - avance * 0.75);
-    renderer.render(scene, camera);
-  }, op.reducir);
 }
 
 // ── El cielo de Alba Space ─────────────────────────────────────────────
@@ -278,7 +205,7 @@ function cielo(canvas, op) {
   }, op.reducir);
 }
 
-const escenas = { ojo, cielo };
+const escenas = { cielo };
 export function montar(canvas, tipo, op) {
   const escena = escenas[tipo];
   if (escena) escena(canvas, op);
