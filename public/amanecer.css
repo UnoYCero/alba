@@ -57,10 +57,6 @@ main, .footer { position: relative; z-index: 2; }
 .tema-dia .pill { background: rgba(143,178,255,.18); color: #8fb2ff; }
 .tema-dia .panel-photo img { box-shadow: 0 24px 50px rgba(11,31,59,.18); }
 
-/* Quiénes somos al alba: las postales, un tono más hondo que el cielo */
-.p1 { background-color: #0b1f3b; }
-.p2 { background-color: #0f2747; }
-.p3 { background-color: #081a33; }
 .tema-alba .collage-btn { background: rgba(244,246,250,.12); }
 
 /* Apertura de ojos: un SVG negro con una almendra que se abre */
