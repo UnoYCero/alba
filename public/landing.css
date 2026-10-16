@@ -426,3 +426,7 @@ html:not(.js) .window-grid, .reduce .window-grid { grid-template-columns: 1fr; }
 .space-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5) var(--s6); }
 /* La foto real de UNBLIND: se encuadra por las caras, no por el centro */
 .panel-photo img.foto-real { object-position: 50% 28%; }
+/* Proyectos uno debajo de otro (teléfonos bajos): el pie de foto puede ocupar dos renglones */
+@media (max-width: 760px) {
+  .window.apilado .panel-photo img, .reduce .panel-photo img { height: calc(100% - 44px); }
+}
