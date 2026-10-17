@@ -131,42 +131,61 @@ addEventListener("scroll", alDesplazar, { passive: true });
 addEventListener("resize", alDesplazar);
 espiar(); encender();
 
-// ── Collage de hitos: avanza solo, se puede deslizar, pausar o mover con flechas ──
+// ── Collage de hitos: desfila solo y sin fin; al pasar el mouse va más rápido.
+// Se puede deslizar con el dedo o el touchpad, mover con las flechas del teclado y pausar. ──
 const collage = document.querySelector("[data-collage]");
+const filaHitos = collage.querySelector("[data-marquee]");
 const pausa = document.querySelector("[data-pausa]");
-let pausadoPorPersona = false;
-let encima = false;
-let collageVisible = false;
-const pasoCollage = () => {
-  const li = collage.querySelector(".postal");
-  return li ? li.offsetWidth + parseFloat(getComputedStyle(li.parentElement).gap || 0) : 300;
-};
-function moverCollage(dir) {
-  const fin = collage.scrollWidth - collage.clientWidth - 4;
-  if (dir > 0 && collage.scrollLeft >= fin) collage.scrollTo({ left: 0, behavior: reducir ? "auto" : "smooth" });
-  else if (dir < 0 && collage.scrollLeft <= 4) collage.scrollTo({ left: fin, behavior: reducir ? "auto" : "smooth" });
-  else collage.scrollBy({ left: dir * pasoCollage(), behavior: reducir ? "auto" : "smooth" });
-}
-document.querySelectorAll("[data-hito]").forEach((b) => b.addEventListener("click", () => moverCollage(Number(b.dataset.hito))));
+// Una copia de la fila, oculta para lectores de pantalla, hace que el desfile no tenga fin
+const originales = [...filaHitos.children];
+originales.forEach((li) => {
+  const copia = li.cloneNode(true);
+  copia.setAttribute("aria-hidden", "true");
+  copia.querySelectorAll("img").forEach((img) => { img.alt = ""; });
+  copia.querySelectorAll("a, button").forEach((el) => el.setAttribute("tabindex", "-1"));
+  filaHitos.append(copia);
+});
+const VELOCIDAD = 32, VELOCIDAD_ENCIMA = 140; // píxeles por segundo
+let pausadoPorPersona = false, encima = false, collageVisible = false, tocando = false;
+let posicion = 0, ultimo = 0, soltado = 0;
+const mitad = () => filaHitos.children[originales.length].offsetLeft - originales[0].offsetLeft;
 function ponerPausa(valor) {
   pausadoPorPersona = valor;
   pausa.setAttribute("aria-pressed", String(valor));
   pausa.textContent = valor ? "Reanudar" : "Pausar";
 }
 pausa.addEventListener("click", () => ponerPausa(!pausadoPorPersona));
-collage.addEventListener("pointerenter", () => { encima = true; });
+collage.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") encima = true; });
 collage.addEventListener("pointerleave", () => { encima = false; });
-collage.addEventListener("focusin", () => { encima = true; });
-collage.addEventListener("focusout", () => { encima = false; });
+collage.addEventListener("touchstart", () => { tocando = true; }, { passive: true });
+collage.addEventListener("touchend", () => { tocando = false; soltado = performance.now(); }, { passive: true });
 collage.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") { e.preventDefault(); moverCollage(1); }
-  if (e.key === "ArrowLeft") { e.preventDefault(); moverCollage(-1); }
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  e.preventDefault();
+  const paso = originales[0].offsetWidth + parseFloat(getComputedStyle(filaHitos).gap || 0);
+  collage.scrollBy({ left: e.key === "ArrowRight" ? paso : -paso, behavior: reducir ? "auto" : "smooth" });
 });
 new IntersectionObserver(([e]) => { collageVisible = e.isIntersecting; }).observe(collage);
-setInterval(() => {
-  if (!reducir && !pausadoPorPersona && !encima && collageVisible && !document.hidden) moverCollage(1);
-}, 4200);
+function desfilar(t) {
+  const dt = ultimo ? Math.min(0.05, (t - ultimo) / 1000) : 0;
+  ultimo = t;
+  // Si la persona lo movió con el dedo o el touchpad, seguimos desde donde lo dejó
+  if (Math.abs(collage.scrollLeft - posicion) > 2) posicion = collage.scrollLeft;
+  const quieto = pausadoPorPersona || tocando || t - soltado < 1500 || !collageVisible || document.hidden || collage.matches(":focus-visible, :has(:focus-visible)");
+  if (!quieto) {
+    posicion += (encima ? VELOCIDAD_ENCIMA : VELOCIDAD) * dt;
+    const m = mitad();
+    if (m > 0 && posicion >= m) posicion -= m;
+    collage.scrollLeft = posicion;
+  } else {
+    const m = mitad();
+    if (m > 0 && collage.scrollLeft >= m) { collage.scrollLeft -= m; }
+    posicion = collage.scrollLeft;
+  }
+  requestAnimationFrame(desfilar);
+}
 if (reducir) ponerPausa(true);
+requestAnimationFrame(desfilar);
 
 // ── Botón magnético (sólo con mouse) ──
 if (punteroFino) {
