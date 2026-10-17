@@ -474,3 +474,19 @@ html:not(.js) .panel-copy, .reduce .panel-copy, .window.apilado .panel-copy { tr
 @media (prefers-reduced-motion: reduce) and (max-width: 760px) {
   .reconocidos-lista ul { padding-left: var(--gutter); }
 }
+
+/* Cómo trabajamos: cuatro pasos que se encienden por turnos, sin texto corrido */
+.pasos { display: grid; grid-template-columns: repeat(2, max-content); gap: var(--s2) var(--s6); margin: var(--s5) 0 0; padding: 0; list-style: none; }
+.pasos li { display: inline-flex; align-items: center; gap: var(--s2); font-size: 14px; color: var(--paper); opacity: .68; animation: paso-texto 8s infinite; }
+.pasos li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--soft); opacity: .4; animation: paso-punto 8s infinite; }
+.pasos li:nth-child(2), .pasos li:nth-child(2)::before { animation-delay: 2s; }
+.pasos li:nth-child(3), .pasos li:nth-child(3)::before { animation-delay: 4s; }
+.pasos li:nth-child(4), .pasos li:nth-child(4)::before { animation-delay: 6s; }
+@keyframes paso-texto { 0%, 30% { opacity: 1; } 38%, 100% { opacity: .68; } }
+@keyframes paso-punto { 0%, 30% { opacity: 1; transform: scale(1.4); } 38%, 100% { opacity: .4; transform: none; } }
+@media (max-width: 760px) { .pasos { margin-top: var(--s3); gap: 4px var(--s4); } .pasos li { font-size: 13px; } }
+
+/* Redes en el pie */
+.footer-redes { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--dim); }
+.footer-redes a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); text-decoration: underline; text-decoration-color: rgba(143,178,255,.4); text-underline-offset: 5px; }
+.footer-redes a:hover { color: var(--soft); }

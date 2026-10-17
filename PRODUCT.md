@@ -53,11 +53,18 @@ visión artificial empezó acompañando a quien no ve.
 - **Alba Space** (protagonista): Star Tracker para satélites pequeños
   (orientación, seguimiento de basura espacial, acercamiento). **En pruebas en
   tierra.** Sin cifras de precisión y sin decir que ya voló.
-- **Alba Labs:** el Dev Kit de lentes abiertos ($5,900 MXN). En la industria, los
-  lentes van como piloto bajo pedido.
+- **Alba Labs:** el Dev Kit de lentes abiertos ($5,900 MXN).
+- **Lentes industriales:** se quieren hacer (mantenimiento, inspección,
+  documentación), pero no hay nada confirmado: se dice «estamos diseñando» y
+  «por ahora van como piloto bajo pedido».
+- **Soluciones y asesoría:** sistemas de visión a la medida y asesoría en visión,
+  IA y emprendimiento. Pasos: diagnóstico, piloto, integración, escalamiento.
+  Caso Universidad Anáhuac: **entregado** (Max, 17-oct): se cuenta como
+  resultado, con la imagen de la máquina marcada como ilustración.
 - **Surface Ops:** medir un bache con una foto. Va **al final** de la portada.
 - Sitio estático (HTML, CSS y JS en `public/`), servido por Netlify. Las
   subpáginas Labs, Space y Unblind tienen su propio estilo (`styles.css`).
+- Instagram: @albavision_labs (Alba Vision, recién abierto) y @alba_unblind.
 - Contacto: WhatsApp Business 56 1690 8570 y el correo contacto@albavision.tech
   (decidido por Max el 17-oct-2026). Las páginas de Órbita siguen con su propio
   contacto, que es de Alan.
