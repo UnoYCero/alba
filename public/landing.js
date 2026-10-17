@@ -94,51 +94,42 @@ function encender() {
   origen.classList.toggle("fin", p > 0.35);
 }
 
-// ── Alba Vision: la ventana cambia de proyecto al bajar ──
-// En teléfonos bajitos (o con «menos movimiento») se vuelve contenido corrido.
-const ventana = document.querySelector("[data-window]");
-const botones = [...ventana.querySelectorAll("[data-item]")];
-const paneles = [...ventana.querySelectorAll("[data-panel]")];
-let activoVentana = -1;
-// Las imágenes de los proyectos (126 KB entre las cuatro) se piden en cuanto termina de cargar la página:
-// si esperan a «verse», quien baja rápido encuentra el cuadro vacío
-const pedirImagenesProyectos = () => ventana.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
+// ── Alba Vision: los proyectos como lista; el que se toca (o se señala con el cursor) se abre
+// y su imagen aparece en el visor ──
+const proyectos = [...document.querySelectorAll("[data-proyecto]")];
+const visuales = [...document.querySelectorAll("[data-visual]")];
+const textoVisor = document.querySelector("[data-visor-texto]");
+const escritorio = matchMedia("(min-width: 1081px)");
+// En escritorio la descripción va junto a la imagen, así la lista no cambia de alto bajo el cursor
+function abrirProyecto(i) {
+  if (textoVisor) textoVisor.innerHTML = proyectos[i].querySelector(".proyecto-detalle > div").innerHTML;
+  proyectos.forEach((p, j) => {
+    p.classList.toggle("activo", j === i);
+    p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", String(j === i));
+  });
+  visuales.forEach((v, j) => v.classList.toggle("activa", j === i));
+}
+proyectos.forEach((p, j) => {
+  p.querySelector(".proyecto-nombre").addEventListener("click", () => abrirProyecto(j));
+  p.addEventListener("pointerenter", () => { if (punteroFino && escritorio.matches) abrirProyecto(j); });
+  p.querySelector(".proyecto-nombre").addEventListener("focus", () => { if (escritorio.matches) abrirProyecto(j); });
+});
+// Las imágenes del visor se piden en cuanto termina de cargar la página, para que ninguna aparezca vacía
+const pedirImagenesProyectos = () => document.querySelectorAll('.proyectos-visor img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
 if (document.readyState === "complete") pedirImagenesProyectos();
 else addEventListener("load", pedirImagenesProyectos, { once: true });
-const apilada = () => reducir || (celular.matches && innerHeight < 700);
-function ventanaAlBajar() {
-  const corrida = apilada();
-  ventana.classList.toggle("apilado", corrida && !reducir);
-  if (corrida) {
-    paneles.forEach((p) => p.classList.add("activo"));
-    activoVentana = -1;
-    return;
-  }
-  const i = Math.min(paneles.length - 1, Math.floor(avanceFijo(ventana) * paneles.length));
-  if (i === activoVentana) return;
-  activoVentana = i;
-  paneles.forEach((p, j) => p.classList.toggle("activo", j === i));
-  botones.forEach((b, j) => b.setAttribute("aria-current", j === i ? "true" : "false"));
-}
-botones.forEach((b, j) => b.addEventListener("click", () => {
-  if (apilada()) {
-    paneles[j].scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "start" });
-    return;
-  }
-  const recorrido = ventana.offsetHeight - innerHeight;
-  scrollTo({ top: ventana.offsetTop + recorrido * ((j + 0.5) / paneles.length), behavior: reducir ? "auto" : "smooth" });
-}));
+abrirProyecto(0);
 
 // Un solo manejador de desplazamiento, una vez por cuadro
 let pendiente = false;
 function alDesplazar() {
   if (pendiente) return;
   pendiente = true;
-  requestAnimationFrame(() => { pendiente = false; espiar(); encender(); ventanaAlBajar(); });
+  requestAnimationFrame(() => { pendiente = false; espiar(); encender(); });
 }
 addEventListener("scroll", alDesplazar, { passive: true });
 addEventListener("resize", alDesplazar);
-espiar(); encender(); ventanaAlBajar();
+espiar(); encender();
 
 // ── Collage de hitos: avanza solo, se puede deslizar, pausar o mover con flechas ──
 const collage = document.querySelector("[data-collage]");
@@ -212,7 +203,6 @@ prefMovimiento.addEventListener("change", (e) => {
   document.documentElement.classList.toggle("reduce", reducir);
   lienzos.forEach((c) => { c.pausado = reducir; });
   ponerPausa(reducir);
-  if (!reducir) { paneles.forEach((p) => p.classList.remove("activo")); activoVentana = -1; }
   alDesplazar();
 });
 
