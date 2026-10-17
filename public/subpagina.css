@@ -271,7 +271,7 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 /* Lo que hace: la lista y la foto con sus capas */
 .ub-hace { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--s8); align-items: center; }
 .ub-funciones { list-style: none; padding: 0; margin: var(--s6) 0 0; display: grid; gap: var(--s2); }
-.ub-funciones button { position: relative; display: grid; gap: 2px; width: 100%; padding: var(--s3) 0 var(--s3) var(--s6); border: 0; background: none; text-align: left; cursor: pointer; opacity: .72; transition: opacity .5s var(--ease); }
+.ub-funciones button { position: relative; display: grid; gap: 2px; width: 100%; padding: var(--s3) 0 var(--s3) var(--s6); border: 0; background: none; text-align: left; cursor: pointer; opacity: .78; transition: opacity .5s var(--ease); }
 .ub-funciones button::before { content: ""; position: absolute; left: 4px; top: calc(var(--s3) + 9px); width: 9px; height: 9px; border-radius: 50%; background: var(--soft); opacity: .4; transition: opacity .5s, transform .5s var(--ease); }
 .ub-funciones button[aria-current="true"], .ub-funciones button:hover { opacity: 1; }
 .ub-funciones button[aria-current="true"]::before { opacity: 1; transform: scale(1.35); }
@@ -337,3 +337,67 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .onda { animation: none; transform: scale(1.4); opacity: .8; }
 }
 .ub-portada .status { margin-top: var(--s5); }
+
+/* ═══ Alba Labs ═══ */
+/* Portada: los lentes en grande, saliéndose hacia la orilla derecha */
+.lb-portada { position: relative; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--nav-h) + var(--s7)) 0 var(--s8); overflow: hidden; }
+.lb-portada-grid { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: var(--s6); align-items: center; }
+.lb-portada-foto { margin: 0 calc(-1 * var(--gutter)) 0 0; }
+.lb-portada-foto img { width: 118%; max-width: none; height: auto; }
+.lb-portada-foto figcaption { margin-top: var(--s2); font-size: 13px; font-style: italic; color: var(--faint); }
+.lb-portada .sub-precio { margin-top: var(--s5); }
+
+/* Ve. Recuerda. Actúa.: pantalla fija */
+.lb-tiempos { position: relative; height: 300svh; }
+.lb-tiempos-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
+.lb-tiempos-grid { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: var(--s8); align-items: center; }
+.lb-tiempos-texto h2 { max-width: 14ch; }
+.lb-pasos { list-style: none; padding: 0; margin: var(--s6) 0 0; display: grid; gap: var(--s2); }
+.lb-pasos button { position: relative; display: grid; gap: 2px; width: 100%; padding: var(--s3) 0 var(--s3) var(--s6); border: 0; background: none; text-align: left; cursor: pointer; opacity: .78; transition: opacity .5s var(--ease); }
+.lb-pasos button::before { content: ""; position: absolute; left: 4px; top: calc(var(--s3) + 12px); width: 10px; height: 10px; border-radius: 50%; background: #2563eb; opacity: .35; transition: opacity .5s, transform .5s var(--ease); }
+.lb-pasos button[aria-current="true"], .lb-pasos button:hover { opacity: 1; }
+.lb-pasos button[aria-current="true"]::before { opacity: 1; transform: scale(1.3); }
+.lb-pasos b { font-weight: 300; font-size: clamp(26px,2.4vw,36px); letter-spacing: -.02em; line-height: 1.1; }
+.lb-pasos span { font-size: 15px; line-height: 1.5; color: var(--dim); }
+.lb-escena { margin: 0; }
+.lb-escena-foto { position: relative; }
+.lb-escena-foto > img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
+.lb-escena figcaption { margin-top: var(--s2); font-size: 13px; font-style: italic; color: var(--faint); }
+.lb-capa { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease); pointer-events: none; }
+.lb-capa.activa { opacity: 1; }
+.lb-chip, .lb-nota { position: absolute; left: calc(var(--x) * 100%); top: calc(var(--y) * 100%); white-space: nowrap; font-size: 14px; transform: translateY(8px); transition: transform .7s var(--ease); }
+.lb-capa.activa .lb-chip, .lb-capa.activa .lb-nota { transform: none; }
+.lb-chip { padding: 6px 12px; border-radius: 999px; background: #0b1f3b; color: #f4f6fa; }
+.lb-accion { left: auto; right: 2%; background: #2563eb; }
+.lb-nota { padding: var(--s3) var(--s4); border-radius: 12px; background: #fff; color: #0b1f3b; box-shadow: 0 12px 28px rgba(11,31,59,.12); }
+.lb-capa:nth-child(n) .lb-chip:nth-of-type(2), .lb-capa .lb-nota:nth-of-type(2) { transition-delay: .08s; }
+.lb-capa .lb-chip:nth-of-type(3), .lb-capa .lb-nota:nth-of-type(3) { transition-delay: .16s; }
+/* El cono de visión sale de la cámara del puente hacia lo que tienes enfrente */
+.lb-cono { position: absolute; left: 66.5%; top: 0; width: 30%; height: 47%; background: linear-gradient(200deg, rgba(37,99,235,.18), rgba(37,99,235,.04)); clip-path: polygon(0 100%, 30% 0, 100% 0); }
+
+/* Corrida: sin pantalla fija, los pasos se tocan */
+.lb-tiempos.corrida { height: auto; }
+.lb-tiempos.corrida .lb-tiempos-pin { position: static; height: auto; padding: var(--s9) 0; }
+
+@media (max-width: 1080px) {
+  .lb-portada-grid, .lb-tiempos-grid { grid-template-columns: 1fr; gap: var(--s6); }
+  .lb-portada-foto { margin-right: 0; }
+  .lb-portada-foto img { width: 100%; }
+}
+@media (max-width: 760px) {
+  .lb-portada { min-height: 0; }
+  .lb-tiempos-pin { align-items: flex-start; padding-top: calc(var(--nav-h) + var(--s4)); }
+  .lb-tiempos-texto .sub-intro { display: none; }
+  .lb-pasos { margin-top: var(--s4); gap: 0; }
+  .lb-pasos button { padding: var(--s2) 0 var(--s2) var(--s5); }
+  .lb-pasos button::before { top: calc(var(--s2) + 9px); width: 8px; height: 8px; }
+  .lb-pasos b { font-size: 22px; }
+  .lb-pasos span { font-size: 13.5px; }
+  .lb-chip, .lb-nota { font-size: 12px; }
+  .lb-chip { padding: 4px 9px; }
+  .lb-nota { padding: var(--s2) var(--s3); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lb-tiempos { height: auto; }
+  .lb-tiempos-pin { position: static; height: auto; padding: var(--s9) 0; }
+}

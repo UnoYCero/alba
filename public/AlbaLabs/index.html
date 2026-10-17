@@ -9,19 +9,25 @@
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="canonical" href="https://albavision.tech/albalabs/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Alba Vision">
-  <meta property="og:url" content="https://albavision.tech/AlbaLabs/">
+  <meta property="og:url" content="https://albavision.tech/albalabs/">
   <meta property="og:title" content="Alba Labs — Tus ojos, cualquier IA">
   <meta property="og:description" content="Lentes abiertos con cámara para crear tus propias aplicaciones de visión e inteligencia artificial.">
-  <meta property="og:image" content="https://albavision.tech/assets/og-alba-vision.jpg">
+  <meta property="og:image" content="https://albavision.tech/assets/og-alba-labs.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="El Dev Kit de lentes abiertos de Alba Labs">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="../assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../landing.css">
   <link rel="stylesheet" href="../amanecer.css">
   <link rel="stylesheet" href="../subpagina.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="module" src="../subpagina.js"></script>
+  <script type="module" src="../labs.js"></script>
 </head>
 <body class="pagina-dia">
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -53,33 +59,61 @@
   <main id="contenido">
     <div class="checkout-notice" data-checkout-notice role="status" hidden></div>
 
-    <section class="sub-hero tema-dia" id="dev-kit">
-      <div class="wrap sub-hero-grid">
-        <div>
+    <!-- Portada: los lentes en grande -->
+    <section class="lb-portada tema-dia" id="dev-kit">
+      <div class="wrap lb-portada-grid">
+        <div class="lb-portada-texto">
           <h1 class="sub-title reveal">Tus ojos. <em>Cualquier IA.</em></h1>
           <p class="sub-lead reveal">El Dev Kit de <span translate="no">Alba Labs</span> son lentes abiertos con cámara para crear tus propias aplicaciones de visión e inteligencia artificial.</p>
-          <p class="sub-precio reveal"><b>$5,900 MXN</b> · el envío se calcula aparte</p>
           <div class="sub-cta reveal">
-            <a class="btn btn-solid" href="#tienda">Ver el Dev Kit</a>
+            <a class="btn btn-solid" href="#tienda">Comprar el Dev Kit</a>
             <a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20tengo%20preguntas%20sobre%20el%20Dev%20Kit%20de%20Alba%20Labs." target="_blank" rel="noopener" aria-label="Pregunta por el Dev Kit por WhatsApp">Pregunta por el Dev Kit</a>
           </div>
+          <p class="sub-precio reveal"><b>$5,900 MXN</b> · el envío se calcula aparte</p>
         </div>
-        <figure class="sub-visual labs-foto reveal">
+        <figure class="lb-portada-foto labs-foto reveal">
           <img src="../assets/armazon.webp" alt="Lentes del Dev Kit de Alba Labs con su cámara (imagen ilustrativa)" width="1600" height="900" fetchpriority="high">
           <figcaption>Imagen ilustrativa</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="sub-seccion tema-dia" id="como-funciona">
-      <div class="wrap">
-        <h2 class="reveal">Ve. Recuerda. <em>Actúa.</em></h2>
-        <p class="sub-intro reveal">Una cámara, memoria y herramientas de inteligencia artificial en algo que llevas puesto y puedes modificar.</p>
-        <ul class="rasgos">
-          <li class="reveal"><h3>Ve</h3><p>Captura texto, objetos y lo que tienes enfrente.</p></li>
-          <li class="reveal"><h3>Recuerda</h3><p>Guarda contexto para encontrar después lugares, objetos y pendientes.</p></li>
-          <li class="reveal"><h3>Actúa</h3><p>Pregunta, recibe indicaciones o conecta tus propias herramientas.</p></li>
-        </ul>
+    <!-- Ve. Recuerda. Actúa.: una pantalla fija que cambia al bajar -->
+    <section class="lb-tiempos tema-dia" id="como-funciona" data-tiempos>
+      <div class="lb-tiempos-pin">
+        <div class="wrap lb-tiempos-grid">
+          <div class="lb-tiempos-texto">
+            <h2>Ve. Recuerda. <em>Actúa.</em></h2>
+            <p class="sub-intro">Una cámara, memoria y herramientas de inteligencia artificial en algo que llevas puesto y puedes modificar.</p>
+            <ol class="lb-pasos">
+              <li><button type="button" data-tiempo="0" aria-current="true"><b>Ve</b><span>La cámara capta texto, objetos y lo que tienes enfrente.</span></button></li>
+              <li><button type="button" data-tiempo="1"><b>Recuerda</b><span>Guarda el contexto para encontrar después lugares, objetos y pendientes.</span></button></li>
+              <li><button type="button" data-tiempo="2"><b>Actúa</b><span>Pregunta, recibe indicaciones o conecta tus propias herramientas.</span></button></li>
+            </ol>
+          </div>
+          <figure class="lb-escena" aria-describedby="notaTiempos">
+            <div class="lb-escena-foto">
+              <img src="../assets/armazon.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+              <div class="lb-capa activa" data-capa="0">
+                <span class="lb-cono" aria-hidden="true"></span>
+                <span class="lb-chip" style="--x:.74;--y:.06">Texto</span>
+                <span class="lb-chip" style="--x:.84;--y:.16">Objeto</span>
+                <span class="lb-chip" style="--x:.64;--y:.13">Escena</span>
+              </div>
+              <div class="lb-capa" data-capa="1">
+                <span class="lb-nota" style="--x:.03;--y:.04">Llaves · mesa de la cocina</span>
+                <span class="lb-nota" style="--x:.08;--y:.17">Manual de la impresora · pág. 3</span>
+                <span class="lb-nota" style="--x:.13;--y:.3">Pendiente: comprar filtro</span>
+              </div>
+              <div class="lb-capa" data-capa="2">
+                <span class="lb-chip lb-accion" style="--x:.7;--y:.68">Pregúntale a tu IA</span>
+                <span class="lb-chip lb-accion" style="--x:.74;--y:.79">Guarda una nota</span>
+                <span class="lb-chip lb-accion" style="--x:.78;--y:.9">Avisa por mensaje</span>
+              </div>
+            </div>
+            <figcaption id="notaTiempos">Ilustración de lo que puedes construir con el Dev Kit</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -157,7 +191,7 @@
         <div>
           <p class="sub-intro reveal">Sobre la misma base construimos UNBLIND, tecnología para ver por quien no ve. Y estamos diseñando lentes industriales para mantenimiento, inspección y documentación; por ahora van como piloto bajo pedido.</p>
           <div class="sub-cta reveal">
-            <a class="btn-text" href="../Unblind/">Conoce UNBLIND</a>
+            <a class="btn-text" href="../unblind/">Conoce UNBLIND</a>
             <a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20un%20piloto%20de%20lentes%20para%20mi%20empresa." target="_blank" rel="noopener" aria-label="Pide un piloto de lentes por WhatsApp">Pide un piloto</a>
           </div>
         </div>
@@ -198,10 +232,10 @@
       <p class="footer-tag"><em>Más allá de lo visible.</em></p>
       <nav class="footer-links" aria-label="Otros sitios de Alba">
         <a href="../">Portada</a>
-        <a href="../Unblind/">UNBLIND</a>
+        <a href="../unblind/">UNBLIND</a>
         <a href="https://ops.albavision.tech" target="_blank" rel="noopener">Vision Ops</a>
-        <a href="../AlbaSpace/">Alba Space</a>
-        <a href="../AlbaLabs/" aria-current="page">Alba Labs</a>
+        <a href="../albaspace/">Alba Space</a>
+        <a href="../albalabs/" aria-current="page">Alba Labs</a>
       </nav>
       <p class="footer-redes">Síguenos en Instagram: <a href="https://www.instagram.com/albavision_labs/" target="_blank" rel="noopener">@albavision_labs</a> y <a href="https://www.instagram.com/alba_unblind/" target="_blank" rel="noopener">@alba_unblind</a></p>
       <span class="footer-copy">© <span data-year></span> Alba Vision</span>
