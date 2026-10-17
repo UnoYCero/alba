@@ -4,4 +4,7 @@
   <url><loc>https://albavision.tech/unblind/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://albavision.tech/albaspace/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://albavision.tech/albalabs/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://albavision.tech/orbita/index.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://albavision.tech/orbita/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://albavision.tech/orbita/data-deletion.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
