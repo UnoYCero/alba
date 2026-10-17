@@ -127,7 +127,8 @@ if (masAlla) {
   alBajarCortina();
 }
 
-// ── Alba Vision: los proyectos como lista; el que se toca se abre y su imagen aparece en el visor ──
+// ── Alba Vision: los proyectos como lista; el que se toca (o se señala sobre su nombre) se abre
+// y su imagen aparece en el visor ──
 const proyectos = [...document.querySelectorAll("[data-proyecto]")];
 const visuales = [...document.querySelectorAll("[data-visual]")];
 const textoVisor = document.querySelector("[data-visor-texto]");
@@ -140,37 +141,20 @@ function abrirProyecto(i) {
     p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", String(j === i));
   });
   visuales.forEach((v, j) => v.classList.toggle("activa", j === i));
-  // La línea del activo vuelve a empezar
-  const linea = proyectos[i].querySelector(".proyecto-avance");
-  if (linea) { linea.style.animation = "none"; void linea.offsetWidth; linea.style.animation = ""; }
 }
 proyectos.forEach((p, j) => {
-  p.querySelector(".proyecto-nombre").addEventListener("click", () => { abrirProyecto(j); elegido = true; quietud(); });
-  // Una línea bajo el nombre activo se llena mientras llega el siguiente
-  const linea = document.createElement("i");
-  linea.className = "proyecto-avance";
-  linea.setAttribute("aria-hidden", "true");
-  linea.addEventListener("animationend", () => { if (escritorio.matches) abrirProyecto((j + 1) % proyectos.length); });
-  p.querySelector(".proyecto-nombre").after(linea);
+  const nombre = p.querySelector(".proyecto-nombre");
+  nombre.addEventListener("click", () => abrirProyecto(j));
+  // En escritorio también se abre con el mouse, pero sólo sobre la palabra (no toda la fila)
+  // y tras una pausa corta: así, al ir hacia «Conoce…», rozar otro nombre no cambia nada
+  const palabra = nombre.querySelector("span");
+  let espera = 0;
+  palabra.addEventListener("pointerenter", (e) => {
+    if (e.pointerType !== "mouse" || !escritorio.matches) return;
+    espera = setTimeout(() => abrirProyecto(j), 160);
+  });
+  palabra.addEventListener("pointerleave", () => clearTimeout(espera));
 });
-// En escritorio los proyectos avanzan solos cada 6 segundos. Se quedan quietos con el mouse sobre
-// un nombre o la imagen, con el teclado dentro, después de elegir uno (hasta salir) o fuera de vista
-const seccionProyectos = document.getElementById("alba-vision");
-let encimaProyectos = false, elegido = false, proyectosVisibles = false;
-const quietud = () => {
-  const quieto = reducir || !escritorio.matches || encimaProyectos || elegido || !proyectosVisibles || seccionProyectos.matches(":has(:focus-visible)");
-  seccionProyectos.classList.toggle("quieto", quieto);
-};
-// Se detiene sólo con el mouse sobre un nombre o sobre la imagen (donde está el botón)
-seccionProyectos.querySelectorAll(".proyecto, .proyectos-visor").forEach((el) => {
-  el.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { encimaProyectos = true; quietud(); } });
-  el.addEventListener("pointerleave", () => { encimaProyectos = false; quietud(); });
-});
-seccionProyectos.querySelector(".proyectos-grid").addEventListener("pointerleave", () => { elegido = false; quietud(); });
-seccionProyectos.addEventListener("focusin", quietud);
-seccionProyectos.addEventListener("focusout", () => setTimeout(quietud));
-new IntersectionObserver(([e]) => { proyectosVisibles = e.isIntersecting; quietud(); }, { threshold: 0.3 }).observe(seccionProyectos);
-escritorio.addEventListener("change", quietud);
 // Las imágenes del visor se piden en cuanto termina de cargar la página, para que ninguna aparezca vacía
 const pedirImagenesProyectos = () => document.querySelectorAll('.proyectos-visor img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
 if (document.readyState === "complete") pedirImagenesProyectos();
