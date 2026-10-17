@@ -16,7 +16,7 @@ body { background: #03081a; }
 main, .footer { position: relative; z-index: 2; }
 
 /* Las secciones dejan ver el cielo */
-.hero, .origen, .about, .caps, .window, .space, .contact { background: transparent; }
+.hero, .origen, .about, .caps, .proyectos, .space, .contact { background: transparent; }
 .hero-veil { background: linear-gradient(90deg, rgba(3,8,26,.75) 0%, rgba(3,8,26,.2) 46%, transparent 66%); }
 
 /* Temas */
@@ -35,19 +35,8 @@ main, .footer { position: relative; z-index: 2; }
 .tema-dia .btn-ghost:hover { background: rgba(11,31,59,.05); }
 
 /* Sin cajitas: las animaciones de capacidades flotan */
-.viz { background: transparent; overflow: visible; }
-.tema-dia .viz-leer i { background: rgba(11,31,59,.16); }
-.tema-dia .viz-scan { background: rgba(37,99,235,.12); box-shadow: inset 0 0 0 1px rgba(37,99,235,.55); }
-.tema-dia .viz-tag { background: #0b1f3b; color: #f4f6fa; }
-.tema-dia .viz-detectar i { border-color: rgba(11,31,59,.3); }
-.tema-dia .viz-box span { background: #2563eb; color: #fff; }
-.tema-dia .viz-contorno { fill: rgba(37,99,235,.1); }
-.tema-dia .viz-cota { stroke: rgba(11,31,59,.45); }
-.tema-dia .viz-estrellas circle { fill: #0b1f3b; }
 
 /* Alba Vision de día */
-.tema-dia .window-menu button[aria-current="true"] { background: rgba(37,99,235,.08); }
-.tema-dia .window-menu small.vivo { color: #2563eb; }
 .tema-dia .floor { background: linear-gradient(0deg, rgba(11,31,59,.06) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, rgba(11,31,59,.06) 1px, transparent 1px) 0 0/24px 24px, #fff; box-shadow: 0 60px 80px rgba(11,31,59,.16); }
 .tema-dia .st span { background: #0b1f3b; color: #f4f6fa; }
 .tema-dia .walker { background: #2563eb; }

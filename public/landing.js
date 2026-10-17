@@ -94,88 +94,155 @@ function encender() {
   origen.classList.toggle("fin", p > 0.35);
 }
 
-// ── Alba Vision: la ventana cambia de proyecto al bajar ──
-// En teléfonos bajitos (o con «menos movimiento») se vuelve contenido corrido.
-const ventana = document.querySelector("[data-window]");
-const botones = [...ventana.querySelectorAll("[data-item]")];
-const paneles = [...ventana.querySelectorAll("[data-panel]")];
-let activoVentana = -1;
-// Las imágenes de los proyectos (126 KB entre las cuatro) se piden en cuanto termina de cargar la página:
-// si esperan a «verse», quien baja rápido encuentra el cuadro vacío
-const pedirImagenesProyectos = () => ventana.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
+// ── Misión y visión: al bajar, la línea recorre la foto de «lo que ves» a «lo que ve Alba».
+// También se arrastra (dedo, mouse o flechas). En teléfonos bajitos o quieta, sólo se arrastra ──
+const masAlla = document.querySelector("[data-cortina]");
+if (masAlla) {
+  const marco = masAlla.querySelector(".cortina");
+  const control = masAlla.querySelector("[data-cortina-control]");
+  const textos = [...masAlla.querySelectorAll("[data-mv]")];
+  const corrida = () => reducir || (matchMedia("(max-width: 760px)").matches && innerHeight < 700);
+  let avanceAlArrastrar = null;
+  const poner = (v) => {
+    marco.style.setProperty("--corte", `${v}%`);
+    control.value = String(Math.round(v));
+    textos.forEach((t, i) => t.classList.toggle("activa", i === (v > 50 ? 0 : 1)));
+  };
+  const alBajarCortina = () => {
+    masAlla.classList.toggle("corrida", corrida());
+    if (corrida()) return;
+    const p = avanceFijo(masAlla);
+    // Si la persona la arrastró, se respeta hasta que vuelva a bajar un buen tramo
+    if (avanceAlArrastrar !== null && Math.abs(p - avanceAlArrastrar) < 0.06) return;
+    avanceAlArrastrar = null;
+    poner(92 - limitar((p - 0.1) / 0.72) * 84);
+  };
+  control.addEventListener("input", () => {
+    avanceAlArrastrar = corrida() ? null : avanceFijo(masAlla);
+    poner(Number(control.value));
+  });
+  addEventListener("scroll", () => requestAnimationFrame(alBajarCortina), { passive: true });
+  addEventListener("resize", alBajarCortina);
+  if (corrida()) poner(50);
+  alBajarCortina();
+}
+
+// ── Alba Vision: los proyectos como lista; el que se toca se abre y su imagen aparece en el visor ──
+const proyectos = [...document.querySelectorAll("[data-proyecto]")];
+const visuales = [...document.querySelectorAll("[data-visual]")];
+const textoVisor = document.querySelector("[data-visor-texto]");
+const escritorio = matchMedia("(min-width: 1081px)");
+// En escritorio la descripción va junto a la imagen, así la lista no cambia de alto bajo el cursor
+function abrirProyecto(i) {
+  if (textoVisor) textoVisor.innerHTML = proyectos[i].querySelector(".proyecto-detalle > div").innerHTML;
+  proyectos.forEach((p, j) => {
+    p.classList.toggle("activo", j === i);
+    p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", String(j === i));
+  });
+  visuales.forEach((v, j) => v.classList.toggle("activa", j === i));
+  // La línea del activo vuelve a empezar
+  const linea = proyectos[i].querySelector(".proyecto-avance");
+  if (linea) { linea.style.animation = "none"; void linea.offsetWidth; linea.style.animation = ""; }
+}
+proyectos.forEach((p, j) => {
+  p.querySelector(".proyecto-nombre").addEventListener("click", () => { abrirProyecto(j); elegido = true; quietud(); });
+  // Una línea bajo el nombre activo se llena mientras llega el siguiente
+  const linea = document.createElement("i");
+  linea.className = "proyecto-avance";
+  linea.setAttribute("aria-hidden", "true");
+  linea.addEventListener("animationend", () => { if (escritorio.matches) abrirProyecto((j + 1) % proyectos.length); });
+  p.querySelector(".proyecto-nombre").after(linea);
+});
+// En escritorio los proyectos avanzan solos cada 6 segundos. Se quedan quietos con el mouse sobre
+// un nombre o la imagen, con el teclado dentro, después de elegir uno (hasta salir) o fuera de vista
+const seccionProyectos = document.getElementById("alba-vision");
+let encimaProyectos = false, elegido = false, proyectosVisibles = false;
+const quietud = () => {
+  const quieto = reducir || !escritorio.matches || encimaProyectos || elegido || !proyectosVisibles || seccionProyectos.matches(":has(:focus-visible)");
+  seccionProyectos.classList.toggle("quieto", quieto);
+};
+// Se detiene sólo con el mouse sobre un nombre o sobre la imagen (donde está el botón)
+seccionProyectos.querySelectorAll(".proyecto, .proyectos-visor").forEach((el) => {
+  el.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { encimaProyectos = true; quietud(); } });
+  el.addEventListener("pointerleave", () => { encimaProyectos = false; quietud(); });
+});
+seccionProyectos.querySelector(".proyectos-grid").addEventListener("pointerleave", () => { elegido = false; quietud(); });
+seccionProyectos.addEventListener("focusin", quietud);
+seccionProyectos.addEventListener("focusout", () => setTimeout(quietud));
+new IntersectionObserver(([e]) => { proyectosVisibles = e.isIntersecting; quietud(); }, { threshold: 0.3 }).observe(seccionProyectos);
+escritorio.addEventListener("change", quietud);
+// Las imágenes del visor se piden en cuanto termina de cargar la página, para que ninguna aparezca vacía
+const pedirImagenesProyectos = () => document.querySelectorAll('.proyectos-visor img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
 if (document.readyState === "complete") pedirImagenesProyectos();
 else addEventListener("load", pedirImagenesProyectos, { once: true });
-const apilada = () => reducir || (celular.matches && innerHeight < 700);
-function ventanaAlBajar() {
-  const corrida = apilada();
-  ventana.classList.toggle("apilado", corrida && !reducir);
-  if (corrida) {
-    paneles.forEach((p) => p.classList.add("activo"));
-    activoVentana = -1;
-    return;
-  }
-  const i = Math.min(paneles.length - 1, Math.floor(avanceFijo(ventana) * paneles.length));
-  if (i === activoVentana) return;
-  activoVentana = i;
-  paneles.forEach((p, j) => p.classList.toggle("activo", j === i));
-  botones.forEach((b, j) => b.setAttribute("aria-current", j === i ? "true" : "false"));
-}
-botones.forEach((b, j) => b.addEventListener("click", () => {
-  if (apilada()) {
-    paneles[j].scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "start" });
-    return;
-  }
-  const recorrido = ventana.offsetHeight - innerHeight;
-  scrollTo({ top: ventana.offsetTop + recorrido * ((j + 0.5) / paneles.length), behavior: reducir ? "auto" : "smooth" });
-}));
+abrirProyecto(0);
 
 // Un solo manejador de desplazamiento, una vez por cuadro
 let pendiente = false;
 function alDesplazar() {
   if (pendiente) return;
   pendiente = true;
-  requestAnimationFrame(() => { pendiente = false; espiar(); encender(); ventanaAlBajar(); });
+  requestAnimationFrame(() => { pendiente = false; espiar(); encender(); });
 }
 addEventListener("scroll", alDesplazar, { passive: true });
 addEventListener("resize", alDesplazar);
-espiar(); encender(); ventanaAlBajar();
+espiar(); encender();
 
-// ── Collage de hitos: avanza solo, se puede deslizar, pausar o mover con flechas ──
+// ── Collage de hitos: desfila solo y sin fin; al pasar el mouse va más rápido.
+// Se puede deslizar con el dedo o el touchpad, mover con las flechas del teclado y pausar. ──
 const collage = document.querySelector("[data-collage]");
+const filaHitos = collage.querySelector("[data-marquee]");
 const pausa = document.querySelector("[data-pausa]");
-let pausadoPorPersona = false;
-let encima = false;
-let collageVisible = false;
-const pasoCollage = () => {
-  const li = collage.querySelector(".postal");
-  return li ? li.offsetWidth + parseFloat(getComputedStyle(li.parentElement).gap || 0) : 300;
-};
-function moverCollage(dir) {
-  const fin = collage.scrollWidth - collage.clientWidth - 4;
-  if (dir > 0 && collage.scrollLeft >= fin) collage.scrollTo({ left: 0, behavior: reducir ? "auto" : "smooth" });
-  else if (dir < 0 && collage.scrollLeft <= 4) collage.scrollTo({ left: fin, behavior: reducir ? "auto" : "smooth" });
-  else collage.scrollBy({ left: dir * pasoCollage(), behavior: reducir ? "auto" : "smooth" });
-}
-document.querySelectorAll("[data-hito]").forEach((b) => b.addEventListener("click", () => moverCollage(Number(b.dataset.hito))));
+// Una copia de la fila, oculta para lectores de pantalla, hace que el desfile no tenga fin
+const originales = [...filaHitos.children];
+originales.forEach((li) => {
+  const copia = li.cloneNode(true);
+  copia.setAttribute("aria-hidden", "true");
+  copia.querySelectorAll("img").forEach((img) => { img.alt = ""; });
+  copia.querySelectorAll("a, button").forEach((el) => el.setAttribute("tabindex", "-1"));
+  filaHitos.append(copia);
+});
+const VELOCIDAD = 32, VELOCIDAD_ENCIMA = 140; // píxeles por segundo
+let pausadoPorPersona = false, encima = false, collageVisible = false, tocando = false;
+let posicion = 0, ultimo = 0, soltado = 0;
+const mitad = () => filaHitos.children[originales.length].offsetLeft - originales[0].offsetLeft;
 function ponerPausa(valor) {
   pausadoPorPersona = valor;
   pausa.setAttribute("aria-pressed", String(valor));
   pausa.textContent = valor ? "Reanudar" : "Pausar";
 }
 pausa.addEventListener("click", () => ponerPausa(!pausadoPorPersona));
-collage.addEventListener("pointerenter", () => { encima = true; });
+collage.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") encima = true; });
 collage.addEventListener("pointerleave", () => { encima = false; });
-collage.addEventListener("focusin", () => { encima = true; });
-collage.addEventListener("focusout", () => { encima = false; });
+collage.addEventListener("touchstart", () => { tocando = true; }, { passive: true });
+collage.addEventListener("touchend", () => { tocando = false; soltado = performance.now(); }, { passive: true });
 collage.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") { e.preventDefault(); moverCollage(1); }
-  if (e.key === "ArrowLeft") { e.preventDefault(); moverCollage(-1); }
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  e.preventDefault();
+  const paso = originales[0].offsetWidth + parseFloat(getComputedStyle(filaHitos).gap || 0);
+  collage.scrollBy({ left: e.key === "ArrowRight" ? paso : -paso, behavior: reducir ? "auto" : "smooth" });
 });
 new IntersectionObserver(([e]) => { collageVisible = e.isIntersecting; }).observe(collage);
-setInterval(() => {
-  if (!reducir && !pausadoPorPersona && !encima && collageVisible && !document.hidden) moverCollage(1);
-}, 4200);
+function desfilar(t) {
+  const dt = ultimo ? Math.min(0.05, (t - ultimo) / 1000) : 0;
+  ultimo = t;
+  // Si la persona lo movió con el dedo o el touchpad, seguimos desde donde lo dejó
+  if (Math.abs(collage.scrollLeft - posicion) > 2) posicion = collage.scrollLeft;
+  const quieto = pausadoPorPersona || tocando || t - soltado < 1500 || !collageVisible || document.hidden || collage.matches(":focus-visible, :has(:focus-visible)");
+  if (!quieto) {
+    posicion += (encima ? VELOCIDAD_ENCIMA : VELOCIDAD) * dt;
+    const m = mitad();
+    if (m > 0 && posicion >= m) posicion -= m;
+    collage.scrollLeft = posicion;
+  } else {
+    const m = mitad();
+    if (m > 0 && collage.scrollLeft >= m) { collage.scrollLeft -= m; }
+    posicion = collage.scrollLeft;
+  }
+  requestAnimationFrame(desfilar);
+}
 if (reducir) ponerPausa(true);
+requestAnimationFrame(desfilar);
 
 // ── Botón magnético (sólo con mouse) ──
 if (punteroFino) {
@@ -212,7 +279,6 @@ prefMovimiento.addEventListener("change", (e) => {
   document.documentElement.classList.toggle("reduce", reducir);
   lienzos.forEach((c) => { c.pausado = reducir; });
   ponerPausa(reducir);
-  if (!reducir) { paneles.forEach((p) => p.classList.remove("activo")); activoVentana = -1; }
   alDesplazar();
 });
 
@@ -220,7 +286,7 @@ prefMovimiento.addEventListener("change", (e) => {
 
 // ── El cielo amanece al bajar: cada sección tiene su color y se mezclan en la frontera ──
 const cieloAlba = document.querySelector("[data-cielo-alba]");
-const coloresCielo = { inicio: "#03081a", origen: "#0b2142", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", reconocidos: "#03081a", contacto: "#050d1c" };
+const coloresCielo = { inicio: "#03081a", origen: "#0b2142", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", reconocidos: "#03081a", contacto: "#050d1c" };
 const seccionesCielo = Object.keys(coloresCielo).map((id) => document.getElementById(id)).filter(Boolean);
 const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 function amanecer() {
