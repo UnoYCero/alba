@@ -97,7 +97,7 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
     { p: 0.7, rx: -0.04, ry: -0.22, rz: 0, fondo: 0.2, ancho: 0.19, x: 0.83, y: 0.16 },
     { p: 1, rx: 0, ry: 0.12, rz: 0, fondo: 0, ancho: 0.12, x: 0.83, y: 0.12 },
   ];
-  let ancho = 1, alto = 1, fin = 1, avance = 0, objetivo = 0;
+  let ancho = 1, alto = 1, fin = 1, avance = 0, objetivo = 0, finTitulo = 0, inicioTitulo = 0;
   let cuadroPendiente = 0, perdido = false, apertura = 1;
   // 1 = presentación de marca (centrado, de frente, estrella encendida); 0 = su lugar en la portada
   let presentacion = 0;
@@ -121,6 +121,29 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
       x = 0.5;
       y = mezcla(0.16, 0.11, suavizar(limitar(p / 0.62)));
       fraccion = mezcla(0.62, 0.34, suavizar(limitar(p / 0.7)));
+    }
+    // En el celular el ojo cabe entre el menú y el titular: si no, se achica
+    if (mobile && inicioTitulo) {
+      const peso = 1 - suavizar(limitar(p / 0.3));
+      const menu = 76 / alto, techo = inicioTitulo - 16 / alto;
+      const altoOjo = (f) => (f * ancho * 0.56) / alto;
+      if (y + altoOjo(fraccion) / 2 > techo) {
+        const disponible = Math.max(0, techo - menu);
+        const f2 = Math.max(0.3, Math.min(fraccion, (disponible * alto) / (0.56 * ancho)));
+        fraccion = mezcla(fraccion, f2, peso);
+        y = mezcla(y, menu + Math.min(disponible, altoOjo(f2)) / 2, peso);
+      }
+    }
+    // En la portada el ojo no cruza el titular: si no cabe a su derecha, se achica y se recorre
+    if (!mobile && finTitulo) {
+      const izquierda = finTitulo + 0.03;
+      const cabe = 0.98 - izquierda;
+      if (cabe < fraccion) {
+        const peso = 1 - suavizar(limitar(p / 0.3));
+        const f2 = Math.max(0.24, cabe);
+        fraccion = mezcla(fraccion, f2, peso);
+        x = mezcla(x, Math.min(0.98 - f2 / 2, izquierda + f2 / 2), peso);
+      }
     }
     // Presentación: el ojo empieza centrado y de frente y viaja a su lugar
     const pres = suavizar(presentacion);
@@ -171,6 +194,10 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
     camara.aspect = ancho / alto;
     camara.updateProjectionMatrix();
     fin = Math.max(alto, origen.offsetTop + origen.offsetHeight - alto);
+    // Hasta dónde llega el titular, como fracción del ancho
+    const lineas = [...hero.querySelectorAll(".hero-title .line > span")];
+    finTitulo = lineas.length ? Math.max(...lineas.map((l) => l.getBoundingClientRect().right)) / ancho : 0;
+    inicioTitulo = lineas.length ? (lineas[0].parentElement.getBoundingClientRect().top + scrollY) / alto : 0;
     alBajar();
   }
   function alPuntero(e) {

@@ -100,6 +100,11 @@ const ventana = document.querySelector("[data-window]");
 const botones = [...ventana.querySelectorAll("[data-item]")];
 const paneles = [...ventana.querySelectorAll("[data-panel]")];
 let activoVentana = -1;
+// Las imágenes de los proyectos (126 KB entre las cuatro) se piden en cuanto termina de cargar la página:
+// si esperan a «verse», quien baja rápido encuentra el cuadro vacío
+const pedirImagenesProyectos = () => ventana.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
+if (document.readyState === "complete") pedirImagenesProyectos();
+else addEventListener("load", pedirImagenesProyectos, { once: true });
 const apilada = () => reducir || (celular.matches && innerHeight < 700);
 function ventanaAlBajar() {
   const corrida = apilada();
