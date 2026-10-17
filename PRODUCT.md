@@ -63,8 +63,8 @@ visión artificial empezó acompañando a quien no ve.
   Alan. Se pueden dar masa (175 g), volumen plegado (0.13 dm³) y potencia
   (1.25 W) como cifras del diseño de vuelo; **no se publica la comparación con
   competidores** ni cifras de precisión (Max, 17-oct). Sin decir que ya voló.
-  Las «fotos de laboratorio» de alba-space.com van como imagen ilustrativa hasta
-  que Max confirme si son reales.
+  Las «fotos de laboratorio» de alba-space.com son generadas (Max, 17-oct):
+  siempre van marcadas como imagen ilustrativa.
 - **Alba Labs:** el Dev Kit de lentes abiertos ($5,900 MXN).
 - **Lentes industriales:** se quieren hacer (mantenimiento, inspección,
   documentación), pero no hay nada confirmado: se dice «estamos diseñando» y
