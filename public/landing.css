@@ -458,7 +458,7 @@ html:not(.js) .panel-copy, .reduce .panel-copy, .window.apilado .panel-copy { tr
 /* Cómo trabajamos: cuatro pasos en orden, unidos con flechas, quietos */
 .pasos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); margin: var(--s5) 0 0; padding: 0; list-style: none; }
 .pasos li { display: inline-flex; align-items: center; gap: var(--s3); font-size: 14px; color: var(--paper); }
-.pasos li + li::before { content: "→"; color: var(--soft); }
+.pasos li:not(:last-child)::after { content: "→"; color: var(--soft); }
 @media (max-width: 760px) { .pasos { margin-top: var(--s3); } .pasos li { font-size: 13px; } }
 
 /* Redes en el pie */
