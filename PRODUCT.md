@@ -58,8 +58,9 @@ visión artificial empezó acompañando a quien no ve.
 - **Surface Ops:** medir un bache con una foto. Va **al final** de la portada.
 - Sitio estático (HTML, CSS y JS en `public/`), servido por Netlify. Las
   subpáginas Labs, Space y Unblind tienen su propio estilo (`styles.css`).
-- Contacto: WhatsApp Business 56 1690 8570. El correo está por confirmar con
-  Alan (`hola@albavision.mx` o `contacto@albavision.tech`).
+- Contacto: WhatsApp Business 56 1690 8570 y el correo contacto@albavision.tech
+  (decidido por Max el 17-oct-2026). Las páginas de Órbita siguen con su propio
+  contacto, que es de Alan.
 
 ## Brand Commitments
 
