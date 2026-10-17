@@ -490,3 +490,4 @@ html:not(.js) .panel-copy, .reduce .panel-copy, .window.apilado .panel-copy { tr
 .footer-redes { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--dim); }
 .footer-redes a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); text-decoration: underline; text-decoration-color: rgba(143,178,255,.4); text-underline-offset: 5px; }
 .footer-redes a:hover { color: var(--soft); }
+.space-estado { margin: 0 0 var(--s6); }

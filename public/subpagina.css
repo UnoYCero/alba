@@ -166,3 +166,82 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .premio-año { font-size: 22px; }
   .foto-retrato { max-height: 70svh; }
 }
+
+/* ═══ Alba Space: el Star Tracker 3 en 1 ═══ */
+.space-portada { flex-direction: column; justify-content: center; align-items: stretch; }
+.space-portada .sub-hero-grid { grid-template-columns: 1fr 1fr; }
+.space-portada .sub-title { max-width: 11ch; }
+.space-portada > .wrap:last-child { position: relative; z-index: 2; }
+.cifras { display: grid; grid-template-columns: repeat(4, max-content); gap: var(--s4) var(--s8); margin: var(--s8) 0 0; }
+.cifras dt { font-size: 13px; color: var(--dim); }
+.cifras dd { margin: 2px 0 0; font-size: clamp(26px,2.4vw,34px); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+
+.indice-misiones { display: grid; gap: var(--s2); margin-top: var(--s6); }
+.indice-misiones a { display: inline-flex; align-items: center; gap: var(--s3); min-height: 48px; width: max-content; font-size: clamp(19px,1.6vw,23px); color: var(--paper); transition: color .3s; }
+.indice-misiones a::after { content: "↓"; color: var(--soft); transition: transform .4s var(--ease); }
+.indice-misiones a:hover { color: var(--soft); }
+.indice-misiones a:hover::after { transform: translateY(4px); }
+
+.mision-grid { display: grid; grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr); gap: var(--s8); align-items: center; }
+.mision-invertida .mision-texto { order: 2; }
+.mision-texto h2 { max-width: 16ch; }
+
+.sim { margin: 0; }
+.sim canvas { display: block; width: 100%; height: auto; aspect-ratio: 680 / 460; border-radius: 16px; background: #040a17; }
+.sim figcaption, .galeria-par figcaption { margin-top: var(--s3); font-size: 13px; font-style: italic; color: var(--faint); }
+
+/* Las cuatro etapas: la activa se enciende, las demás esperan */
+.etapas { list-style: none; padding: 0; margin: var(--s6) 0 0; display: grid; gap: var(--s2); }
+.etapas button { position: relative; display: grid; gap: 2px; width: 100%; padding: var(--s3) 0 var(--s3) var(--s6); border: 0; background: none; text-align: left; cursor: pointer; opacity: .72; transition: opacity .5s var(--ease); }
+.etapas button::before { content: ""; position: absolute; left: 4px; top: calc(var(--s3) + 9px); width: 9px; height: 9px; border-radius: 50%; background: var(--soft); opacity: .4; transition: opacity .5s, transform .5s var(--ease); }
+.etapas button[aria-current="step"], .etapas button:hover { opacity: 1; }
+.etapas button[aria-current="step"]::before { opacity: 1; transform: scale(1.35); }
+.etapas b { font-weight: 400; font-size: 18px; }
+.etapas span { font-size: 14.5px; line-height: 1.5; color: var(--dim); }
+
+.vistas { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s6); }
+.vistas button { min-height: 44px; padding: 0 var(--s5); border: 1px solid rgba(222,231,248,.25); border-radius: 999px; background: none; font-size: 14px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
+.vistas button[aria-pressed="true"] { background: rgba(143,178,255,.14); border-color: transparent; color: var(--paper); }
+.bitacora { min-height: 4.6em; margin: var(--s5) 0 0; font: 300 13px/1.55 "Hanken Grotesk", "Segoe UI", sans-serif; color: var(--dim); white-space: pre-line; }
+
+.control-baffle { display: grid; gap: var(--s3); margin-top: var(--s6); font-size: 15px; color: var(--paper); }
+.control-baffle input { width: 100%; min-height: 44px; accent-color: var(--soft); cursor: grab; }
+.lecturas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); margin: var(--s5) 0 0; }
+.lecturas dt { font-size: 13px; color: var(--dim); }
+.lecturas dd { margin: 2px 0 0; font-size: clamp(20px,1.8vw,26px); font-variant-numeric: tabular-nums; }
+
+.rasgos-lista { grid-template-columns: 1fr; gap: var(--s5); margin-top: var(--s6); }
+
+/* El baffle: tres segmentos que suben al desplegarse */
+.baffle { display: grid; justify-items: center; gap: var(--s3); text-align: center; }
+.escena-baffle { width: min(100%, 340px); height: auto; overflow: visible; }
+.escena-baffle .seg { transition: transform 1.6s var(--ease); }
+.escena-baffle.desplegado .seg-2 { transform: translateY(-46px); }
+.escena-baffle.desplegado .seg-3 { transform: translateY(-92px); }
+.estrella-baffle { opacity: 0; transform-origin: 150px 36px; transform: scale(.6); transition: opacity .8s .9s, transform .8s .9s var(--ease); }
+.escena-baffle.desplegado .estrella-baffle { opacity: 1; transform: none; }
+.estado-baffle { margin: 0; font-size: 14px; color: var(--dim); }
+
+.galeria-par { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s6); align-items: end; }
+.galeria-par figure { margin: 0; }
+.galeria-par img { width: 100%; height: auto; border-radius: 16px; }
+
+.space-contacto .space-tierra { position: absolute; left: 50%; bottom: -6%; width: min(1200px, 130%); height: auto; transform: translateX(-50%); opacity: .5; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 45%, transparent 75%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 45%, transparent 75%); pointer-events: none; }
+.space-contacto .contact-inner { position: relative; z-index: 2; }
+.space-contacto .contact-lead + .contact-lead { margin-top: var(--s5); }
+
+@media (max-width: 1080px) {
+  .space-portada .sub-hero-grid, .mision-grid { grid-template-columns: 1fr; gap: var(--s7); }
+  .mision-invertida .mision-texto { order: 0; }
+  .cifras { grid-template-columns: repeat(2, max-content); }
+}
+@media (max-width: 760px) {
+  .cifras { gap: var(--s4) var(--s6); margin-top: var(--s7); }
+  .lecturas { gap: var(--s3); }
+  .galeria-par { grid-template-columns: 1fr; }
+  .etapas b { font-size: 17px; }
+  .etapas span { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .escena-baffle .seg, .estrella-baffle { transition: none; }
+}

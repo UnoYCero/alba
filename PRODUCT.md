@@ -50,9 +50,15 @@ visión artificial empezó acompañando a quien no ve.
   de cada estación, con el fotograma que respalda cada número. **En producción**
   (`ops.albavision.tech`). Sin reconocimiento facial: mide estaciones, no
   personas. No prometer monitoreo en tiempo real ni tiempos muertos medidos.
-- **Alba Space** (protagonista): Star Tracker para satélites pequeños
-  (orientación, seguimiento de basura espacial, acercamiento). **En pruebas en
-  tierra.** Sin cifras de precisión y sin decir que ya voló.
+- **Alba Space** (protagonista): el Star Tracker 3 en 1 para CubeSats
+  (Ark Light 1), un solo sensor con baffle telescópico desplegable que se orienta
+  con las estrellas, detecta basura espacial y guía el acoplamiento. Estado:
+  **diseño de vuelo, en integración de laboratorio**. Fuente: alba-space.com, de
+  Alan. Se pueden dar masa (175 g), volumen plegado (0.13 dm³) y potencia
+  (1.25 W) como cifras del diseño de vuelo; **no se publica la comparación con
+  competidores** ni cifras de precisión (Max, 17-oct). Sin decir que ya voló.
+  Las «fotos de laboratorio» de alba-space.com van como imagen ilustrativa hasta
+  que Max confirme si son reales.
 - **Alba Labs:** el Dev Kit de lentes abiertos ($5,900 MXN).
 - **Lentes industriales:** se quieren hacer (mantenimiento, inspección,
   documentación), pero no hay nada confirmado: se dice «estamos diseñando» y
