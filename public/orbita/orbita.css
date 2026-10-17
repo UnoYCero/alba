@@ -24,8 +24,15 @@
 .tel-cabeza [data-tel-estado].activo { color: #2563eb; }
 .tel-cuerpo { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 14px 12px; overflow: hidden; }
 .tel-escribir { display: flex; align-items: center; gap: 8px; padding: 8px 10px 14px; }
-.tel-escribir span { flex: 1; padding: 9px 14px; border-radius: 999px; background: #fff; font-size: 13px; color: rgba(11,31,59,.45); }
-.tel-escribir i { width: 34px; height: 34px; border-radius: 50%; background: #2563eb; flex: none; }
+.tel-escribir span { flex: 1; min-width: 0; overflow: hidden; padding: 9px 14px; border-radius: 999px; background: #fff; font-size: 13px; color: #0b1f3b; white-space: nowrap; text-overflow: clip; direction: ltr; }
+.tel-escribir span.vacio { color: rgba(11,31,59,.45); }
+.tel-escribir span:not(.vacio)::after { content: ""; display: inline-block; width: 1px; height: 1em; margin-left: 1px; vertical-align: -2px; background: #2563eb; animation: cursor 1s steps(1) infinite; }
+@keyframes cursor { 50% { opacity: 0; } }
+.tel-escribir i { position: relative; width: 34px; height: 34px; border-radius: 50%; background: #2563eb; flex: none; transition: transform .2s var(--ease); }
+.tel-escribir i::after { content: ""; position: absolute; left: 12px; top: 10px; border: 7px solid transparent; border-left: 11px solid #fff; border-right: 0; }
+.tel-escribir i.pulsa { transform: scale(.86); }
+.tm-palomitas { margin-left: 8px; font-size: 10.5px; letter-spacing: -2px; color: rgba(244,246,250,.45); transition: color .4s; }
+.tm-cliente.leido .tm-palomitas { color: #8fb2ff; }
 
 .tm { flex: none; max-width: 84%; margin: 0; padding: 8px 12px; border-radius: 16px; font-size: 13.5px; line-height: 1.4; white-space: pre-line; }
 .tm-cliente { align-self: flex-end; background: #0b1f3b; color: #f4f6fa; border-bottom-right-radius: 5px; }

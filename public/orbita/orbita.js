@@ -36,13 +36,27 @@ if (video) {
   const cuerpo = video.querySelector("[data-tel-cuerpo]");
   const estado = video.querySelector("[data-tel-estado]");
   const boton = video.querySelector("[data-video-boton]");
-  let paso = 0, pausado = false, visible = false, reloj = 0;
+  const campo = video.querySelector("[data-tel-campo]");
+  const enviar = video.querySelector("[data-tel-enviar]");
+  let paso = 0, pausado = false, visible = false, reloj = 0, tecleado = 0;
 
   const burbuja = ([quien, texto], entra = true) => {
     const el = document.createElement(quien === "cotizacion" ? "div" : "p");
     el.className = `tm tm-${quien === "cotizacion" ? "orbita tm-cot" : quien}${entra ? " entra" : ""}`;
     if (quien === "cotizacion") el.innerHTML = cotizacion; else el.textContent = texto;
+    if (quien === "cliente") {
+      // Las palomitas: grises al enviar, azules cuando Órbita lo lee
+      const palomitas = document.createElement("span");
+      palomitas.className = "tm-palomitas";
+      palomitas.textContent = "✓✓";
+      el.append(palomitas);
+      if (!entra) el.classList.add("leido");
+    }
     return el;
+  };
+  const ponerCampo = (texto) => {
+    campo.textContent = texto || "Mensaje";
+    campo.classList.toggle("vacio", !texto);
   };
   const poner = (el) => {
     cuerpo.append(el);
@@ -63,22 +77,47 @@ if (video) {
       return;
     }
     const linea = guion[paso];
-    const habla = linea[0] === "orbita" || linea[0] === "cotizacion";
+    const [quien, texto] = linea;
+    if (quien === "cliente") {
+      // El cliente teclea en la barra de abajo, letra por letra, y luego envía
+      if (tecleado < texto.length) {
+        tecleado += 1;
+        ponerCampo(texto.slice(0, tecleado));
+        reloj = setTimeout(siguiente, Math.max(28, Math.min(70, 1100 / texto.length)));
+        return;
+      }
+      if (!enviar.classList.contains("pulsa")) {
+        enviar.classList.add("pulsa");
+        reloj = setTimeout(siguiente, 260);
+        return;
+      }
+      enviar.classList.remove("pulsa");
+      ponerCampo("");
+      tecleado = 0;
+      poner(burbuja(linea));
+      paso += 1;
+      reloj = setTimeout(siguiente, 650);
+      return;
+    }
+    const habla = quien === "orbita" || quien === "cotizacion";
     if (habla && !cuerpo.querySelector(".tm-escribiendo")) {
-      // Antes de cada respuesta, «escribiendo…»
+      // Órbita lee (palomitas azules) y escribe: los puntitos duran según el largo de la respuesta
+      cuerpo.querySelectorAll(".tm-cliente:not(.leido)").forEach((m) => m.classList.add("leido"));
       const puntos = document.createElement("p");
       puntos.className = "tm tm-orbita tm-escribiendo entra";
       puntos.innerHTML = "<i></i><i></i><i></i>";
       poner(puntos);
       estado.textContent = "escribiendo…";
       estado.classList.add("activo");
-      reloj = setTimeout(siguiente, 1100);
+      const largo = quien === "cotizacion" ? 140 : texto.length;
+      reloj = setTimeout(siguiente, Math.min(2800, 900 + largo * 16));
       return;
     }
+    if (quien === "agente") cuerpo.querySelectorAll(".tm-cliente:not(.leido)").forEach((m) => m.classList.add("leido"));
     quitarEscribiendo();
     poner(burbuja(linea));
     paso += 1;
-    const espera = linea[0] === "cliente" ? 900 : linea[0] === "agente" ? 700 : linea[0] === "cotizacion" ? 3200 : 1700;
+    const espera = quien === "agente" ? 900 : quien === "cotizacion" ? 3400 : quien === "sistema" ? 1200 : 1800;
     reloj = setTimeout(siguiente, espera);
   };
   const arrancar = () => { if (!reloj) siguiente(); };
