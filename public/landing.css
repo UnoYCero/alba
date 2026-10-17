@@ -443,48 +443,23 @@ html:not(.js) .panel-copy, .reduce .panel-copy, .window.apilado .panel-copy { tr
   .hero .tagline { display: none; }
 }
 
-/* Quienes nos han reconocido: una franja de nombres que desfila despacio bajo la portada */
-.reconocidos { position: relative; display: flex; align-items: center; gap: var(--s6); padding: var(--s6) 0 var(--s6) var(--gutter); overflow: hidden; }
+/* Quienes nos han reconocido: una franja quieta de nombres bajo la portada */
+.reconocidos { position: relative; display: flex; align-items: baseline; gap: var(--s3) var(--s6); padding: var(--s6) var(--gutter); flex-wrap: wrap; max-width: calc(var(--wrap) + var(--gutter) * 2); margin: 0 auto; }
 .reconocidos-etiqueta { flex: none; margin: 0; font-size: 14px; color: var(--faint); }
-.reconocidos-pista { position: relative; flex: 1; min-width: 0; overflow: hidden; }
-/* Las orillas se desvanecen con dos degradados quietos (más barato que una máscara sobre algo que se mueve) */
-.reconocidos-pista::before, .reconocidos-pista::after { content: ""; position: absolute; z-index: 1; top: 0; bottom: 0; width: 64px; pointer-events: none; }
-.reconocidos-pista::before { left: 0; background: linear-gradient(90deg, #03081a, rgba(3,8,26,0)); }
-.reconocidos-pista::after { right: 0; background: linear-gradient(270deg, #03081a, rgba(3,8,26,0)); }
-.reconocidos-lista { display: flex; width: max-content; animation: desfile 48s linear infinite; will-change: transform; }
-.reconocidos-pista:hover .reconocidos-lista { animation-play-state: paused; }
-.reconocidos ul { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
-.reconocidos li { display: flex; align-items: center; font-size: clamp(17px,1.5vw,21px); color: var(--dim); white-space: nowrap; }
-.reconocidos li::after { content: ""; width: 9px; height: 9px; margin: 0 var(--s6); background: var(--soft); opacity: .7; clip-path: polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%); }
-@keyframes desfile { to { transform: translateX(-50%); } }
+.reconocidos-pista { flex: 1; min-width: 0; }
+.reconocidos ul { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s5); margin: 0; padding: 0; list-style: none; }
+.reconocidos ul[aria-hidden] { display: none; }
+.reconocidos li { font-size: clamp(16px,1.35vw,19px); color: var(--dim); white-space: nowrap; }
 @media (max-width: 760px) {
-  .reconocidos { flex-direction: column; align-items: flex-start; gap: var(--s3); padding: var(--s5) 0; }
-  .reconocidos-etiqueta { padding-left: var(--gutter); }
-  .reconocidos-pista { width: 100%; }
-  .reconocidos li { font-size: 16px; }
-}
-/* Con «menos movimiento» no desfila: los nombres se acomodan en renglones */
-@media (prefers-reduced-motion: reduce) {
-  .reconocidos-lista { width: auto; animation: none; }
-  .reconocidos-lista ul { flex-wrap: wrap; gap: var(--s2) var(--s5); padding: 0 var(--gutter) 0 0; }
-  .reconocidos li::after { display: none; }
-  .reconocidos-lista ul[aria-hidden] { display: none; }
-  .reconocidos-pista::before, .reconocidos-pista::after { display: none; }
-}
-@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
-  .reconocidos-lista ul { padding-left: var(--gutter); }
+  .reconocidos { flex-direction: column; gap: var(--s3); padding: var(--s5) var(--gutter); }
+  .reconocidos li { font-size: 15px; }
 }
 
-/* Cómo trabajamos: cuatro pasos que se encienden por turnos, sin texto corrido */
-.pasos { display: grid; grid-template-columns: repeat(2, max-content); gap: var(--s2) var(--s6); margin: var(--s5) 0 0; padding: 0; list-style: none; }
-.pasos li { display: inline-flex; align-items: center; gap: var(--s2); font-size: 14px; color: var(--paper); opacity: .68; animation: paso-texto 8s infinite; }
-.pasos li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--soft); opacity: .4; animation: paso-punto 8s infinite; }
-.pasos li:nth-child(2), .pasos li:nth-child(2)::before { animation-delay: 2s; }
-.pasos li:nth-child(3), .pasos li:nth-child(3)::before { animation-delay: 4s; }
-.pasos li:nth-child(4), .pasos li:nth-child(4)::before { animation-delay: 6s; }
-@keyframes paso-texto { 0%, 30% { opacity: 1; } 38%, 100% { opacity: .68; } }
-@keyframes paso-punto { 0%, 30% { opacity: 1; transform: scale(1.4); } 38%, 100% { opacity: .4; transform: none; } }
-@media (max-width: 760px) { .pasos { margin-top: var(--s3); gap: 4px var(--s4); } .pasos li { font-size: 13px; } }
+/* Cómo trabajamos: cuatro pasos en orden, unidos con flechas, quietos */
+.pasos { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s3); margin: var(--s5) 0 0; padding: 0; list-style: none; }
+.pasos li { display: inline-flex; align-items: center; gap: var(--s3); font-size: 14px; color: var(--paper); }
+.pasos li + li::before { content: "→"; color: var(--soft); }
+@media (max-width: 760px) { .pasos { margin-top: var(--s3); } .pasos li { font-size: 13px; } }
 
 /* Redes en el pie */
 .footer-redes { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--dim); }

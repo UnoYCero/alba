@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="UNBLIND: lentes y una app de visión artificial para personas con discapacidad visual. Leen, describen y ubican lo que tienes enfrente. En desarrollo.">
+  <meta name="description" content="UNBLIND: lentes con inteligencia artificial para personas con discapacidad visual. Leen, describen, reconocen y te orientan con audio 3D. En desarrollo.">
   <meta name="theme-color" content="#0b2142">
-  <title>UNBLIND — Tecnología para ver por quien no ve</title>
+  <title>UNBLIND — Vemos con el corazón</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -13,8 +13,8 @@
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Alba Vision">
   <meta property="og:url" content="https://albavision.tech/Unblind/">
-  <meta property="og:title" content="UNBLIND — Tecnología para ver por quien no ve">
-  <meta property="og:description" content="Lentes y una app de visión artificial para personas con discapacidad visual. En desarrollo.">
+  <meta property="og:title" content="UNBLIND — Vemos con el corazón">
+  <meta property="og:description" content="Lentes con inteligencia artificial para personas con discapacidad visual, que te orientan con audio 3D. En desarrollo.">
   <meta property="og:image" content="https://albavision.tech/assets/og-alba-vision.jpg">
   <link rel="preload" href="../assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../landing.css">
@@ -22,8 +22,9 @@
   <link rel="stylesheet" href="../subpagina.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="module" src="../subpagina.js"></script>
+  <script type="module" src="../unblind.js"></script>
 </head>
-<body class="pagina-alba">
+<body class="pagina-alba pagina-unblind">
   <a class="skip" href="#contenido">Saltar al contenido</a>
   <div class="cielo-alba" aria-hidden="true"></div>
 
@@ -34,16 +35,16 @@
         <img class="logo-dia" src="../assets/alba-vision-lockup-on-light.webp" alt="" width="504" height="69">
       </a>
       <nav class="nav-links" aria-label="Secciones de UNBLIND">
+        <a href="#escuchalo">Escúchalo</a>
         <a href="#que-hace">Lo que hace</a>
-        <a href="#como-se-usa">Cómo se usa</a>
         <a href="#historia">Historia</a>
       </nav>
       <a class="btn btn-solid btn-small nav-cta" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20UNBLIND." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp sobre UNBLIND">Escríbenos</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
     </div>
     <div class="nav-panel" id="menu-movil" data-nav-panel>
+      <a href="#escuchalo">Escúchalo</a>
       <a href="#que-hace">Lo que hace</a>
-      <a href="#como-se-usa">Cómo se usa</a>
       <a href="#historia">Historia</a>
       <a href="#contacto">Escríbenos</a>
       <a href="../">Volver a Alba Vision</a>
@@ -51,70 +52,136 @@
   </header>
 
   <main id="contenido">
-    <section class="sub-hero tema-alba">
-      <div class="wrap sub-hero-grid">
-        <div>
-          <h1 class="sub-title reveal"><span translate="no">UNBLIND.</span> Tecnología para ver <em>por quien no ve.</em></h1>
-          <p class="sub-lead reveal">Lentes y una app para personas con discapacidad visual. Leen, describen y ubican lo que tienes enfrente, y se usan con la voz.</p>
-          <span class="status reveal"><i aria-hidden="true"></i>En desarrollo · todavía no está a la venta</span>
-          <div class="sub-cta reveal">
-            <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20UNBLIND." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp sobre UNBLIND">Escríbenos</a>
-            <a class="btn-text" href="#que-hace">Lo que hace</a>
+    <!-- Portada: la foto real, de orilla a orilla -->
+    <section class="ub-portada tema-alba">
+      <figure class="ub-portada-foto">
+        <img src="../assets/unblind-en-la-calle.webp" alt="Max y Alan, cofundadores de Alba, prueban UNBLIND en la calle con Omar Ledezma, advisor de UNBLIND y persona con discapacidad visual, y su perro guía" width="640" height="800" fetchpriority="high">
+        <figcaption>Max y Alan, cofundadores de Alba, probando UNBLIND en la calle con Omar Ledezma, advisor de UNBLIND y persona con discapacidad visual</figcaption>
+      </figure>
+      <div class="ub-portada-texto">
+        <h1 class="sub-title reveal"><span translate="no">UNBLIND.</span> Vemos <em>con el corazón.</em></h1>
+        <p class="sub-lead reveal">Lentes con inteligencia artificial para personas con discapacidad visual. Leen, describen, reconocen y te orientan con audio 3D, y se usan con la voz.</p>
+        <span class="status reveal"><i aria-hidden="true"></i>En desarrollo · todavía no está a la venta</span>
+        <div class="sub-cta reveal">
+          <a class="btn btn-solid" href="#escuchalo">Escúchalo con audífonos</a>
+          <a class="btn-text" href="#que-hace">Lo que hace</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cita tema-alba" aria-label="La idea detrás de UNBLIND">
+      <div class="wrap">
+        <blockquote class="reveal">No se trata de ver con los ojos. Se trata de <em>percibir el mundo de otra manera.</em></blockquote>
+      </div>
+    </section>
+
+    <!-- El audio 3D: la demo -->
+    <section class="sub-seccion tema-alba ub-audio" id="escuchalo">
+      <div class="wrap">
+        <div class="dos">
+          <h2 class="reveal">Escucha <em>dónde están las cosas.</em></h2>
+          <div>
+            <p class="sub-intro reveal">El audio 3D de UNBLIND hace que cada persona y cada objeto suenen desde donde están: a tu izquierda, al frente o atrás. Y con el LiDAR, el mismo sonido te avisa dónde hay obstáculos.</p>
+            <p class="sub-intro reveal">Ponte audífonos y escucha cómo suena.</p>
           </div>
         </div>
-        <figure class="sub-visual reveal">
-          <img class="foto-retrato" src="../assets/unblind-en-la-calle.webp" alt="Max y Alan, cofundadores de Alba, prueban UNBLIND en la calle con Omar Ledezma, advisor de UNBLIND y persona con discapacidad visual, y su perro guía" width="640" height="800" fetchpriority="high">
-          <figcaption>Max y Alan, cofundadores de Alba, probando UNBLIND en la calle con Omar Ledezma, advisor de UNBLIND y persona con discapacidad visual</figcaption>
+        <figure class="ub-demo reveal">
+          <img src="../assets/unblind/audio-cuarto.webp" alt="" width="1396" height="616" loading="lazy" decoding="async">
+          <div class="ub-demo-control">
+            <button type="button" class="ub-demo-boton" id="botonAudio" aria-pressed="false" aria-describedby="notaAudio"><i aria-hidden="true"></i><span>Escuchar la demo</span></button>
+            <span class="ub-demo-avance" aria-hidden="true"><i id="avanceAudio"></i></span>
+          </div>
+          <audio id="audioDemo" preload="none" src="../assets/unblind/audio-3d-demo.mp3"></audio>
+          <figcaption id="notaAudio">Demo de audio 3D de UNBLIND · 15 segundos · se escucha mejor con audífonos</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="cita tema-alba" aria-label="Por qué existe UNBLIND">
-      <div class="wrap">
-        <blockquote class="reveal">La tecnología no debería reemplazar la percepción. Debería <em>ampliar la autonomía.</em></blockquote>
-      </div>
-    </section>
-
+    <!-- Lo que hace: la misma foto, vista como la vería UNBLIND -->
     <section class="sub-seccion tema-alba" id="que-hace">
-      <div class="wrap">
-        <h2 class="reveal">Lee, describe <em>y te ubica.</em></h2>
-        <p class="sub-intro reveal">Le apuntas con la cámara y le preguntas con la voz. Esto es lo que estamos construyendo:</p>
-        <ul class="rasgos">
-          <li class="reveal"><h3>Lee textos</h3><p>Letreros, etiquetas y documentos, en voz alta.</p></li>
-          <li class="reveal"><h3>Describe la escena</h3><p>Te cuenta qué hay frente a ti y responde lo que le preguntes.</p></li>
-          <li class="reveal"><h3>Reconoce productos y códigos</h3><p>Para saber qué tienes en la mano antes de usarlo.</p></li>
-          <li class="reveal"><h3>Te guía hasta tus cosas</h3><p>Recuerda dónde guardaste un objeto y te lleva hasta él con sonido.</p></li>
-          <li class="reveal"><h3>Reconoce a quien tú registres</h3><p>Te dice quién llegó, sólo entre las personas que tú diste de alta.</p></li>
-        </ul>
-        <p class="nota reveal">UNBLIND está en desarrollo: todavía no está a la venta ni en las tiendas de aplicaciones. No sustituye al bastón ni al perro guía, porque no detecta obstáculos.</p>
-      </div>
-    </section>
-
-    <section class="sub-seccion tema-alba" id="como-se-usa">
-      <div class="wrap">
-        <h2 class="reveal">En el teléfono <em>o en unos lentes.</em></h2>
-        <p class="sub-intro reveal">Funciona con la cámara del teléfono o con unos lentes con cámara, para tener las manos libres. Todo se maneja con la voz y las respuestas llegan por audio.</p>
-        <ul class="rasgos">
-          <li class="reveal"><h3>Apunta</h3><p>Con el teléfono en la mano o con los lentes puestos, mira hacia lo que quieres conocer.</p></li>
-          <li class="reveal"><h3>Pregunta</h3><p>«¿Qué dice aquí?», «¿Qué hay enfrente?», «¿Dónde dejé mis llaves?».</p></li>
-          <li class="reveal"><h3>Escucha</h3><p>La respuesta llega por audio, breve y clara, sin pantallas que mirar.</p></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="sub-seccion tema-alba" id="historia">
-      <div class="wrap dos">
+      <div class="wrap ub-hace">
         <div>
-          <h2 class="reveal">Aquí empezó <em>Alba.</em></h2>
-          <p class="sub-intro reveal">En 2021 nos preguntamos cómo podría una persona ciega saber qué tiene enfrente. De esa pregunta salió UNBLIND, y de UNBLIND aprendimos a ver con máquinas: hoy esa visión mide el trabajo de una cocina y orienta satélites.</p>
-          <p class="sub-intro reveal">Desde entonces, UNBLIND ha competido en concursos nacionales e internacionales, y sus premios respaldan su impacto tecnológico y social.</p>
+          <h2 class="reveal">Lo que hace, <em>visto como UNBLIND.</em></h2>
+          <p class="sub-intro reveal">La misma calle, contada de cinco maneras. Toca una o deja que cambie.</p>
+          <ul class="ub-funciones reveal">
+            <li><button type="button" data-funcion="0"><b>Describe el entorno</b><span>Te cuenta qué hay frente a ti y responde lo que le preguntes.</span></button></li>
+            <li><button type="button" data-funcion="1"><b>Te orienta con audio 3D</b><span>Cada cosa suena desde donde está, para que sepas hacia dónde ir.</span></button></li>
+            <li><button type="button" data-funcion="2"><b>Te avisa de los obstáculos</b><span>El LiDAR mide la distancia y el sonido te dice dónde hay algo en tu camino.</span></button></li>
+            <li><button type="button" data-funcion="3"><b>Reconoce rostros</b><span>Te dice quién llegó, entre las personas que tú registraste.</span></button></li>
+            <li><button type="button" data-funcion="4"><b>Reconoce colores</b><span>Para elegir tu ropa o distinguir lo que tienes en la mano.</span></button></li>
+          </ul>
+          <p class="nota reveal">También lee textos en voz alta y reconoce productos y códigos. Mientras está en desarrollo, no sustituye al bastón ni al perro guía.</p>
         </div>
-        <figure class="sub-figura reveal">
-          <img class="foto-retrato" src="../assets/hitos/2025-colombia.webp" alt="Stand de UNBLIND con los prototipos de lentes, en Qualinn 2025 en Cali, Colombia" width="600" height="750" loading="lazy" decoding="async">
-          <figcaption>Nuestro stand en Qualinn 2025, en Cali, Colombia</figcaption>
+        <figure class="ub-escena reveal" aria-describedby="notaEscena">
+          <div class="ub-escena-foto">
+            <img src="../assets/unblind-en-la-calle.webp" alt="" width="640" height="800" loading="lazy" decoding="async">
+            <div class="capa" data-capa="0">
+              <span class="caja" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
+              <span class="caja" style="--x:.34;--y:.15;--w:.36;--h:.82"></span>
+              <span class="caja" style="--x:.75;--y:.13;--w:.25;--h:.84"></span>
+              <span class="caja" style="--x:.57;--y:.67;--w:.24;--h:.32"></span>
+              <p class="dicho">«Calle peatonal, de día. Tres personas caminan hacia ti; al centro, un perro guía.»</p>
+            </div>
+            <div class="capa" data-capa="1">
+              <span class="onda" style="--x:.18;--y:.42"></span><span class="etiqueta" style="--x:.06;--y:.36">Izquierda</span>
+              <span class="onda" style="--x:.52;--y:.4"></span><span class="etiqueta" style="--x:.44;--y:.34">Al frente</span>
+              <span class="onda" style="--x:.88;--y:.42"></span><span class="etiqueta" style="--x:.76;--y:.36">Derecha</span>
+            </div>
+            <div class="capa" data-capa="2">
+              <span class="caja caja-aviso" style="--x:.57;--y:.67;--w:.24;--h:.32"></span><span class="etiqueta etiqueta-aviso" style="--x:.5;--y:.62">Perro guía · muy cerca</span>
+              <span class="suelo" aria-hidden="true"></span>
+            </div>
+            <div class="capa" data-capa="3">
+              <span class="caja caja-rostro" style="--x:.12;--y:.18;--w:.17;--h:.13"></span>
+              <span class="caja caja-rostro" style="--x:.45;--y:.16;--w:.13;--h:.14"></span>
+              <span class="caja caja-rostro" style="--x:.81;--y:.14;--w:.14;--h:.13"></span>
+              <span class="etiqueta" style="--x:.4;--y:.11">Rostros registrados</span>
+            </div>
+            <div class="capa" data-capa="4">
+              <span class="etiqueta" style="--x:.42;--y:.44">Chaleco azul marino</span>
+              <span class="etiqueta" style="--x:.04;--y:.7">Pantalón gris</span>
+              <span class="etiqueta" style="--x:.62;--y:.84">Pelaje dorado</span>
+            </div>
+          </div>
+          <figcaption id="notaEscena">Ilustración de cómo describe UNBLIND una escena · foto real</figcaption>
         </figure>
       </div>
+    </section>
+
+    <!-- El sistema por dentro -->
+    <section class="sub-seccion ub-sistema tema-dia">
       <div class="wrap">
+        <h2 class="reveal">Ligeros, accesibles <em>y con IA por dentro.</em></h2>
+        <figure class="ub-render reveal">
+          <div class="ub-render-img">
+            <img src="../assets/unblind/sistema.webp" alt="Render de los lentes UNBLIND desarmados en sus piezas: armazón, cámara, LiDAR, procesador, conducción ósea y baterías" width="920" height="490" loading="lazy" decoding="async">
+            <span class="pieza" style="--x:.57;--y:.08">Procesador CPU + TPU</span>
+            <span class="pieza" style="--x:.79;--y:.18">Cámara</span>
+            <span class="pieza" style="--x:.82;--y:.33">LiDAR</span>
+            <span class="pieza" style="--x:.05;--y:.76">Baterías</span>
+            <span class="pieza" style="--x:.22;--y:.85">Conducción ósea</span>
+          </div>
+          <figcaption>Render ilustrativo del sistema</figcaption>
+        </figure>
+        <ul class="rasgos cuatro ub-piezas">
+          <li class="reveal"><h3>Cámara y LiDAR</h3><p>La cámara ve lo que tienes enfrente y el LiDAR mide a qué distancia está cada cosa.</p></li>
+          <li class="reveal"><h3>IA en los lentes</h3><p>Un procesador con CPU y TPU para reconocer y describir sin depender siempre de internet.</p></li>
+          <li class="reveal"><h3>Conducción ósea</h3><p>El sonido llega por los huesos de la cabeza y deja libres los oídos para escuchar la calle.</p></li>
+          <li class="reveal"><h3>Diseñados con la comunidad</h3><p>Ligeros, accesibles y probados con personas con discapacidad visual.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Del prototipo a la calle -->
+    <section class="sub-seccion tema-alba" id="historia">
+      <div class="wrap">
+        <h2 class="reveal">Del primer prototipo <em>a la calle.</em></h2>
+        <p class="sub-intro reveal">En 2021 nos preguntamos cómo podría una persona ciega saber qué tiene enfrente. De esa pregunta salió UNBLIND, y de UNBLIND nació Alba: aprendimos a ver con máquinas.</p>
+        <ol class="ub-camino">
+          <li class="reveal"><figure><img src="../assets/hitos/2021-samsung.webp" alt="El equipo junto al letrero de UNBLIND y su primer prototipo, en Solve for Tomorrow de Samsung" width="624" height="468" loading="lazy" decoding="async"></figure><span class="premio-año">2021</span><p>El primer prototipo, en Solve for Tomorrow de Samsung.</p></li>
+          <li class="reveal"><figure><img src="../assets/hitos/2024-eawards.webp" alt="El equipo con el cheque de UNBLIND como ganador de los eAwards México" width="800" height="600" loading="lazy" decoding="async"></figure><span class="premio-año">2024</span><p>Ganadores nacionales de los eAwards México, con pase a la final global.</p></li>
+          <li class="reveal"><figure><img src="../assets/hitos/2025-colombia.webp" alt="Stand de UNBLIND con los prototipos de lentes, en Qualinn 2025 en Cali, Colombia" width="600" height="750" loading="lazy" decoding="async"></figure><span class="premio-año">2025</span><p>Con stand propio en Qualinn, en Cali, Colombia.</p></li>
+        </ol>
         <ul class="premios">
           <li class="reveal"><span class="premio-año">2026</span><div><h3>Premio Estatal de la Juventud · Estado de México</h3><p>Para Alan Soubran, CEO de Alba, por una trayectoria en la que UNBLIND ha sido central. Modalidad «Innovación que transforma».</p></div></li>
           <li class="reveal"><span class="premio-año">2026</span><div><h3>Phoenix Fire · Centro Ricardo B. Salinas Pliego</h3><p>Segundo lugar.</p></div></li>
@@ -124,6 +191,18 @@
           <li class="reveal"><span class="premio-año">2021</span><div><h3>Solve for Tomorrow · Samsung</h3><p>Participación destacada con el primer prototipo.</p></div></li>
         </ul>
         <p class="reveal"><a class="btn-text" href="../#quienes-somos">Todos los hitos de Alba</a></p>
+      </div>
+    </section>
+
+    <!-- Lo que dicen -->
+    <section class="sub-seccion tema-alba ub-voces" aria-label="Lo que dicen quienes lo han probado">
+      <div class="wrap">
+        <ul class="voces">
+          <li class="reveal"><blockquote>«Son muy fáciles de usar.»</blockquote><p>Hugo Carrasco</p></li>
+          <li class="reveal"><blockquote>«Este dispositivo ayudará a igualar oportunidades.»</blockquote><p>Alicia Flores</p></li>
+          <li class="reveal"><blockquote>«Un verdadero avance para la comunidad.»</blockquote><p>Omar Ledezma, advisor de UNBLIND</p></li>
+        </ul>
+        <p class="ub-alianzas reveal">Trabajamos con <span>Biblioteca Vasconcelos</span>, <span>Alcaldía Álvaro Obregón</span>, <span>Ilumina, Ceguera y Baja Visión</span> e <span>Incluye</span>.</p>
       </div>
     </section>
 

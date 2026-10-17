@@ -41,11 +41,17 @@ visión artificial empezó acompañando a quien no ve.
 
 ## Capabilities and Constraints
 
-- **UNBLIND** (protagonista): lentes y app para personas con discapacidad
-  visual. Lee textos, describe la escena, reconoce productos y códigos, guía con
-  sonido hasta objetos guardados y reconoce a las personas que el usuario
-  registra. **En desarrollo, sin terminar.** No decir que evita obstáculos ni
-  que está en la tienda de apps.
+- **UNBLIND** (protagonista): lentes con IA para personas con discapacidad
+  visual («Vemos con el corazón»). Leen textos, describen el entorno, reconocen
+  productos, códigos, colores y los rostros que el usuario registra, y orientan
+  con **audio 3D** (cada cosa suena desde donde está). Con el **LiDAR**, el mismo
+  sonido avisa dónde hay obstáculos (confirmado por Max el 17-oct). Piezas:
+  cámara, LiDAR, CPU + TPU, conducción ósea, baterías. **En desarrollo, sin
+  terminar, sin fecha de lanzamiento**; no está en tiendas de apps. Mientras está
+  en desarrollo se dice que no sustituye al bastón ni al perro guía. Testimonios
+  autorizados: Hugo Carrasco, Alicia Flores, Omar Ledezma (advisor). Alianzas:
+  Biblioteca Vasconcelos, Alcaldía Álvaro Obregón, Ilumina, Incluye. Contacto
+  por el WhatsApp de Alba (el +52 55 7620 5613 de la presentación es de Alan).
 - **Vision Ops** (protagonista): del vídeo de un turno a tiempos, esperas y uso
   de cada estación, con el fotograma que respalda cada número. **En producción**
   (`ops.albavision.tech`). Sin reconocimiento facial: mide estaciones, no
