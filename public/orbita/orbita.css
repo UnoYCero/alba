@@ -1,0 +1,110 @@
+/* Órbita: la portada y sus páginas legales con el mundo de Alba Vision.
+   Se apoya en landing.css, amanecer.css y subpagina.css; aquí sólo va lo propio. */
+
+/* El menú lleva un botón más largo que el de las otras subpáginas: que no se parta */
+.nav-links a, .nav-cta { white-space: nowrap; }
+
+/* Portada: texto y bandeja de conversaciones */
+.or-portada { position: relative; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--nav-h) + var(--s8)) 0 var(--s9); overflow: hidden; }
+.or-portada-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.9fr); gap: var(--s8); align-items: center; }
+.or-portada .sub-title { max-width: 12ch; }
+.or-marca { margin: 0 0 var(--s5); font-size: 14px; letter-spacing: .04em; color: var(--soft); }
+.or-piloto { margin-top: var(--s6); }
+
+.or-bandeja { margin: 0; }
+.or-bandeja figcaption, .or-telefono figcaption { margin-top: var(--s3); font-size: 13px; font-style: italic; color: var(--faint); }
+.bandeja { padding: var(--s5); border-radius: 24px; background: #fff; box-shadow: 0 30px 70px -36px rgba(11,31,59,.45), 0 0 0 1px rgba(11,31,59,.06); }
+.bandeja-cabeza { display: flex; align-items: center; justify-content: space-between; margin: 0 0 var(--s4); font-size: 15px; color: #0b1f3b; }
+.bandeja ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.bandeja li { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: var(--s4); padding: var(--s3) var(--s2); border-radius: 14px; opacity: 0; transform: translateY(10px); animation: fila .7s var(--ease) calc(.5s + var(--i) * .18s) forwards; }
+.bandeja li:first-child { background: rgba(37,99,235,.07); }
+@keyframes fila { to { opacity: 1; transform: none; } }
+.avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #e3eaf7; color: #0b1f3b; font-weight: 400; font-size: 13px; letter-spacing: .02em; flex: none; }
+.avatar-alba { background: #e3eaf7; }
+.avatar-alba img { width: 22px; height: 22px; }
+.quien { display: grid; gap: 1px; min-width: 0; }
+.quien b { font-weight: 400; font-size: 15px; color: #0b1f3b; }
+.quien span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 13.5px; color: rgba(11,31,59,.66); }
+.estado { padding: 4px 10px; border-radius: 999px; background: #eef2f8; color: rgba(11,31,59,.75); font-size: 12px; white-space: nowrap; }
+.estado-lista { background: #2563eb; color: #fff; animation: latido 2.6s var(--ease) 1.6s infinite; }
+.estado-equipo { background: #0b1f3b; color: #f4f6fa; }
+@keyframes latido { 0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,.45); } 60% { box-shadow: 0 0 0 8px rgba(37,99,235,0); } }
+.pill { padding: 3px 10px; border-radius: 999px; background: rgba(37,99,235,.1); color: #2563eb; font-size: 12px; }
+
+/* Cómo funciona: la conversación que se arma al bajar */
+.or-tiempos { height: 340svh; }
+.or-telefono { margin: 0; justify-self: center; width: min(100%, 420px); }
+.chat { display: grid; grid-template-rows: auto minmax(0,1fr); height: min(560px, 64svh); border-radius: 30px; background: #fff; overflow: hidden; box-shadow: 0 30px 70px -36px rgba(11,31,59,.45), 0 0 0 1px rgba(11,31,59,.06); }
+.chat-cabeza { display: flex; align-items: center; gap: var(--s3); margin: 0; padding: var(--s4) var(--s5); border-bottom: 1px solid rgba(11,31,59,.08); }
+.chat-cabeza > span:nth-child(2) { display: grid; flex: 1; gap: 1px; }
+.chat-cabeza b { font-weight: 400; font-size: 15px; color: #0b1f3b; }
+.chat-cabeza > span:nth-child(2) span { font-size: 12.5px; color: rgba(11,31,59,.6); }
+.chat-cuerpo { display: flex; flex-direction: column; justify-content: flex-end; gap: var(--s3); padding: var(--s5); background: #f4f6fa; overflow: hidden; }
+.msg { max-width: 82%; margin: 0; padding: 10px 14px; border-radius: 18px; font-size: 14.5px; line-height: 1.45; }
+.msg-cliente { align-self: flex-end; background: #0b1f3b; color: #f4f6fa; border-bottom-right-radius: 6px; }
+.msg-orbita { align-self: flex-start; background: #fff; color: #0b1f3b; border-bottom-left-radius: 6px; box-shadow: 0 0 0 1px rgba(11,31,59,.07); }
+.msg-sistema { align-self: center; max-width: 100%; padding: 6px 12px; background: rgba(37,99,235,.1); color: #2563eb; font-size: 12.5px; text-align: center; }
+.msg-cotizacion p { margin: 0; }
+.msg-cotizacion dl { display: grid; grid-template-columns: 1fr auto; gap: 4px var(--s5); margin: var(--s2) 0; padding: var(--s3) 0; border-block: 1px solid rgba(11,31,59,.1); font-size: 13.5px; }
+.msg-cotizacion dt { color: rgba(11,31,59,.7); }
+.msg-cotizacion dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.msg-cotizacion dt:nth-last-of-type(1), .msg-cotizacion dd:last-child { color: #0b1f3b; }
+.js .or-tiempos:not(.corrida) .msg { display: none; }
+.js .or-tiempos:not(.corrida) .msg.visto { display: block; animation: llega .5s var(--ease) both; }
+.js .or-tiempos:not(.corrida) .msg-cotizacion.visto { display: block; }
+.or-tiempos.corrida .chat { height: auto; }
+@keyframes llega { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+
+/* Tus datos */
+.or-datos { align-items: start; }
+.or-datos .sub-cta { margin-top: var(--s5); }
+
+/* Páginas legales: el texto de Alan tal cual, con la letra de Alba */
+.legal { padding: calc(var(--nav-h) + var(--s8)) 0 var(--s10); }
+.legal .wrap { max-width: 820px; }
+.legal .eyebrow { margin: 0 0 var(--s4); font-size: 13px; letter-spacing: .08em; color: var(--soft); }
+.legal h1 { font-size: clamp(38px,5vw,60px); line-height: 1.05; letter-spacing: -.03em; }
+.legal h2 { margin: var(--s8) 0 var(--s3); font-size: clamp(22px,2.2vw,28px); letter-spacing: -.015em; }
+.legal p, .legal li, .legal dd { max-width: 68ch; font-size: 17px; line-height: 1.7; color: var(--dim); }
+.legal p { margin: var(--s3) 0 0; }
+.legal .meta { font-size: 14px; color: var(--faint); }
+.legal strong { font-weight: 400; color: var(--paper); }
+.legal a { color: var(--soft); text-decoration: underline; text-underline-offset: 4px; }
+.legal ol, .legal ul { margin: var(--s4) 0 0; padding-left: 24px; }
+.legal li { margin-bottom: var(--s2); }
+.legal dl { margin: var(--s4) 0 0; }
+.legal dt { margin-top: var(--s4); font-size: 14px; letter-spacing: .02em; color: var(--faint); }
+.legal dd { margin: 2px 0 0; }
+.legal .note { margin: var(--s6) 0; padding: var(--s4) var(--s5); border-left: 3px solid #2563eb; border-radius: 0 12px 12px 0; background: rgba(37,99,235,.07); }
+.legal .note p { margin: 0; }
+
+@media (max-width: 1080px) {
+  .or-portada-grid { grid-template-columns: 1fr; gap: var(--s7); }
+  .or-portada { min-height: 0; }
+}
+@media (min-width: 761px) and (max-width: 1080px) {
+  .or-tiempos .lb-tiempos-grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--s6); }
+  .or-tiempos .lb-pasos b { font-size: 24px; }
+  .chat { height: min(520px, 66svh); }
+}
+@media (max-width: 760px) {
+  .or-portada { padding-top: calc(var(--nav-h) + var(--s6)); }
+  .bandeja { padding: var(--s4) var(--s3); border-radius: 20px; }
+  .bandeja li { gap: var(--s3); padding: var(--s3) var(--s2); }
+  .avatar { width: 34px; height: 34px; font-size: 12px; }
+  .estado { font-size: 11px; padding: 3px 8px; }
+  .or-telefono { width: 100%; }
+  .chat { height: min(360px, 40svh); border-radius: 24px; }
+  .or-tiempos .lb-tiempos-texto h2 { font-size: clamp(26px,7.4vw,32px); }
+  .or-tiempos:not(.corrida) .lb-pasos button:not([aria-current="true"]) span { display: none; }
+  .or-tiempos .lb-pasos b { font-size: 19px; }
+  .or-tiempos .lb-tiempos-grid { gap: var(--s4); }
+  .or-telefono figcaption { margin-top: var(--s2); font-size: 12px; }
+  .chat-cuerpo { padding: var(--s4); gap: var(--s2); }
+  .msg { font-size: 13.5px; padding: 8px 12px; }
+  .msg-cotizacion dl { font-size: 12.5px; }
+  .legal p, .legal li, .legal dd { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bandeja li { opacity: 1; transform: none; }
+}

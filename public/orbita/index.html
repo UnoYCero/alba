@@ -1,9 +1,202 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Órbita · Alba Vision</title><meta name="description" content="Órbita es una app de Alba Vision para organizar conversaciones, consultar catálogos y preparar solicitudes de pedidos con revisión humana."><link rel="stylesheet" href="site.css"><link rel="icon" href="icon.png"><link rel="canonical" href="https://albavision.tech/orbita/index.html"></head><body>
-<header><a class="brand" href="index.html"><img src="icon.png" alt="" width="48" height="48">órbita.</a><nav aria-label="Navegación"><a href="/">Alba Vision</a><a href="privacy.html">Privacidad</a><a href="data-deletion.html">Eliminar datos</a></nav></header>
-<main><p class="eyebrow">UNA APP DE ALBA VISION</p><h1>Conversaciones y pedidos,<br>en un mismo lugar.</h1><p class="intro">Órbita ayuda a los negocios a organizar su atención por WhatsApp y preparar solicitudes de pedidos para que su equipo las revise.</p>
-<h2>Qué hace Órbita</h2><ul><li>Organiza conversaciones y permite que una persona revise y atienda al cliente.</li><li>Consulta el catálogo y los precios configurados por el negocio.</li><li>Prepara cotizaciones y registra solicitudes cuando el cliente confirma explícitamente.</li><li>Conserva referencias para consultar el estado y evitar solicitudes duplicadas.</li></ul>
-<div class="note"><p>La integración de pedidos con Sankalpa está en pruebas. Una solicitud registrada requiere revisión humana; no confirma por sí sola un pago, una entrega o un pedido en cocina.</p></div>
-<h2>WhatsApp y los datos del negocio</h2><p>La conexión utiliza las interfaces oficiales de WhatsApp Business Platform cuando el negocio autoriza y completa su alta con Meta. El equipo conserva la responsabilidad de aprobar los pedidos y puede coordinar la atención humana con Órbita.</p><p>El número de Alba Vision que se conectará para probar la integración es <strong>+52 56 1690 8570</strong>; su alta todavía está pendiente de los permisos de Meta. El ensayo actual funciona con una cuenta de prueba proporcionada por Meta y un destinatario autorizado. Sankalpa es el cliente del piloto; su número se incorporará después de validar esa prueba.</p>
-<h2>Contacto</h2><p>Para conocer el servicio o solicitar atención, escribe a <a href="mailto:hola@albavision.mx">hola@albavision.mx</a>.</p><a class="cta" href="privacy.html">Consultar el aviso de privacidad</a></main>
-<footer><p>Órbita · Alba Vision</p><a href="privacy.html">Aviso de privacidad</a><a href="data-deletion.html">Eliminación de datos</a></footer></body></html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Órbita · Alba Vision</title>
+  <meta name="description" content="Órbita es una app de Alba Vision para organizar conversaciones, consultar catálogos y preparar solicitudes de pedidos con revisión humana.">
+  <meta name="theme-color" content="#f4f6fa">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="canonical" href="https://albavision.tech/orbita/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="Alba Vision">
+  <meta property="og:url" content="https://albavision.tech/orbita/index.html">
+  <meta property="og:title" content="Órbita · IA aplicada a la atención por WhatsApp">
+  <meta property="og:description" content="Contesta a tus clientes, consulta tu menú y tus precios, arma la cotización y deja la solicitud lista para que tu equipo la revise.">
+  <meta property="og:image" content="https://albavision.tech/assets/og-orbita.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Órbita, de Alba Vision: atención por WhatsApp con IA">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../landing.css">
+  <link rel="stylesheet" href="../amanecer.css">
+  <link rel="stylesheet" href="../subpagina.css">
+  <link rel="stylesheet" href="orbita.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script type="module" src="../subpagina.js"></script>
+  <script type="module" src="orbita.js"></script>
+</head>
+<body class="pagina-dia">
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="cielo-alba" aria-hidden="true"></div>
+
+  <header class="nav claro" data-nav>
+    <div class="nav-pill">
+      <a class="nav-brand" href="../" aria-label="Alba Vision, volver a la portada">
+        <img class="logo-noche" src="../assets/alba-vision-lockup-on-dark.webp" alt="" width="504" height="69">
+        <img class="logo-dia" src="../assets/alba-vision-lockup-on-light.webp" alt="Alba Vision" width="504" height="69">
+      </a>
+      <nav class="nav-links" aria-label="Secciones de Órbita">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#que-hace">Qué hace</a>
+        <a href="#tus-datos">Tus datos</a>
+      </nav>
+      <a class="btn btn-solid nav-cta" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20%C3%93rbita%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="Pregunta por Órbita por WhatsApp">Pregunta por Órbita</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
+    </div>
+    <div class="nav-panel" id="menu-movil" data-nav-panel>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#que-hace">Qué hace</a>
+      <a href="#tus-datos">Tus datos</a>
+      <a href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20%C3%93rbita%20para%20mi%20negocio." target="_blank" rel="noopener">Pregunta por Órbita</a>
+      <a href="../">Volver a Alba Vision</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- Portada: la bandeja de conversaciones -->
+    <section class="or-portada tema-dia">
+      <div class="wrap or-portada-grid">
+        <div class="or-portada-texto">
+          <p class="or-marca reveal"><span translate="no">Órbita</span> · IA aplicada de <span translate="no">Alba Vision</span></p>
+          <h1 class="sub-title reveal">Contesta por WhatsApp. <em>Tu equipo decide.</em></h1>
+          <p class="sub-lead reveal">Órbita contesta a tus clientes, consulta tu menú y tus precios, arma la cotización y, cuando el cliente confirma, deja la solicitud lista para que tu equipo la revise.</p>
+          <div class="sub-cta reveal">
+            <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20%C3%93rbita%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="Pregunta por Órbita por WhatsApp">Pregunta por Órbita</a>
+            <a class="btn-text" href="#como-funciona">Cómo funciona</a>
+          </div>
+          <p class="status or-piloto reveal"><i aria-hidden="true"></i>Hoy en piloto con Sankalpa</p>
+        </div>
+        <figure class="or-bandeja reveal" aria-label="Ilustración de una bandeja de conversaciones de ejemplo">
+          <div class="bandeja">
+            <p class="bandeja-cabeza"><span>Conversaciones</span><span class="pill">Ejemplo</span></p>
+            <ul>
+              <li style="--i:0"><b class="avatar">LR</b><span class="quien"><b>Lucía R.</b><span>Sí, confirmo</span></span><span class="estado estado-lista">Lista para revisar</span></li>
+              <li style="--i:1"><b class="avatar">AM</b><span class="quien"><b>Andrés M.</b><span>Dos menús del día, para recoger</span></span><span class="estado">Cotización enviada</span></li>
+              <li style="--i:2"><b class="avatar">PO</b><span class="quien"><b>Pedido oficina</b><span>¿Cuánto cuesta el menú del día?</span></span><span class="estado">Respondiendo</span></li>
+              <li style="--i:3"><b class="avatar">PG</b><span class="quien"><b>Paola G.</b><span>Gracias, paso a las 2</span></span><span class="estado estado-equipo">Con tu equipo</span></li>
+            </ul>
+          </div>
+          <figcaption>Ilustración con conversaciones de ejemplo; no es la pantalla real del panel</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Cómo funciona: la conversación se arma al bajar -->
+    <section class="lb-tiempos or-tiempos tema-dia" id="como-funciona" data-pasos-chat>
+      <div class="lb-tiempos-pin">
+        <div class="wrap lb-tiempos-grid">
+          <div class="lb-tiempos-texto">
+            <h2>Del primer mensaje <em>a la solicitud lista.</em></h2>
+            <ol class="lb-pasos">
+              <li><button type="button" data-paso="0" aria-current="true"><b>El cliente escribe</b><span>Pregunta por WhatsApp, como ya lo hace hoy.</span></button></li>
+              <li><button type="button" data-paso="1"><b>Órbita consulta tu menú</b><span>Responde con el catálogo y los precios que configuró tu negocio.</span></button></li>
+              <li><button type="button" data-paso="2"><b>Arma la cotización</b><span>Suma productos y cantidades, y pide que el cliente confirme.</span></button></li>
+              <li><button type="button" data-paso="3"><b>Tu equipo revisa</b><span>Cuando el cliente confirma, la solicitud queda lista para revisión. Nada se confirma solo.</span></button></li>
+            </ol>
+          </div>
+          <figure class="or-telefono" aria-label="Conversación de ejemplo">
+            <div class="chat">
+              <p class="chat-cabeza"><b class="avatar avatar-alba" aria-hidden="true"><img src="../assets/simbolo.svg" alt="" width="20" height="20"></b><span><b>Restaurante de ejemplo</b><span>Atiende Órbita</span></span><span class="pill">Ejemplo</span></p>
+              <div class="chat-cuerpo">
+                <p class="msg msg-cliente" data-en="0">Hola, ¿qué menús tienen hoy para recoger?</p>
+                <p class="msg msg-orbita" data-en="1">Hoy hay menú del día y menú vegetariano. ¿Cuántos te preparo y en qué sucursal pasas?</p>
+                <p class="msg msg-cliente" data-en="1">Dos menús del día, en sucursal Centro.</p>
+                <div class="msg msg-orbita msg-cotizacion" data-en="2">
+                  <p>Te paso el desglose:</p>
+                  <dl><dt>Menú del día × 2</dt><dd>$340</dd><dt>Para recoger · Centro</dt><dd>—</dd><dt>Total</dt><dd>$340</dd></dl>
+                  <p>¿Confirmas?</p>
+                </div>
+                <p class="msg msg-cliente" data-en="3">Sí, confirmo.</p>
+                <p class="msg msg-sistema" data-en="3">Solicitud lista · tu equipo la revisa antes de prepararla</p>
+              </div>
+            </div>
+            <figcaption>Conversación de ejemplo; el menú y los precios son inventados</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-dia" id="que-hace">
+      <div class="wrap">
+        <h2 class="reveal">Lo que hace <em>Órbita.</em></h2>
+        <ul class="rasgos cuatro">
+          <li class="reveal"><h3>Organiza conversaciones</h3><p>Y permite que una persona de tu equipo revise y atienda al cliente.</p></li>
+          <li class="reveal"><h3>Consulta tu catálogo</h3><p>Usa el catálogo y los precios que configuró tu negocio.</p></li>
+          <li class="reveal"><h3>Prepara cotizaciones</h3><p>Y registra la solicitud sólo cuando el cliente confirma de forma explícita.</p></li>
+          <li class="reveal"><h3>Lleva el seguimiento</h3><p>Conserva referencias para consultar el estado y evitar solicitudes duplicadas.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-dia">
+      <div class="wrap dos">
+        <h2 class="reveal">Tu equipo <em>siempre decide.</em></h2>
+        <div>
+          <p class="sub-intro reveal">Una solicitud registrada requiere revisión humana: no confirma por sí sola un pago, una entrega o un pedido en cocina. Tu equipo conserva la responsabilidad de aprobar los pedidos y puede entrar a atender al cliente cuando haga falta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-dia" id="tus-datos">
+      <div class="wrap dos or-datos">
+        <div>
+          <h2 class="reveal">WhatsApp <em>y tus datos.</em></h2>
+          <div class="sub-cta reveal">
+            <a class="btn-text" href="privacy.html">Aviso de privacidad</a>
+            <a class="btn-text" href="data-deletion.html">Eliminar tus datos</a>
+          </div>
+        </div>
+        <div>
+          <p class="sub-intro reveal">La conexión usa las interfaces oficiales de WhatsApp Business Platform, cuando el negocio la autoriza y completa su alta con Meta.</p>
+          <p class="sub-intro reveal">Los mensajes se cifran en el servidor antes de guardarse, y los datos no se usan para publicidad ni se venden.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-dia">
+      <div class="wrap dos">
+        <h2 class="reveal">Hoy, en piloto <em>con Sankalpa.</em></h2>
+        <div>
+          <p class="sub-intro reveal">Sankalpa es el cliente del piloto, y la integración de pedidos con su sistema está en pruebas.</p>
+          <p class="sub-intro reveal">El ensayo funciona con una cuenta de prueba de Meta y un destinatario autorizado. El número de Alba Vision que se conectará es el <b>+52 56 1690 8570</b>; su alta todavía está pendiente de los permisos de Meta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact tema-noche" id="contacto">
+      <div class="contact-orbits" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+      <div class="wrap contact-inner">
+        <h2 class="contact-title reveal">¿Tu negocio atiende <em>por WhatsApp?</em></h2>
+        <p class="contact-lead reveal">Cuéntanos cómo atiendes hoy y vemos si Órbita te sirve.</p>
+        <div class="contact-actions reveal">
+          <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20%C3%93rbita%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp al 56 1690 8570">Escríbenos por WhatsApp</a>
+          <a class="btn btn-ghost" href="mailto:hola@albavision.mx?subject=%C3%93rbita">Escríbenos un correo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <img src="../assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
+      <p class="footer-tag"><em>Más allá de lo visible.</em></p>
+      <nav class="footer-links" aria-label="Otros sitios de Alba">
+        <a href="../">Portada</a>
+        <a href="../unblind/">UNBLIND</a>
+        <a href="https://ops.albavision.tech" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="../albaspace/">Alba Space</a>
+        <a href="../albalabs/">Alba Labs</a>
+        <a href="index.html" aria-current="page">Órbita</a>
+      </nav>
+      <p class="footer-redes">Órbita: <a href="privacy.html">Aviso de privacidad</a> y <a href="data-deletion.html">Eliminación de datos</a></p>
+      <p class="footer-redes">Síguenos en <a href="https://www.facebook.com/profile.php?id=61586255382710" target="_blank" rel="noopener">Facebook</a> y en Instagram: <a href="https://www.instagram.com/albavision_labs/" target="_blank" rel="noopener">@albavision_labs</a> y <a href="https://www.instagram.com/alba_unblind/" target="_blank" rel="noopener">@alba_unblind</a></p>
+      <span class="footer-copy">© <span data-year></span> Alba Vision</span>
+    </div>
+  </footer>
+</body>
+</html>
