@@ -220,7 +220,7 @@ prefMovimiento.addEventListener("change", (e) => {
 
 // ── El cielo amanece al bajar: cada sección tiene su color y se mezclan en la frontera ──
 const cieloAlba = document.querySelector("[data-cielo-alba]");
-const coloresCielo = { inicio: "#03081a", origen: "#0b2142", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c" };
+const coloresCielo = { inicio: "#03081a", reconocidos: "#03081a", origen: "#0b2142", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c" };
 const seccionesCielo = Object.keys(coloresCielo).map((id) => document.getElementById(id)).filter(Boolean);
 const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 function amanecer() {

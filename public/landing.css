@@ -442,3 +442,35 @@ html:not(.js) .panel-copy, .reduce .panel-copy, .window.apilado .panel-copy { tr
 @media (max-width: 760px) and (max-height: 800px) {
   .hero .tagline { display: none; }
 }
+
+/* Quienes nos han reconocido: una franja de nombres que desfila despacio bajo la portada */
+.reconocidos { position: relative; display: flex; align-items: center; gap: var(--s6); padding: var(--s6) 0 var(--s6) var(--gutter); overflow: hidden; }
+.reconocidos-etiqueta { flex: none; margin: 0; font-size: 14px; color: var(--faint); }
+.reconocidos-pista { position: relative; flex: 1; min-width: 0; overflow: hidden; }
+/* Las orillas se desvanecen con dos degradados quietos (más barato que una máscara sobre algo que se mueve) */
+.reconocidos-pista::before, .reconocidos-pista::after { content: ""; position: absolute; z-index: 1; top: 0; bottom: 0; width: 64px; pointer-events: none; }
+.reconocidos-pista::before { left: 0; background: linear-gradient(90deg, #03081a, rgba(3,8,26,0)); }
+.reconocidos-pista::after { right: 0; background: linear-gradient(270deg, #03081a, rgba(3,8,26,0)); }
+.reconocidos-lista { display: flex; width: max-content; animation: desfile 48s linear infinite; will-change: transform; }
+.reconocidos-pista:hover .reconocidos-lista { animation-play-state: paused; }
+.reconocidos ul { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+.reconocidos li { display: flex; align-items: center; font-size: clamp(17px,1.5vw,21px); color: var(--dim); white-space: nowrap; }
+.reconocidos li::after { content: ""; width: 9px; height: 9px; margin: 0 var(--s6); background: var(--soft); opacity: .7; clip-path: polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%); }
+@keyframes desfile { to { transform: translateX(-50%); } }
+@media (max-width: 760px) {
+  .reconocidos { flex-direction: column; align-items: flex-start; gap: var(--s3); padding: var(--s5) 0; }
+  .reconocidos-etiqueta { padding-left: var(--gutter); }
+  .reconocidos-pista { width: 100%; }
+  .reconocidos li { font-size: 16px; }
+}
+/* Con «menos movimiento» no desfila: los nombres se acomodan en renglones */
+@media (prefers-reduced-motion: reduce) {
+  .reconocidos-lista { width: auto; animation: none; }
+  .reconocidos-lista ul { flex-wrap: wrap; gap: var(--s2) var(--s5); padding: 0 var(--gutter) 0 0; }
+  .reconocidos li::after { display: none; }
+  .reconocidos-lista ul[aria-hidden] { display: none; }
+  .reconocidos-pista::before, .reconocidos-pista::after { display: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .reconocidos-lista ul { padding-left: var(--gutter); }
+}
