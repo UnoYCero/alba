@@ -58,6 +58,8 @@
 /* Tus datos */
 .or-datos { align-items: start; }
 .or-datos .sub-cta { margin-top: var(--s5); }
+.or-numero { color: var(--paper); text-decoration: underline; text-decoration-color: rgba(37,99,235,.4); text-underline-offset: 5px; white-space: nowrap; }
+.or-numero:hover { color: var(--soft); }
 
 /* Páginas legales: el texto de Alan tal cual, con la letra de Alba */
 .legal { padding: calc(var(--nav-h) + var(--s8)) 0 var(--s10); }
