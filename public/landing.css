@@ -443,16 +443,29 @@ html:not(.js) .panel-copy, .reduce .panel-copy, .window.apilado .panel-copy { tr
   .hero .tagline { display: none; }
 }
 
-/* Quienes nos han reconocido: una franja quieta de nombres bajo la portada */
-.reconocidos { position: relative; display: flex; align-items: baseline; gap: var(--s3) var(--s6); padding: var(--s6) var(--gutter); flex-wrap: wrap; max-width: calc(var(--wrap) + var(--gutter) * 2); margin: 0 auto; }
-.reconocidos-etiqueta { flex: none; margin: 0; font-size: 14px; color: var(--faint); }
-.reconocidos-pista { flex: 1; min-width: 0; }
-.reconocidos ul { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s5); margin: 0; padding: 0; list-style: none; }
-.reconocidos ul[aria-hidden] { display: none; }
-.reconocidos li { font-size: clamp(16px,1.35vw,19px); color: var(--dim); white-space: nowrap; }
+/* Donde hemos estado: logos en blanco, semitransparentes, que se desplazan despacio */
+.logos { position: relative; padding: var(--s8) 0; overflow: hidden; }
+.logos-titulo { margin: 0 0 var(--s5); padding: 0 var(--gutter); text-align: center; font-size: 14px; color: var(--faint); }
+.logos-pista { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.logos-lista { display: flex; width: max-content; animation: logos-desfile 60s linear infinite; }
+.logos-pista:hover .logos-lista { animation-play-state: paused; }
+.logos ul { display: flex; align-items: center; gap: clamp(40px, 5vw, 72px); margin: 0; padding: 0 clamp(20px, 2.5vw, 36px); list-style: none; }
+.logos li { display: flex; align-items: center; height: 48px; flex: none; }
+.logos img { height: var(--alto, 28px); width: auto; opacity: .58; transition: opacity .3s; }
+.logos li:hover img { opacity: .9; }
+.logo-texto { font-size: 18px; font-weight: 400; letter-spacing: .02em; color: rgba(244,246,250,.62); white-space: nowrap; }
+@keyframes logos-desfile { to { transform: translateX(-50%); } }
 @media (max-width: 760px) {
-  .reconocidos { flex-direction: column; gap: var(--s3); padding: var(--s5) var(--gutter); }
-  .reconocidos li { font-size: 15px; }
+  .logos { padding: var(--s7) 0; }
+  .logos img { height: calc(var(--alto, 28px) * .8); }
+  .logo-texto { font-size: 15px; }
+}
+/* Con «menos movimiento»: quietos, en renglones */
+@media (prefers-reduced-motion: reduce) {
+  .logos-lista { width: auto; animation: none; }
+  .logos-lista ul { flex-wrap: wrap; justify-content: center; row-gap: var(--s5); }
+  .logos-lista ul[aria-hidden] { display: none; }
+  .logos-pista { -webkit-mask-image: none; mask-image: none; }
 }
 
 /* Cómo trabajamos: cuatro pasos en orden, unidos con flechas, quietos */
