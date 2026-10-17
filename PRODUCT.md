@@ -3,8 +3,9 @@
 
 Registro del sitio madre **albavision.tech** (la portada en `public/index.html`).
 Escrito el 15-oct-2026 con lo que Max confirmó en la conversación de la casa
-madre; Alan todavía no lo ha revisado. Órbita vive en este mismo repo pero no
-entra aquí.
+madre; Alan todavía no lo ha revisado. La app y las páginas de Órbita viven en
+este mismo repo y son de Alan: no entran aquí. En la portada sólo está su
+tarjeta como servicio (Alan dio luz verde el 17-oct).
 
 ## Platform
 web
@@ -73,10 +74,19 @@ visión artificial empezó acompañando a quien no ve.
   IA y emprendimiento. Pasos: diagnóstico, piloto, integración, escalamiento.
   Caso Universidad Anáhuac: **entregado** (Max, 17-oct): se cuenta como
   resultado, con la imagen de la máquina marcada como ilustración.
-- **Surface Ops:** medir un bache con una foto. Va **al final** de la portada.
+- **Órbita** (de Alan): «IA aplicada» a la atención por WhatsApp. Contesta a los
+  clientes, consulta menú y precios, arma la cotización y deja la solicitud
+  lista para que el equipo la revise. **En piloto con Sankalpa** (Max, 17-oct).
+  En la portada lleva los colores de Alba Vision; su logo lo hará Codex después.
+  La conversación de la tarjeta es de ejemplo y lo dice.
+- **Surface Ops:** medir un bache con una foto. Va **al final** de la lista de
+  proyectos.
 - Sitio estático (HTML, CSS y JS en `public/`), servido por Netlify. Las
-  subpáginas Labs, Space y Unblind tienen su propio estilo (`styles.css`).
-- Instagram: @albavision_labs (Alba Vision, recién abierto) y @alba_unblind.
+  subpáginas Labs, Space y Unblind comparten `subpagina.css` con la portada.
+- Redes: Facebook de Alba Vision
+  (facebook.com/profile.php?id=61586255382710, 17-oct) e Instagram
+  @albavision_labs (Alba Vision) y @alba_unblind. La portada y el contenido de
+  Facebook quedan para después.
 - Contacto: WhatsApp Business 56 1690 8570 y el correo contacto@albavision.tech
   (decidido por Max el 17-oct-2026). Las páginas de Órbita siguen con su propio
   contacto, que es de Alan.
@@ -101,6 +111,11 @@ visión artificial empezó acompañando a quien no ve.
 - Caso: Universidad Anáhuac (real; su imagen actual es ilustración con IA).
 - Captura real de la app de Surface Ops sobre una foto de prueba
   (`public/assets/surface-ops-resultado.webp`).
+- «Enseñamos a las máquinas a ver y a entender» usa fotos nuestras
+  (`public/assets/capacidades/`): dos recortes del stand de UNBLIND en Qualinn
+  2025 (el póster y la mesa con los prototipos) y la captura de Surface Ops; el cielo es un
+  esquema con las posiciones reales de Orión. Las marcas encima son de ejemplo y
+  la nota de la sección lo dice.
 - **No hay** fotos o vídeos reales publicables de Vision Ops (el material de
   Delish tiene caras y el de Safal Burger no es nuestro), ni testimonios de
   clientes, ni cifras de resultados. No se inventan.
