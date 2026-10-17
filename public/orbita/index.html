@@ -71,17 +71,23 @@
           </div>
           <p class="status or-piloto reveal"><i aria-hidden="true"></i>Hoy en piloto con Sankalpa</p>
         </div>
-        <figure class="or-bandeja reveal" aria-label="Ilustración de una bandeja de conversaciones de ejemplo">
-          <div class="bandeja">
-            <p class="bandeja-cabeza"><span>Conversaciones</span><span class="pill">Ejemplo</span></p>
-            <ul>
-              <li style="--i:0"><b class="avatar">LR</b><span class="quien"><b>Lucía R.</b><span>Sí, confirmo</span></span><span class="estado estado-lista">Lista para revisar</span></li>
-              <li style="--i:1"><b class="avatar">AM</b><span class="quien"><b>Andrés M.</b><span>Dos menús del día, para recoger</span></span><span class="estado">Cotización enviada</span></li>
-              <li style="--i:2"><b class="avatar">PO</b><span class="quien"><b>Pedido oficina</b><span>¿Cuánto cuesta el menú del día?</span></span><span class="estado">Respondiendo</span></li>
-              <li style="--i:3"><b class="avatar">PG</b><span class="quien"><b>Paola G.</b><span>Gracias, paso a las 2</span></span><span class="estado estado-equipo">Con tu equipo</span></li>
-            </ul>
+        <figure class="or-video reveal" data-video-chat>
+          <div class="tel" aria-hidden="true">
+            <div class="tel-estado"><span>12:40</span><span class="tel-senal"><i></i><i></i><i></i><i></i></span></div>
+            <div class="tel-cabeza"><b class="avatar avatar-alba"><img src="../assets/simbolo.svg" alt="" width="22" height="22"></b><span><b>Restaurante de ejemplo</b><span data-tel-estado>en línea</span></span></div>
+            <div class="tel-cuerpo" data-tel-cuerpo>
+              <p class="tm tm-cliente">Hola, quiero pedir</p>
+              <p class="tm tm-agente">Identifica la intención: quiere pedir</p>
+              <p class="tm tm-orbita">¿En qué sucursal quieres pedir? Responde con su nombre o número.</p>
+              <p class="tm tm-cliente">Centro</p>
+              <p class="tm tm-orbita">¿Qué menú quieres? Responde con su nombre o número.</p>
+            </div>
+            <div class="tel-escribir"><span>Mensaje</span><i></i></div>
           </div>
-          <figcaption>Ilustración con conversaciones de ejemplo; no es la pantalla real del panel</figcaption>
+          <div class="or-video-pie">
+            <button type="button" class="or-video-boton" data-video-boton aria-pressed="false">Pausar</button>
+            <figcaption>Recreación con los mensajes que usa Órbita. El menú, los nombres y los precios son de ejemplo.</figcaption>
+          </div>
         </figure>
       </div>
     </section>
@@ -91,31 +97,30 @@
       <div class="lb-tiempos-pin">
         <div class="wrap lb-tiempos-grid">
           <div class="lb-tiempos-texto">
-            <h2>Del primer mensaje <em>a la solicitud lista.</em></h2>
+            <h2>Mientras Órbita conversa, <em>tu equipo ve todo.</em></h2>
             <ol class="lb-pasos">
-              <li><button type="button" data-paso="0" aria-current="true"><b>El cliente escribe</b><span>Pregunta por WhatsApp, como ya lo hace hoy.</span></button></li>
-              <li><button type="button" data-paso="1"><b>Órbita consulta tu menú</b><span>Responde con el catálogo y los precios que configuró tu negocio.</span></button></li>
-              <li><button type="button" data-paso="2"><b>Arma la cotización</b><span>Suma productos y cantidades, y pide que el cliente confirme.</span></button></li>
-              <li><button type="button" data-paso="3"><b>Tu equipo revisa</b><span>Cuando el cliente confirma, la solicitud queda lista para revisión. Nada se confirma solo.</span></button></li>
+              <li><button type="button" data-paso="0" aria-current="true"><b>Llega el mensaje</b><span>El cliente escribe por WhatsApp, como ya lo hace hoy.</span></button></li>
+              <li><button type="button" data-paso="1"><b>Órbita responde</b><span>Pregunta la sucursal, el menú y la cantidad con el catálogo y los precios de tu negocio.</span></button></li>
+              <li><button type="button" data-paso="2"><b>Envía la cotización</b><span>Suma el pedido, la entrega y el pago, y pide que el cliente confirme.</span></button></li>
+              <li><button type="button" data-paso="3"><b>Tu equipo revisa</b><span>La solicitud llega con todo para revisarla. Nada se confirma solo.</span></button></li>
             </ol>
           </div>
-          <figure class="or-telefono" aria-label="Conversación de ejemplo">
-            <div class="chat">
-              <p class="chat-cabeza"><b class="avatar avatar-alba" aria-hidden="true"><img src="../assets/simbolo.svg" alt="" width="20" height="20"></b><span><b>Restaurante de ejemplo</b><span>Atiende Órbita</span></span><span class="pill">Ejemplo</span></p>
-              <div class="chat-cuerpo">
-                <p class="msg msg-cliente" data-en="0">Hola, ¿qué menús tienen hoy para recoger?</p>
-                <p class="msg msg-orbita" data-en="1">Hoy hay menú del día y menú vegetariano. ¿Cuántos te preparo y en qué sucursal pasas?</p>
-                <p class="msg msg-cliente" data-en="1">Dos menús del día, en sucursal Centro.</p>
-                <div class="msg msg-orbita msg-cotizacion" data-en="2">
-                  <p>Te paso el desglose:</p>
-                  <dl><dt>Menú del día × 2</dt><dd>$340</dd><dt>Para recoger · Centro</dt><dd>—</dd><dt>Total</dt><dd>$340</dd></dl>
-                  <p>¿Confirmas?</p>
-                </div>
-                <p class="msg msg-cliente" data-en="3">Sí, confirmo.</p>
-                <p class="msg msg-sistema" data-en="3">Solicitud lista · tu equipo la revisa antes de prepararla</p>
+          <figure class="or-equipo" aria-label="Ilustración de la bandeja de tu equipo">
+            <div class="bandeja">
+              <p class="bandeja-cabeza"><span>Lo que ve tu equipo</span><span class="pill">Ejemplo</span></p>
+              <ul>
+                <li class="fila-viva" data-fila-viva><b class="avatar">LR</b><span class="quien"><b>Lucía R.</b><span data-fila-texto>Hola, quiero pedir</span></span><span class="estado" data-fila-estado>Nueva</span></li>
+                <li><b class="avatar">AM</b><span class="quien"><b>Andrés M.</b><span>Dos menús del día, para recoger</span></span><span class="estado">Cotización enviada</span></li>
+                <li><b class="avatar">PO</b><span class="quien"><b>Pedido oficina</b><span>¿Cuánto cuesta el menú del día?</span></span><span class="estado">Respondiendo</span></li>
+                <li><b class="avatar">PG</b><span class="quien"><b>Paola G.</b><span>Gracias, paso a las 2</span></span><span class="estado estado-equipo">Con tu equipo</span></li>
+              </ul>
+              <div class="solicitud" data-solicitud>
+                <p class="solicitud-cabeza"><b>Solicitud 1042</b><span>Pendiente de revisión</span></p>
+                <dl><dt>Cliente</dt><dd>Lucía Ramírez</dd><dt>Pedido</dt><dd>Menú del día × 2</dd><dt>Entrega</dt><dd>Recoger · Centro</dd><dt>Pago</dt><dd>Transferencia, sin verificar</dd><dt>Total</dt><dd>$340</dd></dl>
+                <p class="solicitud-nota">Revisa pago y disponibilidad antes de confirmar el pedido.</p>
               </div>
             </div>
-            <figcaption>Conversación de ejemplo; el menú y los precios son inventados</figcaption>
+            <figcaption>Ilustración del lado de tu equipo; no es la pantalla real del panel</figcaption>
           </figure>
         </div>
       </div>
@@ -193,8 +198,14 @@
         <a href="../albalabs/">Alba Labs</a>
         <a href="index.html" aria-current="page">Órbita</a>
       </nav>
-      <p class="footer-redes">Órbita: <a href="privacy.html">Aviso de privacidad</a> y <a href="data-deletion.html">Eliminación de datos</a></p>
-      <p class="footer-redes">Síguenos en <a href="https://www.facebook.com/profile.php?id=61586255382710" target="_blank" rel="noopener">Facebook</a> y en Instagram: <a href="https://www.instagram.com/albavision_labs/" target="_blank" rel="noopener">@albavision_labs</a> y <a href="https://www.instagram.com/alba_unblind/" target="_blank" rel="noopener">@alba_unblind</a></p>
+      <p class="footer-legal">Órbita: <a href="privacy.html">Aviso de privacidad</a> y <a href="data-deletion.html">Eliminación de datos</a></p>
+      <ul class="footer-redes" aria-label="Contacto y redes de Alba Vision">
+        <li><a class="red" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20%C3%93rbita%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="WhatsApp de Alba Vision" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="trazo" d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path class="lleno" d="M8.8 8.6c.2-.5.5-.6.8-.6h.6c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.7l-.5.6c-.1.2-.1.4 0 .5.7 1.2 1.6 2.1 2.8 2.8.2.1.4.1.5 0l.6-.5c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.3.4.5v.6c0 .3-.2.6-.6.8-.6.3-1.4.4-2.2.2-2.7-.8-5-3.1-5.8-5.8-.2-.8-.1-1.6.2-2.2Z"/></svg></a></li>
+        <li><a class="red" href="mailto:contacto@albavision.tech?subject=%C3%93rbita" aria-label="Correo: contacto@albavision.tech" title="contacto@albavision.tech"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="trazo" x="3" y="5.5" width="18" height="13" rx="2.5"/><path class="trazo" d="m4 7.5 8 6 8-6"/></svg></a></li>
+        <li><a class="red" href="https://www.facebook.com/profile.php?id=61586255382710" target="_blank" rel="noopener" aria-label="Alba Vision en Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="trazo" cx="12" cy="12" r="9"/><path class="trazo" d="M15 8h-1.5A2 2 0 0 0 11.5 10v11M9 13h5"/></svg></a></li>
+        <li><a class="red" href="https://www.instagram.com/albavision_labs/" target="_blank" rel="noopener" aria-label="Alba Vision en Instagram, @albavision_labs" title="Instagram · @albavision_labs"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="trazo" x="3.5" y="3.5" width="17" height="17" rx="5"/><circle class="trazo" cx="12" cy="12" r="4"/><circle class="lleno" cx="17.2" cy="6.8" r="1.1"/></svg></a></li>
+        <li><a class="red red-con-nombre" href="https://www.instagram.com/alba_unblind/" target="_blank" rel="noopener" aria-label="UNBLIND en Instagram, @alba_unblind" title="Instagram · @alba_unblind"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="trazo" x="3.5" y="3.5" width="17" height="17" rx="5"/><circle class="trazo" cx="12" cy="12" r="4"/><circle class="lleno" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">UNBLIND</span></a></li>
+      </ul>
       <span class="footer-copy">© <span data-year></span> Alba Vision</span>
     </div>
   </footer>
