@@ -1,0 +1,100 @@
+/* Propuesta «amanecer»: lo que cambia sobre landing.css.
+   - Un cielo detrás de toda la página que pasa de noche a día al bajar.
+   - Secciones transparentes con tema: noche, alba (azul del amanecer) y día.
+   - El ojo 3D fijo detrás de la portada y el origen.
+   - La apertura de ojos al cargar.
+   - Fuera las «cajitas»: las animaciones de capacidades flotan sobre la página. */
+
+/* Capas: cielo (0) · ojo (1) · contenido (2) · menú (100) · apertura (400) */
+body { background: #03081a; }
+.cielo-alba { position: fixed; inset: 0; z-index: 0; background: #03081a; pointer-events: none; }
+.ojo-escena { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+.ojo-escena canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .6s ease; }
+.ojo-escena[data-listo="true"] canvas { opacity: 1; }
+.ojo-respaldo { position: absolute; right: 6%; top: 10%; width: 40%; height: 40%; object-fit: contain; opacity: .9; }
+.ojo-escena[data-listo="true"] .ojo-respaldo { visibility: hidden; }
+main, .footer { position: relative; z-index: 2; }
+
+/* Las secciones dejan ver el cielo */
+.hero, .origen, .about, .caps, .window, .space, .contact { background: transparent; }
+.hero-veil { background: linear-gradient(90deg, rgba(3,8,26,.75) 0%, rgba(3,8,26,.2) 46%, transparent 66%); }
+
+/* Temas */
+.tema-noche, .tema-alba, .tema-dia { color: var(--paper); }
+.tema-dia {
+  --paper: #0b1f3b;
+  --dim: rgba(11,31,59,.8);
+  --faint: rgba(11,31,59,.66);
+  --soft: #2563eb;
+  --line: rgba(11,31,59,.14);
+}
+.tema-dia ::selection { background: rgba(37,99,235,.25); color: #0b1f3b; }
+.tema-dia .btn-solid { background: #0b1f3b; color: #f4f6fa; }
+.tema-dia .btn-solid:hover { background: #12305a; }
+.tema-dia .btn-ghost { border-color: rgba(11,31,59,.3); }
+.tema-dia .btn-ghost:hover { background: rgba(11,31,59,.05); }
+
+/* Sin cajitas: las animaciones de capacidades flotan */
+.viz { background: transparent; overflow: visible; }
+.tema-dia .viz-leer i { background: rgba(11,31,59,.16); }
+.tema-dia .viz-scan { background: rgba(37,99,235,.12); box-shadow: inset 0 0 0 1px rgba(37,99,235,.55); }
+.tema-dia .viz-tag { background: #0b1f3b; color: #f4f6fa; }
+.tema-dia .viz-detectar i { border-color: rgba(11,31,59,.3); }
+.tema-dia .viz-box span { background: #2563eb; color: #fff; }
+.tema-dia .viz-contorno { fill: rgba(37,99,235,.1); }
+.tema-dia .viz-cota { stroke: rgba(11,31,59,.45); }
+.tema-dia .viz-estrellas circle { fill: #0b1f3b; }
+
+/* Alba Vision de día */
+.tema-dia .window-menu button[aria-current="true"] { background: rgba(37,99,235,.08); }
+.tema-dia .window-menu small.vivo { color: #2563eb; }
+.tema-dia .floor { background: linear-gradient(0deg, rgba(11,31,59,.06) 1px, transparent 1px) 0 0/24px 24px, linear-gradient(90deg, rgba(11,31,59,.06) 1px, transparent 1px) 0 0/24px 24px, #fff; box-shadow: 0 60px 80px rgba(11,31,59,.16); }
+.tema-dia .st span { background: #0b1f3b; color: #f4f6fa; }
+.tema-dia .walker { background: #2563eb; }
+.tema-dia .walker-2 { background: #0b1f3b; }
+.tema-dia .report { background: #0b1f3b; color: #f4f6fa; box-shadow: 0 30px 60px rgba(11,31,59,.3); }
+.tema-dia .bar { color: rgba(244,246,250,.82); }
+.tema-dia .pill { background: rgba(143,178,255,.18); color: #8fb2ff; }
+
+.tema-alba .collage-btn { background: rgba(244,246,250,.12); }
+
+/* Apertura de ojos: un SVG negro con una almendra que se abre */
+.apertura { position: fixed; inset: 0; z-index: 400; pointer-events: auto; cursor: pointer; }
+.apertura svg { display: block; width: 100%; height: 100%; }
+.apertura-saltar { position: absolute; right: 24px; bottom: 24px; min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: rgba(244,246,250,.1); color: rgba(244,246,250,.75); font: inherit; font-size: 14px; cursor: pointer; }
+
+@media (max-width: 760px) {
+  .ojo-respaldo { right: 9%; top: 72px; width: 82%; height: 26%; }
+  .hero { padding-top: 0; }
+  .hero-veil { background: linear-gradient(0deg, rgba(3,8,26,.85) 18%, rgba(3,8,26,.25) 60%, transparent 85%); }
+}
+
+/* El menú flotante se aclara sobre el día */
+.nav-brand .logo-dia { display: none; }
+.nav.claro .nav-brand .logo-noche { display: none; }
+.nav.claro .nav-brand .logo-dia { display: block; }
+.nav-brand img { transition: transform .6s var(--ease), opacity .4s; }
+.nav.claro.scrolled .nav-pill { background: rgba(255,255,255,.72); border-color: rgba(11,31,59,.08); box-shadow: 0 12px 34px rgba(11,31,59,.12); }
+.nav.claro .nav-links a { color: rgba(11,31,59,.72); }
+.nav.claro .nav-links a:hover, .nav.claro .nav-links a.activo { color: #0b1f3b; }
+.nav.claro .nav-marker { background: rgba(37,99,235,.1); }
+.nav.claro .nav-cta { background: #0b1f3b; color: #f4f6fa; }
+.nav.claro .nav-toggle { border-color: rgba(11,31,59,.2); }
+.nav.claro .nav-toggle span { background: #0b1f3b; }
+.nav-pill, .nav-links a, .nav-cta { transition: width .7s var(--ease), background .5s, border-color .5s, box-shadow .5s, color .5s; }
+
+/* Si el JavaScript no corre, el cielo no cambia: cada sección lleva su propio fondo */
+html:not(.js) .tema-alba { background: #13366c; }
+html:not(.js) .tema-dia { background: #f4f6fa; }
+
+/* Presentación de marca: mientras dura, sólo se ven el ojo y las letras */
+main, .nav, .footer { transition: opacity 1s var(--ease); }
+.intro main, .intro .nav, .intro .footer { opacity: 0; }
+.intro-letras { position: fixed; left: 0; top: 0; z-index: 410; transform-origin: 0 0; pointer-events: none; opacity: 0; will-change: transform, opacity; }
+
+/* Con el menú del celular abierto, el menú vuelve a ser de noche aunque esté sobre el día */
+.nav.abierto.claro .logo-noche { display: block; }
+.nav.abierto.claro .logo-dia { display: none; }
+.nav.abierto.claro .nav-pill { background: transparent; border-color: transparent; box-shadow: none; }
+.nav.abierto.claro .nav-toggle { border-color: var(--line); }
+.nav.abierto.claro .nav-toggle span { background: #f4f6fa; }

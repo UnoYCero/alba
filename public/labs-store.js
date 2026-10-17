@@ -4,7 +4,7 @@
       id: "smartglasses-dev-kit",
       name: "Alba Smartglasses Dev Kit",
       price: 5900,
-      image: "../assets/armazon.png",
+      image: "../assets/armazon.webp",
       sku: "ALBA-SG-01"
     }
   };
@@ -146,7 +146,8 @@
       if (!response.ok || !result.url) throw new Error(result.error || "No fue posible iniciar el pago.");
       window.location.assign(result.url);
     } catch (error) {
-      showToast(error.message || "No fue posible conectar con Stripe.");
+      console.warn("No se pudo iniciar el pago:", error);
+      showToast("No pudimos abrir el pago en línea. Escríbenos por WhatsApp y te ayudamos con tu pedido.");
       checkoutButton.disabled = false;
       checkoutButton.classList.remove("loading");
       checkoutButton.firstChild.textContent = "Continuar a pago seguro ";
