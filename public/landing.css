@@ -405,17 +405,10 @@ html:not(.js) .origen-pin, .reduce .origen-pin { position: static; height: auto;
 .proyecto-nombre { display: flex; align-items: baseline; justify-content: flex-start; gap: var(--s4); width: 100%; padding: var(--s3) 0; border: 0; background: none; text-align: left; cursor: pointer; }
 .proyecto-nombre span { font-size: clamp(30px,3.4vw,50px); line-height: 1.08; letter-spacing: -.03em; color: var(--faint); transition: color .4s; }
 .proyecto-nombre small { flex: none; font-size: 13px; color: var(--soft); opacity: 0; transition: opacity .4s; }
-.proyecto.activo .proyecto-nombre span, .proyecto-nombre:hover span { color: var(--paper); }
+.proyecto.activo .proyecto-nombre span, .proyecto-nombre span:hover { color: var(--paper); }
 .proyecto.activo .proyecto-nombre small { opacity: 1; }
 .proyecto-detalle { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
 .proyecto.activo .proyecto-detalle { grid-template-rows: 1fr; }
-.proyecto-avance { display: none; }
-@media (min-width: 1081px) {
-  .proyecto-avance { display: block; width: min(220px, 50%); height: 2px; border-radius: 2px; background: rgba(11,31,59,.1); transform-origin: left; opacity: 0; transition: opacity .4s; }
-  .proyecto.activo .proyecto-avance { opacity: 1; background: linear-gradient(90deg, #2563eb 0 50%, rgba(11,31,59,.1) 50% 100%) 100% 0 / 200% 100% no-repeat; animation: avanceProyecto 6s linear forwards; }
-  .quieto .proyecto.activo .proyecto-avance { animation-play-state: paused; }
-}
-@keyframes avanceProyecto { from { background-position: 100% 0; } to { background-position: 0 0; } }
 .proyecto-detalle > div { overflow: hidden; }
 .proyecto-detalle p { margin: 0 0 var(--s3); max-width: 52ch; font-size: 16px; color: var(--dim); }
 .proyecto-detalle .pasos { margin: 0 0 var(--s4); }
