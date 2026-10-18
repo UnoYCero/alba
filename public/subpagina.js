@@ -5,6 +5,9 @@ const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const punteroFino = matchMedia("(pointer: fine)").matches;
 const anchoMenu = matchMedia("(max-width: 1080px)");
 document.documentElement.classList.toggle("reduce", reducir);
+// La misma página sirve en español y en inglés (public/en/): el idioma sale de <html lang>.
+const EN = document.documentElement.lang === "en";
+const t = (es, en) => (EN ? en : es);
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 
 // ── Menú: se compacta al bajar ──
@@ -19,7 +22,7 @@ const panelMenu = document.querySelector("[data-nav-panel]");
 const menuAbierto = () => boton.getAttribute("aria-expanded") === "true";
 function cerrarMenu({ devolverFoco = false } = {}) {
   boton.setAttribute("aria-expanded", "false");
-  boton.setAttribute("aria-label", "Abrir menú");
+  boton.setAttribute("aria-label", t("Abrir menú", "Open menu"));
   panelMenu.classList.remove("abierto");
   nav.classList.remove("abierto");
   document.body.style.overflow = "";
@@ -28,7 +31,7 @@ function cerrarMenu({ devolverFoco = false } = {}) {
 boton.addEventListener("click", () => {
   if (menuAbierto()) return cerrarMenu();
   boton.setAttribute("aria-expanded", "true");
-  boton.setAttribute("aria-label", "Cerrar menú");
+  boton.setAttribute("aria-label", t("Cerrar menú", "Close menu"));
   panelMenu.classList.add("abierto");
   nav.classList.add("abierto");
   document.body.style.overflow = "hidden";
