@@ -1,0 +1,916 @@
+[
+  {
+    "pagina": "portada",
+    "url": "http://127.0.0.1:9010/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada",
+    "url": "http://127.0.0.1:9010/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada",
+    "url": "http://127.0.0.1:9010/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [
+      "Desborde horizontal"
+    ],
+    "desborde": true,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada",
+    "url": "http://127.0.0.1:9010/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [
+      "Desborde horizontal",
+      "Botón de menú de 44 px"
+    ],
+    "desborde": true,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada",
+    "url": "http://127.0.0.1:9010/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "unblind",
+    "url": "http://127.0.0.1:9010/Unblind/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "unblind",
+    "url": "http://127.0.0.1:9010/Unblind/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "unblind",
+    "url": "http://127.0.0.1:9010/Unblind/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "unblind",
+    "url": "http://127.0.0.1:9010/Unblind/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 32,
+      "ancho": 110.390625
+    }
+  },
+  {
+    "pagina": "unblind",
+    "url": "http://127.0.0.1:9010/Unblind/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "space",
+    "url": "http://127.0.0.1:9010/AlbaSpace/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space",
+    "url": "http://127.0.0.1:9010/AlbaSpace/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space",
+    "url": "http://127.0.0.1:9010/AlbaSpace/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space",
+    "url": "http://127.0.0.1:9010/AlbaSpace/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [
+      "Botón de menú de 44 px"
+    ],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space",
+    "url": "http://127.0.0.1:9010/AlbaSpace/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "labs",
+    "url": "http://127.0.0.1:9010/AlbaLabs/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "labs",
+    "url": "http://127.0.0.1:9010/AlbaLabs/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "labs",
+    "url": "http://127.0.0.1:9010/AlbaLabs/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "labs",
+    "url": "http://127.0.0.1:9010/AlbaLabs/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 32,
+      "ancho": 133.265625
+    }
+  },
+  {
+    "pagina": "labs",
+    "url": "http://127.0.0.1:9010/AlbaLabs/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "orbita",
+    "url": "http://127.0.0.1:9010/orbita/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "orbita",
+    "url": "http://127.0.0.1:9010/orbita/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "orbita",
+    "url": "http://127.0.0.1:9010/orbita/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "orbita",
+    "url": "http://127.0.0.1:9010/orbita/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 32,
+      "ancho": 103.625
+    }
+  },
+  {
+    "pagina": "orbita",
+    "url": "http://127.0.0.1:9010/orbita/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "portada-en",
+    "url": "http://127.0.0.1:9010/en/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada-en",
+    "url": "http://127.0.0.1:9010/en/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada-en",
+    "url": "http://127.0.0.1:9010/en/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [
+      "Desborde horizontal"
+    ],
+    "desborde": true,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada-en",
+    "url": "http://127.0.0.1:9010/en/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [
+      "Desborde horizontal",
+      "Botón de menú de 44 px"
+    ],
+    "desborde": true,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "portada-en",
+    "url": "http://127.0.0.1:9010/en/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "unblind-en",
+    "url": "http://127.0.0.1:9010/en/unblind/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "unblind-en",
+    "url": "http://127.0.0.1:9010/en/unblind/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "unblind-en",
+    "url": "http://127.0.0.1:9010/en/unblind/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "unblind-en",
+    "url": "http://127.0.0.1:9010/en/unblind/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 32,
+      "ancho": 110.390625
+    }
+  },
+  {
+    "pagina": "unblind-en",
+    "url": "http://127.0.0.1:9010/en/unblind/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/unblind/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/unblind/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/unblind/menu-oscuro.svg",
+      "alto": 40,
+      "ancho": 137.984375
+    }
+  },
+  {
+    "pagina": "space-en",
+    "url": "http://127.0.0.1:9010/en/albaspace/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space-en",
+    "url": "http://127.0.0.1:9010/en/albaspace/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space-en",
+    "url": "http://127.0.0.1:9010/en/albaspace/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space-en",
+    "url": "http://127.0.0.1:9010/en/albaspace/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [
+      "Botón de menú de 44 px"
+    ],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "space-en",
+    "url": "http://127.0.0.1:9010/en/albaspace/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/favicon.svg",
+      "http://127.0.0.1:9010/assets/favicon-64.png",
+      "http://127.0.0.1:9010/assets/apple-touch-icon.png"
+    ]
+  },
+  {
+    "pagina": "labs-en",
+    "url": "http://127.0.0.1:9010/en/albalabs/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "labs-en",
+    "url": "http://127.0.0.1:9010/en/albalabs/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "labs-en",
+    "url": "http://127.0.0.1:9010/en/albalabs/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "labs-en",
+    "url": "http://127.0.0.1:9010/en/albalabs/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 32,
+      "ancho": 133.265625
+    }
+  },
+  {
+    "pagina": "labs-en",
+    "url": "http://127.0.0.1:9010/en/albalabs/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/alba-labs/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/alba-labs/menu-claro.svg",
+      "alto": 40,
+      "ancho": 166.59375
+    }
+  },
+  {
+    "pagina": "orbita-en",
+    "url": "http://127.0.0.1:9010/en/orbita/",
+    "ancho": 1440,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "orbita-en",
+    "url": "http://127.0.0.1:9010/en/orbita/",
+    "ancho": 1024,
+    "alto": 900,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "orbita-en",
+    "url": "http://127.0.0.1:9010/en/orbita/",
+    "ancho": 390,
+    "alto": 844,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  },
+  {
+    "pagina": "orbita-en",
+    "url": "http://127.0.0.1:9010/en/orbita/",
+    "ancho": 320,
+    "alto": 740,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 32,
+      "ancho": 103.625
+    }
+  },
+  {
+    "pagina": "orbita-en",
+    "url": "http://127.0.0.1:9010/en/orbita/",
+    "ancho": 390,
+    "alto": 660,
+    "tema": "claro",
+    "errores": [],
+    "fallos": [],
+    "desborde": false,
+    "iconos": [
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon.svg",
+      "http://127.0.0.1:9010/assets/marcas/orbita/favicon-48.png",
+      "http://127.0.0.1:9010/assets/marcas/orbita/apple-touch-icon-180.png"
+    ],
+    "logo": {
+      "url": "http://127.0.0.1:9010/assets/marcas/orbita/menu-claro.svg",
+      "alto": 40,
+      "ancho": 129.546875
+    }
+  }
+]

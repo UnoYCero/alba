@@ -100,6 +100,9 @@ def traducir(origen, destino, es_pub, en_pub):
     # Páginas legales de Órbita: sólo existen en español
     html = html.replace('href="privacy.html"', 'href="/orbita/privacy.html" hreflang="es"').replace('href="data-deletion.html"', 'href="/orbita/data-deletion.html" hreflang="es"')
     html = html.replace('href="index.html"', 'href="./"').replace('href="index.html#', 'href="./#')
+    # La firma de cada hija vuelve a su página conservando el idioma elegido.
+    html = re.sub(r'(<a class="nav-brand nav-brand-hija" href=")[^"]+',
+                  lambda m: m.group(1) + "/" + en_pub, html, count=1)
     # Vision Ops en inglés
     html = html.replace('href="https://ops.albavision.tech"', 'href="https://ops.albavision.tech/en"')
     # Mensajes de WhatsApp en inglés

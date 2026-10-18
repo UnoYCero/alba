@@ -1,0 +1,13 @@
+/* Sólo las tres marcas hijas: la portada y Alba Space conservan sus medidas. */
+.nav-brand-hija { flex-shrink: 0; }
+.nav-brand-hija img { width: auto; height: 40px; }
+.nav:has(.nav-brand-hija) .nav-toggle { flex: 0 0 44px; }
+@media (max-width: 760px) {
+  .nav:has(.nav-brand-hija) .nav-pill { gap: 8px; }
+  .nav-brand-hija img { width: auto; height: 40px; }
+}
+@media (max-width: 360px) {
+  .nav:has(.nav-brand-hija) .nav-pill { width: calc(100% - 16px); padding-left: 8px; gap: 4px; }
+  .nav:has(.nav-brand-hija) .nav-carrito { min-width: 44px; padding-inline: 8px; }
+  .nav-brand-hija img { height: 32px; }
+}
