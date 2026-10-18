@@ -1,10 +1,13 @@
 (() => {
+// La misma página sirve en español y en inglés (public/en/): el idioma sale de <html lang>.
+const EN = document.documentElement.lang === "en";
+const t = (es, en) => (EN ? en : es);
   const PRODUCTS = {
     "smartglasses-dev-kit": {
       id: "smartglasses-dev-kit",
       name: "Alba Smartglasses Dev Kit",
       price: 5900,
-      image: "../assets/armazon.webp",
+      image: "/assets/armazon.webp",
       sku: "ALBA-SG-01"
     }
   };
@@ -65,12 +68,12 @@
           <small>${product.sku}</small>
           <h3>${product.name}</h3>
           <strong>${formatMoney(product.price)}</strong>
-          <div class="quantity-control" aria-label="Cantidad">
-            <button type="button" data-cart-decrease="${id}" aria-label="Reducir cantidad">−</button>
+          <div class="quantity-control" aria-label="${t("Cantidad", "Quantity")}">
+            <button type="button" data-cart-decrease="${id}" aria-label="${t("Reducir cantidad", "Decrease quantity")}">−</button>
             <span>${quantity}</span>
-            <button type="button" data-cart-increase="${id}" aria-label="Aumentar cantidad">+</button>
+            <button type="button" data-cart-increase="${id}" aria-label="${t("Aumentar cantidad", "Increase quantity")}">+</button>
           </div>
-          <button class="remove-item" type="button" data-cart-remove="${id}">Eliminar</button>
+          <button class="remove-item" type="button" data-cart-remove="${id}">${t("Eliminar", "Remove")}</button>
         </div>`;
       itemsNode.appendChild(item);
     });
@@ -106,7 +109,7 @@
       const id = button.dataset.addCart;
       cart[id] = Math.min((cart[id] || 0) + 1, 5);
       renderCart();
-      showToast("Smartglasses agregados al carrito.");
+      showToast(t("Smartglasses agregados al carrito.", "Smartglasses added to the cart."));
       openCart();
     });
   });
@@ -135,7 +138,7 @@
     if (!quantity) return;
     checkoutButton.disabled = true;
     checkoutButton.classList.add("loading");
-    checkoutButton.firstChild.textContent = "Preparando pago ";
+    checkoutButton.firstChild.textContent = t("Preparando pago ", "Preparing checkout ");
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -143,14 +146,14 @@
         body: JSON.stringify({ items: [{ id: "smartglasses-dev-kit", quantity }] })
       });
       const result = await response.json();
-      if (!response.ok || !result.url) throw new Error(result.error || "No fue posible iniciar el pago.");
+      if (!response.ok || !result.url) throw new Error(result.error || t("No fue posible iniciar el pago.", "Checkout could not be started."));
       window.location.assign(result.url);
     } catch (error) {
       console.warn("No se pudo iniciar el pago:", error);
-      showToast("No pudimos abrir el pago en línea. Escríbenos por WhatsApp y te ayudamos con tu pedido.");
+      showToast(t("No pudimos abrir el pago en línea. Escríbenos por WhatsApp y te ayudamos con tu pedido.", "We couldn't open online checkout. Message us on WhatsApp and we'll help with your order."));
       checkoutButton.disabled = false;
       checkoutButton.classList.remove("loading");
-      checkoutButton.firstChild.textContent = "Continuar a pago seguro ";
+      checkoutButton.firstChild.textContent = t("Continuar a pago seguro ", "Continue to secure checkout ");
     }
   });
 
@@ -160,11 +163,11 @@
     saveCart();
     notice.hidden = false;
     notice.className = "checkout-notice success";
-    notice.textContent = "Pago recibido. Stripe enviará la confirmación de tu compra.";
+    notice.textContent = t("Pago recibido. Stripe enviará la confirmación de tu compra.", "Payment received. Stripe will send your purchase confirmation.");
   } else if (checkoutState === "cancelled") {
     notice.hidden = false;
     notice.className = "checkout-notice cancelled";
-    notice.textContent = "El pago fue cancelado. Tus productos siguen en el carrito.";
+    notice.textContent = t("El pago fue cancelado. Tus productos siguen en el carrito.", "Payment was canceled. Your items are still in the cart.");
   }
 
   renderCart();

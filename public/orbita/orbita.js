@@ -4,9 +4,12 @@
 
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const celular = matchMedia("(max-width: 760px)");
+// La misma página sirve en español y en inglés (public/en/orbita/): el idioma sale de <html lang>.
+const EN = document.documentElement.lang === "en";
+const t = (es, en) => (EN ? en : es);
 
 // ── El teléfono: los mensajes son los que usa Órbita; el menú y los precios, de ejemplo ──
-const guion = [
+const guionEs = [
   ["cliente", "Hola, quiero pedir"],
   ["agente", "Identifica la intención: quiere pedir"],
   ["orbita", "¿En qué sucursal quieres pedir? Responde con su nombre o número.\n1. Centro\n2. Norte"],
@@ -29,7 +32,34 @@ const guion = [
   ["orbita", "Solicitud registrada: 1042. El equipo debe revisar pago, envío y disponibilidad antes de confirmar el pedido."],
   ["sistema", "Pendiente de revisión de tu equipo"],
 ];
-const cotizacion = '<p>Tu cotización:</p><dl><dt>Menú del día × 2</dt><dd>$340</dd><dt>Recoger · Centro</dt><dd>—</dd><dt>Pago</dt><dd>Transferencia</dd><dt>Total</dt><dd>$340</dd></dl><p>Para enviar esta cotización responde «sí». Para descartarla, «cancelar».</p>';
+// En inglés, los mismos mensajes traducidos (Órbita conversa en español con los negocios de México)
+const guionEn = [
+  ["cliente", "Hi, I'd like to order"],
+  ["agente", "Identifies the intent: wants to order"],
+  ["orbita", "Which branch would you like to order from? Reply with its name or number.\n1. Centro\n2. Norte"],
+  ["cliente", "1"],
+  ["agente", "Checks the open menus"],
+  ["orbita", "Which menu would you like? Reply with its name or number.\n1. Set menu\n2. Vegetarian menu"],
+  ["cliente", "Set menu"],
+  ["orbita", "How many packages would you like? You can order from 1 to 20."],
+  ["cliente", "2"],
+  ["orbita", "Whose name should we put the request under?"],
+  ["cliente", "Lucía Ramírez"],
+  ["orbita", "Would you prefer home delivery or pickup at the branch?"],
+  ["cliente", "Pickup"],
+  ["orbita", "How would you like to pay: bank transfer or cash on delivery?"],
+  ["cliente", "Bank transfer"],
+  ["agente", "Verifies the quote with the business"],
+  ["cotizacion", ""],
+  ["cliente", "Yes"],
+  ["agente", "Registers the request"],
+  ["orbita", "Request registered: 1042. The team must check payment, delivery and availability before confirming the order."],
+  ["sistema", "Pending your team's review"],
+];
+const guion = EN ? guionEn : guionEs;
+const cotizacionEn = '<p>Your quote:</p><dl><dt>Set menu × 2</dt><dd>$340</dd><dt>Pickup · Centro</dt><dd>—</dd><dt>Payment</dt><dd>Bank transfer</dd><dt>Total</dt><dd>$340</dd></dl><p>To send this quote, reply «yes». To discard it, «cancel».</p>';
+const cotizacionEs = '<p>Tu cotización:</p><dl><dt>Menú del día × 2</dt><dd>$340</dd><dt>Recoger · Centro</dt><dd>—</dd><dt>Pago</dt><dd>Transferencia</dd><dt>Total</dt><dd>$340</dd></dl><p>Para enviar esta cotización responde «sí». Para descartarla, «cancelar».</p>';
+const cotizacion = EN ? cotizacionEn : cotizacionEs;
 
 const video = document.querySelector("[data-video-chat]");
 if (video) {
@@ -55,7 +85,7 @@ if (video) {
     return el;
   };
   const ponerCampo = (texto) => {
-    campo.textContent = texto || "Mensaje";
+    campo.textContent = texto || t("Mensaje", "Message");
     campo.classList.toggle("vacio", !texto);
   };
   const poner = (el) => {
@@ -64,7 +94,7 @@ if (video) {
   };
   const quitarEscribiendo = () => {
     cuerpo.querySelector(".tm-escribiendo")?.remove();
-    estado.textContent = "en línea";
+    estado.textContent = t("en línea", "online");
     estado.classList.remove("activo");
   };
 
@@ -107,7 +137,7 @@ if (video) {
       puntos.className = "tm tm-orbita tm-escribiendo entra";
       puntos.innerHTML = "<i></i><i></i><i></i>";
       poner(puntos);
-      estado.textContent = "escribiendo…";
+      estado.textContent = t("escribiendo…", "typing…");
       estado.classList.add("activo");
       const largo = quien === "cotizacion" ? 140 : texto.length;
       reloj = setTimeout(siguiente, Math.min(2800, 900 + largo * 16));
@@ -130,7 +160,7 @@ if (video) {
     boton.addEventListener("click", () => {
       pausado = !pausado;
       boton.setAttribute("aria-pressed", String(pausado));
-      boton.textContent = pausado ? "Reanudar" : "Pausar";
+      boton.textContent = pausado ? t("Reanudar", "Resume") : t("Pausar", "Pause");
       if (!pausado) arrancar();
     });
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) arrancar(); }, { threshold: 0.25 }).observe(video);
@@ -145,7 +175,12 @@ if (seccion) {
   const texto = seccion.querySelector("[data-fila-texto]");
   const estadoFila = seccion.querySelector("[data-fila-estado]");
   const solicitud = seccion.querySelector("[data-solicitud]");
-  const estados = [
+  const estados = EN ? [
+    ["Hi, I'd like to order", "New"],
+    ["Órbita: Which menu would you like?", "Replying"],
+    ["Quote: Set menu × 2 · $340", "Quote sent"],
+    ["Yes", "Ready for review"],
+  ] : [
     ["Hola, quiero pedir", "Nueva"],
     ["Órbita: ¿Qué menú quieres?", "Respondiendo"],
     ["Cotización: Menú del día × 2 · $340", "Cotización enviada"],

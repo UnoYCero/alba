@@ -87,6 +87,10 @@ visión artificial empezó acompañando a quien no ve.
   (facebook.com/profile.php?id=61586255382710, 17-oct) e Instagram
   @albavision_labs (Alba Vision) y @alba_unblind. La portada y el contenido de
   Facebook quedan para después.
+- **Versión en inglés** (Max, 17-oct): `public/en/` (portada, UNBLIND, Alba Space,
+  Alba Labs y Órbita), con botón ES / EN en el menú y `hreflang`. Se **genera** desde
+  las páginas en español con `scripts/version-en/` (ver su LEEME): no se edita a mano.
+  El aviso de privacidad y la eliminación de datos de Órbita sólo existen en español.
 - Contacto: WhatsApp Business 56 1690 8570 y el correo contacto@albavision.tech
   (decidido por Max el 17-oct-2026). Las páginas de Órbita siguen con su propio
   contacto, que es de Alan.

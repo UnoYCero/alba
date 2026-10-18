@@ -1,3 +1,6 @@
+// La misma página sirve en español y en inglés (public/en/): el idioma sale de <html lang>.
+const EN = document.documentElement.lang === "en";
+const tr = (es, en) => (EN ? en : es);
 // Alba Space: las simulaciones del Star Tracker 3 en 1.
 // Parten de las que hizo Alan para alba-space.com (orientación, basura espacial,
 // campo de visión y baffle), con la paleta y la letra de Alba y en español.
@@ -61,7 +64,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const brillantes = campo.map((s, i) => ({ ...s, i })).sort((a, b) => b.m - a.m).slice(0, 7);
   const NOMBRES = ["HIP 24436", "HIP 27989", "HIP 25336", "HIP 26311", "HIP 25930", "HIP 26727", "HIP 28614"];
   const ETAPA_MS = 3400;
-  const ESTADO = ["Exponiendo el fotograma", "Encontrando los centros", "Comparando con el catálogo", "Orientación calculada"];
+  const ESTADO = EN ? ["Exposing the frame", "Finding the centroids", "Matching the catalog", "Orientation calculated"] : ["Exponiendo el fotograma", "Encontrando los centros", "Comparando con el catálogo", "Orientación calculada"];
   const pasos = [...document.querySelectorAll("[data-etapa]")];
   let manual = -1, manualDesde = 0;
   const etapaAhora = (t) => {
@@ -111,9 +114,9 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
       const norma = Math.hypot(...q);
       const k = escalaTexto(x), alto = 76 * k;
       x.fillStyle = "rgba(4,10,23,.85)"; x.fillRect(16, H - alto - 16, Math.min(W - 32, 300 * k), alto);
-      rotulo(x, "Hacia dónde apunta", 28, H - alto + 8 * k, `rgba(${C.papel},1)`, 14);
+      rotulo(x, tr("Hacia dónde apunta", "Where it points"), 28, H - alto + 8 * k, `rgba(${C.papel},1)`, 14);
       rotulo(x, `q = [${q.map((v) => (v / norma).toFixed(3)).join(", ")}]`, 28, H - alto + 30 * k, `rgba(${C.claro},.95)`, 12);
-      rotulo(x, `${(1 + 4 * (0.5 + 0.5 * Math.sin(t / 2000))).toFixed(1)} veces por segundo`, 28, H - alto + 50 * k, `rgba(${C.claro},.8)`, 12);
+      rotulo(x, `${(1 + 4 * (0.5 + 0.5 * Math.sin(t / 2000))).toFixed(1)} ${tr("veces por segundo", "times per second")}`, 28, H - alto + 50 * k, `rgba(${C.claro},.8)`, 12);
       const gx = W - 90, gy = 90, L = 46;
       [[ang, "X", 1], [ang + Math.PI / 2, "Y", 1], [ang + Math.PI / 4, "Z", 0.55]].forEach(([a, n, k]) => {
         const ex = gx + Math.cos(a) * L * k, ey = gy + Math.sin(a) * L * k;
@@ -138,8 +141,8 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const bitacora = document.getElementById("bitacoraBasura");
   let vista = "sensor", ultimo = 0, lineas = [];
   const objetos = [
-    { sp: 0.000105, y0: 0.28, amp: 40, id: "Objeto 042", ph: 0 },
-    { sp: 0.000075, y0: 0.62, amp: -60, id: "Objeto 117", ph: 2.1 },
+    { sp: 0.000105, y0: 0.28, amp: 40, id: tr("Objeto 042", "Object 042"), ph: 0 },
+    { sp: 0.000075, y0: 0.62, amp: -60, id: tr("Objeto 117", "Object 117"), ph: 2.1 },
   ];
   const redibujar = bucle(canvas, (t) => {
     fondo(x, W, H);
@@ -166,11 +169,11 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
         rotulo(x, o.id, ox - 18, oy - 28, `rgba(${C.papel},.9)`, 12);
       }
     }
-    rotulo(x, algoritmo ? "Fotograma actual menos el anterior: sólo queda lo que se mueve" : "Lo que ve el sensor", 18, 26, `rgba(${C.papel},.9)`, 14);
+    rotulo(x, algoritmo ? tr("Fotograma actual menos el anterior: sólo queda lo que se mueve", "Current frame minus the previous one: only what moves remains") : tr("Lo que ve el sensor", "What the sensor sees"), 18, 26, `rgba(${C.papel},.9)`, 14);
     if (bitacora && !reducir && t - ultimo > 1600) {
       ultimo = t;
       const o = objetos[Math.floor(Math.random() * objetos.length)];
-      lineas.push(`${o.id}: rumbo ${(Math.random() * 360).toFixed(0)}°, trayectoria reportada`);
+      lineas.push(EN ? `${o.id}: heading ${(Math.random() * 360).toFixed(0)}°, trajectory reported` : `${o.id}: rumbo ${(Math.random() * 360).toFixed(0)}°, trayectoria reportada`);
       if (lineas.length > 3) lineas.shift();
       bitacora.textContent = lineas.join("\n");
     }
@@ -197,7 +200,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     const e = ext / 100, campoV = 22 - 17 * e, focal = 16 + 34 * e, zoom = 22 / campoV, cerca = e > 0.55;
     lectura.campo.textContent = `${campoV.toFixed(1)}°`;
     lectura.focal.textContent = `${focal.toFixed(0)} mm`;
-    lectura.modo.textContent = cerca ? "Acoplamiento" : "Orientación";
+    lectura.modo.textContent = cerca ? tr("Acoplamiento", "Docking") : tr("Orientación", "Orientation");
     fondo(x, W, H);
     // Vista lateral: el instrumento, el baffle que se extiende y su cono de visión
     const lx = 44, ly = H / 2, largo = 200;
@@ -212,7 +215,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     const medio = (campoV / 2) * Math.PI / 180 * 5.2;
     x.fillStyle = `rgba(${C.azul},.12)`; x.strokeStyle = `rgba(${C.claro},.5)`;
     x.beginPath(); x.moveTo(punta, ly); x.lineTo(punta + largo, ly - Math.tan(medio) * largo); x.lineTo(punta + largo, ly + Math.tan(medio) * largo); x.closePath(); x.fill(); x.stroke();
-    rotulo(x, "De lado", 18, 26, `rgba(${C.papel},.9)`, 14);
+    rotulo(x, tr("De lado", "Side view"), 18, 26, `rgba(${C.papel},.9)`, 14);
     // Vista del sensor: el cielo se acerca y aparece el vehículo objetivo
     const sx = W - 158, sy = H / 2, R = 128;
     x.save(); x.beginPath(); x.arc(sx, sy, R, 0, Math.PI * 2); x.clip();
@@ -233,11 +236,11 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     x.beginPath(); x.moveTo(sx - 16, sy); x.lineTo(sx + 16, sy); x.moveTo(sx, sy - 16); x.lineTo(sx, sy + 16); x.stroke();
     if (cerca) {
       x.strokeStyle = `rgba(${C.papel},.85)`; x.strokeRect(sx - escala * 2.4, sy - escala * 1.4, escala * 4.8, escala * 2.8);
-      rotulo(x, "Objetivo fijado", sx - escala * 2.4, sy - escala * 1.4 - 8, `rgba(${C.papel},.95)`, 12);
+      rotulo(x, tr("Objetivo fijado", "Target locked"), sx - escala * 2.4, sy - escala * 1.4 - 8, `rgba(${C.papel},.95)`, 12);
     }
     x.restore();
     x.strokeStyle = `rgba(${C.claro},.6)`; x.lineWidth = 1.5; x.beginPath(); x.arc(sx, sy, R, 0, Math.PI * 2); x.stroke();
-    rotulo(x, "Lo que ve el sensor", sx - R, sy - R - 12, `rgba(${C.papel},.9)`, 14);
+    rotulo(x, tr("Lo que ve el sensor", "What the sensor sees"), sx - R, sy - R - 12, `rgba(${C.papel},.9)`, 14);
   };
   const redibujar = bucle(canvas, dibujar);
   control.addEventListener("input", () => { meta = +control.value; redibujar(); });
@@ -254,9 +257,9 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const poner = (valor) => {
     desplegado = valor;
     escena.classList.toggle("desplegado", desplegado);
-    boton.textContent = desplegado ? "Plegar el baffle" : "Desplegar el baffle";
+    boton.textContent = desplegado ? tr("Plegar el baffle", "Stow the baffle") : tr("Desplegar el baffle", "Deploy the baffle");
     boton.setAttribute("aria-pressed", String(desplegado));
-    estado.textContent = desplegado ? "Desplegado · 0.28 dm³" : "Plegado para el lanzamiento · 0.13 dm³";
+    estado.textContent = desplegado ? tr("Desplegado · 0.28 dm³", "Deployed · 0.28 dm³") : tr("Plegado para el lanzamiento · 0.13 dm³", "Stowed for launch · 0.13 dm³");
   };
   boton.addEventListener("click", () => poner(!desplegado));
   if (!reducir) {

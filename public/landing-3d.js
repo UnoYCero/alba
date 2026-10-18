@@ -194,7 +194,7 @@ function cielo(canvas, op) {
       if (op.reducir) constelaciones.forEach((l) => { l.geometry.setDrawRange(0, l.userData.n); l.material.opacity = 0.7; l.userData.luces.geometry.setDrawRange(0, l.userData.n); l.userData.luces.material.opacity = 0.7; });
       if (hud && i !== activa) {
         activa = i;
-        hud.textContent = `Región ${i + 1} de ${constelaciones.length} · ${constelaciones[i].userData.n} estrellas`;
+        hud.textContent = document.documentElement.lang === "en" ? `Region ${i + 1} of ${constelaciones.length} · ${constelaciones[i].userData.n} stars` : `Región ${i + 1} de ${constelaciones.length} · ${constelaciones[i].userData.n} estrellas`;
       }
     }
 

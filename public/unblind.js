@@ -1,6 +1,9 @@
 // UNBLIND: la demo de audio 3D y la calle contada de cinco maneras.
 
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// La misma página sirve en español y en inglés (public/en/): el idioma sale de <html lang>.
+const EN = document.documentElement.lang === "en";
+const t = (es, en) => (EN ? en : es);
 
 // ── La demo de audio 3D: un botón que reproduce y pausa, con su avance ──
 (function demoAudio() {
@@ -11,10 +14,10 @@ const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const texto = boton.querySelector("span");
   const poner = (sonando) => {
     boton.setAttribute("aria-pressed", String(sonando));
-    texto.textContent = sonando ? "Pausar la demo" : (audio.currentTime > 0 && !audio.ended ? "Seguir escuchando" : "Escuchar la demo");
+    texto.textContent = sonando ? t("Pausar la demo", "Pause the demo") : (audio.currentTime > 0 && !audio.ended ? t("Seguir escuchando", "Keep listening") : t("Escuchar la demo", "Play the demo"));
   };
   boton.addEventListener("click", () => {
-    if (audio.paused) audio.play().catch(() => { texto.textContent = "No se pudo reproducir"; });
+    if (audio.paused) audio.play().catch(() => { texto.textContent = t("No se pudo reproducir", "Could not play"); });
     else audio.pause();
   });
   audio.addEventListener("play", () => poner(true));
