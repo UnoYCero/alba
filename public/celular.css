@@ -15,6 +15,10 @@
 .space, .logos { background: #03081a; }
 .contact { background: linear-gradient(#03081a, #050d1c 56px); }
 
+/* ── El ojo: con el alto «grande» de la pantalla, para que no cambie de tamaño (y no salte)
+      cada vez que el navegador esconde o muestra su barra de dirección ── */
+.ojo-escena { bottom: auto; height: 100lvh; }
+
 /* ── Origen: corrido, no pantalla fija (landing.js lo deja encendido en celular) ── */
 .origen { height: auto; }
 .origen-pin { position: static; height: auto; padding: var(--s9) 0 var(--s7); }
@@ -40,7 +44,7 @@
 /* ── Lo que hacemos: una fila que se desliza con el dedo; cada tarjeta casi a lo ancho,
       así las etiquetas de las imágenes se leen y no chocan con «Ejemplo» ── */
 .caps { padding: var(--s8) 0; }
-.caps-grid { display: flex; gap: var(--s4); margin: var(--s6) calc(var(--gutter) * -1) 0; padding: 0 var(--gutter) var(--s2); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: none; }
+.caps-grid { display: flex; gap: var(--s4); margin: var(--s6) calc(var(--gutter) * -1) 0; padding: 0 var(--gutter) var(--s2); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
 .caps-grid::-webkit-scrollbar { display: none; }
 .cap { flex: 0 0 min(80%, 320px); scroll-snap-align: start; }
 .cap h3 { font-size: 19px; }

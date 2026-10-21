@@ -193,7 +193,9 @@ export function montarOjo({ host = document.querySelector("[data-ojo]"), hero = 
     renderer.setSize(ancho, alto, false);
     camara.aspect = ancho / alto;
     camara.updateProjectionMatrix();
-    fin = Math.max(alto, origen.offsetTop + origen.offsetHeight - alto);
+    // En celular el origen ya no es pantalla fija (es corto): el ojo termina y se desvanece
+    // mientras se va la portada, antes de que la siguiente sección (con su propio fondo) lo tape
+    fin = ancho <= 760 ? hero.offsetHeight * 0.7 : Math.max(alto, origen.offsetTop + origen.offsetHeight - alto);
     // Hasta dónde llega el titular, como fracción del ancho
     const lineas = [...hero.querySelectorAll(".hero-title .line > span")];
     finTitulo = lineas.length ? Math.max(...lineas.map((l) => l.getBoundingClientRect().right)) / ancho : 0;
