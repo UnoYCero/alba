@@ -48,7 +48,9 @@ function bucle(canvas, cuadro, reducir) {
   const t0 = performance.now();
   const paso = (ahora) => {
     // «pausado» lo pone la portada cuando el proyecto de esta escena no está a la vista
-    if (!canvas.pausado) cuadro((ahora - t0) / 1000);
+    // El primer cuadro puede traer una marca un poco anterior a t0: el tiempo nunca baja de cero
+    // (con tiempo negativo se buscaba la constelación −1 y la animación del cielo se detenía)
+    if (!canvas.pausado) cuadro(Math.max(0, (ahora - t0) / 1000));
     if (visible && !reducir) id = requestAnimationFrame(paso);
   };
   new IntersectionObserver(([e]) => {
