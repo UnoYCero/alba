@@ -405,7 +405,8 @@ html:not(.js) .origen-pin, .reduce .origen-pin { position: static; height: auto;
 
 /* ═══ Alba Vision: los proyectos como lista editorial, con su vista previa ═══
    Los nombres en grande; el que se toca o se señala se abre y su imagen aparece en el visor. */
-.proyectos { position: relative; padding: var(--s10) 0 var(--s9); }
+/* clip (no hidden) para no romper el visor pegado: el brillo de las estaciones de la cocina 3D se salía 14 px a la derecha en celular */
+.proyectos { position: relative; padding: var(--s10) 0 var(--s9); overflow-x: clip; }
 .proyectos .wrap { max-width: calc(1440px + var(--gutter) * 2); }
 .proyectos-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--s3) var(--s5); margin-bottom: var(--s7); }
 .proyectos-head p { margin: 0; font-size: 16px; color: var(--faint); }
