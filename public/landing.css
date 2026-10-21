@@ -301,6 +301,10 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 .footer-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
 .footer-links a:hover { color: var(--paper); }
 .footer-copy { grid-column: 1 / -1; font-size: 12px; color: var(--faint); }
+/* Pie: el enlace al aviso de privacidad, arriba del año */
+.footer-legal { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--dim); }
+.footer-legal a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); text-decoration: underline; text-decoration-color: rgba(143,178,255,.4); text-underline-offset: 5px; }
+.footer-legal a:hover { color: var(--soft); }
 
 /* Sin JavaScript o con «menos movimiento»: todo apilado y quieto */
 

@@ -6,6 +6,8 @@ REDES = ["Alba Vision contact and social media", "Alba Vision on WhatsApp", "Wha
          "Alba Vision on Instagram, @albavision_labs", "Instagram · @albavision_labs",
          "UNBLIND on Instagram, @alba_unblind", "Instagram · @alba_unblind"]
 
+# El aviso de privacidad de Alba sólo existe en español
+LEGAL = ["Privacy notice (in Spanish)"]
 EN = {}
 
 EN["index.html"] = [
@@ -216,7 +218,7 @@ EN["index.html"] = [
  WA,
  "Message us on WhatsApp",
  "Send us an email",
-] + PIE + REDES
+] + PIE + REDES + LEGAL
 
 EN["Unblind/index.html"] = [
  "UNBLIND: AI glasses for people with visual disability. They read, describe, recognize and guide you with 3D audio. In development.",
@@ -352,7 +354,7 @@ EN["Unblind/index.html"] = [
  "Instagram · @albavision_labs",
  "UNBLIND on Instagram, @alba_unblind",
  "Instagram · @alba_unblind",
-]
+] + LEGAL
 
 EN["AlbaSpace/index.html"] = [
  "Alba Space: the 3-in-1 Star Tracker for CubeSats. A single sensor that navigates by the stars, detects space debris and guides docking. Flight design in lab integration.",
@@ -461,7 +463,7 @@ EN["AlbaSpace/index.html"] = [
  "Message us on WhatsApp",
  "Send us an email",
  "The Alba Space website, in Spanish and English",
-] + PIE + ["Home", "UNBLIND", "Vision Ops", "Alba Labs"] + REDES
+] + PIE + ["Home", "UNBLIND", "Vision Ops", "Alba Labs"] + REDES + LEGAL
 
 EN["AlbaLabs/index.html"] = [
  "Alba Labs: the Dev Kit is a pair of open glasses with a camera to build your own computer vision and AI applications. $5,900 MXN.",
@@ -586,7 +588,7 @@ EN["AlbaLabs/index.html"] = [
  "Instagram · @albavision_labs",
  "UNBLIND on Instagram, @alba_unblind",
  "Instagram · @alba_unblind",
-]
+] + LEGAL
 
 EN["orbita/index.html"] = [
  "Órbita · Alba Vision",

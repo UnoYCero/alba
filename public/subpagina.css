@@ -401,3 +401,20 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .lb-tiempos { height: auto; }
   .lb-tiempos-pin { position: static; height: auto; padding: var(--s9) 0; }
 }
+
+/* Páginas legales (aviso de privacidad de Alba): texto corrido, con la letra de Alba */
+.legal { padding: calc(var(--nav-h) + var(--s8)) 0 var(--s10); }
+.legal .wrap { max-width: 820px; }
+.legal h1 { font-size: clamp(38px,5vw,60px); line-height: 1.05; letter-spacing: -.03em; }
+.legal h2 { margin: var(--s8) 0 var(--s3); font-size: clamp(22px,2.2vw,28px); letter-spacing: -.015em; }
+.legal p, .legal li, .legal dd { max-width: 68ch; font-size: 17px; line-height: 1.7; color: var(--dim); }
+.legal p { margin: var(--s3) 0 0; }
+.legal .meta { font-size: 14px; color: var(--faint); }
+.legal strong { font-weight: 400; color: var(--paper); }
+.legal a { color: var(--soft); text-decoration: underline; text-underline-offset: 4px; }
+.legal ul { margin: var(--s4) 0 0; padding-left: 24px; }
+.legal li { margin-bottom: var(--s2); }
+.legal dl { margin: var(--s4) 0 0; }
+.legal dt { margin-top: var(--s4); font-size: 14px; letter-spacing: .02em; color: var(--faint); }
+.legal dd { margin: 2px 0 0; }
+@media (max-width: 760px) { .legal p, .legal li, .legal dd { font-size: 16px; } }
