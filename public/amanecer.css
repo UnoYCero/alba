@@ -54,7 +54,8 @@ main, .footer { position: relative; z-index: 2; }
 
 @media (max-width: 760px) {
   .ojo-respaldo { right: 9%; top: 72px; width: 82%; height: 26%; }
-  .hero { padding-top: 0; }
+  /* Arriba queda lugar para el menú y el ojo: en teléfonos bajitos el titular ya no sube debajo de ellos */
+  .hero { padding-top: calc(var(--nav-h) + 60px); }
   .hero-veil { background: linear-gradient(0deg, rgba(3,8,26,.85) 18%, rgba(3,8,26,.25) 60%, transparent 85%); }
 }
 

@@ -493,6 +493,10 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 @media (max-width: 360px) {
   /* En teléfonos angostos la tarjeta sólo muestra una barra, para no subir debajo del menú */
   .proy-visual .bar:nth-of-type(2) { display: none; }
+  /* Las capacidades en una columna: a dos, las etiquetas chocaban con «Ejemplo» */
+  .caps-grid { grid-template-columns: 1fr; }
+  /* El pie de foto del visor ocupa dos renglones: se le deja su espacio */
+  .marco { --pie: 54px; }
 }
 
 /* Celulares bajitos: el eslogan de la portada se queda en el pie para que todo quepa */
