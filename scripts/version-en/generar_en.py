@@ -99,6 +99,8 @@ def traducir(origen, destino, es_pub, en_pub):
                   lambda m: m.group(1) + (raiz(m.group(2), carpeta_es) if not re.match(r"^(https?:|#|mailto:|tel:|data:|/)", m.group(2)) and es_activo(m.group(2)) else m.group(2)) + m.group(3), html)
     # Páginas legales de Órbita: sólo existen en español
     html = html.replace('href="privacy.html"', 'href="/orbita/privacy.html" hreflang="es"').replace('href="data-deletion.html"', 'href="/orbita/data-deletion.html" hreflang="es"')
+    # El aviso de privacidad de Alba también sólo existe en español
+    html = html.replace('href="/privacidad/"', 'href="/privacidad/" hreflang="es"')
     html = html.replace('href="index.html"', 'href="./"').replace('href="index.html#', 'href="./#')
     # La firma de cada hija vuelve a su página conservando el idioma elegido.
     html = re.sub(r'(<a class="nav-brand nav-brand-hija" href=")[^"]+',
