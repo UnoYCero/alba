@@ -86,7 +86,8 @@ const scrub = origen.querySelector("[data-scrub]");
 scrub.innerHTML = scrub.textContent.trim().split(/\s+/).map((p) => `<span class="w">${p}</span>`).join(" ");
 const palabras = [...scrub.querySelectorAll(".w")];
 function encender() {
-  if (reducir) {
+  // En celular (y con «menos movimiento») el origen va corrido y ya encendido: no es una pantalla fija
+  if (reducir || celular.matches) {
     palabras.forEach((w) => w.classList.add("on"));
     origen.classList.add("fin");
     return;
@@ -104,7 +105,8 @@ if (masAlla) {
   const marco = masAlla.querySelector(".cortina");
   const control = masAlla.querySelector("[data-cortina-control]");
   const textos = [...masAlla.querySelectorAll("[data-mv]")];
-  const corrida = () => reducir || (matchMedia("(max-width: 760px)").matches && innerHeight < 700);
+  // En celular no es pantalla fija (alargaba la página casi 2.5 pantallas): se arrastra con el dedo
+  const corrida = () => reducir || celular.matches;
   let avanceAlArrastrar = null;
   const poner = (v) => {
     marco.style.setProperty("--corte", `${v}%`);
@@ -128,6 +130,23 @@ if (masAlla) {
   addEventListener("resize", alBajarCortina);
   if (corrida()) poner(50);
   alBajarCortina();
+  // La primera vez que se ve en celular, la línea hace un barrido corto para enseñar que se mueve
+  let tocada = false;
+  control.addEventListener("pointerdown", () => { tocada = true; }, { once: true });
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting || !corrida() || reducir) return;
+    obs.disconnect();
+    const t0 = performance.now(), dur = 2600;
+    const paso = (ahora) => {
+      if (tocada) return;
+      const f = limitar((ahora - t0) / dur);
+      // 50 → 14 → 86 → 50, suave
+      const v = 50 - 36 * Math.sin(f * Math.PI * 2) * (1 - f * 0.2);
+      poner(f < 1 ? v : 50);
+      if (f < 1) requestAnimationFrame(paso);
+    };
+    setTimeout(() => requestAnimationFrame(paso), 400);
+  }, { threshold: 0.6 }).observe(marco);
 }
 
 // ── Alba Vision: los proyectos como lista; el que se toca (o se señala sobre su nombre) se abre
@@ -145,9 +164,12 @@ function abrirProyecto(i) {
   });
   visuales.forEach((v, j) => v.classList.toggle("activa", j === i));
 }
+const seccionProyectos = document.querySelector(".proyectos");
+const visorImagenes = document.querySelector(".visor-imagenes");
+const enTarjetas = () => seccionProyectos.classList.contains("tarjetas");
 proyectos.forEach((p, j) => {
   const nombre = p.querySelector(".proyecto-nombre");
-  nombre.addEventListener("click", () => abrirProyecto(j));
+  nombre.addEventListener("click", () => { if (!enTarjetas()) abrirProyecto(j); });
   // En escritorio también se abre con el mouse, pero sólo sobre la palabra (no toda la fila)
   // y tras una pausa corta: así, al ir hacia «Conoce…», rozar otro nombre no cambia nada
   const palabra = nombre.querySelector("span");
@@ -163,6 +185,34 @@ const pedirImagenesProyectos = () => document.querySelectorAll('.proyectos-visor
 if (document.readyState === "complete") pedirImagenesProyectos();
 else addEventListener("load", pedirImagenesProyectos, { once: true });
 abrirProyecto(0);
+
+// En celular cada proyecto es una tarjeta: su imagen se muda arriba de su nombre, todos quedan
+// abiertos y lo que se mueve (barras, conversación) arranca cuando su tarjeta entra a la vista.
+// Al volver a una pantalla ancha, las imágenes regresan al visor.
+const verTarjeta = new IntersectionObserver((entradas) => {
+  entradas.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("activa"); verTarjeta.unobserve(e.target); } });
+}, { threshold: 0.35 });
+function modoTarjetas() {
+  const tarjetas = celular.matches;
+  if (tarjetas === enTarjetas()) return;
+  seccionProyectos.classList.toggle("tarjetas", tarjetas);
+  visuales.forEach((v, j) => {
+    if (tarjetas) {
+      v.setAttribute("aria-hidden", "true");
+      v.classList.remove("activa");
+      proyectos[j].prepend(v);
+      verTarjeta.observe(v);
+    } else {
+      verTarjeta.unobserve(v);
+      v.removeAttribute("aria-hidden");
+      visorImagenes.append(v);
+    }
+  });
+  if (tarjetas) proyectos.forEach((p) => p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", "true"));
+  else abrirProyecto(0);
+}
+modoTarjetas();
+celular.addEventListener("change", () => { modoTarjetas(); encender(); });
 
 // Un solo manejador de desplazamiento, una vez por cuadro
 let pendiente = false;
