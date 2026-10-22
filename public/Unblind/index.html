@@ -29,7 +29,9 @@
   <link rel="stylesheet" href="../amanecer.css">
   <link rel="stylesheet" href="../subpagina.css">
   <link rel="stylesheet" href="../assets/marcas/menu.css">
+  <link rel="stylesheet" href="../unblind-3d.css">
   <script>document.documentElement.classList.add('js')</script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="../subpagina.js"></script>
   <script type="module" src="../unblind.js"></script>
 </head>
@@ -118,11 +120,11 @@
           <h2 class="reveal">Lo que hace, <em>visto como UNBLIND.</em></h2>
           <p class="sub-intro reveal">La misma calle, contada de cinco maneras. Toca una o deja que cambie.</p>
           <ul class="ub-funciones reveal">
-            <li><button type="button" data-funcion="0"><b>Describe el entorno</b><span>Te cuenta qué hay frente a ti y responde lo que le preguntes.</span></button></li>
-            <li><button type="button" data-funcion="1"><b>Te orienta con audio 3D</b><span>Cada cosa suena desde donde está, para que sepas hacia dónde ir.</span></button></li>
-            <li><button type="button" data-funcion="2"><b>Te avisa de los obstáculos</b><span>El LiDAR mide la distancia y el sonido te dice dónde hay algo en tu camino.</span></button></li>
-            <li><button type="button" data-funcion="3"><b>Reconoce rostros</b><span>Te dice quién llegó, entre las personas que tú registraste.</span></button></li>
-            <li><button type="button" data-funcion="4"><b>Reconoce colores</b><span>Para elegir tu ropa o distinguir lo que tienes en la mano.</span></button></li>
+            <li><button type="button" data-funcion="0"><b>Describe el entorno</b><span>Te cuenta qué hay frente a ti y responde lo que le preguntes.</span><small>Cámara · procesador</small></button></li>
+            <li><button type="button" data-funcion="1"><b>Te orienta con audio 3D</b><span>Cada cosa suena desde donde está, para que sepas hacia dónde ir.</span><small>Procesador · conducción ósea</small></button></li>
+            <li><button type="button" data-funcion="2"><b>Te avisa de los obstáculos</b><span>El LiDAR mide la distancia y el sonido te dice dónde hay algo en tu camino.</span><small>LiDAR · conducción ósea</small></button></li>
+            <li><button type="button" data-funcion="3"><b>Reconoce rostros</b><span>Te dice quién llegó, entre las personas que tú registraste.</span><small>Cámara · procesador</small></button></li>
+            <li><button type="button" data-funcion="4"><b>Reconoce colores</b><span>Para elegir tu ropa o distinguir lo que tienes en la mano.</span><small>Cámara · procesador</small></button></li>
           </ul>
           <p class="nota reveal">También lee textos en voz alta y reconoce productos y códigos. Mientras está en desarrollo, no sustituye al bastón ni al perro guía.</p>
         </div>
@@ -163,26 +165,50 @@
     </section>
 
     <!-- El sistema por dentro -->
-    <section class="sub-seccion ub-sistema tema-dia">
-      <div class="wrap">
-        <h2 class="reveal">Ligeros, accesibles <em>y con IA por dentro.</em></h2>
-        <figure class="ub-render reveal">
-          <div class="ub-render-img">
-            <img src="../assets/unblind/sistema.webp" alt="Render de los lentes UNBLIND desarmados en sus piezas: armazón, cámara, LiDAR, procesador, conducción ósea y baterías" width="920" height="490" loading="lazy" decoding="async">
-            <span class="pieza" style="--x:.57;--y:.08">Procesador CPU + TPU</span>
-            <span class="pieza" style="--x:.79;--y:.18">Cámara</span>
-            <span class="pieza" style="--x:.82;--y:.33">LiDAR</span>
-            <span class="pieza" style="--x:.05;--y:.76">Baterías</span>
-            <span class="pieza" style="--x:.22;--y:.85">Conducción ósea</span>
+    <!-- Por dentro: los lentes en 3D se separan pieza por pieza, se vuelven a armar y un pulso de luz
+         cuenta cómo funcionan (ve → entiende → te lo dice). Guiado por el avance al bajar (unblind-3d.js). -->
+    <section class="ub-despiece tema-dia" id="por-dentro" data-despiece aria-labelledby="despiece-titulo">
+      <div class="ub-despiece-pin">
+        <div class="wrap ub-despiece-grid">
+          <div class="ub-despiece-texto">
+            <h2 id="despiece-titulo">Ligeros, accesibles <em>y con IA por dentro.</em></h2>
+            <div class="ub-etapas">
+              <div class="ub-etapa activa" data-etapa="armado">
+                <p>Un prototipo para usarse todos los días: cámara, LiDAR, un procesador y sonido por conducción ósea, en unos lentes ligeros. Diseñados y probados con personas con discapacidad visual.</p>
+                <p class="ub-pista" aria-hidden="true">Baja para verlos por dentro</p>
+              </div>
+              <ol class="ub-etapa ub-partes" data-etapa="piezas" aria-label="Las piezas">
+                <li data-pieza="camara"><b>Cámara</b><span>Ve lo que tienes enfrente: textos, objetos, rostros y colores.</span></li>
+                <li data-pieza="lidar"><b>LiDAR</b><span>Mide a qué distancia está cada cosa, para avisarte con sonido dónde hay obstáculos.</span></li>
+                <li data-pieza="procesador"><b>Procesador CPU + TPU</b><span>Reconoce y describe en los lentes, sin depender siempre de internet.</span></li>
+                <li data-pieza="conduccion"><b>Conducción ósea</b><span>El sonido llega por los huesos de la cabeza y deja libres los oídos para escuchar la calle.</span></li>
+                <li data-pieza="bateria"><b>Baterías</b><span>Van en las puntas de las patillas, detrás de las orejas.</span></li>
+              </ol>
+              <ol class="ub-etapa ub-pasos" data-etapa="pulso" aria-label="Cómo funciona">
+                <li data-paso="ve"><b>Ve</b><span>La cámara y el LiDAR captan lo que tienes enfrente.</span></li>
+                <li data-paso="entiende"><b>Entiende</b><span>El procesador reconoce personas, objetos y obstáculos.</span></li>
+                <li data-paso="dice"><b>Te lo dice</b><span>Por conducción ósea y con audio 3D: cada cosa suena desde donde está.</span>
+                  <button type="button" class="ub-oir" data-oir aria-pressed="false"><i aria-hidden="true"></i><span>Escúchalo</span> <small>con audífonos</small></button></li>
+              </ol>
+            </div>
           </div>
-          <figcaption>Render ilustrativo del sistema</figcaption>
-        </figure>
-        <ul class="rasgos cuatro ub-piezas">
-          <li class="reveal"><h3>Cámara y LiDAR</h3><p>La cámara ve lo que tienes enfrente y el LiDAR mide a qué distancia está cada cosa.</p></li>
-          <li class="reveal"><h3>IA en los lentes</h3><p>Un procesador con CPU y TPU para reconocer y describir sin depender siempre de internet.</p></li>
-          <li class="reveal"><h3>Conducción ósea</h3><p>El sonido llega por los huesos de la cabeza y deja libres los oídos para escuchar la calle.</p></li>
-          <li class="reveal"><h3>Diseñados con la comunidad</h3><p>Ligeros, accesibles y probados con personas con discapacidad visual.</p></li>
-        </ul>
+          <div class="ub-despiece-escena">
+            <img class="ub-respaldo ub-respaldo-armado" src="../assets/unblind/lentes-armados.webp" alt="Los lentes UNBLIND: armazón azul marino con la cámara y el LiDAR en el puente y un módulo en cada patilla" width="1400" height="933" loading="lazy" decoding="async">
+            <img class="ub-respaldo ub-respaldo-despiece" src="../assets/unblind/lentes-despiece.webp" alt="Los lentes UNBLIND separados en sus piezas: armazón, patillas, tapas, cámara, LiDAR, procesador, transductores de conducción ósea y baterías" width="1400" height="1100" loading="lazy" decoding="async">
+            <canvas class="ub-lienzo" aria-hidden="true"></canvas>
+            <svg class="ub-guia" aria-hidden="true"><line x1="0" y1="0" x2="0" y2="0"></line><circle r="4"></circle></svg>
+            <span class="ub-rotulo" aria-hidden="true"></span>
+            <figure class="ub-ve" aria-hidden="true">
+              <img src="../assets/unblind-en-la-calle.webp" alt="" width="640" height="800" loading="lazy" decoding="async">
+              <span class="caja" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
+              <span class="caja" style="--x:.34;--y:.15;--w:.36;--h:.82"></span>
+              <span class="caja" style="--x:.75;--y:.13;--w:.25;--h:.84"></span>
+              <span class="caja" style="--x:.57;--y:.67;--w:.24;--h:.32"></span>
+            </figure>
+            <p class="ub-dicho">«Tres personas y un perro guía caminan por la banqueta, hacia ti.»</p>
+            <span class="ub-ilus">Ilustración</span>
+          </div>
+        </div>
       </div>
     </section>
 
