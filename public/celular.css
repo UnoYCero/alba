@@ -11,9 +11,9 @@
       Los mismos colores de coloresCielo en landing.js. El inicio y el origen siguen transparentes
       para que se vea el ojo. ── */
 .mas-alla { background: linear-gradient(#0b2142, #0e2a55 56px); }
-#quienes-somos { background: linear-gradient(#0e2a55, #13366c 56px, rgb(19,54,108) calc(100% - 200px), rgb(24,58,111) calc(100% - 180px), rgb(39,71,121) calc(100% - 160px), rgb(62,92,137) calc(100% - 140px), rgb(91,117,156) calc(100% - 120px), rgb(123,145,178) calc(100% - 100px), rgb(155,173,200) calc(100% - 80px), rgb(184,198,219) calc(100% - 60px), rgb(207,219,235) calc(100% - 40px), rgb(222,232,245) calc(100% - 20px), rgb(227,236,248) 100%); }
+#quienes-somos { background: linear-gradient(#0e2a55, #13366c 56px, rgb(19,54,108) calc(100% - 120px), rgb(24,58,111) calc(100% - 108px), rgb(39,71,121) calc(100% - 96px), rgb(62,92,137) calc(100% - 84px), rgb(91,117,156) calc(100% - 72px), rgb(123,145,178) calc(100% - 60px), rgb(155,173,200) calc(100% - 48px), rgb(184,198,219) calc(100% - 36px), rgb(207,219,235) calc(100% - 24px), rgb(222,232,245) calc(100% - 12px), rgb(227,236,248) 100%); }
 .caps { background: #e3ecf8; }
-.proyectos { background: linear-gradient(#e3ecf8, #f4f6fa 56px, rgb(244,246,250) calc(100% - 200px), rgb(238,240,245) calc(100% - 180px), rgb(221,223,229) calc(100% - 160px), rgb(194,197,204) calc(100% - 140px), rgb(161,164,173) calc(100% - 120px), rgb(124,127,138) calc(100% - 100px), rgb(86,90,103) calc(100% - 80px), rgb(53,57,72) calc(100% - 60px), rgb(26,31,47) calc(100% - 40px), rgb(9,14,31) calc(100% - 20px), rgb(3,8,26) 100%); }
+.proyectos { background: linear-gradient(#e3ecf8, #f4f6fa 56px, rgb(244,246,250) calc(100% - 140px), rgb(238,240,245) calc(100% - 126px), rgb(221,223,229) calc(100% - 112px), rgb(194,197,204) calc(100% - 98px), rgb(161,164,173) calc(100% - 84px), rgb(124,127,138) calc(100% - 70px), rgb(86,90,103) calc(100% - 56px), rgb(53,57,72) calc(100% - 42px), rgb(26,31,47) calc(100% - 28px), rgb(9,14,31) calc(100% - 14px), rgb(3,8,26) 100%); }
 .space { background: #03081a; }
 .contact { background: linear-gradient(#03081a, #050d1c 56px); }
 
@@ -35,9 +35,9 @@
 
 /* ── Quiénes somos: la foto del equipo completa, las postales compactas y, al final, dónde
       hemos estado (los logos), como continuación de los hitos ── */
-#quienes-somos { padding: var(--s7) 0 calc(var(--s6) + 200px); }
+#quienes-somos { padding: var(--s7) 0 calc(var(--s5) + 120px); }
 /* La foto del equipo completa, con su forma vertical (4:5), sin recortes */
-.about-foto { max-width: min(100%, 300px); }
+.about-foto { max-width: min(100%, 220px); margin-inline: auto; }
 .about-foto img { aspect-ratio: 4 / 5; max-height: none; object-fit: contain; }
 .collage { margin-top: var(--s4); }
 .collage-bar { margin-top: var(--s4); }
@@ -46,7 +46,9 @@
 .postal:nth-child(3n+1), .postal:nth-child(3n) { margin-top: 0; }
 .postal:nth-child(3n+2) { margin-top: var(--s4); }
 .logos { padding-top: var(--s6); }
-.logos-titulo { font-size: 15px; }
+/* La etiqueta en dos renglones cortos: deja casi todo el ancho a los logos */
+.logos-titulo { width: 6.2em; font-size: 13px; line-height: 1.25; white-space: normal; color: var(--dim); }
+.logos { column-gap: var(--s3); }
 
 /* ── Lo que hacemos: una sola imagen grande que cambia (landing.js), con cuatro botones debajo ── */
 .caps { padding: var(--s7) 0; }
@@ -62,7 +64,7 @@
 .cap small { font-size: 13px; }
 
 /* ── Alba Vision: lista que se despliega (landing.js mueve cada imagen adentro de su proyecto) ── */
-.proyectos { padding: var(--s8) 0 calc(var(--s6) + 200px); }
+.proyectos { padding: var(--s8) 0 calc(var(--s5) + 140px); }
 .proyectos-head { margin-bottom: var(--s4); }
 .proyectos-head p { display: block; font-size: 15px; }
 .acordeon .proyectos-visor { display: none; }
@@ -81,16 +83,11 @@
 .acordeon .proyecto-detalle > div > p { font-size: 15.5px; }
 .acordeon .proyecto-enlaces { padding-bottom: var(--s5); }
 /* El escenario: el mismo marco para todos; cada imagen adentro, con su forma y sin recortes */
-.acordeon .proy-visual { position: relative; inset: auto; height: min(84vw, 360px); margin: var(--s1, 4px) 0 var(--s4); padding: var(--s4) var(--s4) 34px; border-radius: 20px; background: rgba(11,31,59,.045); opacity: 1; visibility: visible; transform: none; }
-.acordeon .proy-visual .visual-note { bottom: 10px; }
-.acordeon .proy-visual .marco figcaption { top: calc(100% + 6px); }
+.acordeon .proy-visual { position: relative; inset: auto; height: min(84vw, 360px); margin: var(--s1, 4px) 0 var(--s4); padding: var(--s4); border-radius: 20px; background: rgba(11,31,59,.045); opacity: 1; visibility: visible; transform: none; }
 .acordeon .marco { --pie: 0px; }
-.acordeon .proy-visual:has(> .marco) { padding-bottom: 40px; }
 /* Órbita: el mismo teléfono de la página de Órbita (barra de estado, cabecera, conversación sobre
    fondo claro y barra para escribir), con sus proporciones, armado a 270 × 540 y reducido con
    zoom para caber en el escenario, como la captura de Surface Ops */
-.acordeon .proy-visual:has(> .chat) { padding-bottom: 42px; }
-.acordeon .proy-visual .chat ~ .visual-note { display: block; }
 .acordeon .chat { display: flex; flex-direction: column; gap: 8px; width: 270px; height: 540px; padding: 0 0 14px; border: 9px solid #0b1f3b; border-radius: 48px; background: #eef2f8; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(11,31,59,.6), 0 0 0 1px rgba(11,31,59,.12); zoom: .53; }
 .acordeon .chat::before { content: "12:40"; flex: none; padding: 10px 24px 6px; background: #fff; font-size: 12px; color: #0b1f3b; font-variant-numeric: tabular-nums; }
 .acordeon .chat-cabeza { flex: none; display: flex; align-items: center; gap: 10px; margin: -8px 0 0; padding: 8px 16px 12px; background: #fff; border-bottom: 1px solid rgba(11,31,59,.08); font-size: 15px; color: #0b1f3b; }

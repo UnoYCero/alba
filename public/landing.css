@@ -455,9 +455,12 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .proy-visual:has(> .visual-note) { padding-bottom: 30px; }
 
 /* El marco: tan grande como quepa en el visor, con la forma de su imagen y el pie debajo */
-.marco { --pie: 32px; position: relative; margin: 0; width: min(100cqw, (100cqh - var(--pie)) * (var(--ar))); }
+.marco { --pie: 0px; position: relative; margin: 0; width: min(100cqw, (100cqh - var(--pie)) * (var(--ar))); }
 .marco img { display: block; width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; border-radius: 16px; }
 .marco figcaption { position: absolute; top: calc(100% + 8px); left: 50%; width: max-content; max-width: 100cqw; transform: translateX(-50%); font-size: 13px; font-style: italic; line-height: 1.35; color: var(--faint); text-align: center; }
+/* Lo que no es foto real lleva una etiqueta corta en la esquina («Ilustración», «Ejemplo»), sin pie descriptivo */
+.marco .etiqueta { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 2px 9px; border-radius: 999px; background: rgba(5,13,28,.55); color: #f4f6fa; font-size: 11px; letter-spacing: .02em; }
+.marco-telefono .etiqueta { top: 14px; right: 14px; }
 .marco-claro img { object-fit: contain; background: #eceff3; }
 .marco-telefono img { border: 6px solid #1b3152; border-radius: 24px; }
 .tema-dia .marco img { box-shadow: 0 24px 50px rgba(11,31,59,.16); }
@@ -494,7 +497,6 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
   .proyecto-nombre span { font-size: clamp(26px,8vw,34px); }
   .proyecto-detalle > div > p { font-size: 15px; }
   .proyectos-visor { height: 36svh; }
-  .marco { --pie: 26px; }
   .marco figcaption { top: calc(100% + 6px); font-size: 12px; }
   /* En celular la cocina va a la izquierda y la tarjeta a la derecha, sin taparse,
      y la tarjeta queda arriba del espacio de la nota «Ejemplo ilustrativo» */
@@ -513,7 +515,6 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
   /* Las capacidades en una columna: a dos, las etiquetas chocaban con «Ejemplo» */
   .caps-grid { grid-template-columns: 1fr; }
   /* El pie de foto del visor ocupa dos renglones: se le deja su espacio */
-  .marco { --pie: 54px; }
 }
 
 /* Celulares bajitos: el eslogan de la portada se queda en el pie para que todo quepa */
