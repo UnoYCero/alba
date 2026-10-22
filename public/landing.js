@@ -86,7 +86,8 @@ const scrub = origen.querySelector("[data-scrub]");
 scrub.innerHTML = scrub.textContent.trim().split(/\s+/).map((p) => `<span class="w">${p}</span>`).join(" ");
 const palabras = [...scrub.querySelectorAll(".w")];
 function encender() {
-  if (reducir) {
+  // En celular (y con «menos movimiento») el origen va corrido y ya encendido: no es una pantalla fija
+  if (reducir || celular.matches) {
     palabras.forEach((w) => w.classList.add("on"));
     origen.classList.add("fin");
     return;
@@ -97,37 +98,35 @@ function encender() {
   origen.classList.toggle("fin", p > 0.35);
 }
 
-// ── Misión y visión: al bajar, la línea recorre la foto de «lo que ves» a «lo que ve Alba».
-// También se arrastra (dedo, mouse o flechas). En teléfonos bajitos o quieta, sólo se arrastra ──
+// ── Misión y visión: «lo que Alba va encontrando». Se ve la foto normal; luego aparecen, uno a
+// uno, los recuadros de lo que Alba reconoce y al final la frase que diría UNBLIND. Se repite
+// mientras está a la vista. Dos botones dejan fija una de las dos vistas. Con «menos
+// movimiento» se queda en la vista de Alba, completa y quieta. ──
 const masAlla = document.querySelector("[data-cortina]");
 if (masAlla) {
   const marco = masAlla.querySelector(".cortina");
-  const control = masAlla.querySelector("[data-cortina-control]");
   const textos = [...masAlla.querySelectorAll("[data-mv]")];
-  const corrida = () => reducir || (matchMedia("(max-width: 760px)").matches && innerHeight < 700);
-  let avanceAlArrastrar = null;
-  const poner = (v) => {
-    marco.style.setProperty("--corte", `${v}%`);
-    control.value = String(Math.round(v));
-    textos.forEach((t, i) => t.classList.toggle("activa", i === (v > 50 ? 0 : 1)));
+  const botones = [...masAlla.querySelectorAll("button[data-vista]")];
+  let fija = null, aLaVista = false, espera = 0;
+  const ponerVista = (v) => {
+    marco.dataset.vista = v;
+    botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.vista === v)));
+    textos.forEach((t, i) => t.classList.toggle("activa", i === (v === "ves" ? 0 : 1)));
   };
-  const alBajarCortina = () => {
-    masAlla.classList.toggle("corrida", corrida());
-    if (corrida()) return;
-    const p = avanceFijo(masAlla);
-    // Si la persona la arrastró, se respeta hasta que vuelva a bajar un buen tramo
-    if (avanceAlArrastrar !== null && Math.abs(p - avanceAlArrastrar) < 0.06) return;
-    avanceAlArrastrar = null;
-    poner(92 - limitar((p - 0.1) / 0.72) * 84);
+  // «Lo que ves» 3 s; «lo que ve Alba» 7 s (los recuadros tardan ~2.5 s en aparecer todos)
+  const seguir = () => {
+    if (fija || !aLaVista || reducir) return;
+    const v = marco.dataset.vista === "alba" ? "ves" : "alba";
+    ponerVista(v);
+    espera = setTimeout(seguir, v === "alba" ? 7000 : 3000);
   };
-  control.addEventListener("input", () => {
-    avanceAlArrastrar = corrida() ? null : avanceFijo(masAlla);
-    poner(Number(control.value));
-  });
-  addEventListener("scroll", () => requestAnimationFrame(alBajarCortina), { passive: true });
-  addEventListener("resize", alBajarCortina);
-  if (corrida()) poner(50);
-  alBajarCortina();
+  botones.forEach((b) => b.addEventListener("click", () => { fija = b.dataset.vista; clearTimeout(espera); ponerVista(fija); }));
+  new IntersectionObserver(([e]) => {
+    aLaVista = e.isIntersecting;
+    clearTimeout(espera);
+    if (aLaVista && !fija && !reducir) espera = setTimeout(seguir, 1200);
+  }, { threshold: 0.5 }).observe(marco);
+  ponerVista(reducir ? "alba" : "ves");
 }
 
 // ── Alba Vision: los proyectos como lista; el que se toca (o se señala sobre su nombre) se abre
@@ -138,16 +137,29 @@ const textoVisor = document.querySelector("[data-visor-texto]");
 const escritorio = matchMedia("(min-width: 1081px)");
 // En escritorio la descripción va junto a la imagen, así la lista no cambia de alto bajo el cursor
 function abrirProyecto(i) {
-  if (textoVisor) textoVisor.innerHTML = proyectos[i].querySelector(".proyecto-detalle > div").innerHTML;
+  // (En celular el visor no se usa y la imagen vive dentro del detalle: no se copia)
+  const acordeon = document.querySelector(".proyectos")?.classList.contains("acordeon");
+  if (textoVisor) textoVisor.innerHTML = acordeon ? "" : proyectos[i].querySelector(".proyecto-detalle > div").innerHTML;
   proyectos.forEach((p, j) => {
     p.classList.toggle("activo", j === i);
     p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", String(j === i));
   });
   visuales.forEach((v, j) => v.classList.toggle("activa", j === i));
 }
+const seccionProyectos = document.querySelector(".proyectos");
+const visorImagenes = document.querySelector(".visor-imagenes");
 proyectos.forEach((p, j) => {
   const nombre = p.querySelector(".proyecto-nombre");
-  nombre.addEventListener("click", () => abrirProyecto(j));
+  nombre.addEventListener("click", () => {
+    if (!enAcordeon()) return abrirProyecto(j);
+    const yaAbierto = p.classList.contains("activo");
+    abrirProyecto(j);
+    // Si se cerró uno que estaba arriba, la lista se recorre: al terminar, el abierto queda a la vista
+    if (!yaAbierto) setTimeout(() => {
+      const r = nombre.getBoundingClientRect();
+      if (r.top < 90 || r.top > innerHeight * 0.6) nombre.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "start" });
+    }, 640);
+  });
   // En escritorio también se abre con el mouse, pero sólo sobre la palabra (no toda la fila)
   // y tras una pausa corta: así, al ir hacia «Conoce…», rozar otro nombre no cambia nada
   const palabra = nombre.querySelector("span");
@@ -163,6 +175,76 @@ const pedirImagenesProyectos = () => document.querySelectorAll('.proyectos-visor
 if (document.readyState === "complete") pedirImagenesProyectos();
 else addEventListener("load", pedirImagenesProyectos, { once: true });
 abrirProyecto(0);
+
+// En celular los proyectos son una lista que se despliega: cada renglón lleva una miniatura,
+// su nombre y su estado; al tocarlo se abre y adentro aparece su imagen (en el mismo marco
+// para todos), su descripción y sus enlaces. Uno abierto a la vez. Al volver a una pantalla
+// ancha, las imágenes regresan al visor y las miniaturas se quitan.
+const MINI_COCINA = '<svg viewBox="0 0 48 48"><path d="M24 9 43 22 24 35 5 22Z" fill="#fff" stroke="#c9d6ea"/><path d="M15 17l6 4-6 4-6-4Z" fill="#2563eb" opacity=".55"/><path d="M27 19l8 5-5 3-8-5Z" fill="#2563eb" opacity=".8"/><path d="M20 26l6 4-4 3-6-4Z" fill="#2563eb" opacity=".35"/></svg>';
+const MINI_CHAT = '<svg viewBox="0 0 48 48"><rect x="15" y="6" width="18" height="36" rx="4" fill="#fff" stroke="#1b3152" stroke-width="2"/><rect x="22" y="14" width="9" height="5" rx="2.5" fill="#0b1f3b"/><rect x="17" y="21" width="10" height="5" rx="2.5" fill="#cfdcf5"/><rect x="21" y="28" width="10" height="5" rx="2.5" fill="#0b1f3b"/></svg>';
+function miniatura(v) {
+  const m = document.createElement("span");
+  m.className = "miniatura";
+  m.setAttribute("aria-hidden", "true");
+  const img = v.querySelector("img");
+  if (img) m.innerHTML = `<img src="${img.getAttribute("src")}" alt="" loading="lazy" decoding="async">`;
+  else m.innerHTML = v.querySelector(".chat") ? MINI_CHAT : MINI_COCINA;
+  return m;
+}
+const enAcordeon = () => seccionProyectos.classList.contains("acordeon");
+function modoAcordeon() {
+  const acordeon = celular.matches;
+  if (acordeon === enAcordeon()) return;
+  seccionProyectos.classList.toggle("acordeon", acordeon);
+  visuales.forEach((v, j) => {
+    const nombre = proyectos[j].querySelector(".proyecto-nombre");
+    if (acordeon) {
+      v.setAttribute("aria-hidden", "true");
+      proyectos[j].querySelector(".proyecto-detalle > div").prepend(v);
+      nombre.prepend(miniatura(v));
+    } else {
+      v.removeAttribute("aria-hidden");
+      visorImagenes.append(v);
+      nombre.querySelector(".miniatura")?.remove();
+    }
+  });
+  abrirProyecto(0);
+}
+modoAcordeon();
+celular.addEventListener("change", () => { modoAcordeon(); encender(); });
+
+// ── Lo que hacemos, en celular: una sola imagen grande que cambia sola cada 5 s, con cuatro
+// botones debajo (Ver · Detectar · Medir · Orientarse). Tocar uno la deja fija. En escritorio
+// los botones no se ven y las cuatro tarjetas siguen en fila. ──
+const capsGrid = document.querySelector(".caps-grid");
+if (capsGrid) {
+  const caps = [...capsGrid.children];
+  const barra = document.createElement("div");
+  barra.className = "caps-botones";
+  barra.setAttribute("role", "group");
+  barra.setAttribute("aria-label", t("Elige qué capacidad ver", "Choose which capability to see"));
+  let actual = 0, elegida = false, aLaVista = false;
+  const mostrarCap = (i) => {
+    actual = i;
+    caps.forEach((c, j) => c.classList.toggle("cap-activa", j === i));
+    [...barra.children].forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+    // Los botones van justo debajo de la imagen de la capacidad elegida
+    caps[i].querySelector(".viz")?.after(barra);
+  };
+  caps.forEach((c, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = c.querySelector("h3").textContent.trim().split(/\s+/)[0];
+    b.addEventListener("click", () => { elegida = true; mostrarCap(i); b.focus(); });
+    barra.append(b);
+  });
+  mostrarCap(0);
+  new IntersectionObserver(([e]) => { aLaVista = e.isIntersecting; }, { threshold: 0.4 }).observe(capsGrid);
+  setInterval(() => {
+    if (!celular.matches || reducir || elegida || !aLaVista || document.hidden) return;
+    mostrarCap((actual + 1) % caps.length);
+  }, 5000);
+}
 
 // Un solo manejador de desplazamiento, una vez por cuadro
 let pendiente = false;
@@ -273,7 +355,7 @@ prefMovimiento.addEventListener("change", (e) => {
 
 // ── El cielo amanece al bajar: cada sección tiene su color y se mezclan en la frontera ──
 const cieloAlba = document.querySelector("[data-cielo-alba]");
-const coloresCielo = { inicio: "#03081a", origen: "#0b2142", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", reconocidos: "#03081a", contacto: "#050d1c" };
+const coloresCielo = { inicio: "#03081a", origen: "#0b2142", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c" };
 const seccionesCielo = Object.keys(coloresCielo).map((id) => document.getElementById(id)).filter(Boolean);
 const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 function amanecer() {
@@ -283,7 +365,10 @@ function amanecer() {
   const s = seccionesCielo[i];
   const sig = seccionesCielo[Math.min(i + 1, seccionesCielo.length - 1)];
   const zona = Math.min(innerHeight * 0.6, s.offsetHeight * 0.4);
-  const f = limitar((y - (s.offsetTop + s.offsetHeight - zona)) / zona);
+  // Quiénes somos pinta su propio fondo (amanecer.css): el cielo detrás no se ve, así que pasa al
+  // color siguiente en cuanto la sección siguiente asoma por abajo, sin dejar una franja gris
+  const fin = s.offsetTop + s.offsetHeight;
+  const f = s.id === "quienes-somos" ? (scrollY + innerHeight >= fin - 1 ? 1 : 0) : limitar((y - (fin - zona)) / zona);
   const a = hexRgb(coloresCielo[s.id]), b = hexRgb(coloresCielo[sig.id]);
   const c = a.map((v, k) => Math.round(v + (b[k] - v) * f));
   cieloAlba.style.backgroundColor = `rgb(${c.join(",")})`;

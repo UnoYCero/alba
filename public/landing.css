@@ -131,8 +131,9 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 .origen-text .w { opacity: .5; transition: opacity .5s ease; }
 .origen-text .w.on { opacity: 1; }
 /* Misión y visión: la cortina entre lo que ves y lo que ve Alba */
-.mas-alla { position: relative; height: 240svh; }
-.mas-alla-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
+/* Ya no es pantalla fija: la foto cuenta sola lo que Alba va encontrando (landing.js) */
+.mas-alla { position: relative; }
+.mas-alla-pin { display: flex; align-items: center; min-height: 100svh; padding: calc(var(--nav-h) + var(--s7)) 0 var(--s9); }
 .mas-alla-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.85fr); gap: var(--s8); align-items: center; }
 .mas-alla-texto h2 { font-size: clamp(40px,5vw,72px); line-height: 1.02; letter-spacing: -.03em; max-width: 10ch; }
 .mas-alla-texto h2 em { color: var(--soft); }
@@ -141,30 +142,38 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 .mv div.activa { opacity: 1; }
 .mv dt { font-size: 16px; font-weight: 400; color: var(--soft); margin-bottom: var(--s2); }
 .mv dd { margin: 0; font-size: clamp(17px,1.5vw,21px); line-height: 1.45; color: var(--paper); }
-.cortina { position: relative; container-type: inline-size; margin: 0; justify-self: end; width: min(100%, 470px, calc((100svh - var(--nav-h) - 80px) * .8)); aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 90px -40px rgba(3,8,26,.8); }
+.cortina-bloque { justify-self: end; width: min(100%, 470px, calc((100svh - var(--nav-h) - 80px) * .8)); }
+.cortina { position: relative; container-type: inline-size; margin: 0; width: 100%; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 90px -40px rgba(3,8,26,.8); }
 .cortina-capa { position: absolute; inset: 0; }
 .cortina-capa > img { width: 100%; height: 100%; object-fit: cover; }
-.cortina-alba { clip-path: inset(0 0 0 var(--corte)); }
+/* La vista de Alba se enciende encima de la foto: primero el tono y la malla, luego los
+   recuadros uno a uno y al final la frase. Al volver a «lo que ves» se apaga todo junto. */
+.cortina-alba { opacity: 0; transition: opacity .7s var(--ease); }
+.cortina[data-vista="alba"] .cortina-alba { opacity: 1; }
+.cortina .caja, .cortina-voz, .cortina-rotulo-alba { opacity: 0; transform: translateY(6px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.cortina[data-vista="alba"] .caja, .cortina[data-vista="alba"] .cortina-voz, .cortina[data-vista="alba"] .cortina-rotulo-alba { opacity: 1; transform: none; }
+.cortina[data-vista="alba"] .caja:nth-of-type(1) { transition-delay: .6s; }
+.cortina[data-vista="alba"] .caja:nth-of-type(2) { transition-delay: 1.05s; }
+.cortina[data-vista="alba"] .caja:nth-of-type(3) { transition-delay: 1.5s; }
+.cortina[data-vista="alba"] .caja:nth-of-type(4) { transition-delay: 1.95s; }
+.cortina[data-vista="alba"] .cortina-voz { transition-delay: 2.6s; }
+.cortina-normal .cortina-rotulo { display: none; }
+/* Los dos botones, debajo de la foto */
+.vistas { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: var(--s4); padding: 4px; border-radius: 999px; background: rgba(244,246,250,.08); }
+.vistas button { min-height: 40px; padding: 0 var(--s3); border: 0; border-radius: 999px; background: none; font: inherit; font-size: 14px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
+.vistas button:hover { color: var(--paper); }
+.vistas button[aria-pressed="true"] { background: #f4f6fa; color: #0b1f3b; }
 .cortina-alba > img { filter: saturate(.55) brightness(.82) contrast(1.05); }
 .cortina-malla { position: absolute; inset: 0; background-image: linear-gradient(rgba(143,178,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(143,178,255,.12) 1px, transparent 1px); background-size: 24px 24px; mix-blend-mode: screen; }
 .cortina-rotulo { position: absolute; z-index: 2; left: 14px; top: 14px; padding: 5px 12px; border-radius: 999px; background: rgba(5,13,28,.6); color: #f4f6fa; font-size: 12.5px; letter-spacing: .02em; }
 .cortina-rotulo-alba { left: auto; right: 14px; background: #2563eb; }
 .cortina-rotulo small { font-size: inherit; opacity: .75; }
 .cortina-voz { position: absolute; z-index: 2; left: 5%; right: 5%; bottom: 5%; margin: 0; padding: 9px 13px; border-radius: 12px; background: rgba(244,246,250,.95); color: #0b1f3b; font-size: clamp(11px, 3.4cqw, 14px); line-height: 1.4; }
-.cortina-linea { position: absolute; z-index: 3; top: 0; bottom: 0; left: var(--corte); width: 2px; margin-left: -1px; background: #f4f6fa; box-shadow: 0 0 18px rgba(143,178,255,.8); pointer-events: none; }
-.cortina-linea b { position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; background: #f4f6fa; box-shadow: 0 6px 18px rgba(3,8,26,.4); }
-.cortina-linea b::before, .cortina-linea b::after { content: ""; position: absolute; top: 50%; width: 0; height: 0; margin-top: -5px; border: 5px solid transparent; }
-.cortina-linea b::before { left: 8px; border-right-color: #0b1f3b; }
-.cortina-linea b::after { right: 8px; border-left-color: #0b1f3b; }
 @container (max-width: 300px) {
   .cortina-rotulo { left: 8px; top: 8px; padding: 3px 8px; font-size: 10.5px; }
   .cortina-rotulo-alba { left: auto; right: 8px; }
   .cortina-rotulo small { display: none; }
 }
-.mas-alla.corrida .cortina { width: min(100%, 380px); }
-.cortina-control { position: absolute; z-index: 4; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; -webkit-appearance: none; appearance: none; }
-.cortina-control:focus-visible + .cortina-linea, .cortina:has(.cortina-control:focus-visible) .cortina-linea b { outline: 2px solid #8fb2ff; outline-offset: 3px; }
-
 /* Quiénes somos y collage de hitos */
 .about { padding: var(--s9) 0; background: var(--deep); overflow: hidden; }
 .about-head { display: grid; grid-template-columns: 1.15fr .85fr; gap: var(--s8); align-items: center; }
@@ -206,6 +215,7 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 .caps { padding: var(--s9) 0; background: var(--ink); }
 .caps-title { max-width: 24ch; }
 .caps-grid { list-style: none; padding: 0; margin: var(--s8) 0 0; display: grid; grid-template-columns: repeat(4,1fr); gap: var(--s6); }
+.caps-botones { display: none; } /* sólo en celular (celular.css) */
 .cap h3 { font-size: 20px; letter-spacing: -.01em; margin-top: var(--s5); }
 .cap p { margin: var(--s2) 0 var(--s3); font-size: 15px; color: var(--dim); }
 .cap small { font-size: 13px; color: var(--soft); }
@@ -353,7 +363,8 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
   .mv { gap: var(--s3); margin-top: var(--s4); }
   .mv dt { font-size: 14px; margin-bottom: 2px; }
   .mv dd { font-size: 15px; }
-  .cortina { justify-self: center; width: min(100%, calc((100svh - var(--nav-h) - 300px) * .8)); border-radius: 18px; }
+  .cortina-bloque { justify-self: center; width: min(100%, 400px); }
+  .cortina { border-radius: 18px; }
 
   .about { padding: var(--s9) 0 var(--s8); }
   .about-head { gap: var(--s4); }
@@ -402,9 +413,9 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 
 /* Sin JavaScript o con «menos movimiento»: el origen se lee corrido */
 html:not(.js) .origen, .reduce .origen { height: auto; }
-html:not(.js) .mas-alla, .reduce .mas-alla, .mas-alla.corrida { height: auto; }
-html:not(.js) .mas-alla-pin, .reduce .mas-alla-pin, .mas-alla.corrida .mas-alla-pin { position: static; height: auto; padding: var(--s9) 0; }
-html:not(.js) .cortina { --corte: 50% !important; }
+/* Sin JavaScript se ve la vista de Alba completa */
+html:not(.js) .cortina-alba, html:not(.js) .cortina .caja, html:not(.js) .cortina-voz, html:not(.js) .cortina-rotulo-alba { opacity: 1; transform: none; }
+html:not(.js) .vistas { display: none; }
 .reduce .mv div, html:not(.js) .mv div { opacity: 1; }
 html:not(.js) .origen-pin, .reduce .origen-pin { position: static; height: auto; padding: var(--s10) 0; }
 
@@ -425,7 +436,8 @@ html:not(.js) .origen-pin, .reduce .origen-pin { position: static; height: auto;
 .proyecto-detalle { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
 .proyecto.activo .proyecto-detalle { grid-template-rows: 1fr; }
 .proyecto-detalle > div { overflow: hidden; }
-.proyecto-detalle p { margin: 0 0 var(--s3); max-width: 52ch; font-size: 16px; color: var(--dim); }
+/* Sólo la descripción (en celular la imagen del proyecto también vive dentro del detalle) */
+.proyecto-detalle > div > p { margin: 0 0 var(--s3); max-width: 52ch; font-size: 16px; color: var(--dim); }
 .proyecto-detalle .pasos { margin: 0 0 var(--s4); }
 .proyecto-enlaces { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); padding-bottom: var(--s4); }
 html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
@@ -443,9 +455,12 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .proy-visual:has(> .visual-note) { padding-bottom: 30px; }
 
 /* El marco: tan grande como quepa en el visor, con la forma de su imagen y el pie debajo */
-.marco { --pie: 32px; position: relative; margin: 0; width: min(100cqw, (100cqh - var(--pie)) * (var(--ar))); }
+.marco { --pie: 0px; position: relative; margin: 0; width: min(100cqw, (100cqh - var(--pie)) * (var(--ar))); }
 .marco img { display: block; width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; border-radius: 16px; }
 .marco figcaption { position: absolute; top: calc(100% + 8px); left: 50%; width: max-content; max-width: 100cqw; transform: translateX(-50%); font-size: 13px; font-style: italic; line-height: 1.35; color: var(--faint); text-align: center; }
+/* Lo que no es foto real lleva una etiqueta corta en la esquina («Ilustración», «Ejemplo»), sin pie descriptivo */
+.marco .etiqueta { position: absolute; z-index: 2; top: 10px; right: 10px; padding: 2px 9px; border-radius: 999px; background: rgba(5,13,28,.55); color: #f4f6fa; font-size: 11px; letter-spacing: .02em; }
+.marco-telefono .etiqueta { top: 14px; right: 14px; }
 .marco-claro img { object-fit: contain; background: #eceff3; }
 .marco-telefono img { border: 6px solid #1b3152; border-radius: 24px; }
 .tema-dia .marco img { box-shadow: 0 24px 50px rgba(11,31,59,.16); }
@@ -480,9 +495,8 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
   .proyectos-head { margin-bottom: var(--s5); }
   .proyectos-head p { display: none; }
   .proyecto-nombre span { font-size: clamp(26px,8vw,34px); }
-  .proyecto-detalle p { font-size: 15px; }
+  .proyecto-detalle > div > p { font-size: 15px; }
   .proyectos-visor { height: 36svh; }
-  .marco { --pie: 26px; }
   .marco figcaption { top: calc(100% + 6px); font-size: 12px; }
   /* En celular la cocina va a la izquierda y la tarjeta a la derecha, sin taparse,
      y la tarjeta queda arriba del espacio de la nota «Ejemplo ilustrativo» */
@@ -501,7 +515,6 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
   /* Las capacidades en una columna: a dos, las etiquetas chocaban con «Ejemplo» */
   .caps-grid { grid-template-columns: 1fr; }
   /* El pie de foto del visor ocupa dos renglones: se le deja su espacio */
-  .marco { --pie: 54px; }
 }
 
 /* Celulares bajitos: el eslogan de la portada se queda en el pie para que todo quepa */
@@ -510,8 +523,12 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 }
 
 /* Donde hemos estado: logos en blanco, semitransparentes, que se desplazan despacio */
-.logos { position: relative; padding: var(--s8) 0; overflow: hidden; }
-.logos-titulo { margin: 0 0 var(--s5); padding: 0 var(--gutter); text-align: center; font-size: 14px; color: var(--faint); }
+/* Va dentro de «Quiénes somos», después de las postales: primero los premios, luego dónde hemos estado */
+/* Un título con la voz de la página (ligero, la segunda parte en itálica azul) y debajo los
+   logos desfilando de orilla a orilla */
+.logos { position: relative; padding: var(--s8) 0 0; overflow: hidden; }
+.logos-titulo { max-width: 22ch; margin: 0 0 var(--s5); font-size: clamp(26px, 2.6vw, 38px); font-weight: 300; line-height: 1.12; letter-spacing: -.025em; color: var(--paper); text-wrap: balance; }
+.logos-titulo em { display: block; color: var(--soft); }
 .logos-pista { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .logos-lista { display: flex; width: max-content; animation: logos-desfile 60s linear infinite; }
 .logos-pista:hover .logos-lista { animation-play-state: paused; }
@@ -522,7 +539,7 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .logo-texto { font-size: 18px; font-weight: 400; letter-spacing: .02em; color: rgba(244,246,250,.62); white-space: nowrap; }
 @keyframes logos-desfile { to { transform: translateX(-50%); } }
 @media (max-width: 760px) {
-  .logos { padding: var(--s7) 0; }
+  .logos { padding-top: var(--s7); }
   .logos img { height: calc(var(--alto, 28px) * .8); }
   .logo-texto { font-size: 15px; }
 }

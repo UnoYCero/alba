@@ -28,6 +28,7 @@
   <link rel="preload" href="/assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
+  <link rel="stylesheet" href="/celular.css" media="(max-width: 760px)">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/landing.js"></script>
@@ -106,7 +107,8 @@
               <div data-mv="1"><dt>Vision</dt><dd>A future where technology lets us see beyond what our eyes can reach.</dd></div>
             </dl>
           </div>
-          <figure class="cortina" style="--corte:92%">
+          <div class="cortina-bloque">
+          <figure class="cortina" data-vista="ves">
             <div class="cortina-capa cortina-normal">
               <img src="/assets/unblind-en-la-calle.webp" alt="Max and Alan, co-founders of Alba, test UNBLIND on the street with Omar Ledezma, UNBLIND advisor and a person with visual disability, and his guide dog" width="640" height="800" loading="lazy" decoding="async">
               <span class="cortina-rotulo">What you see</span>
@@ -121,9 +123,12 @@
               <p class="cortina-voz">«Three people and a guide dog walk along the sidewalk, toward you.»</p>
               <span class="cortina-rotulo cortina-rotulo-alba">What Alba sees <small>· example</small></span>
             </div>
-            <i class="cortina-linea" aria-hidden="true"><b></b></i>
-            <input class="cortina-control" type="range" min="0" max="100" value="92" step="1" aria-label="Compare what you see with what Alba sees" data-cortina-control>
           </figure>
+          <div class="vistas">
+            <button type="button" data-vista="ves" aria-pressed="true">What you see</button>
+            <button type="button" data-vista="alba" aria-pressed="false">What Alba sees</button>
+          </div>
+          </div>
         </div>
       </div>
     </section>
@@ -139,7 +144,6 @@
         </div>
         <figure class="about-foto reveal">
           <img src="/assets/equipo.webp" alt="The Alba team at an awards gala" width="600" height="750" loading="lazy" decoding="async">
-          <figcaption>The Alba team</figcaption>
         </figure>
       </div>
       <div class="wrap collage-bar">
@@ -196,6 +200,16 @@
             <div class="postal-texto"><span class="postal-year">2026</span><b>State Youth Award · State of Mexico</b><span class="postal-nota">Alan Soubran, CEO of Alba, won the «Innovation that transforms» category.</span></div>
           </li>
         </ul>
+      </div>
+      <!-- Donde hemos estado: los logos, como continuación de los hitos -->
+      <div class="logos" id="reconocidos" role="group" aria-labelledby="logos-titulo">
+        <div class="wrap"><h3 class="logos-titulo" id="logos-titulo">Where we've competed <em>and who has backed us</em></h3></div>
+        <div class="logos-pista">
+          <div class="logos-lista">
+            <ul><li><img src="/assets/logos/samsung.png" alt="Samsung" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">ILAN</span></li><li><img src="/assets/logos/unitec.png" alt="UNITEC" style="--alto:30px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ntt-data.png" alt="NTT DATA Foundation" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/talent-land.png" alt="Talent Land" style="--alto:34px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/coparmex.png" alt="Coparmex" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/hult-prize.png" alt="Hult Prize" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">Ricardo B. Salinas Pliego Center</span></li><li><img src="/assets/logos/edomex.png" alt="Government of the State of Mexico" style="--alto:36px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/anahuac.png" alt="Universidad Anáhuac" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/biblioteca-vasconcelos.png" alt="Biblioteca Vasconcelos" style="--alto:26px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/alvaro-obregon.png" alt="Álvaro Obregón borough" style="--alto:32px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ilumina.png" alt="Ilumina, Blindness and Low Vision" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/incluye.png" alt="Incluye" style="--alto:22px" loading="lazy" decoding="async"></li></ul>
+            <ul aria-hidden="true"><li><img src="/assets/logos/samsung.png" alt="" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">ILAN</span></li><li><img src="/assets/logos/unitec.png" alt="" style="--alto:30px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ntt-data.png" alt="" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/talent-land.png" alt="" style="--alto:34px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/coparmex.png" alt="" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/hult-prize.png" alt="" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">Ricardo B. Salinas Pliego Center</span></li><li><img src="/assets/logos/edomex.png" alt="" style="--alto:36px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/anahuac.png" alt="" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/biblioteca-vasconcelos.png" alt="" style="--alto:26px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/alvaro-obregon.png" alt="" style="--alto:32px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ilumina.png" alt="" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/incluye.png" alt="" style="--alto:22px" loading="lazy" decoding="async"></li></ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -314,7 +328,6 @@
           <div class="proy-visual activa" data-visual="0">
                   <figure class="marco" style="--ar: 4 / 5">
                     <img src="/assets/unblind-en-la-calle.webp" alt="Max and Alan, co-founders of Alba, test UNBLIND on the street with Omar Ledezma, UNBLIND advisor and a person with visual disability, and his guide dog" loading="lazy" decoding="async" width="640" height="800">
-                    <figcaption>Max and Alan with Omar Ledezma, UNBLIND advisor</figcaption>
                   </figure>
           </div>
           <div class="proy-visual" data-visual="1">
@@ -334,12 +347,11 @@
                     <div class="bar"><span>Assembly table</span><i style="--v:.64"></i></div>
                     <div class="bar"><span>Fryer</span><i style="--v:.38"></i></div>
                   </div>
-                  <span class="visual-note">Illustrative example · no real data</span>
           </div>
           <div class="proy-visual" data-visual="2">
                   <figure class="marco" style="--ar: 1400 / 802">
                     <img src="/assets/anahuac-concepto.webp" alt="Conceptual illustration of a lab vision system; it does not represent the real machine" loading="lazy" decoding="async" width="1400" height="802">
-                    <figcaption>Conceptual illustration · not the real machine</figcaption>
+                    <span class="etiqueta">Illustration</span>
                   </figure>
           </div>
           <div class="proy-visual" data-visual="3">
@@ -350,18 +362,17 @@
                     <p class="msg msg-cliente">Yes, I confirm</p>
                     <p class="msg msg-sistema">Request ready · the team reviews it before preparing it</p>
                   </div>
-                  <span class="visual-note">Example conversation</span>
           </div>
           <div class="proy-visual" data-visual="4">
                   <figure class="marco marco-claro" style="--ar: 16 / 9">
                     <img src="/assets/armazon.webp" alt="Alba Labs Dev Kit smartglasses (illustrative image)" loading="lazy" decoding="async" width="1600" height="900">
-                    <figcaption>Illustrative image</figcaption>
+                    <span class="etiqueta">Illustration</span>
                   </figure>
           </div>
           <div class="proy-visual" data-visual="5">
                   <figure class="marco marco-telefono" style="--ar: 520 / 1012">
                     <img src="/assets/surface-ops-resultado.webp" alt="Screenshot of the Surface Ops app: the cut plan of a pothole with its measurements, on a test photo" loading="lazy" decoding="async" width="520" height="1012">
-                    <figcaption>App screenshot · test photo</figcaption>
+                    <span class="etiqueta">Example</span>
                   </figure>
           </div>
             </div>
@@ -387,18 +398,7 @@
         <div class="space-actions reveal"><a class="btn btn-ghost" href="albaspace/">Explore Alba Space</a><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20want%20to%20talk%20about%20a%20mission%20with%20Alba%20Space." target="_blank" rel="noopener" aria-label="Let's talk about your mission on WhatsApp">Let's talk about your mission</a></div>
       </div>
       <p class="space-hud" aria-hidden="true"><span>Identifying stars</span><span data-hud>—</span></p>
-      <span class="visual-note space-note">Illustrative sky · drag to look around</span>
-    </section>
-
-    <!-- Donde hemos estado: una barra de logos que se desplaza -->
-    <section class="logos tema-noche" id="reconocidos" aria-label="Where we have been">
-      <p class="logos-titulo">Where we have been</p>
-      <div class="logos-pista">
-        <div class="logos-lista">
-          <ul><li><img src="/assets/logos/samsung.png" alt="Samsung" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">ILAN</span></li><li><img src="/assets/logos/unitec.png" alt="UNITEC" style="--alto:30px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ntt-data.png" alt="NTT DATA Foundation" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/talent-land.png" alt="Talent Land" style="--alto:34px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/coparmex.png" alt="Coparmex" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/hult-prize.png" alt="Hult Prize" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">Ricardo B. Salinas Pliego Center</span></li><li><img src="/assets/logos/edomex.png" alt="Government of the State of Mexico" style="--alto:36px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/anahuac.png" alt="Universidad Anáhuac" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/biblioteca-vasconcelos.png" alt="Biblioteca Vasconcelos" style="--alto:26px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/alvaro-obregon.png" alt="Álvaro Obregón borough" style="--alto:32px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ilumina.png" alt="Ilumina, Blindness and Low Vision" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/incluye.png" alt="Incluye" style="--alto:22px" loading="lazy" decoding="async"></li></ul>
-          <ul aria-hidden="true"><li><img src="/assets/logos/samsung.png" alt="" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">ILAN</span></li><li><img src="/assets/logos/unitec.png" alt="" style="--alto:30px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ntt-data.png" alt="" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/talent-land.png" alt="" style="--alto:34px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/coparmex.png" alt="" style="--alto:22px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/hult-prize.png" alt="" style="--alto:20px" loading="lazy" decoding="async"></li><li><span class="logo-texto">Ricardo B. Salinas Pliego Center</span></li><li><img src="/assets/logos/edomex.png" alt="" style="--alto:36px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/anahuac.png" alt="" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/biblioteca-vasconcelos.png" alt="" style="--alto:26px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/alvaro-obregon.png" alt="" style="--alto:32px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/ilumina.png" alt="" style="--alto:42px" loading="lazy" decoding="async"></li><li><img src="/assets/logos/incluye.png" alt="" style="--alto:22px" loading="lazy" decoding="async"></li></ul>
-        </div>
-      </div>
+      <span class="visual-note space-note">Drag to look around</span>
     </section>
 
     <!-- Contacto -->

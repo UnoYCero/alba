@@ -17,6 +17,11 @@ main, .footer { position: relative; z-index: 2; }
 
 /* Las secciones dejan ver el cielo */
 .hero, .origen, .about, .caps, .proyectos, .space, .contact { background: transparent; }
+/* Quiénes somos lleva su propio color: al final van los logos (blancos) y, con el cielo
+   transparente, quedaban sobre el gris del paso al día. Se funde arriba con la misión y abajo
+   con «Lo que hacemos», con los mismos colores de coloresCielo en landing.js. */
+#quienes-somos { padding-bottom: calc(var(--s6) + 140px); background: linear-gradient(#0e2a55, #13366c 120px, rgb(19,54,108) calc(100% - 140px), rgb(24,58,111) calc(100% - 126px), rgb(39,71,121) calc(100% - 112px), rgb(62,92,137) calc(100% - 98px), rgb(91,117,156) calc(100% - 84px), rgb(123,145,178) calc(100% - 70px), rgb(155,173,200) calc(100% - 56px), rgb(184,198,219) calc(100% - 42px), rgb(207,219,235) calc(100% - 28px), rgb(222,232,245) calc(100% - 14px), rgb(227,236,248) 100%); }
+/* (El paso al día es largo y sigue una curva suave: no se nota dónde empieza ni dónde termina) */
 .hero-veil { background: linear-gradient(90deg, rgba(3,8,26,.75) 0%, rgba(3,8,26,.2) 46%, transparent 66%); }
 
 /* Temas */

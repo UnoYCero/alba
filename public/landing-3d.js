@@ -127,15 +127,20 @@ function cielo(canvas, op) {
     esfera.add(pts);
     return pts;
   };
+  // En celular la pantalla es angosta: menos estrellas en total, pero más grandes y brillantes,
+  // para que la sensación de cielo se note en la parte despejada de arriba
   const pocas = innerWidth < 700;
-  capa(pocas ? 1400 : 2600, 0.28, 0.75);
-  capa(pocas ? 260 : 420, 0.5, 0.9);
-  const brillantes = capa(70, 1.0, 1);
+  capa(pocas ? 1700 : 2600, pocas ? 0.36 : 0.28, pocas ? 0.85 : 0.75);
+  capa(pocas ? 340 : 420, pocas ? 0.62 : 0.5, 0.95);
+  const brillantes = capa(pocas ? 90 : 70, pocas ? 1.25 : 1.0, 1);
 
   // Constelaciones ilustrativas: a la derecha (a la izquierda va el texto)
   const constelaciones = [];
   for (let k = 0; k < 6; k++) {
-    const ancla = new V(0.15 + Math.random() * 0.55, (Math.random() - 0.5) * 0.6, -1).normalize();
+    // En escritorio a la derecha (a la izquierda va el texto); en celular al centro y arriba (el texto va abajo)
+    const ancla = pocas
+      ? new V((Math.random() - 0.5) * 0.5, 0.12 + Math.random() * 0.3, -1).normalize()
+      : new V(0.15 + Math.random() * 0.55, (Math.random() - 0.5) * 0.6, -1).normalize();
     const cerca = todas.map((d) => ({ d, c: d.dot(ancla) })).filter((o) => o.c > 0.985).sort((a, b) => b.c - a.c).slice(0, 7).map((o) => o.d);
     if (cerca.length < 4) continue;
     // camino por vecino más cercano
