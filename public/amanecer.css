@@ -13,6 +13,8 @@ body { background: #03081a; }
 .portada-continua { position: relative; }
 .cielo-alba.cielo-pagina { position: absolute; inset: 0 0 auto 0; height: 100%; }
 .portada-continua .footer { background: transparent; }
+/* El velo de la portada se desvanece en su orilla de abajo (empalma con el fondo del origen) */
+.portada-continua .hero-veil { -webkit-mask-image: linear-gradient(0deg, transparent, #000 12%); mask-image: linear-gradient(0deg, transparent, #000 12%); }
 /* Lo que se dibuja dentro de una sección se desvanece en sus orillas en lugar de cortarse */
 .portada-continua .space-canvas { -webkit-mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent); }
 .portada-continua .contact-orbits { -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
