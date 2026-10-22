@@ -16,7 +16,8 @@ body { background: #03081a; }
 /* Lo que se dibuja dentro de una sección se desvanece en sus orillas en lugar de cortarse */
 .portada-continua .space-canvas { -webkit-mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent); }
 .portada-continua .contact-orbits { -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent); }
-.portada-continua .proyectos { padding-bottom: calc(var(--s6) + 140px); }
+.portada-continua .proyectos { padding: var(--s8) 0 calc(var(--s5) + 120px); }
+.portada-continua .caps { padding-bottom: var(--s7); }
 .ojo-escena { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 .ojo-escena canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .6s ease; }
 .ojo-escena[data-listo="true"] canvas { opacity: 1; }
@@ -27,7 +28,7 @@ main, .footer { position: relative; z-index: 2; }
 /* Las secciones dejan ver el cielo */
 .hero, .origen, .about, .caps, .proyectos, .space, .contact { background: transparent; }
 /* Quiénes somos deja espacio al final para el paso al día (el degradado lo pinta landing.js) */
-#quienes-somos { padding-bottom: calc(var(--s6) + 140px); }
+#quienes-somos { padding-bottom: calc(var(--s5) + 120px); }
 .hero-veil { background: linear-gradient(90deg, rgba(3,8,26,.75) 0%, rgba(3,8,26,.2) 46%, transparent 66%); }
 
 /* Temas */

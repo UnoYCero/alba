@@ -25,7 +25,7 @@
 
 /* ── Quiénes somos: la foto del equipo completa, las postales compactas y, al final, dónde
       hemos estado (los logos), como continuación de los hitos ── */
-#quienes-somos { padding: var(--s7) 0 calc(var(--s5) + 120px); }
+#quienes-somos { padding: var(--s7) 0 calc(var(--s4) + 110px); }
 /* La foto del equipo completa, con su forma vertical (4:5), sin recortes */
 .about-foto { max-width: min(100%, 220px); margin-inline: auto; }
 .about-foto img { aspect-ratio: 4 / 5; max-height: none; object-fit: contain; }
@@ -39,7 +39,7 @@
 .logos-titulo { font-size: 26px; margin-bottom: var(--s4); }
 
 /* ── Lo que hacemos: una sola imagen grande que cambia (landing.js), con cuatro botones debajo ── */
-.caps { padding: var(--s7) 0; }
+.portada-continua .caps { padding: var(--s7) 0 var(--s4); }
 .caps-grid { display: block; margin-top: var(--s5); }
 .cap:not(.cap-activa) { display: none; }
 .cap .viz { width: min(100%, 340px); margin-inline: auto; animation: cap-entra .5s var(--ease); }
@@ -52,7 +52,7 @@
 .cap small { font-size: 13px; }
 
 /* ── Alba Vision: lista que se despliega (landing.js mueve cada imagen adentro de su proyecto) ── */
-.proyectos { padding: var(--s8) 0 calc(var(--s5) + 140px); }
+.portada-continua .proyectos { padding: var(--s6) 0 calc(var(--s4) + 110px); }
 .proyectos-head { margin-bottom: var(--s4); }
 .proyectos-head p { display: block; font-size: 15px; }
 .acordeon .proyectos-visor { display: none; }

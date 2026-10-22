@@ -86,13 +86,19 @@ const scrub = origen.querySelector("[data-scrub]");
 scrub.innerHTML = scrub.textContent.trim().split(/\s+/).map((p) => `<span class="w">${p}</span>`).join(" ");
 const palabras = [...scrub.querySelectorAll(".w")];
 function encender() {
-  // En celular (y con «menos movimiento») el origen va corrido y ya encendido: no es una pantalla fija
-  if (reducir || celular.matches) {
+  // Con «menos movimiento» se lee completo desde el principio
+  if (reducir) {
     palabras.forEach((w) => w.classList.add("on"));
     origen.classList.add("fin");
     return;
   }
-  const p = avanceFijo(origen);
+  // En celular el origen no es pantalla fija: las palabras se encienden mientras el párrafo
+  // sube por la pantalla (del 85 % al 35 % del alto)
+  let p;
+  if (celular.matches) {
+    const r = scrub.getBoundingClientRect();
+    p = limitar((innerHeight * 0.85 - r.top) / (innerHeight * 0.5 + r.height)) * 0.5;
+  } else p = avanceFijo(origen);
   const hasta = Math.round(limitar(p / 0.5) * palabras.length);
   palabras.forEach((w, i) => w.classList.toggle("on", i < hasta));
   origen.classList.toggle("fin", p > 0.35);
@@ -360,7 +366,7 @@ const cieloAlba = document.querySelector("[data-cielo-alba]");
 // entre dos oscuras (o dos claras) es largo y va centrado en el borde; entre oscura y clara va
 // dentro del margen final de la primera, para que ningún texto quede sobre el color de otra.
 // El orden de las llaves es el orden de la página; «pie» es el pie de página.
-const coloresCielo = { inicio: "#03081a", origen: "#040a1c", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c", pie: "#03081a" };
+const coloresCielo = { inicio: "#03081a", origen: "#02050e", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c", pie: "#03081a" };
 const seccionesCielo = Object.keys(coloresCielo).map((id) => (id === "pie" ? document.querySelector(".footer") : document.getElementById(id))).filter(Boolean);
 const idDe = (s) => (s.classList.contains("footer") ? "pie" : s.id);
 const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
@@ -379,7 +385,7 @@ function pintarCielo() {
     const b = hexRgb(coloresCielo[idDe(sig)]);
     const borde = sig.getBoundingClientRect().top + scrollY;
     const cambiaTema = (luz(a) > 0.5) !== (luz(b) > 0.5);
-    const largo = cambiaTema ? (celular.matches ? 120 : 140) : Math.min(innerHeight * 0.5, 380);
+    const largo = cambiaTema ? (celular.matches ? 110 : 120) : Math.min(innerHeight * 0.5, 380);
     const desde = cambiaTema ? borde - largo : borde - largo / 2;
     // 11 paradas sobre una curva seno: el cambio empieza y termina sin que se note
     for (let k = 0; k <= 10; k++) {
