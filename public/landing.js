@@ -86,13 +86,19 @@ const scrub = origen.querySelector("[data-scrub]");
 scrub.innerHTML = scrub.textContent.trim().split(/\s+/).map((p) => `<span class="w">${p}</span>`).join(" ");
 const palabras = [...scrub.querySelectorAll(".w")];
 function encender() {
-  // En celular (y con «menos movimiento») el origen va corrido y ya encendido: no es una pantalla fija
-  if (reducir || celular.matches) {
+  // Con «menos movimiento» se lee completo desde el principio
+  if (reducir) {
     palabras.forEach((w) => w.classList.add("on"));
     origen.classList.add("fin");
     return;
   }
-  const p = avanceFijo(origen);
+  // En celular el origen no es pantalla fija: las palabras se encienden mientras el párrafo
+  // sube por la pantalla (del 85 % al 35 % del alto)
+  let p;
+  if (celular.matches) {
+    const r = scrub.getBoundingClientRect();
+    p = limitar((innerHeight * 0.85 - r.top) / (innerHeight * 0.5 + r.height)) * 0.5;
+  } else p = avanceFijo(origen);
   const hasta = Math.round(limitar(p / 0.5) * palabras.length);
   palabras.forEach((w, i) => w.classList.toggle("on", i < hasta));
   origen.classList.toggle("fin", p > 0.35);
@@ -355,30 +361,52 @@ prefMovimiento.addEventListener("change", (e) => {
 
 // ── El cielo amanece al bajar: cada sección tiene su color y se mezclan en la frontera ──
 const cieloAlba = document.querySelector("[data-cielo-alba]");
-const coloresCielo = { inicio: "#03081a", origen: "#0b2142", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c" };
-const seccionesCielo = Object.keys(coloresCielo).map((id) => document.getElementById(id)).filter(Boolean);
+// El amanecer: un solo fondo continuo pintado a lo largo de la página (no fijo a la pantalla).
+// Cada sección tiene su color y el paso entre una y otra es un degradado suave, sin líneas:
+// entre dos oscuras (o dos claras) es largo y va centrado en el borde; entre oscura y clara va
+// dentro del margen final de la primera, para que ningún texto quede sobre el color de otra.
+// El orden de las llaves es el orden de la página; «pie» es el pie de página.
+const coloresCielo = { inicio: "#03081a", origen: "#02050e", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c", pie: "#03081a" };
+const seccionesCielo = Object.keys(coloresCielo).map((id) => (id === "pie" ? document.querySelector(".footer") : document.getElementById(id))).filter(Boolean);
+const idDe = (s) => (s.classList.contains("footer") ? "pie" : s.id);
 const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
-function amanecer() {
-  const y = scrollY + innerHeight * 0.55;
-  let i = seccionesCielo.findIndex((s) => y >= s.offsetTop && y < s.offsetTop + s.offsetHeight);
-  if (i < 0) i = y < seccionesCielo[0].offsetTop ? 0 : seccionesCielo.length - 1;
-  const s = seccionesCielo[i];
-  const sig = seccionesCielo[Math.min(i + 1, seccionesCielo.length - 1)];
-  const zona = Math.min(innerHeight * 0.6, s.offsetHeight * 0.4);
-  // Quiénes somos pinta su propio fondo (amanecer.css): el cielo detrás no se ve, así que pasa al
-  // color siguiente en cuanto la sección siguiente asoma por abajo, sin dejar una franja gris
-  const fin = s.offsetTop + s.offsetHeight;
-  const f = s.id === "quienes-somos" ? (scrollY + innerHeight >= fin - 1 ? 1 : 0) : limitar((y - (fin - zona)) / zona);
-  const a = hexRgb(coloresCielo[s.id]), b = hexRgb(coloresCielo[sig.id]);
-  const c = a.map((v, k) => Math.round(v + (b[k] - v) * f));
-  cieloAlba.style.backgroundColor = `rgb(${c.join(",")})`;
-  // El menú flotante se aclara cuando pasa sobre una sección de día
-  const bajoMenu = seccionesCielo.find((x) => scrollY + 40 >= x.offsetTop && scrollY + 40 < x.offsetTop + x.offsetHeight);
+const luz = (c) => (c[0] * 0.3 + c[1] * 0.59 + c[2] * 0.11) / 255;
+document.body.classList.add("portada-continua");
+cieloAlba.classList.add("cielo-pagina");
+function pintarCielo() {
+  const alto = document.documentElement.scrollHeight;
+  const paradas = [];
+  const parada = (c, y) => paradas.push(`rgb(${c.join(",")}) ${Math.round(y)}px`);
+  seccionesCielo.forEach((s, i) => {
+    const a = hexRgb(coloresCielo[idDe(s)]);
+    if (i === 0) parada(a, 0);
+    const sig = seccionesCielo[i + 1];
+    if (!sig) return parada(a, alto);
+    const b = hexRgb(coloresCielo[idDe(sig)]);
+    const borde = sig.getBoundingClientRect().top + scrollY;
+    const cambiaTema = (luz(a) > 0.5) !== (luz(b) > 0.5);
+    const largo = cambiaTema ? (celular.matches ? 110 : 120) : Math.min(innerHeight * 0.5, 380);
+    const desde = cambiaTema ? borde - largo : borde - largo / 2;
+    // 11 paradas sobre una curva seno: el cambio empieza y termina sin que se note
+    for (let k = 0; k <= 10; k++) {
+      const t = k / 10, e = (1 - Math.cos(Math.PI * t)) / 2;
+      parada(a.map((v, n) => Math.round(v + (b[n] - v) * e)), desde + largo * t);
+    }
+  });
+  cieloAlba.style.height = `${alto}px`;
+  cieloAlba.style.background = `linear-gradient(180deg, ${paradas.join(", ")})`;
+}
+// El menú flotante se aclara cuando pasa sobre una sección de día
+function menuSobreElDia() {
+  const bajoMenu = seccionesCielo.find((x) => { const r = x.getBoundingClientRect(); return r.top <= 40 && r.bottom > 40; });
   nav.classList.toggle("claro", !!bajoMenu && bajoMenu.classList.contains("tema-dia"));
 }
-addEventListener("scroll", () => requestAnimationFrame(amanecer), { passive: true });
-addEventListener("resize", amanecer);
-amanecer();
+addEventListener("scroll", () => requestAnimationFrame(menuSobreElDia), { passive: true });
+// Se vuelve a pintar cuando cambia el alto de la página (imágenes que cargan, un proyecto que se abre, otro tamaño)
+let repintar = 0;
+new ResizeObserver(() => { cancelAnimationFrame(repintar); repintar = requestAnimationFrame(pintarCielo); }).observe(document.body);
+pintarCielo();
+menuSobreElDia();
 
 // ── El ojo 3D (se carga aparte: si falla, queda el símbolo fijo y la página sigue) ──
 let ojo = null;

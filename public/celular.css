@@ -5,17 +5,7 @@
    Ritmo: poco espacio dentro de cada grupo y más aire sólo donde empieza un capítulo nuevo
    (Alba Vision, Alba Space y el contacto). */
 
-/* ── El amanecer en celular: cada sección pinta su propio color y se funde con la anterior en
-      una franja corta. Así el texto nunca queda sobre el color de otra sección (con el cielo
-      único, al pasar del día a la noche el final de una sección clara quedaba sobre fondo oscuro).
-      Los mismos colores de coloresCielo en landing.js. El inicio y el origen siguen transparentes
-      para que se vea el ojo. ── */
-.mas-alla { background: linear-gradient(#0b2142, #0e2a55 56px); }
-#quienes-somos { background: linear-gradient(#0e2a55, #13366c 56px, rgb(19,54,108) calc(100% - 120px), rgb(24,58,111) calc(100% - 108px), rgb(39,71,121) calc(100% - 96px), rgb(62,92,137) calc(100% - 84px), rgb(91,117,156) calc(100% - 72px), rgb(123,145,178) calc(100% - 60px), rgb(155,173,200) calc(100% - 48px), rgb(184,198,219) calc(100% - 36px), rgb(207,219,235) calc(100% - 24px), rgb(222,232,245) calc(100% - 12px), rgb(227,236,248) 100%); }
-.caps { background: #e3ecf8; }
-.proyectos { background: linear-gradient(#e3ecf8, #f4f6fa 56px, rgb(244,246,250) calc(100% - 140px), rgb(238,240,245) calc(100% - 126px), rgb(221,223,229) calc(100% - 112px), rgb(194,197,204) calc(100% - 98px), rgb(161,164,173) calc(100% - 84px), rgb(124,127,138) calc(100% - 70px), rgb(86,90,103) calc(100% - 56px), rgb(53,57,72) calc(100% - 42px), rgb(26,31,47) calc(100% - 28px), rgb(9,14,31) calc(100% - 14px), rgb(3,8,26) 100%); }
-.space { background: #03081a; }
-.contact { background: linear-gradient(#03081a, #050d1c 56px); }
+/* ── El fondo: el mismo degradado continuo de la portada (landing.js), sin colores por sección ── */
 
 /* ── El ojo: con el alto «grande» de la pantalla, para que no cambie de tamaño (y no salte)
       cada vez que el navegador esconde o muestra su barra de dirección ── */
@@ -35,7 +25,7 @@
 
 /* ── Quiénes somos: la foto del equipo completa, las postales compactas y, al final, dónde
       hemos estado (los logos), como continuación de los hitos ── */
-#quienes-somos { padding: var(--s7) 0 calc(var(--s5) + 120px); }
+#quienes-somos { padding: var(--s7) 0 calc(var(--s4) + 110px); }
 /* La foto del equipo completa, con su forma vertical (4:5), sin recortes */
 .about-foto { max-width: min(100%, 220px); margin-inline: auto; }
 .about-foto img { aspect-ratio: 4 / 5; max-height: none; object-fit: contain; }
@@ -49,7 +39,7 @@
 .logos-titulo { font-size: 26px; margin-bottom: var(--s4); }
 
 /* ── Lo que hacemos: una sola imagen grande que cambia (landing.js), con cuatro botones debajo ── */
-.caps { padding: var(--s7) 0; }
+.portada-continua .caps { padding: var(--s7) 0 var(--s4); }
 .caps-grid { display: block; margin-top: var(--s5); }
 .cap:not(.cap-activa) { display: none; }
 .cap .viz { width: min(100%, 340px); margin-inline: auto; animation: cap-entra .5s var(--ease); }
@@ -62,7 +52,7 @@
 .cap small { font-size: 13px; }
 
 /* ── Alba Vision: lista que se despliega (landing.js mueve cada imagen adentro de su proyecto) ── */
-.proyectos { padding: var(--s8) 0 calc(var(--s5) + 140px); }
+.portada-continua .proyectos { padding: var(--s6) 0 calc(var(--s4) + 110px); }
 .proyectos-head { margin-bottom: var(--s4); }
 .proyectos-head p { display: block; font-size: 15px; }
 .acordeon .proyectos-visor { display: none; }
