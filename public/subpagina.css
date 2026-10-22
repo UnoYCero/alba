@@ -418,3 +418,57 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .legal dt { margin-top: var(--s4); font-size: 14px; letter-spacing: .02em; color: var(--faint); }
 .legal dd { margin: 2px 0 0; }
 @media (max-width: 760px) { .legal p, .legal li, .legal dd { font-size: 16px; } }
+
+/* ═══ Navegación entre páginas ═══
+   Arriba, la ruta «Alba Vision / producto»: el ojo (y el nombre, en pantallas anchas) lleva a la
+   portada, justo al proyecto del que vienes; la marca del producto sube al inicio de su página. */
+.nav-padre { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; min-height: 44px; min-width: 32px; font-size: 14px; color: var(--dim); transition: color .3s; }
+.nav-padre:hover { color: var(--paper); }
+.nav-padre i { flex: none; width: 26px; height: 26px; background: currentColor; -webkit-mask: url(assets/simbolo.svg) center / contain no-repeat; mask: url(assets/simbolo.svg) center / contain no-repeat; }
+.nav-ruta-sep { flex: none; margin: 0 -8px; color: var(--faint); font-size: 18px; font-weight: 300; }
+.nav.claro .nav-padre { color: rgba(11,31,59,.68); }
+.nav.claro .nav-padre:hover { color: #0b1f3b; }
+.nav.claro .nav-ruta-sep { color: rgba(11,31,59,.35); }
+.nav-brand-texto { flex-shrink: 0; font-size: 18px; letter-spacing: -.01em; color: var(--paper); white-space: nowrap; }
+.nav.claro .nav-brand-texto { color: #0b1f3b; }
+/* Con la ruta, la pastilla compacta necesita un poco más de ancho */
+.nav:has(.nav-padre).scrolled .nav-pill { width: min(calc(100% - 32px), 940px); }
+
+/* En el menú del celular: volver primero, y al final los otros proyectos */
+.nav-panel .nav-panel-volver { display: inline-flex; align-items: center; gap: var(--s3); font-size: .62em; color: var(--soft); }
+.nav-panel .nav-panel-volver::before { content: "←"; }
+.nav-panel-titulo { margin: var(--s4) 0 0; font-size: 15px; letter-spacing: 0; color: var(--faint); }
+.nav-panel-otros { display: flex; flex-wrap: wrap; gap: 0 var(--s5); margin-top: calc(var(--s4) * -1); font-size: 18px; letter-spacing: 0; }
+.nav-panel-otros a { display: inline-flex; align-items: center; min-height: 44px; color: var(--dim); }
+
+/* «Sigue explorando», antes del contacto: el siguiente proyecto como título, los demás y volver */
+.sigue { padding: var(--s9) 0 var(--s8); }
+.sigue-siguiente { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 .28em; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -.03em; color: var(--paper); }
+.sigue-siguiente em { color: var(--soft); }
+.sigue-siguiente span { color: var(--soft); transition: transform .4s var(--ease); }
+.sigue-siguiente:hover span { transform: translateX(8px); }
+.sigue-demas { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--s5); margin: var(--s5) 0 0; font-size: 16px; color: var(--faint); }
+.sigue-demas a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); text-decoration: underline; text-decoration-color: rgba(143,178,255,.45); text-underline-offset: 5px; }
+.tema-dia .sigue-demas a { text-decoration-color: rgba(37,99,235,.4); }
+.sigue-volver { display: inline-flex; align-items: center; gap: var(--s2); min-height: 44px; margin-top: var(--s2); font-size: 15px; color: var(--dim); }
+.sigue-volver::before { content: "←"; color: var(--soft); transition: transform .4s var(--ease); }
+.sigue-volver:hover { color: var(--paper); }
+.sigue-volver:hover::before { transform: translateX(-4px); }
+@media (max-width: 760px) {
+  .nav-padre span { display: none; }
+  .nav-padre i { width: 24px; height: 24px; }
+  /* La ruta cabe junto a la marca, el carrito (Labs), EN y el botón del menú */
+  .nav:has(.nav-padre) .nav-pill { gap: 6px; padding-left: 12px; }
+  .nav-padre { min-width: 28px; }
+  .nav-ruta-sep { margin: 0; font-size: 16px; }
+  .nav:has(.nav-padre) .nav-brand-hija img { height: 30px; }
+  .nav-brand-texto { font-size: 16px; }
+  .sigue { padding: var(--s8) 0 var(--s7); }
+  .sigue-siguiente { font-size: clamp(30px, 9vw, 40px); }
+  .sigue-demas { font-size: 15px; }
+}
+/* En teléfonos angostos, «EN» se queda dentro del menú («English version») */
+@media (max-width: 400px) { .nav:has(.nav-padre) .nav-idioma { display: none; } }
+/* La marca empuja lo demás (carrito, EN, menú) a la orilla derecha */
+@media (max-width: 1080px) { .nav:has(.nav-padre) :is(.nav-brand-hija, .nav-brand-texto) { margin-right: auto; } .nav:has(.nav-padre) :is(.nav-carrito, .nav-idioma, .nav-toggle) { margin-left: 0; } }
+@media (prefers-reduced-motion: reduce) { .sigue-siguiente span, .sigue-volver::before { transition: none; } }

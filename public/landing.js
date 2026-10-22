@@ -219,6 +219,19 @@ function modoAcordeon() {
 modoAcordeon();
 celular.addEventListener("change", () => { modoAcordeon(); encender(); });
 
+// Al volver de una subpágina (por ejemplo /#proyecto-unblind) se abre ese proyecto: en celular se
+// despliega y queda a la vista; en computadora se ve la sección con ese proyecto en el visor
+function abrirDesdeDireccion() {
+  const li = location.hash.startsWith("#proyecto-") && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  const j = li ? proyectos.indexOf(li) : -1;
+  if (j < 0) return;
+  abrirProyecto(j);
+  const destino = enAcordeon() ? li.querySelector(".proyecto-nombre") : seccionProyectos;
+  setTimeout(() => destino.scrollIntoView({ block: "start" }), enAcordeon() ? 650 : 60);
+}
+abrirDesdeDireccion();
+addEventListener("hashchange", abrirDesdeDireccion);
+
 // ── Lo que hacemos, en celular: una sola imagen grande que cambia sola cada 5 s, con cuatro
 // botones debajo (Ver · Detectar · Medir · Orientarse). Tocar uno la deja fija. En escritorio
 // los botones no se ven y las cuatro tarjetas siguen en fila. ──

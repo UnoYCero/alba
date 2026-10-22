@@ -40,10 +40,8 @@
 
   <header class="nav" data-nav>
     <div class="nav-pill">
-      <a class="nav-brand" href="../" aria-label="Alba Vision, volver a la portada">
-        <img class="logo-noche" src="../assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69">
-        <img class="logo-dia" src="../assets/alba-vision-lockup-on-light.webp" alt="" width="504" height="69">
-      </a>
+      <a class="nav-padre" href="../#alba-space" aria-label="Volver a Alba Vision"><i aria-hidden="true"></i><span translate="no">Alba Vision</span></a><span class="nav-ruta-sep" aria-hidden="true">/</span>
+      <a class="nav-brand nav-brand-texto" href="./" translate="no">Alba Space</a>
       <nav class="nav-links" aria-label="Secciones de Alba Space">
         <a href="#misiones">Tres misiones</a>
         <a href="#baffle">El baffle</a>
@@ -54,12 +52,14 @@
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
     </div>
     <div class="nav-panel" id="menu-movil" data-nav-panel>
+      <a class="nav-panel-volver" href="../#alba-space">Volver a Alba Vision</a>
       <a href="/en/albaspace/" hreflang="en" lang="en">English version</a>
       <a href="#misiones">Tres misiones</a>
       <a href="#baffle">El baffle</a>
       <a href="#aplicaciones">Para quién</a>
       <a href="#contacto">Escríbenos</a>
-      <a href="../">Volver a Alba Vision</a>
+      <p class="nav-panel-titulo">Otros proyectos</p>
+      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="https://ops.albavision.tech" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></div>
     </div>
   </header>
 
@@ -217,6 +217,15 @@
           <li class="reveal"><h3>Ciencia y observación de la Tierra</h3><p>Un apuntamiento estable para instrumentos exigentes, con poca masa y poco volumen.</p></li>
           <li class="reveal"><h3>Servicio e inspección</h3><p>Imágenes de cerca para acercarse, inspeccionar y acoplarse con otro vehículo.</p></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Sigue explorando: el siguiente proyecto, los demás y volver a la portada -->
+    <section class="sigue tema-noche" aria-label="Sigue explorando">
+      <div class="wrap">
+        <a class="sigue-siguiente" href="../orbita/">Sigue con <em translate="no">Órbita</em>&nbsp;<span aria-hidden="true">→</span></a>
+        <p class="sigue-demas"><span>También</span><a href="../unblind/" translate="no">UNBLIND</a><a href="https://ops.albavision.tech" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albalabs/" translate="no">Alba Labs</a></p>
+        <a class="sigue-volver" href="../#alba-space">Volver a Alba Vision</a>
       </div>
     </section>
 
