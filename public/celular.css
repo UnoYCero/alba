@@ -33,11 +33,12 @@
 .mas-alla-grid { gap: var(--s6); }
 .mv dd { font-size: 16px; }
 
-/* ── Quiénes somos: la foto del equipo apaisada, las postales compactas y, al final, dónde
+/* ── Quiénes somos: la foto del equipo completa, las postales compactas y, al final, dónde
       hemos estado (los logos), como continuación de los hitos ── */
 #quienes-somos { padding: var(--s7) 0 calc(var(--s6) + 200px); }
-.about-foto { max-width: none; }
-.about-foto img { aspect-ratio: 3 / 2; max-height: none; object-position: 50% 30%; }
+/* La foto del equipo completa, con su forma vertical (4:5), sin recortes */
+.about-foto { max-width: min(100%, 300px); }
+.about-foto img { aspect-ratio: 4 / 5; max-height: none; object-fit: contain; }
 .collage { margin-top: var(--s4); }
 .collage-bar { margin-top: var(--s4); }
 .collage-row { gap: var(--s4); padding-block: var(--s3) var(--s4); }
