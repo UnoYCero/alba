@@ -84,14 +84,24 @@
 .acordeon .proy-visual .marco figcaption { top: calc(100% + 6px); }
 .acordeon .marco { --pie: 0px; }
 .acordeon .proy-visual:has(> .marco) { padding-bottom: 40px; }
-/* Órbita: la conversación dentro de un teléfono chico, como la captura de Surface Ops */
-.acordeon .proy-visual:has(> .chat) { padding-bottom: 34px; }
+/* Órbita: el mismo teléfono de la página de Órbita (barra de estado, cabecera, conversación sobre
+   fondo claro y barra para escribir), con sus proporciones, armado a 270 × 540 y reducido con
+   zoom para caber en el escenario, como la captura de Surface Ops */
+.acordeon .proy-visual:has(> .chat) { padding-bottom: 42px; }
 .acordeon .proy-visual .chat ~ .visual-note { display: block; }
-.acordeon .chat { width: auto; height: 100%; aspect-ratio: 9 / 18.5; align-content: start; gap: 6px; padding: 12px 8px; border: 6px solid #1b3152; border-radius: 26px; overflow: hidden; box-shadow: 0 18px 36px rgba(11,31,59,.16); }
-.acordeon .chat-cabeza { font-size: 9.5px; margin: 0 0 2px; }
-.acordeon .chat-cabeza .pill { padding: 1px 6px; font-size: 9px; }
-.acordeon .msg { max-width: 92%; padding: 6px 9px; border-radius: 12px; font-size: 10.5px; line-height: 1.35; }
-.acordeon .msg-sistema { font-size: 9.5px; }
+.acordeon .chat { display: flex; flex-direction: column; gap: 8px; width: 270px; height: 540px; padding: 0 0 14px; border: 9px solid #0b1f3b; border-radius: 48px; background: #eef2f8; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(11,31,59,.6), 0 0 0 1px rgba(11,31,59,.12); zoom: .53; }
+.acordeon .chat::before { content: "12:40"; flex: none; padding: 10px 24px 6px; background: #fff; font-size: 12px; color: #0b1f3b; font-variant-numeric: tabular-nums; }
+.acordeon .chat-cabeza { flex: none; display: flex; align-items: center; gap: 10px; margin: -8px 0 0; padding: 8px 16px 12px; background: #fff; border-bottom: 1px solid rgba(11,31,59,.08); font-size: 15px; color: #0b1f3b; }
+.acordeon .chat-cabeza::before { content: ""; flex: none; width: 34px; height: 34px; border-radius: 50%; background: #0b1f3b radial-gradient(circle at 50% 50%, #8fb2ff 0 5px, transparent 6px); }
+.acordeon .chat-cabeza > span:first-child { flex: 1; }
+.acordeon .chat-cabeza .pill { font-size: 11px; padding: 2px 8px; }
+.acordeon .chat .msg { margin: 0 12px; max-width: 78%; padding: 8px 12px; border-radius: 16px; font-size: 13px; line-height: 1.4; }
+.acordeon .chat .msg-cliente { margin-top: auto; }
+.acordeon .chat .msg-cliente ~ .msg-cliente { margin-top: 0; }
+.acordeon .chat .msg-sistema { margin: 2px 12px 0; font-size: 12px; }
+.acordeon .chat::after { content: ""; flex: none; height: 36px; margin: 2px 10px 0; border-radius: 999px; background: radial-gradient(circle 17px at calc(100% - 17px) 50%, #2563eb 96%, transparent 100%), linear-gradient(#fff, #fff) 0 0 / calc(100% - 42px) 100% no-repeat; }
+@media (max-width: 380px) { .acordeon .chat { zoom: .48; } }
+@media (max-width: 340px) { .acordeon .chat { zoom: .42; } }
 /* La cocina de Vision Ops a todo el escenario */
 .acordeon .kitchen { width: 60%; }
 
@@ -103,8 +113,11 @@
 .space-note { top: calc(var(--nav-h) + var(--s5)); bottom: auto; left: var(--gutter); right: auto; transform: none; }
 
 /* ── Contacto: capítulo final, con su aire ── */
-.contact { min-height: 0; padding: var(--s9) 0 var(--s8); }
-.contact-title { font-size: clamp(44px, 13vw, 56px); }
+.contact { min-height: 0; padding: var(--s8) 0 var(--s7); }
+.contact-title { font-size: clamp(34px, 10vw, 42px); }
+.contact-lead { margin-top: var(--s3); font-size: 15px; }
+.contact-actions { margin-top: var(--s5); gap: var(--s2); }
+.contact-orbits { transform: scale(.75); }
 
 /* ── Pie compacto: logo y lema en un renglón, los enlaces juntos, las redes, y el aviso con
       el año en el último renglón. Las áreas para el dedo siguen de 44 px. ── */
