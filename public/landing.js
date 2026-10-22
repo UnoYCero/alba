@@ -157,7 +157,9 @@ const textoVisor = document.querySelector("[data-visor-texto]");
 const escritorio = matchMedia("(min-width: 1081px)");
 // En escritorio la descripción va junto a la imagen, así la lista no cambia de alto bajo el cursor
 function abrirProyecto(i) {
-  if (textoVisor) textoVisor.innerHTML = proyectos[i].querySelector(".proyecto-detalle > div").innerHTML;
+  // (En celular el visor no se usa y la imagen vive dentro del detalle: no se copia)
+  const acordeon = document.querySelector(".proyectos")?.classList.contains("acordeon");
+  if (textoVisor) textoVisor.innerHTML = acordeon ? "" : proyectos[i].querySelector(".proyecto-detalle > div").innerHTML;
   proyectos.forEach((p, j) => {
     p.classList.toggle("activo", j === i);
     p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", String(j === i));
@@ -166,10 +168,18 @@ function abrirProyecto(i) {
 }
 const seccionProyectos = document.querySelector(".proyectos");
 const visorImagenes = document.querySelector(".visor-imagenes");
-const enTarjetas = () => seccionProyectos.classList.contains("tarjetas");
 proyectos.forEach((p, j) => {
   const nombre = p.querySelector(".proyecto-nombre");
-  nombre.addEventListener("click", () => { if (!enTarjetas()) abrirProyecto(j); });
+  nombre.addEventListener("click", () => {
+    if (!enAcordeon()) return abrirProyecto(j);
+    const yaAbierto = p.classList.contains("activo");
+    abrirProyecto(j);
+    // Si se cerró uno que estaba arriba, la lista se recorre: al terminar, el abierto queda a la vista
+    if (!yaAbierto) setTimeout(() => {
+      const r = nombre.getBoundingClientRect();
+      if (r.top < 90 || r.top > innerHeight * 0.6) nombre.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "start" });
+    }, 640);
+  });
   // En escritorio también se abre con el mouse, pero sólo sobre la palabra (no toda la fila)
   // y tras una pausa corta: así, al ir hacia «Conoce…», rozar otro nombre no cambia nada
   const palabra = nombre.querySelector("span");
@@ -186,33 +196,75 @@ if (document.readyState === "complete") pedirImagenesProyectos();
 else addEventListener("load", pedirImagenesProyectos, { once: true });
 abrirProyecto(0);
 
-// En celular cada proyecto es una tarjeta: su imagen se muda arriba de su nombre, todos quedan
-// abiertos y lo que se mueve (barras, conversación) arranca cuando su tarjeta entra a la vista.
-// Al volver a una pantalla ancha, las imágenes regresan al visor.
-const verTarjeta = new IntersectionObserver((entradas) => {
-  entradas.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("activa"); verTarjeta.unobserve(e.target); } });
-}, { threshold: 0.35 });
-function modoTarjetas() {
-  const tarjetas = celular.matches;
-  if (tarjetas === enTarjetas()) return;
-  seccionProyectos.classList.toggle("tarjetas", tarjetas);
+// En celular los proyectos son una lista que se despliega: cada renglón lleva una miniatura,
+// su nombre y su estado; al tocarlo se abre y adentro aparece su imagen (en el mismo marco
+// para todos), su descripción y sus enlaces. Uno abierto a la vez. Al volver a una pantalla
+// ancha, las imágenes regresan al visor y las miniaturas se quitan.
+const MINI_COCINA = '<svg viewBox="0 0 48 48"><path d="M24 9 43 22 24 35 5 22Z" fill="#fff" stroke="#c9d6ea"/><path d="M15 17l6 4-6 4-6-4Z" fill="#2563eb" opacity=".55"/><path d="M27 19l8 5-5 3-8-5Z" fill="#2563eb" opacity=".8"/><path d="M20 26l6 4-4 3-6-4Z" fill="#2563eb" opacity=".35"/></svg>';
+const MINI_CHAT = '<svg viewBox="0 0 48 48"><rect x="15" y="6" width="18" height="36" rx="4" fill="#fff" stroke="#1b3152" stroke-width="2"/><rect x="22" y="14" width="9" height="5" rx="2.5" fill="#0b1f3b"/><rect x="17" y="21" width="10" height="5" rx="2.5" fill="#cfdcf5"/><rect x="21" y="28" width="10" height="5" rx="2.5" fill="#0b1f3b"/></svg>';
+function miniatura(v) {
+  const m = document.createElement("span");
+  m.className = "miniatura";
+  m.setAttribute("aria-hidden", "true");
+  const img = v.querySelector("img");
+  if (img) m.innerHTML = `<img src="${img.getAttribute("src")}" alt="" loading="lazy" decoding="async">`;
+  else m.innerHTML = v.querySelector(".chat") ? MINI_CHAT : MINI_COCINA;
+  return m;
+}
+const enAcordeon = () => seccionProyectos.classList.contains("acordeon");
+function modoAcordeon() {
+  const acordeon = celular.matches;
+  if (acordeon === enAcordeon()) return;
+  seccionProyectos.classList.toggle("acordeon", acordeon);
   visuales.forEach((v, j) => {
-    if (tarjetas) {
+    const nombre = proyectos[j].querySelector(".proyecto-nombre");
+    if (acordeon) {
       v.setAttribute("aria-hidden", "true");
-      v.classList.remove("activa");
-      proyectos[j].prepend(v);
-      verTarjeta.observe(v);
+      proyectos[j].querySelector(".proyecto-detalle > div").prepend(v);
+      nombre.prepend(miniatura(v));
     } else {
-      verTarjeta.unobserve(v);
       v.removeAttribute("aria-hidden");
       visorImagenes.append(v);
+      nombre.querySelector(".miniatura")?.remove();
     }
   });
-  if (tarjetas) proyectos.forEach((p) => p.querySelector(".proyecto-nombre").setAttribute("aria-expanded", "true"));
-  else abrirProyecto(0);
+  abrirProyecto(0);
 }
-modoTarjetas();
-celular.addEventListener("change", () => { modoTarjetas(); encender(); });
+modoAcordeon();
+celular.addEventListener("change", () => { modoAcordeon(); encender(); });
+
+// ── Lo que hacemos, en celular: una sola imagen grande que cambia sola cada 5 s, con cuatro
+// botones debajo (Ver · Detectar · Medir · Orientarse). Tocar uno la deja fija. En escritorio
+// los botones no se ven y las cuatro tarjetas siguen en fila. ──
+const capsGrid = document.querySelector(".caps-grid");
+if (capsGrid) {
+  const caps = [...capsGrid.children];
+  const barra = document.createElement("div");
+  barra.className = "caps-botones";
+  barra.setAttribute("role", "group");
+  barra.setAttribute("aria-label", t("Elige qué capacidad ver", "Choose which capability to see"));
+  let actual = 0, elegida = false, aLaVista = false;
+  const mostrarCap = (i) => {
+    actual = i;
+    caps.forEach((c, j) => c.classList.toggle("cap-activa", j === i));
+    [...barra.children].forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+    // Los botones van justo debajo de la imagen de la capacidad elegida
+    caps[i].querySelector(".viz")?.after(barra);
+  };
+  caps.forEach((c, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = c.querySelector("h3").textContent.trim().split(/\s+/)[0];
+    b.addEventListener("click", () => { elegida = true; mostrarCap(i); b.focus(); });
+    barra.append(b);
+  });
+  mostrarCap(0);
+  new IntersectionObserver(([e]) => { aLaVista = e.isIntersecting; }, { threshold: 0.4 }).observe(capsGrid);
+  setInterval(() => {
+    if (!celular.matches || reducir || elegida || !aLaVista || document.hidden) return;
+    mostrarCap((actual + 1) % caps.length);
+  }, 5000);
+}
 
 // Un solo manejador de desplazamiento, una vez por cuadro
 let pendiente = false;
@@ -323,7 +375,7 @@ prefMovimiento.addEventListener("change", (e) => {
 
 // ── El cielo amanece al bajar: cada sección tiene su color y se mezclan en la frontera ──
 const cieloAlba = document.querySelector("[data-cielo-alba]");
-const coloresCielo = { inicio: "#03081a", origen: "#0b2142", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", reconocidos: "#03081a", contacto: "#050d1c" };
+const coloresCielo = { inicio: "#03081a", origen: "#0b2142", mision: "#0e2a55", "quienes-somos": "#13366c", capacidades: "#e3ecf8", "alba-vision": "#f4f6fa", "alba-space": "#03081a", contacto: "#050d1c" };
 const seccionesCielo = Object.keys(coloresCielo).map((id) => document.getElementById(id)).filter(Boolean);
 const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 function amanecer() {
@@ -333,7 +385,10 @@ function amanecer() {
   const s = seccionesCielo[i];
   const sig = seccionesCielo[Math.min(i + 1, seccionesCielo.length - 1)];
   const zona = Math.min(innerHeight * 0.6, s.offsetHeight * 0.4);
-  const f = limitar((y - (s.offsetTop + s.offsetHeight - zona)) / zona);
+  // Quiénes somos pinta su propio fondo (amanecer.css): el cielo detrás no se ve, así que pasa al
+  // color siguiente en cuanto la sección siguiente asoma por abajo, sin dejar una franja gris
+  const fin = s.offsetTop + s.offsetHeight;
+  const f = s.id === "quienes-somos" ? (scrollY + innerHeight >= fin - 1 ? 1 : 0) : limitar((y - (fin - zona)) / zona);
   const a = hexRgb(coloresCielo[s.id]), b = hexRgb(coloresCielo[sig.id]);
   const c = a.map((v, k) => Math.round(v + (b[k] - v) * f));
   cieloAlba.style.backgroundColor = `rgb(${c.join(",")})`;

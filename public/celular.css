@@ -1,7 +1,9 @@
 /* ═══ La portada en celular ═══
    Se carga sólo en pantallas de 760 px o menos (media en el <link>), después de landing.css
    y amanecer.css. Pensada primero para 390 × 844 y 360 × 800; probada también a 412 y 320.
-   En escritorio y tableta no cambia nada. */
+   En escritorio y tableta no cambia nada.
+   Ritmo: poco espacio dentro de cada grupo y más aire sólo donde empieza un capítulo nuevo
+   (Alba Vision, Alba Space y el contacto). */
 
 /* ── El amanecer en celular: cada sección pinta su propio color y se funde con la anterior en
       una franja corta. Así el texto nunca queda sobre el color de otra sección (con el cielo
@@ -12,7 +14,7 @@
 .about { background: linear-gradient(#0e2a55, #13366c 56px); }
 .caps { background: linear-gradient(#13366c, #e3ecf8 56px); }
 .proyectos { background: linear-gradient(#e3ecf8, #f4f6fa 56px, #f4f6fa calc(100% - 56px), #03081a); }
-.space, .logos { background: #03081a; }
+.space { background: #03081a; }
 .contact { background: linear-gradient(#03081a, #050d1c 56px); }
 
 /* ── El ojo: con el alto «grande» de la pantalla, para que no cambie de tamaño (y no salte)
@@ -21,17 +23,18 @@
 
 /* ── Origen: corrido, no pantalla fija (landing.js lo deja encendido en celular) ── */
 .origen { height: auto; }
-.origen-pin { position: static; height: auto; padding: var(--s9) 0 var(--s7); }
+.origen-pin { position: static; height: auto; padding: var(--s8) 0 var(--s6); }
 .origen-text { font-size: clamp(21px, 6vw, 26px); line-height: 1.32; }
 
 /* ── Misión y visión: corrida; la cortina se arrastra y hace un barrido la primera vez ── */
-.mas-alla-pin { padding: var(--s7) 0 var(--s8); }
+.mas-alla-pin { padding: var(--s7) 0; }
 .mas-alla.corrida .cortina { width: 100%; max-width: 440px; aspect-ratio: 4 / 4.6; }
 .mas-alla-grid { gap: var(--s6); }
 .mv dd { font-size: 16px; }
 
-/* ── Quiénes somos: la foto del equipo apaisada y las postales más compactas ── */
-.about { padding: var(--s8) 0 var(--s7); }
+/* ── Quiénes somos: la foto del equipo apaisada, las postales compactas y, al final, dónde
+      hemos estado (los logos), como continuación de los hitos ── */
+.about { padding: var(--s7) 0 var(--s7); }
 .about-foto { max-width: none; }
 .about-foto img { aspect-ratio: 3 / 2; max-height: none; object-position: 50% 30%; }
 .collage { margin-top: var(--s4); }
@@ -40,50 +43,77 @@
 .postal { width: 208px; }
 .postal:nth-child(3n+1), .postal:nth-child(3n) { margin-top: 0; }
 .postal:nth-child(3n+2) { margin-top: var(--s4); }
+.logos { padding: var(--s6) 0 0; }
+.logos-titulo { font-size: 21px; margin-bottom: var(--s3); }
 
-/* ── Lo que hacemos: una fila que se desliza con el dedo; cada tarjeta casi a lo ancho,
-      así las etiquetas de las imágenes se leen y no chocan con «Ejemplo» ── */
-.caps { padding: var(--s8) 0; }
-.caps-grid { display: flex; gap: var(--s4); margin: var(--s6) calc(var(--gutter) * -1) 0; padding: 0 var(--gutter) var(--s2); overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
-.caps-grid::-webkit-scrollbar { display: none; }
-.cap { flex: 0 0 min(80%, 320px); scroll-snap-align: start; }
-.cap h3 { font-size: 19px; }
-.cap p { font-size: 15px; }
+/* ── Lo que hacemos: una sola imagen grande que cambia (landing.js), con cuatro botones debajo ── */
+.caps { padding: var(--s7) 0; }
+.caps-grid { display: block; margin-top: var(--s5); }
+.cap:not(.cap-activa) { display: none; }
+.cap .viz { width: min(100%, 340px); margin-inline: auto; animation: cap-entra .5s var(--ease); }
+@keyframes cap-entra { from { opacity: 0; transform: scale(.98); } }
+.caps-botones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: var(--s4) 0 0; padding: 4px; border-radius: 999px; background: rgba(11,31,59,.06); }
+.caps-botones button { min-height: 40px; padding: 0 4px; border: 0; border-radius: 999px; background: none; font: inherit; font-size: 14px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
+.caps-botones button[aria-pressed="true"] { background: #0b1f3b; color: #f4f6fa; }
+.cap h3 { font-size: 20px; margin-top: var(--s4); }
+.cap p { font-size: 15px; margin: var(--s1, 4px) 0 var(--s2); }
 .cap small { font-size: 13px; }
 
-/* ── Alba Vision: una tarjeta grande por proyecto (landing.js muda cada imagen a su tarjeta) ── */
-.proyectos { padding: var(--s8) 0 var(--s7); }
-.proyectos-head { margin-bottom: var(--s6); }
+/* ── Alba Vision: lista que se despliega (landing.js mueve cada imagen adentro de su proyecto) ── */
+.proyectos { padding: var(--s8) 0; }
+.proyectos-head { margin-bottom: var(--s4); }
 .proyectos-head p { display: block; font-size: 15px; }
-.tarjetas .proyectos-visor { display: none; }
-.tarjetas .proyectos-grid { display: block; }
-.tarjetas .proyecto { margin-bottom: var(--s7); }
-.tarjetas .proyecto:last-child { margin-bottom: 0; }
-/* La imagen de cada tarjeta: a lo ancho, con un alto pensado para su forma (sin recortes) */
-.tarjetas .proy-visual { position: relative; inset: auto; height: var(--alto-cel, 64vw); max-height: 380px; opacity: 1; visibility: visible; transform: none; margin-bottom: var(--s4); }
-.tarjetas [data-visual="0"] { --alto-cel: 74vw; }   /* UNBLIND, foto vertical */
-.tarjetas [data-visual="1"] { --alto-cel: 56vw; }   /* Vision Ops, la cocina */
-.tarjetas [data-visual="2"] { --alto-cel: 60vw; }   /* Soluciones, imagen apaisada */
-.tarjetas [data-visual="3"] { --alto-cel: 76vw; }   /* Órbita, la conversación */
-.tarjetas [data-visual="4"] { --alto-cel: 56vw; }   /* Alba Labs, imagen apaisada */
-.tarjetas [data-visual="5"] { --alto-cel: 74vw; }   /* Surface Ops, captura de teléfono */
-/* El nombre ya no abre nada: es el título de la tarjeta, con su estado a la vista */
-.tarjetas .proyecto-nombre { padding: 0; cursor: default; align-items: center; flex-wrap: wrap; gap: var(--s2) var(--s3); }
-.tarjetas .proyecto-nombre span { font-size: clamp(28px, 8.4vw, 34px); color: var(--paper); }
-.tarjetas .proyecto-nombre small { opacity: 1; color: #2563eb; font-size: 13px; }
-.tarjetas .proyecto-detalle { grid-template-rows: 1fr; margin-top: var(--s3); }
-.tarjetas .proyecto-detalle p { font-size: 15.5px; }
-.tarjetas .proyecto-enlaces { padding-bottom: 0; }
-/* La conversación de Órbita, completa dentro de su tarjeta */
-.tarjetas .proy-visual:has(> .chat) { padding-bottom: 0; }
-.tarjetas .proy-visual .chat ~ .visual-note { display: none; }
-.tarjetas .chat { width: 100%; padding: var(--s4); gap: var(--s2); }
+.acordeon .proyectos-visor { display: none; }
+.acordeon .proyectos-grid { display: block; }
+/* Cada renglón: miniatura · nombre y estado · un signo que dice si está abierto */
+.acordeon .proyecto-nombre { scroll-margin-top: calc(var(--nav-h) + var(--s3)); display: grid; grid-template-columns: 52px minmax(0, 1fr) 24px; grid-template-areas: "mini nombre signo" "mini estado signo"; align-items: center; column-gap: var(--s4); row-gap: 0; padding: var(--s3) 0; min-height: 76px; }
+.acordeon .proyecto-nombre::after { content: ""; grid-area: signo; justify-self: end; width: 10px; height: 10px; border-right: 1.5px solid var(--faint); border-bottom: 1.5px solid var(--faint); transform: translateY(-3px) rotate(45deg); transition: transform .4s var(--ease); }
+.acordeon .proyecto.activo .proyecto-nombre::after { transform: translateY(2px) rotate(225deg); border-color: #2563eb; }
+.miniatura { grid-area: mini; width: 52px; height: 52px; border-radius: 12px; overflow: hidden; display: grid; place-items: center; background: #e6edf8; opacity: .75; transition: opacity .4s; }
+.miniatura img { width: 100%; height: 100%; object-fit: cover; }
+.miniatura svg { width: 44px; height: 44px; }
+.acordeon .proyecto.activo .miniatura { opacity: 1; }
+.acordeon .proyecto-nombre > span:not(.miniatura) { grid-area: nombre; font-size: 25px; line-height: 1.15; }
+.acordeon .proyecto-nombre small { grid-area: estado; opacity: 1; margin-top: 2px; font-size: 13px; color: var(--faint); }
+.acordeon .proyecto.activo .proyecto-nombre small { color: #2563eb; }
+.acordeon .proyecto-detalle > div > p { font-size: 15.5px; }
+.acordeon .proyecto-enlaces { padding-bottom: var(--s5); }
+/* El escenario: el mismo marco para todos; cada imagen adentro, con su forma y sin recortes */
+.acordeon .proy-visual { position: relative; inset: auto; height: min(84vw, 360px); margin: var(--s1, 4px) 0 var(--s4); padding: var(--s4) var(--s4) 34px; border-radius: 20px; background: rgba(11,31,59,.045); opacity: 1; visibility: visible; transform: none; }
+.acordeon .proy-visual .visual-note { bottom: 10px; }
+.acordeon .proy-visual .marco figcaption { top: calc(100% + 6px); }
+.acordeon .marco { --pie: 0px; }
+.acordeon .proy-visual:has(> .marco) { padding-bottom: 40px; }
+/* Órbita: la conversación dentro de un teléfono chico, como la captura de Surface Ops */
+.acordeon .proy-visual:has(> .chat) { padding-bottom: 34px; }
+.acordeon .proy-visual .chat ~ .visual-note { display: block; }
+.acordeon .chat { width: auto; height: 100%; aspect-ratio: 9 / 18.5; align-content: start; gap: 6px; padding: 12px 8px; border: 6px solid #1b3152; border-radius: 26px; overflow: hidden; box-shadow: 0 18px 36px rgba(11,31,59,.16); }
+.acordeon .chat-cabeza { font-size: 9.5px; margin: 0 0 2px; }
+.acordeon .chat-cabeza .pill { padding: 1px 6px; font-size: 9px; }
+.acordeon .msg { max-width: 92%; padding: 6px 9px; border-radius: 12px; font-size: 10.5px; line-height: 1.35; }
+.acordeon .msg-sistema { font-size: 9.5px; }
+/* La cocina de Vision Ops a todo el escenario */
+.acordeon .kitchen { width: 60%; }
 
-/* ── Alba Space y contacto: menos aire vacío ── */
-.space { min-height: 0; padding: var(--s9) 0 var(--s8); }
-.contact { min-height: 0; padding: var(--s9) 0; }
+/* ── Alba Space: arriba el cielo despejado (más estrellas y más brillo en landing-3d.js) y
+      el texto abajo, sobre un velo más ligero. El cielo se mueve con el dedo. ── */
+.space { min-height: 0; align-items: flex-end; padding: max(46svh, 300px) 0 var(--s8); }
+.space-veil { background: linear-gradient(0deg, rgba(3,8,26,.94) 0%, rgba(3,8,26,.82) 48%, rgba(3,8,26,.25) 68%, transparent 82%); }
+.space-hud { display: grid; top: calc(var(--nav-h) + var(--s5)); right: var(--gutter); font-size: 12px; }
+.space-note { top: calc(var(--nav-h) + var(--s5)); bottom: auto; left: var(--gutter); right: auto; transform: none; }
+
+/* ── Contacto: capítulo final, con su aire ── */
+.contact { min-height: 0; padding: var(--s9) 0 var(--s8); }
 .contact-title { font-size: clamp(44px, 13vw, 56px); }
 
-/* ── Pie: los enlaces en dos columnas parejas, sin un nombre suelto en su renglón ── */
-.footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0 var(--s5); }
-.footer-links a { justify-content: flex-start; }
+/* ── Pie compacto: logo y lema en un renglón, los enlaces juntos, las redes, y el aviso con
+      el año en el último renglón. Las áreas para el dedo siguen de 44 px. ── */
+.footer { padding: var(--s6) 0 var(--s5); }
+.footer-grid { grid-template-columns: auto minmax(0, 1fr); gap: 0 var(--s4); }
+.footer-grid img { width: 120px; }
+.footer-tag { font-size: 14px; }
+.footer-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0 var(--s5); margin-top: var(--s3); }
+.footer-links a { min-width: 0; }
+.footer-redes { grid-column: 1 / -1; margin-left: -8px; }
+.footer-legal { grid-column: 1; font-size: 13px; }
+.footer-copy { grid-column: 2; justify-self: end; align-self: center; }

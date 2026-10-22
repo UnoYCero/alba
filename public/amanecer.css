@@ -17,6 +17,10 @@ main, .footer { position: relative; z-index: 2; }
 
 /* Las secciones dejan ver el cielo */
 .hero, .origen, .about, .caps, .proyectos, .space, .contact { background: transparent; }
+/* Quiénes somos lleva su propio color: al final van los logos (blancos) y, con el cielo
+   transparente, quedaban sobre el gris del paso al día. Se funde arriba con la misión y abajo
+   con «Lo que hacemos», con los mismos colores de coloresCielo en landing.js. */
+#quienes-somos { background: linear-gradient(#0e2a55, #13366c 120px, #13366c calc(100% - 80px), #e3ecf8); }
 .hero-veil { background: linear-gradient(90deg, rgba(3,8,26,.75) 0%, rgba(3,8,26,.2) 46%, transparent 66%); }
 
 /* Temas */

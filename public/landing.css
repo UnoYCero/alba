@@ -206,6 +206,7 @@ h2 { font-size: clamp(32px,4vw,56px); line-height: 1.05; letter-spacing: -.03em;
 .caps { padding: var(--s9) 0; background: var(--ink); }
 .caps-title { max-width: 24ch; }
 .caps-grid { list-style: none; padding: 0; margin: var(--s8) 0 0; display: grid; grid-template-columns: repeat(4,1fr); gap: var(--s6); }
+.caps-botones { display: none; } /* sólo en celular (celular.css) */
 .cap h3 { font-size: 20px; letter-spacing: -.01em; margin-top: var(--s5); }
 .cap p { margin: var(--s2) 0 var(--s3); font-size: 15px; color: var(--dim); }
 .cap small { font-size: 13px; color: var(--soft); }
@@ -425,7 +426,8 @@ html:not(.js) .origen-pin, .reduce .origen-pin { position: static; height: auto;
 .proyecto-detalle { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
 .proyecto.activo .proyecto-detalle { grid-template-rows: 1fr; }
 .proyecto-detalle > div { overflow: hidden; }
-.proyecto-detalle p { margin: 0 0 var(--s3); max-width: 52ch; font-size: 16px; color: var(--dim); }
+/* Sólo la descripción (en celular la imagen del proyecto también vive dentro del detalle) */
+.proyecto-detalle > div > p { margin: 0 0 var(--s3); max-width: 52ch; font-size: 16px; color: var(--dim); }
 .proyecto-detalle .pasos { margin: 0 0 var(--s4); }
 .proyecto-enlaces { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); padding-bottom: var(--s4); }
 html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
@@ -480,7 +482,7 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
   .proyectos-head { margin-bottom: var(--s5); }
   .proyectos-head p { display: none; }
   .proyecto-nombre span { font-size: clamp(26px,8vw,34px); }
-  .proyecto-detalle p { font-size: 15px; }
+  .proyecto-detalle > div > p { font-size: 15px; }
   .proyectos-visor { height: 36svh; }
   .marco { --pie: 26px; }
   .marco figcaption { top: calc(100% + 6px); font-size: 12px; }
@@ -510,8 +512,9 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 }
 
 /* Donde hemos estado: logos en blanco, semitransparentes, que se desplazan despacio */
-.logos { position: relative; padding: var(--s8) 0; overflow: hidden; }
-.logos-titulo { margin: 0 0 var(--s5); padding: 0 var(--gutter); text-align: center; font-size: 14px; color: var(--faint); }
+/* Va dentro de «Quiénes somos», después de las postales: primero los premios, luego dónde hemos estado */
+.logos { position: relative; padding: var(--s8) 0 0; overflow: hidden; }
+.logos-titulo { margin: 0 0 var(--s5); font-size: clamp(20px, 1.8vw, 26px); line-height: 1.2; letter-spacing: -.015em; color: var(--paper); }
 .logos-pista { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .logos-lista { display: flex; width: max-content; animation: logos-desfile 60s linear infinite; }
 .logos-pista:hover .logos-lista { animation-play-state: paused; }
@@ -522,7 +525,7 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .logo-texto { font-size: 18px; font-weight: 400; letter-spacing: .02em; color: rgba(244,246,250,.62); white-space: nowrap; }
 @keyframes logos-desfile { to { transform: translateX(-50%); } }
 @media (max-width: 760px) {
-  .logos { padding: var(--s7) 0; }
+  .logos { padding: var(--s7) 0 0; }
   .logos img { height: calc(var(--alto, 28px) * .8); }
   .logo-texto { font-size: 15px; }
 }
