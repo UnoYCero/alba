@@ -101,14 +101,22 @@
             <p class="sub-intro reveal">Ponte audífonos y escucha cómo suena.</p>
           </div>
         </div>
-        <figure class="ub-demo reveal">
-          <img src="../assets/unblind/audio-cuarto.webp" alt="" width="1396" height="616" loading="lazy" decoding="async">
+        <figure class="ub-demo reveal" data-cuarto>
+          <div class="ub-demo-vista" aria-label="Gira la cabeza con las flechas">
+            <div class="ub-demo-mundo">
+              <img src="../assets/unblind/audio-cuarto.webp" alt="" width="1396" height="616" loading="lazy" decoding="async">
+              <span class="ub-fuente" data-fuente="pared" style="--x:.11;--y:.52" aria-hidden="true"><i></i>Pared</span>
+              <span class="ub-fuente" data-fuente="puerta" style="--x:.295;--y:.56" aria-hidden="true"><i></i>Puerta</span>
+              <span class="ub-fuente" data-fuente="persona" style="--x:.75;--y:.5" aria-hidden="true"><i></i>Persona</span>
+            </div>
+          </div>
           <div class="ub-demo-control">
             <button type="button" class="ub-demo-boton" id="botonAudio" aria-pressed="false" aria-describedby="notaAudio"><i aria-hidden="true"></i><span>Escuchar la demo</span></button>
             <span class="ub-demo-avance" aria-hidden="true"><i id="avanceAudio"></i></span>
+            <span class="ub-demo-pista" hidden>Arrastra la imagen para girar la cabeza</span>
           </div>
           <audio id="audioDemo" preload="none" src="../assets/unblind/audio-3d-demo.mp3"></audio>
-          <figcaption id="notaAudio">Demo de audio 3D de UNBLIND · 15 segundos · se escucha mejor con audífonos</figcaption>
+          <figcaption id="notaAudio">Ilustración con sonidos de ejemplo · se escucha mejor con audífonos</figcaption>
         </figure>
       </div>
     </section>
@@ -195,7 +203,7 @@
               <ol class="ub-etapa ub-pasos" data-etapa="pulso" aria-label="Cómo funciona">
                 <li data-paso="ve"><b>Ve</b><span>La cámara y el LiDAR captan lo que tienes enfrente.</span></li>
                 <li data-paso="entiende"><b>Entiende</b><span>El procesador reconoce personas, objetos y obstáculos.</span></li>
-                <li data-paso="dice"><b>Te lo dice</b><span>Por conducción ósea y con audio 3D: cada cosa suena desde donde está.</span></li>
+                <li data-paso="dice"><b>Te lo dice</b><span>Por conducción ósea y con audio 3D: cada cosa suena desde donde está.</span><button type="button" class="ub-oir" data-oir aria-pressed="false" hidden><i aria-hidden="true"></i><span>Escúchalo con audífonos</span></button></li>
               </ol>
             </div>
           </div>
@@ -207,10 +215,10 @@
             <span class="ub-rotulo" aria-hidden="true"><b></b><small></small></span>
             <figure class="ub-ve" aria-hidden="true">
               <img src="../assets/unblind-en-la-calle.webp" alt="" width="640" height="800" loading="lazy" decoding="async">
-              <span class="caja" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
-              <span class="caja" style="--x:.34;--y:.15;--w:.36;--h:.82"></span>
-              <span class="caja" style="--x:.75;--y:.13;--w:.25;--h:.84"></span>
-              <span class="caja" style="--x:.57;--y:.67;--w:.24;--h:.32"></span>
+              <span class="caja" data-cosa="persona" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
+              <span class="caja" data-cosa="persona" style="--x:.34;--y:.15;--w:.36;--h:.82"></span>
+              <span class="caja" data-cosa="persona" style="--x:.75;--y:.13;--w:.25;--h:.84"></span>
+              <span class="caja" data-cosa="perro" style="--x:.57;--y:.67;--w:.24;--h:.32"></span>
             </figure>
             <p class="ub-dicho">«Tres personas y un perro guía caminan por la banqueta, hacia ti.»</p>
             <span class="ub-ilus">Ilustración</span>

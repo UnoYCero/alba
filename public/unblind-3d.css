@@ -65,6 +65,19 @@
 .ub-dicho { position: absolute; left: 50%; bottom: 3%; width: max-content; max-width: min(92%, 440px); margin: 0; padding: 10px 16px; border-radius: 14px; background: #0b1f3b; color: #f4f6fa; font-size: 15px; line-height: 1.4; text-align: center; opacity: 0; transform: translate(-50%, 8px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .ub-dicho.visible { opacity: 1; transform: translate(-50%, 0); }
 .ub-ilus { position: absolute; right: 0; top: 2%; padding: 2px 9px; border-radius: 999px; background: rgba(11,31,59,.08); color: rgba(11,31,59,.7); font-size: 11px; letter-spacing: .02em; }
+/* Te lo dice: el botón para oír la calle con audífonos (unblind.js) y el recuadro que suena */
+.ub-oir { justify-self: start; align-self: start; display: inline-flex; align-items: center; gap: var(--s3); min-height: 44px; margin-top: var(--s3); padding: 0 var(--s5) 0 var(--s4); border: 1px solid rgba(11,31,59,.18); border-radius: 999px; background: none; color: #0b1f3b; font: inherit; font-size: 14px; cursor: pointer; transition: background .3s, transform .2s var(--ease); }
+.ub-oir[hidden] { display: none; }
+.ub-oir:hover { background: rgba(11,31,59,.05); }
+.ub-oir:active { transform: scale(.97); }
+/* Unos audífonos: la diadema y las dos copas */
+.ub-oir i { position: relative; width: 15px; height: 12px; border: 1.5px solid currentColor; border-bottom: 0; border-radius: 8px 8px 0 0; }
+.ub-oir i::before, .ub-oir i::after { content: ""; position: absolute; bottom: -3px; width: 4px; height: 7px; border-radius: 2px; background: currentColor; }
+.ub-oir i::before { left: -2.5px; } .ub-oir i::after { right: -2.5px; }
+.ub-oir[aria-pressed="true"] { background: #0b1f3b; color: #f4f6fa; border-color: #0b1f3b; }
+.ub-despiece:not(.corrida) .ub-pasos li:not(.activa) > .ub-oir { visibility: hidden; }
+.ub-ve .caja { transition: opacity .4s var(--ease), border-color .25s, border-width .25s; }
+.ub-ve .caja.suena { border-width: 3px; border-color: #2563eb; }
 
 /* Lo que hace: la pieza que hace posible cada función */
 .ub-funciones button small { margin-top: 2px; font-size: 12.5px; letter-spacing: .02em; color: var(--soft); }
@@ -81,7 +94,8 @@
   .ub-partes li:not(.activa), .ub-pasos li:not(.activa) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .ub-partes li > b { font-size: 22px; }
   .ub-ve { width: 30%; }
-  .ub-dicho { font-size: 13.5px; padding: 8px 12px; }
+  /* La frase va arriba del botón de explorar, para no encimarse */
+  .ub-dicho { bottom: 52px; font-size: 13.5px; padding: 8px 12px; }
 }
 /* Teléfonos bajitos: la escena un poco más chica para que el texto y el botón quepan */
 @media (max-width: 760px) and (max-height: 700px) {

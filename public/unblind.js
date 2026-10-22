@@ -5,27 +5,97 @@ const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const EN = document.documentElement.lang === "en";
 const t = (es, en) => (EN ? en : es);
 
-// ── La demo de audio 3D: un botón que reproduce y pausa, con su avance ──
+// El audio 3D en vivo (motor de Asion): se pide cuando su sección se acerca, para que al tocar
+// el botón el sonido arranque dentro del toque, como lo exige el navegador
+let audio3D = null;
+const pedirAudio3D = () => (audio3D ||= import("./unblind-audio.js").then((m) => (m.soportado() ? m : null)).catch(() => null));
+const alAcercarse = (el, fn) => new IntersectionObserver(([e], obs) => { if (e.isIntersecting) { obs.disconnect(); fn(); } }, { rootMargin: "100% 0px" }).observe(el);
+
+// ── Escucha dónde están las cosas: el cuarto suena en vivo y se gira la cabeza arrastrando la
+// imagen (o con las flechas). Si el navegador no puede, queda la grabación de siempre. ──
 (function demoAudio() {
-  const audio = document.getElementById("audioDemo");
+  const figura = document.querySelector("[data-cuarto]");
   const boton = document.getElementById("botonAudio");
-  const avance = document.getElementById("avanceAudio");
-  if (!audio || !boton) return;
+  if (!figura || !boton) return;
   const texto = boton.querySelector("span");
-  const poner = (sonando) => {
-    boton.setAttribute("aria-pressed", String(sonando));
-    texto.textContent = sonando ? t("Pausar la demo", "Pause the demo") : (audio.currentTime > 0 && !audio.ended ? t("Seguir escuchando", "Keep listening") : t("Escuchar la demo", "Play the demo"));
+  const vista = figura.querySelector(".ub-demo-vista");
+  const pista = figura.querySelector(".ub-demo-pista");
+  const fuentes = Object.fromEntries([...figura.querySelectorAll("[data-fuente]")].map((f) => [f.dataset.fuente, f]));
+  const GIRO = 70; // grados, a cada lado
+  let escena = null, giro = 0, apagar = 0;
+  const girar = (grados) => {
+    giro = Math.max(-GIRO, Math.min(GIRO, grados));
+    figura.style.setProperty("--giro", (giro / GIRO).toFixed(3));
+    escena?.girar(giro);
   };
-  boton.addEventListener("click", () => {
-    if (audio.paused) audio.play().catch(() => { texto.textContent = t("No se pudo reproducir", "Could not play"); });
-    else audio.pause();
-  });
-  audio.addEventListener("play", () => poner(true));
-  audio.addEventListener("pause", () => poner(false));
-  audio.addEventListener("ended", () => { audio.currentTime = 0; poner(false); });
-  audio.addEventListener("timeupdate", () => {
-    if (audio.duration) avance.style.transform = `scaleX(${audio.currentTime / audio.duration})`;
-  });
+  const destello = (nombre) => {
+    const f = fuentes[nombre];
+    if (!f) return;
+    f.classList.remove("suena");
+    void f.offsetWidth; // para que la onda vuelva a empezar
+    f.classList.add("suena");
+  };
+  const callar = () => escena?.detener();
+  const alDetener = () => {
+    escena = null;
+    clearTimeout(apagar);
+    figura.classList.remove("en-vivo");
+    boton.setAttribute("aria-pressed", "false");
+    texto.textContent = t("Escuchar la demo", "Play the demo");
+    pista.hidden = true;
+    vista.removeAttribute("tabindex");
+    girar(0);
+  };
+  const empezar = (m) => {
+    escena = m.cuarto({ alSonar: destello, alDetener });
+    figura.classList.add("en-vivo");
+    boton.setAttribute("aria-pressed", "true");
+    texto.textContent = t("Detener la demo", "Stop the demo");
+    pista.hidden = false;
+    vista.tabIndex = 0;
+    apagar = setTimeout(callar, 90000);
+  };
+
+  alAcercarse(figura, () => pedirAudio3D().then((m) => {
+    if (!m) return grabacion();
+    boton.addEventListener("click", () => (escena ? callar() : empezar(m)));
+    // Arrastrar para girar, como una foto panorámica: llevar la imagen a la derecha es mirar a la izquierda
+    let x0 = null, giro0 = 0;
+    vista.addEventListener("dragstart", (e) => e.preventDefault());
+    vista.addEventListener("pointerdown", (e) => { if (!escena) return; x0 = e.clientX; giro0 = giro; vista.setPointerCapture(e.pointerId); vista.classList.add("arrastrando"); });
+    vista.addEventListener("pointermove", (e) => { if (x0 !== null) girar(giro0 - ((e.clientX - x0) / vista.clientWidth) * GIRO * 1.6); });
+    const soltar = () => { x0 = null; vista.classList.remove("arrastrando"); };
+    vista.addEventListener("pointerup", soltar);
+    vista.addEventListener("pointercancel", soltar);
+    vista.addEventListener("keydown", (e) => {
+      const paso = { ArrowLeft: -15, ArrowRight: 15 }[e.key];
+      if (paso && escena) { e.preventDefault(); girar(giro + paso); }
+    });
+    // Se calla sola si la sección sale de la pantalla o la pestaña se esconde
+    new IntersectionObserver(([e]) => { if (!e.isIntersecting) callar(); }).observe(figura);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) callar(); });
+  }));
+
+  // La grabación de 15 segundos: un botón que reproduce y pausa, con su avance
+  function grabacion() {
+    const audio = document.getElementById("audioDemo");
+    const avance = document.getElementById("avanceAudio");
+    if (!audio) return;
+    const poner = (sonando) => {
+      boton.setAttribute("aria-pressed", String(sonando));
+      texto.textContent = sonando ? t("Pausar la demo", "Pause the demo") : (audio.currentTime > 0 && !audio.ended ? t("Seguir escuchando", "Keep listening") : t("Escuchar la demo", "Play the demo"));
+    };
+    boton.addEventListener("click", () => {
+      if (audio.paused) audio.play().catch(() => { texto.textContent = t("No se pudo reproducir", "Could not play"); });
+      else audio.pause();
+    });
+    audio.addEventListener("play", () => poner(true));
+    audio.addEventListener("pause", () => poner(false));
+    audio.addEventListener("ended", () => { audio.currentTime = 0; poner(false); });
+    audio.addEventListener("timeupdate", () => {
+      if (audio.duration) avance.style.transform = `scaleX(${audio.currentTime / audio.duration})`;
+    });
+  }
 })();
 
 // ── Lo que hace: cada función enciende su capa sobre la misma foto ──
@@ -178,4 +248,41 @@ const t = (es, en) => (EN ? en : es);
     separar.textContent = si ? t("Armar de nuevo", "Put it back together") : t("Separar piezas", "Take it apart");
     visor.explorar.separar(si);
   });
+})();
+
+// ── Te lo dice: con audífonos, cada cosa que reconoció en la calle suena desde donde está en la
+// foto, después de que el LiDAR avisa que algo se acerca de frente. También en la versión corrida. ──
+(function teLoDice() {
+  const seccion = document.querySelector("[data-despiece]");
+  const boton = seccion?.querySelector("[data-oir]");
+  if (!boton) return;
+  const paso = boton.closest("[data-paso]");
+  const texto = boton.querySelector("span");
+  const cajas = [...seccion.querySelectorAll(".ub-ve .caja")];
+  // La foto abarca unos 70 grados: el centro de cada recuadro da el ángulo; el perro, más bajo y más cerca
+  const cosas = cajas.map((c) => {
+    const v = (n) => parseFloat(c.style.getPropertyValue(n));
+    const perro = c.dataset.cosa === "perro";
+    return { tipo: c.dataset.cosa, angulo: (v("--x") + v("--w") / 2 - 0.5) * 70, distancia: perro ? 2.5 : 3.5, alto: perro ? -1 : 0 };
+  });
+  let calle = null;
+  const alDetener = () => {
+    calle = null;
+    cajas.forEach((c) => c.classList.remove("suena"));
+    boton.setAttribute("aria-pressed", "false");
+    texto.textContent = t("Escuchar otra vez", "Listen again");
+  };
+  alAcercarse(seccion, () => pedirAudio3D().then((m) => {
+    if (!m) return;
+    boton.hidden = false;
+    boton.addEventListener("click", () => {
+      if (calle) return calle.detener();
+      calle = m.calle({ cosas, alDetener, alSonar: (i) => cajas.forEach((c, j) => c.classList.toggle("suena", j === i)) });
+      boton.setAttribute("aria-pressed", "true");
+      texto.textContent = t("Detener", "Stop");
+    });
+    // Se calla si la animación deja el paso «Te lo dice» o la pestaña se esconde
+    addEventListener("scroll", () => { if (calle && !seccion.classList.contains("corrida") && !paso.classList.contains("activa")) calle.detener(); }, { passive: true });
+    document.addEventListener("visibilitychange", () => { if (document.hidden) calle?.detener(); });
+  }));
 })();
