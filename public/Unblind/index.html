@@ -176,19 +176,26 @@
               <div class="ub-etapa activa" data-etapa="armado">
                 <p>Un prototipo para usarse todos los días: cámara, LiDAR, un procesador y sonido por conducción ósea, en unos lentes ligeros. Diseñados y probados con personas con discapacidad visual.</p>
                 <p class="ub-pista" aria-hidden="true">Baja para verlos por dentro</p>
+                <ol class="ub-taller" aria-label="Cómo se abren">
+                  <li>Se aflojan los tornillos</li>
+                  <li>Se deslizan las tapas</li>
+                  <li>Sale el procesador</li>
+                  <li>Las puntas, por dentro: ahí van las baterías</li>
+                  <li>Salen las baterías y los transductores</li>
+                  <li>Se separan las patillas, la cámara y el LiDAR</li>
+                </ol>
               </div>
               <ol class="ub-etapa ub-partes" data-etapa="piezas" aria-label="Las piezas">
-                <li data-pieza="camara"><b>Cámara</b><span>Ve lo que tienes enfrente: textos, objetos, rostros y colores.</span></li>
-                <li data-pieza="lidar"><b>LiDAR</b><span>Mide a qué distancia está cada cosa, para avisarte con sonido dónde hay obstáculos.</span></li>
-                <li data-pieza="procesador"><b>Procesador CPU + TPU</b><span>Reconoce y describe en los lentes, sin depender siempre de internet.</span></li>
-                <li data-pieza="conduccion"><b>Conducción ósea</b><span>El sonido llega por los huesos de la cabeza y deja libres los oídos para escuchar la calle.</span></li>
-                <li data-pieza="bateria"><b>Baterías</b><span>Van en las puntas de las patillas, detrás de las orejas.</span></li>
+                <li data-pieza="camara"><b>Cámara</b><span>Ve lo que tienes enfrente: textos, objetos, rostros y colores.</span><small>8 mm de diámetro</small></li>
+                <li data-pieza="lidar"><b>LiDAR</b><span>Mide a qué distancia está cada cosa, para avisarte con sonido dónde hay obstáculos.</span><small>Ventana de 5.5 × 6 mm</small></li>
+                <li data-pieza="procesador"><b>Procesador CPU + TPU</b><span>Reconoce y describe en los lentes, sin depender siempre de internet.</span><small>Placa de 61 × 13 mm, dentro de la patilla derecha</small></li>
+                <li data-pieza="conduccion"><b>Conducción ósea</b><span>El sonido llega por los huesos de la cabeza y deja libres los oídos para escuchar la calle.</span><small>Una de cada lado · 11.5 × 10 mm</small></li>
+                <li data-pieza="bateria"><b>Baterías</b><span>Van en las puntas de las patillas, detrás de las orejas.</span><small>Una de cada lado · 21 × 8 × 7 mm</small></li>
               </ol>
               <ol class="ub-etapa ub-pasos" data-etapa="pulso" aria-label="Cómo funciona">
                 <li data-paso="ve"><b>Ve</b><span>La cámara y el LiDAR captan lo que tienes enfrente.</span></li>
                 <li data-paso="entiende"><b>Entiende</b><span>El procesador reconoce personas, objetos y obstáculos.</span></li>
-                <li data-paso="dice"><b>Te lo dice</b><span>Por conducción ósea y con audio 3D: cada cosa suena desde donde está.</span>
-                  <button type="button" class="ub-oir" data-oir aria-pressed="false"><i aria-hidden="true"></i><span>Escúchalo</span> <small>con audífonos</small></button></li>
+                <li data-paso="dice"><b>Te lo dice</b><span>Por conducción ósea y con audio 3D: cada cosa suena desde donde está.</span></li>
               </ol>
             </div>
           </div>
@@ -196,8 +203,8 @@
             <img class="ub-respaldo ub-respaldo-armado" src="../assets/unblind/lentes-armados.webp" alt="Los lentes UNBLIND: armazón azul marino con la cámara y el LiDAR en el puente y un módulo en cada patilla" width="1400" height="933" loading="lazy" decoding="async">
             <img class="ub-respaldo ub-respaldo-despiece" src="../assets/unblind/lentes-despiece.webp" alt="Los lentes UNBLIND separados en sus piezas: armazón, patillas, tapas, cámara, LiDAR, procesador, transductores de conducción ósea y baterías" width="1400" height="1100" loading="lazy" decoding="async">
             <canvas class="ub-lienzo" aria-hidden="true"></canvas>
-            <svg class="ub-guia" aria-hidden="true"><line x1="0" y1="0" x2="0" y2="0"></line><circle r="4"></circle></svg>
-            <span class="ub-rotulo" aria-hidden="true"></span>
+            <svg class="ub-guia" aria-hidden="true"><line></line><circle r="4"></circle><line></line><circle r="4"></circle></svg>
+            <span class="ub-rotulo" aria-hidden="true"><b></b><small></small></span>
             <figure class="ub-ve" aria-hidden="true">
               <img src="../assets/unblind-en-la-calle.webp" alt="" width="640" height="800" loading="lazy" decoding="async">
               <span class="caja" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
@@ -207,6 +214,7 @@
             </figure>
             <p class="ub-dicho">«Tres personas y un perro guía caminan por la banqueta, hacia ti.»</p>
             <span class="ub-ilus">Ilustración</span>
+            <button type="button" class="ub-explorar-abrir" data-explorar-abrir hidden><i aria-hidden="true"></i>Explorar en 3D</button>
           </div>
         </div>
       </div>
@@ -245,6 +253,18 @@
         <p class="ub-alianzas reveal">Trabajamos con <span>Biblioteca Vasconcelos</span>, <span>Alcaldía Álvaro Obregón</span>, <span>Ilumina, Ceguera y Baja Visión</span> e <span>Incluye</span>.</p>
       </div>
     </section>
+
+    <!-- Explorar en 3D: los lentes a pantalla completa (se abre desde «Por dentro») -->
+    <div class="ub-explorar" data-explorar role="dialog" aria-modal="true" aria-labelledby="explorar-titulo" hidden>
+      <div class="ub-explorar-escena" data-explorar-escena></div>
+      <div class="ub-explorar-barra">
+        <p class="ub-explorar-titulo" id="explorar-titulo">Lentes UNBLIND <small>Ilustración</small></p>
+        <button type="button" class="ub-explorar-boton" data-separar aria-pressed="false">Separar piezas</button>
+        <button type="button" class="ub-explorar-boton ub-explorar-cerrar" data-cerrar-explorar>Cerrar</button>
+      </div>
+      <p class="ub-explorar-pista">Arrastra para girar en cualquier dirección · pellizca o usa la rueda para acercar · toca una pieza</p>
+      <div class="ub-explorar-ficha" aria-live="polite"></div>
+    </div>
 
     <!-- Sigue explorando: el siguiente proyecto, los demás y volver a la portada -->
     <section class="sigue tema-alba" aria-label="Sigue explorando">

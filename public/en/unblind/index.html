@@ -176,19 +176,26 @@
               <div class="ub-etapa activa" data-etapa="armado">
                 <p>A prototype built for everyday use: a camera, LiDAR, a processor and bone-conduction sound, in a pair of light glasses. Designed and tested with blind and low-vision people.</p>
                 <p class="ub-pista" aria-hidden="true">Scroll down to see them from the inside</p>
+                <ol class="ub-taller" aria-label="How they open">
+                  <li>The screws come loose</li>
+                  <li>The covers slide off</li>
+                  <li>The processor comes out</li>
+                  <li>Inside the tips: that is where the batteries go</li>
+                  <li>The batteries and the transducers come out</li>
+                  <li>The temples, the camera and the LiDAR come apart</li>
+                </ol>
               </div>
               <ol class="ub-etapa ub-partes" data-etapa="piezas" aria-label="The parts">
-                <li data-pieza="camara"><b>Camera</b><span>Sees what is in front of you: text, objects, faces and colors.</span></li>
-                <li data-pieza="lidar"><b>LiDAR</b><span>Measures how far away each thing is, so it can warn you of obstacles with sound.</span></li>
-                <li data-pieza="procesador"><b>CPU + TPU processor</b><span>Recognizes and describes on the glasses themselves, without always relying on the internet.</span></li>
-                <li data-pieza="conduccion"><b>Bone conduction</b><span>Sound travels through the bones of the head and leaves your ears free to hear the street.</span></li>
-                <li data-pieza="bateria"><b>Batteries</b><span>They sit at the tips of the temples, behind the ears.</span></li>
+                <li data-pieza="camara"><b>Camera</b><span>Sees what is in front of you: text, objects, faces and colors.</span><small>8 mm in diameter</small></li>
+                <li data-pieza="lidar"><b>LiDAR</b><span>Measures how far away each thing is, so it can warn you of obstacles with sound.</span><small>5.5 × 6 mm window</small></li>
+                <li data-pieza="procesador"><b>CPU + TPU processor</b><span>Recognizes and describes on the glasses themselves, without always relying on the internet.</span><small>61 × 13 mm board, inside the right temple</small></li>
+                <li data-pieza="conduccion"><b>Bone conduction</b><span>Sound travels through the bones of the head and leaves your ears free to hear the street.</span><small>One on each side · 11.5 × 10 mm</small></li>
+                <li data-pieza="bateria"><b>Batteries</b><span>They sit at the tips of the temples, behind the ears.</span><small>One on each side · 21 × 8 × 7 mm</small></li>
               </ol>
               <ol class="ub-etapa ub-pasos" data-etapa="pulso" aria-label="How it works">
                 <li data-paso="ve"><b>Sees</b><span>The camera and the LiDAR capture what is in front of you.</span></li>
                 <li data-paso="entiende"><b>Understands</b><span>The processor recognizes people, objects and obstacles.</span></li>
-                <li data-paso="dice"><b>Tells you</b><span>Through bone conduction and 3D audio: each thing sounds from where it is.</span>
-                  <button type="button" class="ub-oir" data-oir aria-pressed="false"><i aria-hidden="true"></i><span>Listen</span> <small>with headphones</small></button></li>
+                <li data-paso="dice"><b>Tells you</b><span>Through bone conduction and 3D audio: each thing sounds from where it is.</span></li>
               </ol>
             </div>
           </div>
@@ -196,8 +203,8 @@
             <img class="ub-respaldo ub-respaldo-armado" src="/assets/unblind/lentes-armados.webp" alt="The UNBLIND glasses: a navy frame with the camera and the LiDAR on the bridge and a module on each temple" width="1400" height="933" loading="lazy" decoding="async">
             <img class="ub-respaldo ub-respaldo-despiece" src="/assets/unblind/lentes-despiece.webp" alt="The UNBLIND glasses taken apart: frame, temples, covers, camera, LiDAR, processor, bone-conduction transducers and batteries" width="1400" height="1100" loading="lazy" decoding="async">
             <canvas class="ub-lienzo" aria-hidden="true"></canvas>
-            <svg class="ub-guia" aria-hidden="true"><line x1="0" y1="0" x2="0" y2="0"></line><circle r="4"></circle></svg>
-            <span class="ub-rotulo" aria-hidden="true"></span>
+            <svg class="ub-guia" aria-hidden="true"><line></line><circle r="4"></circle><line></line><circle r="4"></circle></svg>
+            <span class="ub-rotulo" aria-hidden="true"><b></b><small></small></span>
             <figure class="ub-ve" aria-hidden="true">
               <img src="/assets/unblind-en-la-calle.webp" alt="" width="640" height="800" loading="lazy" decoding="async">
               <span class="caja" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
@@ -207,6 +214,7 @@
             </figure>
             <p class="ub-dicho">«Three people and a guide dog walk along the sidewalk, toward you.»</p>
             <span class="ub-ilus">Illustration</span>
+            <button type="button" class="ub-explorar-abrir" data-explorar-abrir hidden><i aria-hidden="true"></i>Explore in 3D</button>
           </div>
         </div>
       </div>
@@ -245,6 +253,18 @@
         <p class="ub-alianzas reveal">We work with <span>Biblioteca Vasconcelos</span>, <span>Álvaro Obregón borough</span>, <span>Ilumina, Blindness and Low Vision</span> e <span>Incluye</span>.</p>
       </div>
     </section>
+
+    <!-- Explorar en 3D: los lentes a pantalla completa (se abre desde «Por dentro») -->
+    <div class="ub-explorar" data-explorar role="dialog" aria-modal="true" aria-labelledby="explorar-titulo" hidden>
+      <div class="ub-explorar-escena" data-explorar-escena></div>
+      <div class="ub-explorar-barra">
+        <p class="ub-explorar-titulo" id="explorar-titulo">UNBLIND glasses <small>Illustration</small></p>
+        <button type="button" class="ub-explorar-boton" data-separar aria-pressed="false">Take it apart</button>
+        <button type="button" class="ub-explorar-boton ub-explorar-cerrar" data-cerrar-explorar>Close</button>
+      </div>
+      <p class="ub-explorar-pista">Drag to turn it in any direction · pinch or scroll to zoom · tap a part</p>
+      <div class="ub-explorar-ficha" aria-live="polite"></div>
+    </div>
 
     <!-- Sigue explorando: el siguiente proyecto, los demás y volver a la portada -->
     <section class="sigue tema-alba" aria-label="Keep exploring">
