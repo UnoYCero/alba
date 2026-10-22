@@ -107,7 +107,8 @@
               <div data-mv="1"><dt>Vision</dt><dd>A future where technology lets us see beyond what our eyes can reach.</dd></div>
             </dl>
           </div>
-          <figure class="cortina" style="--corte:92%">
+          <div class="cortina-bloque">
+          <figure class="cortina" data-vista="ves">
             <div class="cortina-capa cortina-normal">
               <img src="/assets/unblind-en-la-calle.webp" alt="Max and Alan, co-founders of Alba, test UNBLIND on the street with Omar Ledezma, UNBLIND advisor and a person with visual disability, and his guide dog" width="640" height="800" loading="lazy" decoding="async">
               <span class="cortina-rotulo">What you see</span>
@@ -122,9 +123,12 @@
               <p class="cortina-voz">«Three people and a guide dog walk along the sidewalk, toward you.»</p>
               <span class="cortina-rotulo cortina-rotulo-alba">What Alba sees <small>· example</small></span>
             </div>
-            <i class="cortina-linea" aria-hidden="true"><b></b></i>
-            <input class="cortina-control" type="range" min="0" max="100" value="92" step="1" aria-label="Compare what you see with what Alba sees" data-cortina-control>
           </figure>
+          <div class="vistas">
+            <button type="button" data-vista="ves" aria-pressed="true">What you see</button>
+            <button type="button" data-vista="alba" aria-pressed="false">What Alba sees</button>
+          </div>
+          </div>
         </div>
       </div>
     </section>

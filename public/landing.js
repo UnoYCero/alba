@@ -98,55 +98,35 @@ function encender() {
   origen.classList.toggle("fin", p > 0.35);
 }
 
-// ── Misión y visión: al bajar, la línea recorre la foto de «lo que ves» a «lo que ve Alba».
-// También se arrastra (dedo, mouse o flechas). En teléfonos bajitos o quieta, sólo se arrastra ──
+// ── Misión y visión: «lo que Alba va encontrando». Se ve la foto normal; luego aparecen, uno a
+// uno, los recuadros de lo que Alba reconoce y al final la frase que diría UNBLIND. Se repite
+// mientras está a la vista. Dos botones dejan fija una de las dos vistas. Con «menos
+// movimiento» se queda en la vista de Alba, completa y quieta. ──
 const masAlla = document.querySelector("[data-cortina]");
 if (masAlla) {
   const marco = masAlla.querySelector(".cortina");
-  const control = masAlla.querySelector("[data-cortina-control]");
   const textos = [...masAlla.querySelectorAll("[data-mv]")];
-  // En celular no es pantalla fija (alargaba la página casi 2.5 pantallas): se arrastra con el dedo
-  const corrida = () => reducir || celular.matches;
-  let avanceAlArrastrar = null;
-  const poner = (v) => {
-    marco.style.setProperty("--corte", `${v}%`);
-    control.value = String(Math.round(v));
-    textos.forEach((t, i) => t.classList.toggle("activa", i === (v > 50 ? 0 : 1)));
+  const botones = [...masAlla.querySelectorAll("button[data-vista]")];
+  let fija = null, aLaVista = false, espera = 0;
+  const ponerVista = (v) => {
+    marco.dataset.vista = v;
+    botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.vista === v)));
+    textos.forEach((t, i) => t.classList.toggle("activa", i === (v === "ves" ? 0 : 1)));
   };
-  const alBajarCortina = () => {
-    masAlla.classList.toggle("corrida", corrida());
-    if (corrida()) return;
-    const p = avanceFijo(masAlla);
-    // Si la persona la arrastró, se respeta hasta que vuelva a bajar un buen tramo
-    if (avanceAlArrastrar !== null && Math.abs(p - avanceAlArrastrar) < 0.06) return;
-    avanceAlArrastrar = null;
-    poner(92 - limitar((p - 0.1) / 0.72) * 84);
+  // «Lo que ves» 3 s; «lo que ve Alba» 7 s (los recuadros tardan ~2.5 s en aparecer todos)
+  const seguir = () => {
+    if (fija || !aLaVista || reducir) return;
+    const v = marco.dataset.vista === "alba" ? "ves" : "alba";
+    ponerVista(v);
+    espera = setTimeout(seguir, v === "alba" ? 7000 : 3000);
   };
-  control.addEventListener("input", () => {
-    avanceAlArrastrar = corrida() ? null : avanceFijo(masAlla);
-    poner(Number(control.value));
-  });
-  addEventListener("scroll", () => requestAnimationFrame(alBajarCortina), { passive: true });
-  addEventListener("resize", alBajarCortina);
-  if (corrida()) poner(50);
-  alBajarCortina();
-  // La primera vez que se ve en celular, la línea hace un barrido corto para enseñar que se mueve
-  let tocada = false;
-  control.addEventListener("pointerdown", () => { tocada = true; }, { once: true });
-  new IntersectionObserver(([e], obs) => {
-    if (!e.isIntersecting || !corrida() || reducir) return;
-    obs.disconnect();
-    const t0 = performance.now(), dur = 2600;
-    const paso = (ahora) => {
-      if (tocada) return;
-      const f = limitar((ahora - t0) / dur);
-      // 50 → 14 → 86 → 50, suave
-      const v = 50 - 36 * Math.sin(f * Math.PI * 2) * (1 - f * 0.2);
-      poner(f < 1 ? v : 50);
-      if (f < 1) requestAnimationFrame(paso);
-    };
-    setTimeout(() => requestAnimationFrame(paso), 400);
-  }, { threshold: 0.6 }).observe(marco);
+  botones.forEach((b) => b.addEventListener("click", () => { fija = b.dataset.vista; clearTimeout(espera); ponerVista(fija); }));
+  new IntersectionObserver(([e]) => {
+    aLaVista = e.isIntersecting;
+    clearTimeout(espera);
+    if (aLaVista && !fija && !reducir) espera = setTimeout(seguir, 1200);
+  }, { threshold: 0.5 }).observe(marco);
+  ponerVista(reducir ? "alba" : "ves");
 }
 
 // ── Alba Vision: los proyectos como lista; el que se toca (o se señala sobre su nombre) se abre

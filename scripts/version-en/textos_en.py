@@ -47,7 +47,6 @@ EN["index.html"] = [
  "«Three people and a guide dog walk along the sidewalk, toward you.»",
  "What Alba sees",
  "· example",
- "Compare what you see with what Alba sees",
  "We started with a pair of glasses.",
  "We keep seeing further.",
  "We are a team of engineers. We started with UNBLIND, glasses for people with visual disability, and today we bring that same vision to businesses, industry and space.",

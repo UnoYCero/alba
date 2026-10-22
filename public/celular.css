@@ -11,9 +11,9 @@
       Los mismos colores de coloresCielo en landing.js. El inicio y el origen siguen transparentes
       para que se vea el ojo. ── */
 .mas-alla { background: linear-gradient(#0b2142, #0e2a55 56px); }
-.about { background: linear-gradient(#0e2a55, #13366c 56px); }
-.caps { background: linear-gradient(#13366c, #e3ecf8 56px); }
-.proyectos { background: linear-gradient(#e3ecf8, #f4f6fa 56px, #f4f6fa calc(100% - 56px), #03081a); }
+#quienes-somos { background: linear-gradient(#0e2a55, #13366c 56px, rgb(19,54,108) calc(100% - 200px), rgb(24,58,111) calc(100% - 180px), rgb(39,71,121) calc(100% - 160px), rgb(62,92,137) calc(100% - 140px), rgb(91,117,156) calc(100% - 120px), rgb(123,145,178) calc(100% - 100px), rgb(155,173,200) calc(100% - 80px), rgb(184,198,219) calc(100% - 60px), rgb(207,219,235) calc(100% - 40px), rgb(222,232,245) calc(100% - 20px), rgb(227,236,248) 100%); }
+.caps { background: #e3ecf8; }
+.proyectos { background: linear-gradient(#e3ecf8, #f4f6fa 56px, rgb(244,246,250) calc(100% - 200px), rgb(238,240,245) calc(100% - 180px), rgb(221,223,229) calc(100% - 160px), rgb(194,197,204) calc(100% - 140px), rgb(161,164,173) calc(100% - 120px), rgb(124,127,138) calc(100% - 100px), rgb(86,90,103) calc(100% - 80px), rgb(53,57,72) calc(100% - 60px), rgb(26,31,47) calc(100% - 40px), rgb(9,14,31) calc(100% - 20px), rgb(3,8,26) 100%); }
 .space { background: #03081a; }
 .contact { background: linear-gradient(#03081a, #050d1c 56px); }
 
@@ -26,15 +26,16 @@
 .origen-pin { position: static; height: auto; padding: var(--s8) 0 var(--s6); }
 .origen-text { font-size: clamp(21px, 6vw, 26px); line-height: 1.32; }
 
-/* ── Misión y visión: corrida; la cortina se arrastra y hace un barrido la primera vez ── */
-.mas-alla-pin { padding: var(--s7) 0; }
-.mas-alla.corrida .cortina { width: 100%; max-width: 440px; aspect-ratio: 4 / 4.6; }
+/* ── Misión y visión: la foto cuenta sola lo que Alba va encontrando, con dos botones abajo ── */
+.mas-alla-pin { min-height: 0; padding: var(--s7) 0; }
+.cortina-bloque { width: 100%; max-width: 440px; }
+.cortina { aspect-ratio: 4 / 4.6; }
 .mas-alla-grid { gap: var(--s6); }
 .mv dd { font-size: 16px; }
 
 /* ── Quiénes somos: la foto del equipo apaisada, las postales compactas y, al final, dónde
       hemos estado (los logos), como continuación de los hitos ── */
-.about { padding: var(--s7) 0 var(--s7); }
+#quienes-somos { padding: var(--s7) 0 calc(var(--s6) + 200px); }
 .about-foto { max-width: none; }
 .about-foto img { aspect-ratio: 3 / 2; max-height: none; object-position: 50% 30%; }
 .collage { margin-top: var(--s4); }
@@ -43,8 +44,8 @@
 .postal { width: 208px; }
 .postal:nth-child(3n+1), .postal:nth-child(3n) { margin-top: 0; }
 .postal:nth-child(3n+2) { margin-top: var(--s4); }
-.logos { padding: var(--s6) 0 0; }
-.logos-titulo { font-size: 21px; margin-bottom: var(--s3); }
+.logos { padding-top: var(--s6); }
+.logos-titulo { font-size: 15px; }
 
 /* ── Lo que hacemos: una sola imagen grande que cambia (landing.js), con cuatro botones debajo ── */
 .caps { padding: var(--s7) 0; }
@@ -60,7 +61,7 @@
 .cap small { font-size: 13px; }
 
 /* ── Alba Vision: lista que se despliega (landing.js mueve cada imagen adentro de su proyecto) ── */
-.proyectos { padding: var(--s8) 0; }
+.proyectos { padding: var(--s8) 0 calc(var(--s6) + 200px); }
 .proyectos-head { margin-bottom: var(--s4); }
 .proyectos-head p { display: block; font-size: 15px; }
 .acordeon .proyectos-visor { display: none; }
@@ -92,14 +93,16 @@
 .acordeon .chat { display: flex; flex-direction: column; gap: 8px; width: 270px; height: 540px; padding: 0 0 14px; border: 9px solid #0b1f3b; border-radius: 48px; background: #eef2f8; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(11,31,59,.6), 0 0 0 1px rgba(11,31,59,.12); zoom: .53; }
 .acordeon .chat::before { content: "12:40"; flex: none; padding: 10px 24px 6px; background: #fff; font-size: 12px; color: #0b1f3b; font-variant-numeric: tabular-nums; }
 .acordeon .chat-cabeza { flex: none; display: flex; align-items: center; gap: 10px; margin: -8px 0 0; padding: 8px 16px 12px; background: #fff; border-bottom: 1px solid rgba(11,31,59,.08); font-size: 15px; color: #0b1f3b; }
-.acordeon .chat-cabeza::before { content: ""; flex: none; width: 34px; height: 34px; border-radius: 50%; background: #0b1f3b radial-gradient(circle at 50% 50%, #8fb2ff 0 5px, transparent 6px); }
+.acordeon .chat-cabeza::before { content: ""; flex: none; width: 34px; height: 34px; border-radius: 50%; box-sizing: border-box; border: 13px solid #0b1f3b; background: #8fb2ff; }
 .acordeon .chat-cabeza > span:first-child { flex: 1; }
 .acordeon .chat-cabeza .pill { font-size: 11px; padding: 2px 8px; }
 .acordeon .chat .msg { margin: 0 12px; max-width: 78%; padding: 8px 12px; border-radius: 16px; font-size: 13px; line-height: 1.4; }
-.acordeon .chat .msg-cliente { margin-top: auto; }
+.acordeon .chat .msg-cliente { align-self: flex-end; margin-top: auto; }
+.acordeon .chat .msg-orbita { align-self: flex-start; background: #fff; }
+.acordeon .chat .msg-sistema { align-self: center; text-align: center; }
 .acordeon .chat .msg-cliente ~ .msg-cliente { margin-top: 0; }
 .acordeon .chat .msg-sistema { margin: 2px 12px 0; font-size: 12px; }
-.acordeon .chat::after { content: ""; flex: none; height: 36px; margin: 2px 10px 0; border-radius: 999px; background: radial-gradient(circle 17px at calc(100% - 17px) 50%, #2563eb 96%, transparent 100%), linear-gradient(#fff, #fff) 0 0 / calc(100% - 42px) 100% no-repeat; }
+.acordeon .chat::after { content: "➤"; flex: none; height: 36px; margin: 2px 10px 0; padding: 0 14px; border-radius: 999px; background: #fff; font-size: 15px; line-height: 36px; text-align: right; color: #2563eb; }
 @media (max-width: 380px) { .acordeon .chat { zoom: .48; } }
 @media (max-width: 340px) { .acordeon .chat { zoom: .42; } }
 /* La cocina de Vision Ops a todo el escenario */
@@ -107,7 +110,7 @@
 
 /* ── Alba Space: arriba el cielo despejado (más estrellas y más brillo en landing-3d.js) y
       el texto abajo, sobre un velo más ligero. El cielo se mueve con el dedo. ── */
-.space { min-height: 0; align-items: flex-end; padding: max(46svh, 300px) 0 var(--s8); }
+.space { min-height: 0; align-items: flex-end; padding: max(40svh, 260px) 0 var(--s8); }
 .space-veil { background: linear-gradient(0deg, rgba(3,8,26,.94) 0%, rgba(3,8,26,.82) 48%, rgba(3,8,26,.25) 68%, transparent 82%); }
 .space-hud { display: grid; top: calc(var(--nav-h) + var(--s5)); right: var(--gutter); font-size: 12px; }
 .space-note { top: calc(var(--nav-h) + var(--s5)); bottom: auto; left: var(--gutter); right: auto; transform: none; }
