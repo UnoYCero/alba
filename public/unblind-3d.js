@@ -10,7 +10,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
-import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const limitar = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -56,21 +55,69 @@ function grupoDe(pieza, nombre) {
   return pieza;
 }
 
+// ── El estudio: un fondo claro de foto de producto con cajas de luz (arriba, a un lado y unas tiras), como en
+// una sesión de foto de producto. No se ve: sólo da los reflejos largos y suaves del plástico,
+// el brillo de los tornillos y el de la óptica ──
+function estudio(renderer) {
+  const s = new THREE.Scene();
+  const cuarto = new THREE.Mesh(new THREE.BoxGeometry(10, 10, 10), new THREE.MeshBasicMaterial({ color: 0x5f6d8a, side: THREE.BackSide }));
+  s.add(cuarto);
+  const caja = (ancho, alto, intensidad, x, y, z, color = 0xffffff) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(ancho, alto), new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+    m.material.color.multiplyScalar(intensidad);
+    m.position.set(x, y, z);
+    m.lookAt(0, 0, 0);
+    s.add(m);
+  };
+  caja(3.4, 3.4, 4, 0, 4.6, 0.4); // la grande, arriba
+  caja(1.4, 3.4, 7, -4.2, 1.2, 2.2); // la principal, adelante a la izquierda
+  caja(0.5, 4, 4.5, 4.4, 0.8, -1.2, 0xdfe8ff); // tira a la derecha, un poco atrás: dibuja el borde
+  caja(4.2, 0.45, 3, 0, 1.4, -4.6, 0xcfdcff); // tira atrás, fría
+  caja(7, 7, 1.1, 0, -4.8, 0); // el piso claro, rebota luz desde abajo
+  const pm = new THREE.PMREMGenerator(renderer);
+  const tex = pm.fromScene(s, 0.02).texture;
+  pm.dispose();
+  return tex;
+}
+
+// ── Los acabados: el modelo trae colores lisos; aquí cada material toma su acabado de producto ──
+function acabado(original) {
+  const n = original.name || "";
+  const base = { color: original.color, map: original.map, alphaMap: original.alphaMap, name: n, side: original.side, alphaTest: original.alphaTest };
+  // El nylon impreso: satinado, para que los reflejos del estudio corran largos y suaves
+  if (n.startsWith("Nylon impreso") || n.startsWith("Tapa impresa")) {
+    return new THREE.MeshStandardMaterial({ ...base, roughness: n.startsWith("Tapa") ? 0.66 : 0.56, metalness: 0, envMapIntensity: 0.7 });
+  }
+  // La óptica de la cámara y la ventana del LiDAR: vidrio negro con barniz, que refleja el estudio
+  if (n.startsWith("Óptica")) {
+    return new THREE.MeshPhysicalMaterial({ ...base, roughness: 0.08, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6 });
+  }
+  if (n.startsWith("Tornillos")) return new THREE.MeshStandardMaterial({ ...base, roughness: 0.32, metalness: 0.85, envMapIntensity: 1.3 });
+  if (n.startsWith("LED")) {
+    const m = new THREE.MeshStandardMaterial({ ...base, roughness: 0.3, emissive: 0x8fb2ff, emissiveIntensity: 1.4 });
+    m.userData.emisionBase = m.emissive.clone().multiplyScalar(m.emissiveIntensity);
+    return m;
+  }
+  const m = original.clone();
+  if (n.startsWith("Encapsulado")) { m.roughness = 0.4; }
+  if (n.startsWith("Baterías")) { m.roughness = 0.45; m.metalness = 0.5; }
+  return m;
+}
+
 export function montarDespiece({ escena, lienzo, urlModelo, alAvance, reducir = false }) {
   const celular = matchMedia("(max-width: 760px)").matches;
   const renderer = new THREE.WebGLRenderer({ canvas: lienzo, antialias: true, alpha: true, powerPreference: "high-performance" });
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.3;
+  renderer.toneMappingExposure = 1.25;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const scene = new THREE.Scene();
-  const pm = new THREE.PMREMGenerator(renderer);
-  scene.environment = pm.fromScene(new RoomEnvironment(), 0.03).texture;
-  scene.environmentIntensity = 0.9;
+  scene.environment = estudio(renderer);
+  scene.environmentIntensity = 1;
 
   // Luz de estudio: principal (con sombra), relleno frío y una luz trasera que dibuja el contorno
-  const principal = new THREE.DirectionalLight(0xffffff, 2.2);
+  const principal = new THREE.DirectionalLight(0xffffff, 2.6);
   principal.position.set(-0.35, 0.9, 0.5);
   principal.castShadow = true;
   principal.shadow.mapSize.set(celular ? 1024 : 2048, celular ? 1024 : 2048);
@@ -78,9 +125,8 @@ export function montarDespiece({ escena, lienzo, urlModelo, alAvance, reducir = 
   principal.shadow.bias = -0.0004;
   Object.assign(principal.shadow.camera, { left: -0.25, right: 0.25, top: 0.25, bottom: -0.25, near: 0.05, far: 2.5 });
   scene.add(principal, principal.target);
-  const relleno = new THREE.DirectionalLight(0xdfe8ff, 0.7); relleno.position.set(0.6, 0.3, 0.7); scene.add(relleno);
-  const contorno = new THREE.DirectionalLight(0x9fbcff, 2.4); contorno.position.set(0.2, 0.55, -0.9); scene.add(contorno);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xc9d6ea, 0.45));
+  const relleno = new THREE.DirectionalLight(0xdfe8ff, 0.35); relleno.position.set(0.6, 0.3, 0.7); scene.add(relleno);
+  const contorno = new THREE.DirectionalLight(0x9fbcff, 2.2); contorno.position.set(0.2, 0.55, -0.9); scene.add(contorno);
   // El piso que recibe la sombra (sólo la sombra; el fondo es el papel de la página)
   const piso = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShadowMaterial({ opacity: 0.1 }));
   piso.rotation.x = -Math.PI / 2; piso.receiveShadow = true; scene.add(piso);
@@ -133,7 +179,7 @@ export function montarDespiece({ escena, lienzo, urlModelo, alAvance, reducir = 
         if (!o.isMesh) return;
         const pieza = o.userData.pieza || o.parent?.userData?.pieza || "armazon";
         const grupo = grupoDe(pieza, o.name || "");
-        o.material = o.material.clone();
+        o.material = acabado(o.material);
         o.material.transparent = true;
         o.castShadow = true;
         o.userData.grupo = grupo;
@@ -152,6 +198,12 @@ export function montarDespiece({ escena, lienzo, urlModelo, alAvance, reducir = 
       resolver();
     }, undefined, fallar);
   });
+
+  // La pieza en foco se ilumina apenas de azul; el LED conserva su luz propia
+  const resaltar = (mat, k) => {
+    mat.emissive.setRGB(0.3, 0.45, 0.9).multiplyScalar(k);
+    if (mat.userData.emisionBase) { mat.emissive.add(mat.userData.emisionBase); mat.emissiveIntensity = 1; }
+  };
 
   const centroDe = (nombres) => {
     const caja = new THREE.Box3();
@@ -210,7 +262,7 @@ export function montarDespiece({ escena, lienzo, urlModelo, alAvance, reducir = 
       op = Math.min(op, mezcla(1, 0.5, enPulso * (1 - tramo(p, 0.985, 1))));
       for (const { obj, mat } of lista) {
         mat.opacity = op; mat.depthWrite = op > 0.95; obj.castShadow = op > 0.5;
-        if (mat.emissive) mat.emissive.setRGB(0.3, 0.45, 0.9).multiplyScalar(resaltada ? 0.12 * z.k : 0);
+        if (mat.emissive) resaltar(mat, resaltada ? 0.12 * z.k : 0);
       }
     }
     // Las baterías brillan cuando se ven a través de las puntas
@@ -320,7 +372,7 @@ export function montarDespiece({ escena, lienzo, urlModelo, alAvance, reducir = 
       this.activo = true; this.alTocar = alTocar;
       ajustar(); // el lienzo ya está en la capa a pantalla completa: medir su forma antes de encuadrar
       colocar(0, 0); this.separado = this.objetivoSeparado = 0;
-      for (const lista of Object.values(grupos)) for (const { obj, mat } of lista) { mat.opacity = 1; mat.depthWrite = true; obj.castShadow = true; if (mat.emissive) mat.emissive.setRGB(0, 0, 0); }
+      for (const lista of Object.values(grupos)) for (const { obj, mat } of lista) { mat.opacity = 1; mat.depthWrite = true; obj.castShadow = true; if (mat.emissive) resaltar(mat, 0); }
       [...caminos.flatMap((c) => [c.tubo, c.cabeza]), ...brillos, brilloProcesador, ...brillosBateria, ...ondas.flat()].forEach((o) => { o.visible = false; });
       if (!this.controles) {
         this.controles = new OrbitControls(camara, lienzo);

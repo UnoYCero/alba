@@ -34,3 +34,20 @@ Three.js (0.160.0, por importmap).
 Los desplazamientos de cada conjunto (`SEPARACION` en `unblind-3d.js`) son los mismos que usó
 `generar.py` de la ronda 11 para su imagen `despiece.png` (en mm, ejes de Blender, convertidos
 a los de glTF), con la cámara y el LiDAR un poco más arriba para que se lean.
+
+## La luz y los acabados
+
+El modelo trae colores lisos; el acabado se pone en `unblind-3d.js` y no en el archivo:
+
+- `estudio()` arma el ambiente: un fondo azulado con cajas de luz (arriba, adelante a la
+  izquierda y dos tiras), como en una foto de producto. Da los reflejos largos del plástico,
+  el brillo de los tornillos y el de la óptica.
+- `acabado()` le da a cada material el suyo por su nombre: nylon y tapas satinados, la óptica
+  de la cámara como vidrio barnizado, tornillos de metal y el LED con luz propia.
+
+## Por qué no se usan las texturas de la fase C
+
+La ronda 11 entregó después `fase-c/unblind-texturas.glb` (relieve y oclusión horneados). Se
+probó con la misma receta y no se usa: los mapas de relieve salieron casi planos (varían 1 de
+255) y no se ven; la oclusión oscurece los lentes y el logo, se queda dentro de las carcasas al
+separarlos y el modelo pasa de 674 KB a 1 MB.
