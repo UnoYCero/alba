@@ -46,9 +46,7 @@
 .postal:nth-child(3n+1), .postal:nth-child(3n) { margin-top: 0; }
 .postal:nth-child(3n+2) { margin-top: var(--s4); }
 .logos { padding-top: var(--s6); }
-/* La etiqueta en dos renglones cortos: deja casi todo el ancho a los logos */
-.logos-titulo { width: 6.2em; font-size: 13px; line-height: 1.25; white-space: normal; color: var(--dim); }
-.logos { column-gap: var(--s3); }
+.logos-titulo { font-size: 26px; margin-bottom: var(--s4); }
 
 /* ── Lo que hacemos: una sola imagen grande que cambia (landing.js), con cuatro botones debajo ── */
 .caps { padding: var(--s7) 0; }

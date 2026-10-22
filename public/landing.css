@@ -524,11 +524,11 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 
 /* Donde hemos estado: logos en blanco, semitransparentes, que se desplazan despacio */
 /* Va dentro de «Quiénes somos», después de las postales: primero los premios, luego dónde hemos estado */
-/* En un solo renglón: «Donde hemos estado» fijo a la izquierda (alineado con el texto de la
-   página) y los logos desfilando a su derecha, desvaneciéndose en las orillas */
-.logos { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; column-gap: var(--s6); padding: var(--s8) 0 0 max(var(--gutter), (100% - var(--wrap)) / 2); overflow: hidden; }
-.logos > .wrap { max-width: none; margin: 0; padding: 0; }
-.logos-titulo { margin: 0; font-size: clamp(16px, 1.4vw, 20px); line-height: 1.2; letter-spacing: -.01em; color: var(--paper); white-space: nowrap; }
+/* Un título con la voz de la página (ligero, la segunda parte en itálica azul) y debajo los
+   logos desfilando de orilla a orilla */
+.logos { position: relative; padding: var(--s8) 0 0; overflow: hidden; }
+.logos-titulo { max-width: 22ch; margin: 0 0 var(--s5); font-size: clamp(26px, 2.6vw, 38px); font-weight: 300; line-height: 1.12; letter-spacing: -.025em; color: var(--paper); text-wrap: balance; }
+.logos-titulo em { display: block; color: var(--soft); }
 .logos-pista { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .logos-lista { display: flex; width: max-content; animation: logos-desfile 60s linear infinite; }
 .logos-pista:hover .logos-lista { animation-play-state: paused; }
@@ -539,8 +539,7 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .logo-texto { font-size: 18px; font-weight: 400; letter-spacing: .02em; color: rgba(244,246,250,.62); white-space: nowrap; }
 @keyframes logos-desfile { to { transform: translateX(-50%); } }
 @media (max-width: 760px) {
-  .logos { padding-top: var(--s7); column-gap: var(--s4); }
-  .logos-titulo { font-size: 15px; }
+  .logos { padding-top: var(--s7); }
   .logos img { height: calc(var(--alto, 28px) * .8); }
   .logo-texto { font-size: 15px; }
 }
