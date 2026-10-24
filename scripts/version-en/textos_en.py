@@ -218,7 +218,7 @@ EN["Unblind/index.html"] = [
  "UNBLIND: AI glasses for people with visual disability. They read, describe, recognize and guide you with 3D audio. In development.",
  "UNBLIND — We see with the heart",
  "AI glasses for people with visual disability that guide you with 3D audio. In development.",
- "UNBLIND brand, by Alba Vision",
+ "The UNBLIND signature, by Alba Vision, over an illustration of the UNBLIND glasses",
  "Skip to content",
  "Back to Alba Vision",
  "Alba Vision",
