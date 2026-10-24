@@ -571,3 +571,6 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .red-con-nombre { font-size: 12.5px; letter-spacing: .04em; }
 @media (max-width: 1240px) { .footer-redes { grid-column: 1 / -1; } }
 .space-estado { margin: 0 0 var(--s6); }
+
+/* El panel de Vision Ops: la vista aérea del restaurante de la ronda 13, en lugar del plano dibujado */
+.kitchen-aerea { width: 100%; height: auto; max-height: 100%; object-fit: contain; }
