@@ -19,6 +19,7 @@ PAGINAS = {
     "index.html": ("en/index.html", "", "en/"),
     "Unblind/index.html": ("en/unblind/index.html", "unblind/", "en/unblind/"),
     "AlbaSpace/index.html": ("en/albaspace/index.html", "albaspace/", "en/albaspace/"),
+    "visionops/index.html": ("en/visionops/index.html", "visionops/", "en/visionops/"),
     "AlbaLabs/index.html": ("en/albalabs/index.html", "albalabs/", "en/albalabs/"),
     "orbita/index.html": ("en/orbita/index.html", "orbita/index.html", "en/orbita/"),
 }
@@ -33,6 +34,7 @@ WA = {
     "Hola, vengo de albavision.tech y me interesa una prueba de Surface Ops para medir baches.": "Hi, I'm coming from albavision.tech and I'm interested in a Surface Ops trial to measure potholes.",
     "Hola, vengo de albavision.tech y me interesa Órbita para mi negocio.": "Hi, I'm coming from albavision.tech and I'm interested in Órbita for my business.",
     "Hola, vengo de albavision.tech y quiero comprar el Dev Kit de Alba Labs.": "Hi, I'm coming from albavision.tech and I want to buy the Alba Labs Dev Kit.",
+    "Hola, vengo de albavision.tech y quiero platicar de Vision Ops para mi negocio.": "Hi, I'm coming from albavision.tech and I want to talk about Vision Ops for my business.",
     "Hola, vengo de albavision.tech y quiero platicar de una misión con Alba Space.": "Hi, I'm coming from albavision.tech and I want to talk about a mission with Alba Space.",
     "Hola, vengo de albavision.tech y quiero que me avisen cuando esté el Alba Rover.": "Hi, I'm coming from albavision.tech and I'd like to know when the Alba Rover is ready.",
     "Hola, vengo de albavision.tech y quiero que me avisen cuando esté el módulo de cámara Edge.": "Hi, I'm coming from albavision.tech and I'd like to know when the Edge camera module is ready.",
