@@ -1,0 +1,52 @@
+/* ═══ Alba Space: el Star Tracker en 3D (space-3d.js) ═══
+   «Por dentro» se queda fija mientras se baja: a la izquierda la pieza que se explica, a la
+   derecha el instrumento que se abre. En celular, la escena arriba y el texto abajo. Con «menos
+   movimiento», sin JavaScript o sin 3D, se lee corrida con el render del despiece. */
+
+.st-portada img { width: min(100%, 520px); margin-inline: auto; border-radius: 0; }
+
+.st-dentro { position: relative; height: 640svh; }
+.st-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
+.st-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: var(--s7); align-items: center; width: 100%; }
+.st-texto h2 { max-width: 12ch; }
+
+/* Las piezas, una encima de otra: la que sale se va rápido y la que entra espera */
+.st-pasos { list-style: none; margin: var(--s6) 0 0; padding: 0; display: grid; }
+.st-pasos li { grid-area: 1 / 1; display: grid; gap: var(--s3); align-content: start; opacity: 0; transform: translateY(10px); transition: opacity .28s ease, transform .28s ease; }
+.st-pasos li.activa { opacity: 1; transform: none; transition: opacity .5s var(--ease) .26s, transform .5s var(--ease) .26s; }
+.st-pasos b { font-weight: 300; font-size: clamp(28px, 2.8vw, 40px); line-height: 1.1; letter-spacing: -.02em; color: #8fb2ff; }
+.st-pasos span { max-width: 38ch; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: var(--dim); }
+
+.st-escena { position: relative; height: min(78svh, 680px); }
+.st-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+.st-respaldo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; border-radius: 16px; transition: opacity .6s var(--ease); }
+.con-3d .st-respaldo { opacity: 0; pointer-events: none; }
+.st-escena .marca-ilus, .baffle-3d .marca-ilus { top: auto; bottom: 8px; }
+
+/* El baffle: el 3D en lugar del dibujo cuando carga */
+.baffle-3d { position: relative; display: none; width: min(100%, 460px); height: min(62svh, 520px); }
+.baffle-lienzo { width: 100%; height: 100%; display: block; cursor: grab; }
+.baffle.con-3d .baffle-3d { display: block; }
+.baffle.con-3d .escena-baffle { display: none; }
+
+@media (max-width: 760px) {
+  .st-dentro { height: 600svh; }
+  .st-pin { align-items: flex-start; padding-top: calc(var(--nav-h) + var(--s2)); }
+  .st-grid { grid-template-columns: 1fr; gap: var(--s4); }
+  .st-escena { order: -1; height: 52svh; }
+  .st-texto h2 { font-size: 26px; max-width: none; }
+  .st-pasos { margin-top: var(--s3); }
+  .st-pasos b { font-size: 26px; }
+  .st-pasos span { font-size: 15.5px; }
+  .baffle-3d { height: 56svh; }
+}
+@media (max-width: 760px) and (max-height: 700px) { .st-escena { height: 44svh; } }
+
+/* Sin 3D, sin JavaScript o con «menos movimiento»: corrida, con el render del despiece */
+.st-dentro.corrida, html:not(.js) .st-dentro { height: auto; }
+.corrida .st-pin, html:not(.js) .st-pin { position: static; height: auto; padding: var(--s9) 0; }
+.corrida .st-pasos, html:not(.js) .st-pasos { gap: var(--s5); }
+.corrida .st-pasos li, html:not(.js) .st-pasos li { grid-area: auto; opacity: 1; transform: none; }
+.corrida .st-pasos b, html:not(.js) .st-pasos b { font-size: 22px; }
+.corrida .st-escena, html:not(.js) .st-escena { height: auto; aspect-ratio: 3 / 2; }
+.corrida .st-lienzo, html:not(.js) .st-lienzo { display: none; }

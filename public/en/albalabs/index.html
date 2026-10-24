@@ -28,8 +28,10 @@
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/subpagina.css">
+  <link rel="stylesheet" href="/labs-3d.css">
   <link rel="stylesheet" href="/assets/marcas/menu.css">
   <script>document.documentElement.classList.add('js')</script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
   <script type="module" src="/labs.js"></script>
 </head>
@@ -61,7 +63,7 @@
       <a href="#lo-que-viene">Coming next</a>
       <button type="button" data-cart-open>View cart <span data-cart-count>0</span></button>
       <p class="nav-panel-titulo">Other projects</p>
-      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></div>
+      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></div>
     </div>
   </header>
 
@@ -81,8 +83,8 @@
           <p class="sub-precio reveal"><b>$5,900 MXN</b> · shipping calculated separately</p>
         </div>
         <figure class="lb-portada-foto labs-foto reveal">
-          <img src="/assets/armazon.webp" alt="Alba Labs Dev Kit glasses with their camera (illustrative image)" width="1600" height="900" fetchpriority="high">
-          <figcaption>Illustrative image</figcaption>
+          <img src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs glasses in graphite with a camera clip on the temple" width="1400" height="684" fetchpriority="high">
+          <span class="marca-ilus">Illustration</span>
         </figure>
       </div>
     </section>
@@ -100,9 +102,10 @@
               <li><button type="button" data-tiempo="2"><b>Act</b><span>Ask, get directions or connect your own tools.</span></button></li>
             </ol>
           </div>
-          <figure class="lb-escena" aria-describedby="notaTiempos">
+          <figure class="lb-escena">
             <div class="lb-escena-foto">
-              <img src="/assets/armazon.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+              <img src="/assets/labs/labs-acoplado.webp" alt="" width="1400" height="684" loading="lazy" decoding="async">
+              <span class="marca-ilus">Illustration</span>
               <div class="lb-capa activa" data-capa="0">
                 <span class="lb-cono" aria-hidden="true"></span>
                 <span class="lb-chip" style="--x:.74;--y:.06">Text</span>
@@ -120,7 +123,6 @@
                 <span class="lb-chip lb-accion" style="--x:.78;--y:.9">Send a message</span>
               </div>
             </div>
-            <figcaption id="notaTiempos">Illustration of what you can build with the Dev Kit</figcaption>
           </figure>
         </div>
       </div>
@@ -146,7 +148,8 @@
         <p class="sub-intro reveal">We are starting with the glasses. The other kits will become available as they go into production.</p>
         <div class="producto">
           <figure class="sub-figura labs-foto reveal">
-            <img src="/assets/armazon.webp" alt="Alba Labs Dev Kit glasses (illustrative image)" width="1600" height="900" loading="lazy" decoding="async">
+            <img src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs Dev Kit glasses (illustration)" width="1400" height="684" loading="lazy" decoding="async">
+            <span class="marca-ilus">Illustration</span>
           </figure>
           <div class="producto-copy">
             <h3 class="reveal">Smartglasses Dev Kit</h3>
@@ -194,6 +197,47 @@
       </div>
     </section>
 
+    <!-- Hacia dónde va: una base y clips que se cambian según el trabajo (concepto) -->
+    <section class="sub-seccion tema-dia lb-modular" id="modular" data-modular>
+      <div class="wrap">
+        <div class="dos">
+          <h2 class="reveal">One base. <em>Many modules.</em></h2>
+          <p class="sub-intro reveal">Where the lab is heading: glasses that stay and clips that change with the job. Pick one and watch it dock.</p>
+        </div>
+        <div class="lb-modular-grid">
+          <div class="lb-modular-escena">
+            <img class="lb-modular-respaldo" src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs glasses base in graphite with a camera clip docked on the right temple" width="1400" height="684" loading="lazy" decoding="async">
+            <canvas class="lb-modular-lienzo" aria-hidden="true"></canvas>
+            <span class="marca-ilus">Concept</span>
+          </div>
+          <ul class="lb-clips" aria-label="The clips">
+            <li><button type="button" data-clip="camara" aria-pressed="true"><b>Camera</b><span>Captures what is in front of you.</span></button></li>
+            <li><button type="button" data-clip="eye-tracking" aria-pressed="false"><b>Eye tracking</b><span>Interaction with your gaze.</span></button></li>
+            <li><button type="button" data-clip="lidar" aria-pressed="false"><b>LiDAR</b><span>Depth and distance.</span></button></li>
+            <li><button type="button" data-clip="pantalla" aria-pressed="false"><b>Display</b><span>Information in your field of view.</span></button></li>
+            <li><button type="button" data-clip="termica" aria-pressed="false"><b>Thermal</b><span>The temperature of what you see.</span></button></li>
+            <li><button type="button" data-clip="audio-direccional" aria-pressed="false"><b>Directional audio</b><span>Listening and communicating.</span></button></li>
+            <li><button type="button" data-clip="sensores-ambientales" aria-pressed="false"><b>Environmental sensors</b><span>A record of your surroundings.</span></button></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Distintas formas de trabajar: configuraciones de tres módulos (concepto) -->
+    <section class="sub-seccion tema-dia lb-configuraciones" aria-labelledby="titulo-configuraciones">
+      <div class="wrap">
+        <h2 class="reveal" id="titulo-configuraciones">One base. <em>Different ways to work.</em></h2>
+        <ul class="lb-config">
+          <li class="reveal"><figure><img src="/assets/labs/config-laboratorio-portatil.webp" alt="The glasses with microscopy, an inspection probe and a display" width="1000" height="617" loading="lazy" decoding="async"></figure><b>Portable lab</b><span>Microscopy · Inspection probe · Display</span></li>
+          <li class="reveal"><figure><img src="/assets/labs/config-mantenimiento-industrial.webp" alt="The glasses with thermal, ultrasound and an instrument interface" width="1000" height="652" loading="lazy" decoding="async"></figure><b>Industrial maintenance</b><span>Thermal · Ultrasound · Instruments</span></li>
+          <li class="reveal"><figure><img src="/assets/labs/config-exploracion-campo.webp" alt="The glasses with LiDAR, a camera and haptic feedback" width="1000" height="569" loading="lazy" decoding="async"></figure><b>Field exploration</b><span>LiDAR · Camera · Haptic feedback</span></li>
+          <li class="reveal"><figure><img src="/assets/labs/config-interaccion-experimental.webp" alt="The glasses with eye tracking, gesture control and haptic feedback" width="1000" height="569" loading="lazy" decoding="async"></figure><b>Experimental interaction</b><span>Gaze · Gestures · Haptic feedback</span></li>
+          <li class="reveal"><figure><img src="/assets/labs/config-trabajo-compartido.webp" alt="The glasses with a camera, projection and directional audio" width="1000" height="554" loading="lazy" decoding="async"></figure><b>Shared work</b><span>Camera · Projection · Directional audio</span></li>
+        </ul>
+        <p class="lb-config-nota reveal">Concept · Illustration. The modules are possibilities we are exploring: neither their shape nor how they work has been validated.</p>
+      </div>
+    </section>
+
     <section class="sub-seccion tema-dia">
       <div class="wrap dos">
         <h2 class="reveal">The same base, <em>with a purpose.</em></h2>
@@ -211,7 +255,7 @@
     <section class="sigue tema-dia" aria-label="Keep exploring">
       <div class="wrap">
         <a class="sigue-siguiente" href="../unblind/">Continue with <em translate="no">UNBLIND</em>&nbsp;<span aria-hidden="true">→</span></a>
-        <p class="sigue-demas"><span>Also</span><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></p>
+        <p class="sigue-demas"><span>Also</span><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></p>
         <a class="sigue-volver" href="../#proyecto-alba-labs">Back to Alba Vision</a>
       </div>
     </section>
@@ -251,7 +295,7 @@
       <nav class="footer-links" aria-label="Other Alba sites">
         <a href="../">Home</a>
         <a href="../unblind/">UNBLIND</a>
-        <a href="https://ops.albavision.tech/en" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="../visionops/">Vision Ops</a>
         <a href="../albaspace/">Alba Space</a>
         <a href="../albalabs/" aria-current="page">Alba Labs</a>
       </nav>

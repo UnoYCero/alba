@@ -42,3 +42,34 @@ if (seccion) {
   mostrar(0);
   alBajar();
 }
+
+// ── Una base, muchos módulos: el concepto en 3D; al elegir un clip, entra y se acopla ──
+(function modular() {
+  const caja = document.querySelector("[data-modular]");
+  if (!caja) return;
+  const escena = caja.querySelector(".lb-modular-escena");
+  const lienzo = caja.querySelector(".lb-modular-lienzo");
+  const botones = [...caja.querySelectorAll("[data-clip]")];
+  const tiene3D = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
+  let visor = null, tocado = false, indice = 0, reloj = 0;
+  const elegir = (i) => {
+    indice = i;
+    botones.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+    visor?.poner(botones[i].dataset.clip);
+  };
+  botones.forEach((b, i) => b.addEventListener("click", () => { tocado = true; clearInterval(reloj); elegir(i); }));
+  if (!tiene3D) return;
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    import("./labs-3d.js").then((m) => {
+      visor = m.montarModular({ contenedor: escena, lienzo, url: new URL("assets/labs/labs-modular.glb", import.meta.url).href, reducir });
+      return visor.listo.then(() => {
+        escena.classList.add("con-3d");
+        elegir(indice);
+        // Mientras nadie toque, los clips se turnan solos
+        if (!reducir) reloj = setInterval(() => { if (!tocado && !document.hidden) elegir((indice + 1) % botones.length); }, 3600);
+      });
+    }).catch((err) => console.warn("No se pudo montar el concepto modular en 3D:", err));
+  }, { rootMargin: "100% 0px" }).observe(caja);
+})();

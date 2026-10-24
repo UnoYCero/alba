@@ -7,7 +7,7 @@ const t = (es, en) => (EN ? en : es);
       id: "smartglasses-dev-kit",
       name: "Alba Smartglasses Dev Kit",
       price: 5900,
-      image: "/assets/armazon.webp",
+      image: "/assets/labs/labs-acoplado.webp",
       sku: "ALBA-SG-01"
     }
   };
