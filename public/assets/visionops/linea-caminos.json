@@ -1,0 +1,108 @@
+{
+  "escena": "linea",
+  "unidades": "metros",
+  "eje_arriba": "Y",
+  "huella": {
+    "ancho_x": 20,
+    "fondo_z": 12
+  },
+  "conversion_desde_blender": "[x, y, z] de Blender -> [x, z, -y] de glTF",
+  "recorridos": [
+    {
+      "id": "flujo-banda",
+      "tipo": "pieza",
+      "ancho_m": 0.65,
+      "puntos": [
+        [
+          -7.8,
+          0.9,
+          -0.6
+        ],
+        [
+          6.7,
+          0.9,
+          -0.6
+        ]
+      ]
+    },
+    {
+      "id": "pasillo-frontal",
+      "tipo": "personas",
+      "ancho_m": 0.55,
+      "puntos": [
+        [
+          -8.5,
+          0.025,
+          1.3
+        ],
+        [
+          8.3,
+          0.025,
+          1.3
+        ]
+      ]
+    },
+    {
+      "id": "pasillo-estaciones",
+      "tipo": "personas",
+      "ancho_m": 0.55,
+      "puntos": [
+        [
+          -8.5,
+          0.025,
+          -1.9
+        ],
+        [
+          8.3,
+          0.025,
+          -1.9
+        ]
+      ]
+    },
+    {
+      "id": "carritos-salida",
+      "tipo": "carrito",
+      "ancho_m": 1.35,
+      "puntos": [
+        [
+          -7.5,
+          0.025,
+          3.55
+        ],
+        [
+          4.7,
+          0.025,
+          3.55
+        ],
+        [
+          4.7,
+          0.025,
+          1.8
+        ]
+      ]
+    },
+    {
+      "id": "acceso-estaciones",
+      "tipo": "personas",
+      "ancho_m": 0.55,
+      "puntos": [
+        [
+          8.3,
+          0.025,
+          1.3
+        ],
+        [
+          8.3,
+          0.025,
+          -4.8
+        ],
+        [
+          -8.5,
+          0.025,
+          -4.8
+        ]
+      ]
+    }
+  ],
+  "nota": "Polilíneas de demostración, no recorridos medidos. Los vehículos deben orientar su frente hacia la tangente y frenar en extremos; no se afirma navegación automática."
+}
