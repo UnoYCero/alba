@@ -25,6 +25,9 @@
 /* La escena */
 .vo-escena { position: relative; height: min(76svh, 640px); }
 .vo-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* La ilustración de respaldo: mientras carga el 3D, o si no se puede */
+.vo-respaldo { position: absolute; inset: 0 0 56px; width: 100%; height: calc(100% - 56px); object-fit: contain; transition: opacity .6s var(--ease); }
+.con-3d .vo-respaldo { opacity: 0; pointer-events: none; }
 .vo-rotulos { position: absolute; inset: 0; pointer-events: none; }
 .vo-rotulo { position: absolute; left: 0; top: 0; display: grid; gap: 1px; padding: 6px 10px; border-radius: 10px; background: #0b1f3b; color: #f4f6fa; font-size: 12px; line-height: 1.3; white-space: nowrap; opacity: 0; transition: opacity .4s var(--ease); }
 .vo-rotulo b { font-weight: 400; }
@@ -87,4 +90,7 @@
 .corrida .vo-etapas > .vo-etapa, .corrida .vo-pasos, .corrida .vo-pasos li, html:not(.js) .vo-etapas > .vo-etapa, html:not(.js) .vo-pasos, html:not(.js) .vo-pasos li { grid-area: auto; opacity: 1; transform: none; }
 .corrida .vo-pasos, html:not(.js) .vo-pasos { gap: var(--s5); }
 .corrida .vo-pasos b, html:not(.js) .vo-pasos b { font-size: 22px; }
-.corrida .vo-escena, html:not(.js) .vo-escena, .corrida .vo-pista, html:not(.js) .vo-pista { display: none; }
+.corrida .vo-pista, html:not(.js) .vo-pista, .corrida :is(.vo-lienzo, .vo-rotulos, .vo-hallazgo, .vo-tablero, .vo-escenas), html:not(.js) :is(.vo-lienzo, .vo-rotulos, .vo-hallazgo, .vo-tablero, .vo-escenas) { display: none; }
+.corrida .vo-escena, html:not(.js) .vo-escena { order: -1; height: auto; aspect-ratio: 3 / 2; }
+.corrida .vo-respaldo, html:not(.js) .vo-respaldo { inset: 0; height: 100%; }
+.corrida .vo-escena .marca-ilus, html:not(.js) .vo-escena .marca-ilus { bottom: 8px; }

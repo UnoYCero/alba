@@ -555,6 +555,7 @@ EN["visionops/index.html"] = [
  "What matters is flagged on its own, with the frame that backs it up.",
  "The dashboard",
  "It all arrives in a clear report, and you can ask it questions in your own words.",
+ "Illustration of a restaurant seen from above: kitchen, pickup counter, register and tables",
  "Example",
  "One engine for any operation",
  "Restaurant",
