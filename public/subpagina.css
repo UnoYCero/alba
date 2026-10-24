@@ -494,3 +494,8 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 /* La marca empuja lo demás (carrito, EN, menú) a la orilla derecha */
 @media (max-width: 1080px) { .nav:has(.nav-padre) :is(.nav-brand-hija, .nav-brand-texto) { margin-right: auto; } .nav:has(.nav-padre) :is(.nav-carrito, .nav-idioma, .nav-toggle) { margin-left: 0; } }
 @media (prefers-reduced-motion: reduce) { .sigue-siguiente span, .sigue-volver::before { transition: none; } }
+
+/* Hacia dónde vamos: el concepto en uso, grande y sin pie (ronda 18) */
+.ub-concepto-foto { position: relative; margin: var(--s7) 0 0; border-radius: 16px; overflow: hidden; }
+.ub-concepto-foto img { display: block; width: 100%; height: auto; }
+.ub-concepto-foto .marca-ilus { top: auto; bottom: 12px; }
