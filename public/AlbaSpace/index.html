@@ -22,13 +22,14 @@
   <meta property="og:image" content="https://albavision.tech/assets/og-alba-space.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="El Star Tracker de Alba Space (imagen ilustrativa)">
+  <meta property="og:image:alt" content="El Star Tracker de Alba Space (ilustración)">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="../assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../landing.css">
   <link rel="stylesheet" href="../amanecer.css">
   <link rel="stylesheet" href="../subpagina.css">
+  <link rel="stylesheet" href="../space-3d.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="../subpagina.js"></script>
@@ -78,9 +79,9 @@
             <a class="btn-text" href="#orientacion">Ver cómo funciona</a>
           </div>
         </div>
-        <figure class="sub-visual reveal">
-          <img src="../assets/space/star-tracker.webp" alt="El Star Tracker de Alba Space, un cubo metálico con su baffle, sostenido con guantes en el laboratorio" width="953" height="768" fetchpriority="high">
-          <span class="marca-ilus">Ilustración</span>
+        <figure class="sub-visual st-portada reveal">
+          <img src="../assets/space/star-tracker-armado.webp" alt="Ark Light 1, el Star Tracker de Alba Space: un cubo marino con el logo de Alba Space y el baffle telescópico plegado arriba" width="1047" height="1100" fetchpriority="high">
+          <span class="marca-ilus">Ilustración · Propuesta de diseño</span>
         </figure>
       </div>
       <div class="wrap">
@@ -169,6 +170,32 @@
       </div>
     </section>
 
+    <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja -->
+    <section class="st-dentro tema-noche" id="por-dentro" data-por-dentro>
+      <div class="st-pin">
+        <div class="wrap st-grid">
+          <div class="st-texto">
+            <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>por dentro.</em></h2>
+            <ol class="st-pasos" aria-label="Las piezas del instrumento">
+              <li class="activa" data-paso="armado"><b>El instrumento</b><span>Un cubo para CubeSats de 3U a 12U: 175 g con el mecanismo y 1.25 W. Baja para abrirlo.</span></li>
+              <li data-paso="despiece"><b>Se abre</b><span>Cada pieza sale de su lugar para ver cómo se acomoda adentro.</span></li>
+              <li data-paso="computadora"><b>Computadora de vuelo</b><span>Corre los tres algoritmos en paralelo, con un sistema operativo en tiempo real.</span></li>
+              <li data-paso="sensor"><b>Sensor</b><span>Una sola cámara para orientarse, detectar basura espacial y acoplarse.</span></li>
+              <li data-paso="optica"><b>Óptica</b><span>Al extender el baffle se mueve y cambia su distancia focal: de vigilar más de 20 grados de cielo a ver de cerca.</span></li>
+              <li data-paso="baffle"><b>Baffle telescópico</b><span>Sus segmentos viajan plegados en menos de 50 mm y bloquean la luz parásita en órbita.</span></li>
+              <li data-paso="liberacion"><b>Liberación</b><span>Un circuito doble corta un hilo por calor y unas guías con resorte empujan cada segmento.</span></li>
+              <li data-paso="bujes"><b>Bujes de teflón</b><span>Evitan que las piezas de metal se suelden entre sí en el vacío.</span></li>
+            </ol>
+          </div>
+          <div class="st-escena">
+            <img class="st-respaldo" src="../assets/space/star-tracker-despiece.webp" alt="Ark Light 1 separado en sus piezas: carcasa, computadora de vuelo, sensor, óptica, tapa, los segmentos del baffle, el mecanismo de liberación, los bujes y los tornillos" width="1400" height="933" loading="lazy" decoding="async">
+            <canvas class="st-lienzo" aria-hidden="true"></canvas>
+            <span class="marca-ilus">Ilustración · Propuesta de diseño</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- El baffle -->
     <section class="sub-seccion tema-noche" id="baffle">
       <div class="wrap mision-grid mision-invertida">
@@ -181,7 +208,8 @@
             <li class="reveal"><h3>Hecho para el vacío</h3><p>Bujes de teflón evitan que las piezas de metal se suelden entre sí en el vacío, para que funcione tras meses en órbita.</p></li>
           </ul>
         </div>
-        <div class="baffle reveal">
+        <div class="baffle reveal" data-baffle>
+          <div class="baffle-3d"><canvas class="baffle-lienzo" aria-hidden="true"></canvas><span class="marca-ilus">Ilustración · Propuesta de diseño</span></div>
           <svg class="escena-baffle" id="escenaBaffle" viewBox="0 0 300 320" role="img" aria-label="Dibujo del instrumento con su baffle de tres segmentos, que se extiende hacia arriba al desplegarse">
             <defs>
               <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#0d1a30"/><stop offset=".5" stop-color="#1d3354"/><stop offset="1" stop-color="#0b1628"/></linearGradient>
@@ -199,10 +227,10 @@
       </div>
     </section>
 
-    <!-- Integración -->
-    <section class="sub-seccion tema-noche galeria-space" aria-label="El instrumento en integración">
+    <!-- El mecanismo del baffle -->
+    <section class="sub-seccion tema-noche galeria-space" aria-label="El mecanismo del baffle">
       <div class="wrap galeria-una">
-        <figure class="reveal"><img src="../assets/space/baffle-frente.webp" alt="El baffle telescópico visto de frente sobre el instrumento" width="773" height="773" loading="lazy" decoding="async"><span class="marca-ilus">Ilustración</span></figure>
+        <figure class="reveal"><img src="../assets/space/star-tracker-mecanismo.webp" alt="Detalle del mecanismo del baffle: las guías con resorte, los bujes y el hilo que se corta por calor" width="1400" height="933" loading="lazy" decoding="async"><span class="marca-ilus">Ilustración · Propuesta de diseño</span></figure>
       </div>
     </section>
 

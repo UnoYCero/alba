@@ -7,6 +7,7 @@ const tr = (es, en) => (EN ? en : es);
 // Cada lienzo dibuja sólo mientras se ve; con «menos movimiento» dibuja un cuadro y ya.
 
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const tiene3D = () => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } };
 const LETRA = '"Hanken Grotesk", "Segoe UI", sans-serif';
 const C = { fondo: "#040a17", estrella: "220,232,255", claro: "143,178,255", azul: "37,99,235", papel: "244,246,250", tenue: "143,178,255" };
 
@@ -254,7 +255,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const estado = document.getElementById("estadoBaffle");
   if (!escena || !boton) return;
   let desplegado = false;
-  const poner = (valor) => {
+  let poner = (valor) => {
     desplegado = valor;
     escena.classList.toggle("desplegado", desplegado);
     boton.textContent = desplegado ? tr("Plegar el baffle", "Stow the baffle") : tr("Desplegar el baffle", "Deploy the baffle");
@@ -262,9 +263,49 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     estado.textContent = desplegado ? tr("Desplegado · 0.28 dm³", "Deployed · 0.28 dm³") : tr("Plegado para el lanzamiento · 0.13 dm³", "Stowed for launch · 0.13 dm³");
   };
   boton.addEventListener("click", () => poner(!desplegado));
+  // El baffle en 3D (si carga) se despliega con el mismo botón; el dibujo queda de respaldo
+  const caja = escena.closest("[data-baffle]");
   if (!reducir) {
     new IntersectionObserver(([e], obs) => {
       if (e.isIntersecting) { setTimeout(() => poner(true), 700); obs.disconnect(); }
-    }, { threshold: 0.6 }).observe(escena);
+    }, { threshold: 0.5 }).observe(caja);
   }
+  const lienzo3D = caja.querySelector(".baffle-lienzo");
+  const montar = () => import("./space-3d.js").then((m) => {
+    const visor = m.montarStarTracker({ contenedor: lienzo3D.parentElement, lienzo: lienzo3D, base: new URL("assets/space/", import.meta.url).href, modo: "baffle", reducir });
+    const ponerDibujo = poner;
+    poner = (valor) => { ponerDibujo(valor); visor.desplegar(valor); };
+    visor.desplegar(desplegado);
+    return visor.listo.then(() => caja.classList.add("con-3d"));
+  }).catch((err) => console.warn("No se pudo montar el baffle en 3D:", err));
+  if (lienzo3D && tiene3D()) new IntersectionObserver(([e], obs) => { if (e.isIntersecting) { obs.disconnect(); montar(); } }, { rootMargin: "100% 0px" }).observe(caja);
+})();
+
+// ── Por dentro: el instrumento se abre en sus piezas mientras se baja ──
+(function porDentro() {
+  const seccion = document.querySelector("[data-por-dentro]");
+  if (!seccion) return;
+  if (reducir || !tiene3D()) { seccion.classList.add("corrida"); return; }
+  const escena = seccion.querySelector(".st-escena");
+  const pasos = [...seccion.querySelectorAll("[data-paso]")];
+  const avance = () => {
+    const r = seccion.getBoundingClientRect();
+    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+  };
+  let actual = "armado", visor = null;
+  const alPaso = (paso) => {
+    if (paso === actual) return;
+    actual = paso;
+    pasos.forEach((li) => li.classList.toggle("activa", li.dataset.paso === paso));
+  };
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    import("./space-3d.js").then((m) => {
+      visor = m.montarStarTracker({ contenedor: escena, lienzo: escena.querySelector(".st-lienzo"), base: new URL("assets/space/", import.meta.url).href, modo: "despiece", pasos: pasos.map((li) => li.dataset.paso), alPaso });
+      visor.avanzar(avance());
+      return visor.listo.then(() => escena.classList.add("con-3d"));
+    }).catch((err) => { console.warn("No se pudo montar el Star Tracker en 3D:", err); seccion.classList.add("corrida"); });
+  }, { rootMargin: "120% 0px" }).observe(seccion);
+  addEventListener("scroll", () => visor?.avanzar(avance()), { passive: true });
 })();
