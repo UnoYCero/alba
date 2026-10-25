@@ -180,3 +180,54 @@ if (seccion) {
   }, { threshold: 0.5 }).observe(caja.querySelector(".lb-chat"));
 })();
 
+// ── Entre ver y crear: del fotograma al dato, en cuatro pasos sobre la misma escena ──
+// Al aparecer avanza solo; al tocar un paso se queda en él.
+(function verYCrear() {
+  const seccion = document.querySelector("[data-dato-pasos]");
+  if (!seccion) return;
+  const botones = [...seccion.querySelectorAll("[data-paso]")], textos = [...seccion.querySelectorAll("[data-dato-paso]")];
+  let actual = 0, reloj = 0;
+  const mostrar = (n) => {
+    actual = n;
+    seccion.dataset.paso = String(n);
+    botones.forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.paso === n)));
+    textos.forEach((d) => d.classList.toggle("activo", +d.dataset.datoPaso === n));
+  };
+  botones.forEach((b) => b.addEventListener("click", () => { clearInterval(reloj); mostrar(+b.dataset.paso); }));
+  mostrar(0);
+  if (reducir) return;
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    reloj = setInterval(() => { if (document.hidden) return; if (actual === 3) { clearInterval(reloj); return; } mostrar(actual + 1); }, 3200);
+  }, { threshold: 0.5 }).observe(seccion.querySelector(".lb-dato-escena"));
+})();
+
+// ── Tu idea en el laboratorio: con lo que escribe la persona se arma su experimento y el mensaje de
+// WhatsApp. No se manda nada: el botón sólo abre WhatsApp con el texto escrito ──
+(function tuIdea() {
+  const caja = document.querySelector("[data-idea]");
+  if (!caja) return;
+  const campo = (n) => caja.querySelector(`[data-i="${n}"]`), hoja = (n) => caja.querySelector(`[data-h="${n}"]`);
+  const RUTAS = {
+    aplicacion: [t("Una aplicación para los lentes", "An app for the glasses"), t("Una escena y una intención concreta.", "A scene and a concrete intention."), t("Una receta de ejemplo y una respuesta que puedas revisar.", "An example recipe and an answer you can check."), t("Comprobar que el contexto ayuda en una tarea.", "Check that the context helps with a task.")],
+    modulo: [t("Un módulo propio", "A module of your own"), t("Una necesidad que la base actual no cubra.", "A need the current base does not cover."), t("Un boceto, la forma de acople y las preguntas de viabilidad.", "A sketch, the way it attaches and the feasibility questions."), t("Revisar montaje, uso y límites antes de fabricar.", "Review fit, use and limits before building it.")],
+    aula: [t("Una experiencia para el aula", "A classroom experience"), t("Algo que el grupo quiera observar o entender.", "Something the group wants to observe or understand."), t("Una actividad corta, una escena de ejemplo y el registro de lo aprendido.", "A short activity, an example scene and a record of what was learned."), t("Definir qué podría explicar o construir cada estudiante.", "Define what each student could explain or build.")],
+  };
+  const actualizar = () => {
+    const [titulo, idea, experimento, prueba] = RUTAS[campo("ruta").value];
+    const suya = campo("idea").value.trim(), comprobar = campo("prueba").value.trim();
+    hoja("titulo").textContent = titulo;
+    hoja("idea").textContent = suya || idea;
+    hoja("experimento").textContent = experimento;
+    hoja("prueba").textContent = comprobar || prueba;
+    const lineas = [t("Hola, vengo de albavision.tech y tengo una idea para Alba Labs.", "Hi, I found you on albavision.tech and I have an idea for Alba Labs."), t(`Quiero explorar: ${titulo}`, `I want to explore: ${titulo}`)];
+    if (suya) lineas.push(t(`Mi idea: ${suya}`, `My idea: ${suya}`));
+    if (comprobar) lineas.push(t(`Sabría que ayudó si: ${comprobar}`, `I would know it helped if: ${comprobar}`));
+    hoja("enviar").href = `https://wa.me/525616908570?text=${encodeURIComponent(lineas.join("\n"))}`;
+  };
+  caja.addEventListener("input", actualizar);
+  caja.addEventListener("change", actualizar);
+  actualizar();
+})();
+

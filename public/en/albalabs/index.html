@@ -165,6 +165,47 @@
       </div>
     </section>
 
+    <!-- Entre ver y crear (ronda 21-C2 de marca): del fotograma al dato que usaría tu aplicación,
+         en cuatro pasos sobre la misma escena del escritorio (labs.js). Ejemplo escrito a mano -->
+    <section class="sub-seccion tema-dia lb-dato" data-dato-pasos>
+      <div class="wrap">
+        <div class="dos">
+          <h2 class="reveal">See what happens <em>between seeing and creating.</em></h2>
+          <p class="sub-intro reveal">There is no magic inside: a scene becomes an object, the object becomes context and the context becomes something your app can use.</p>
+        </div>
+        <div class="lb-dato-grid">
+          <figure class="lb-dato-escena reveal">
+            <div class="lb-dato-lienzo">
+              <img src="/assets/labs/vista-trabajo.webp" alt="The same work desk seen from the glasses, with the printer manual open" width="1800" height="1200" loading="lazy" decoding="async">
+              <span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+            </div>
+            <span class="marca-ilus">Concept · Example</span>
+          </figure>
+          <div class="lb-dato-lectura">
+            <div class="lb-dato-pasos" role="group" aria-label="From frame to data">
+              <button type="button" data-paso="0" aria-pressed="true">Frame</button>
+              <button type="button" data-paso="1" aria-pressed="false">Object</button>
+              <button type="button" data-paso="2" aria-pressed="false">Context</button>
+              <button type="button" data-paso="3" aria-pressed="false">Output</button>
+            </div>
+            <div class="lb-dato-texto" aria-live="polite">
+              <div data-dato-paso="0" class="activo"><h3>It starts with what you see.</h3><p>An image of your surroundings. Before answering, it picks which part matters.</p></div>
+              <div data-dato-paso="1"><h3>One object, not the whole scene.</h3><p>The manual, without losing its link to the printer in front of it.</p></div>
+              <div data-dato-paso="2"><h3>Context gives it meaning.</h3>
+                <dl><div><dt>Object</dt><dd>Printer manual</dd></div><div><dt>Place</dt><dd>Work desk</dd></div><div><dt>Reference</dt><dd>Page 3</dd></div></dl></div>
+              <div data-dato-paso="3"><h3>Your app receives a structure.</h3>
+                <pre class="lb-dato-salida" translate="no">{
+  "object": "manual",
+  "reference": "p. 3",
+  "place": "work desk"
+}</pre></div>
+            </div>
+            <p class="lb-config-nota">Concept · Example written by hand: not live recognition nor the final software.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="sub-seccion tema-dia" id="tienda">
       <div class="wrap">
         <h2 class="reveal">The first one <em>from the lab.</em></h2>
@@ -300,6 +341,39 @@
             <a class="btn-text" href="../unblind/">Discover UNBLIND</a>
             <a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27m%20interested%20in%20a%20glasses%20pilot%20for%20my%20company." target="_blank" rel="noopener" aria-label="Request a glasses pilot on WhatsApp">Request a pilot</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tu idea en el laboratorio (ronda 21-C4 de marca): con lo que escribe la persona se arma su
+         experimento y el mensaje de WhatsApp; no se manda nada sin que ella lo toque (labs.js) -->
+    <section class="sub-seccion tema-dia lb-idea" data-idea>
+      <div class="wrap lb-idea-grid">
+        <form class="lb-idea-form reveal" action="#" onsubmit="return false">
+          <h2>The lab starts <em>with what you want to create.</em></h2>
+          <label>I want to explore
+            <select data-i="ruta">
+              <option value="aplicacion">An app for the glasses</option>
+              <option value="modulo">A module of your own</option>
+              <option value="aula">A classroom experience</option>
+            </select>
+          </label>
+          <label>My idea
+            <textarea data-i="idea" rows="3" maxlength="240" placeholder="For example: finding the tools I left in the workshop"></textarea>
+          </label>
+          <label>How would I know it helped?
+            <input data-i="prueba" maxlength="160" placeholder="For example: finding a tool without asking for help">
+          </label>
+        </form>
+        <div class="lb-idea-hoja reveal" aria-live="polite">
+          <p class="lb-idea-titulo" data-h="titulo">An app for the glasses</p>
+          <ol>
+            <li><b>Idea</b><span data-h="idea">A scene and a concrete intention.</span></li>
+            <li><b>Experiment</b><span data-h="experimento">An example recipe and an answer you can check.</span></li>
+            <li><b>Test</b><span data-h="prueba">Check that the context helps with a task.</span></li>
+          </ol>
+          <a class="btn btn-solid" data-h="enviar" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20have%20questions%20about%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener">Send us your idea on WhatsApp</a>
+          <p class="lb-config-nota">WhatsApp opens with your idea already written; you decide whether to send it. It is to talk it over: the Dev Kit does not exist yet.</p>
         </div>
       </div>
     </section>

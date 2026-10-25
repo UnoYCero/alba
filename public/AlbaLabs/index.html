@@ -165,6 +165,47 @@
       </div>
     </section>
 
+    <!-- Entre ver y crear (ronda 21-C2 de marca): del fotograma al dato que usaría tu aplicación,
+         en cuatro pasos sobre la misma escena del escritorio (labs.js). Ejemplo escrito a mano -->
+    <section class="sub-seccion tema-dia lb-dato" data-dato-pasos>
+      <div class="wrap">
+        <div class="dos">
+          <h2 class="reveal">Mira lo que pasa <em>entre ver y crear.</em></h2>
+          <p class="sub-intro reveal">Por dentro no hay magia: una escena se convierte en un objeto, el objeto en contexto y el contexto en algo que tu aplicación puede usar.</p>
+        </div>
+        <div class="lb-dato-grid">
+          <figure class="lb-dato-escena reveal">
+            <div class="lb-dato-lienzo">
+              <img src="../assets/labs/vista-trabajo.webp" alt="La misma mesa de trabajo vista desde los lentes, con el manual de la impresora abierto" width="1800" height="1200" loading="lazy" decoding="async">
+              <span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+            </div>
+            <span class="marca-ilus">Concepto · Ejemplo</span>
+          </figure>
+          <div class="lb-dato-lectura">
+            <div class="lb-dato-pasos" role="group" aria-label="Del fotograma al dato">
+              <button type="button" data-paso="0" aria-pressed="true">Fotograma</button>
+              <button type="button" data-paso="1" aria-pressed="false">Objeto</button>
+              <button type="button" data-paso="2" aria-pressed="false">Contexto</button>
+              <button type="button" data-paso="3" aria-pressed="false">Salida</button>
+            </div>
+            <div class="lb-dato-texto" aria-live="polite">
+              <div data-dato-paso="0" class="activo"><h3>El punto de partida es lo que ves.</h3><p>Una imagen del entorno. Antes de responder, se elige qué parte importa.</p></div>
+              <div data-dato-paso="1"><h3>Un objeto, no toda la escena.</h3><p>El manual, sin perder su relación con la impresora que tiene enfrente.</p></div>
+              <div data-dato-paso="2"><h3>El contexto le da sentido.</h3>
+                <dl><div><dt>Objeto</dt><dd>Manual de la impresora</dd></div><div><dt>Lugar</dt><dd>Mesa de trabajo</dd></div><div><dt>Referencia</dt><dd>Página 3</dd></div></dl></div>
+              <div data-dato-paso="3"><h3>Tu aplicación recibe una estructura.</h3>
+                <pre class="lb-dato-salida" translate="no">{
+  "objeto": "manual",
+  "referencia": "pág. 3",
+  "lugar": "mesa de trabajo"
+}</pre></div>
+            </div>
+            <p class="lb-config-nota">Concepto · Ejemplo escrito a mano: no es reconocimiento en vivo ni el software final.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="sub-seccion tema-dia" id="tienda">
       <div class="wrap">
         <h2 class="reveal">El primero <em>del laboratorio.</em></h2>
@@ -300,6 +341,39 @@
             <a class="btn-text" href="../unblind/">Conoce UNBLIND</a>
             <a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20un%20piloto%20de%20lentes%20para%20mi%20empresa." target="_blank" rel="noopener" aria-label="Pide un piloto de lentes por WhatsApp">Pide un piloto</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tu idea en el laboratorio (ronda 21-C4 de marca): con lo que escribe la persona se arma su
+         experimento y el mensaje de WhatsApp; no se manda nada sin que ella lo toque (labs.js) -->
+    <section class="sub-seccion tema-dia lb-idea" data-idea>
+      <div class="wrap lb-idea-grid">
+        <form class="lb-idea-form reveal" action="#" onsubmit="return false">
+          <h2>El laboratorio empieza <em>por lo que quieres crear.</em></h2>
+          <label>Quiero explorar
+            <select data-i="ruta">
+              <option value="aplicacion">Una aplicación para los lentes</option>
+              <option value="modulo">Un módulo propio</option>
+              <option value="aula">Una experiencia para el aula</option>
+            </select>
+          </label>
+          <label>Mi idea
+            <textarea data-i="idea" rows="3" maxlength="240" placeholder="Por ejemplo: encontrar las herramientas que dejé en el taller"></textarea>
+          </label>
+          <label>¿Cómo sabría que ayudó?
+            <input data-i="prueba" maxlength="160" placeholder="Por ejemplo: encontrar una herramienta sin pedir ayuda">
+          </label>
+        </form>
+        <div class="lb-idea-hoja reveal" aria-live="polite">
+          <p class="lb-idea-titulo" data-h="titulo">Una aplicación para los lentes</p>
+          <ol>
+            <li><b>Idea</b><span data-h="idea">Una escena y una intención concreta.</span></li>
+            <li><b>Experimento</b><span data-h="experimento">Una receta de ejemplo y una respuesta que puedas revisar.</span></li>
+            <li><b>Prueba</b><span data-h="prueba">Comprobar que el contexto ayuda en una tarea.</span></li>
+          </ol>
+          <a class="btn btn-solid" data-h="enviar" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20tengo%20preguntas%20sobre%20el%20Dev%20Kit%20de%20Alba%20Labs." target="_blank" rel="noopener">Mándanos tu idea por WhatsApp</a>
+          <p class="lb-config-nota">Se abre WhatsApp con tu idea ya escrita; tú decides si la mandas. Es para platicarla: el Dev Kit todavía no existe.</p>
         </div>
       </div>
     </section>

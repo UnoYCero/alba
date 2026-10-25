@@ -111,3 +111,50 @@
   .lb-viene > li { flex: 0 0 78%; scroll-snap-align: start; }
 }
 
+/* Entre ver y crear: la escena se acerca al manual y a un lado lo que recibiría tu aplicación */
+.lb-dato-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--s8); align-items: center; margin-top: var(--s7); }
+.lb-dato-escena { position: relative; margin: 0; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; }
+.lb-dato-lienzo { position: absolute; inset: 0; transform-origin: 0 0; transition: transform 1s var(--ease); }
+.lb-dato-lienzo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lb-dato .lb-pov-caja { opacity: 0; transform: none; transition: opacity .6s var(--ease) .4s; }
+/* Del paso «Objeto» en adelante, el manual llena la vista (su recuadro, centrado) */
+.lb-dato[data-paso]:not([data-paso="0"]) .lb-dato-lienzo { transform: scale(1.67) translate(-23.4%, -33.5%); }
+.lb-dato[data-paso]:not([data-paso="0"]) .lb-pov-caja { opacity: 1; }
+.lb-dato-escena .marca-ilus { top: auto; bottom: 10px; right: 10px; }
+.lb-dato-pasos { display: flex; flex-wrap: wrap; gap: var(--s5); }
+.lb-dato-pasos button { min-height: 44px; padding: 0; border: 0; background: none; font: inherit; font-size: clamp(18px, 1.6vw, 22px); color: var(--soft); cursor: pointer; transition: color .3s; }
+.lb-dato-pasos button[aria-pressed="true"] { color: #2563eb; font-style: italic; }
+.lb-dato-texto { display: grid; margin-top: var(--s5); }
+.lb-dato-texto > div { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .3s ease, transform .3s ease; }
+.lb-dato-texto > div.activo { opacity: 1; transform: none; pointer-events: auto; transition: opacity .5s var(--ease) .2s, transform .5s var(--ease) .2s; }
+.lb-dato-texto h3 { margin: 0; font-weight: 300; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.15; letter-spacing: -.015em; color: #0b1f3b; }
+.lb-dato-texto p { margin: var(--s3) 0 0; max-width: 40ch; font-size: 16px; line-height: 1.55; color: var(--dim); }
+.lb-dato-texto dl { display: grid; gap: var(--s3); margin: var(--s4) 0 0; }
+.lb-dato-texto dt { font-size: 12.5px; color: var(--soft); }
+.lb-dato-texto dd { margin: 2px 0 0; font-size: 19px; color: #0b1f3b; }
+.lb-dato-salida { margin: var(--s4) 0 0; font: 400 14px/1.6 ui-monospace, "Cascadia Mono", Consolas, monospace; color: #2563eb; white-space: pre; }
+
+/* Tu idea en el laboratorio */
+.lb-idea-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s8); align-items: start; }
+.lb-idea-form { display: grid; gap: var(--s5); }
+.lb-idea-form h2 { margin: 0 0 var(--s2); }
+.lb-idea-form label { display: grid; gap: var(--s2); font-size: 14px; color: var(--dim); }
+.lb-idea-form :is(select, input, textarea) { width: 100%; min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid rgba(11,31,59,.28); border-radius: 0; background: none; font: inherit; font-size: 18px; color: #0b1f3b; resize: vertical; }
+.lb-idea-form :is(select, input, textarea):focus-visible { outline: none; border-bottom-color: #2563eb; box-shadow: 0 1px 0 #2563eb; }
+.lb-idea-hoja { display: grid; gap: var(--s5); align-content: start; padding-top: var(--s4); }
+.lb-idea-titulo { margin: 0; font-size: clamp(24px, 2.2vw, 32px); font-weight: 300; line-height: 1.15; color: #0b1f3b; }
+.lb-idea-hoja ol { list-style: none; counter-reset: paso; display: grid; gap: var(--s4); margin: 0; padding: 0; }
+.lb-idea-hoja li { counter-increment: paso; display: grid; gap: 2px; }
+.lb-idea-hoja li b { font-weight: 400; font-size: 13px; color: #2563eb; }
+.lb-idea-hoja li b::before { content: counter(paso, decimal-leading-zero) " "; font-variant-numeric: tabular-nums; }
+.lb-idea-hoja li span { font-size: 17px; line-height: 1.45; color: #0b1f3b; }
+.lb-idea-hoja .btn { justify-self: start; }
+
+@media (max-width: 760px) {
+  .lb-dato-grid, .lb-idea-grid { grid-template-columns: 1fr; gap: var(--s5); }
+  .lb-dato-pasos { gap: var(--s4); }
+  .lb-dato-pasos button { font-size: 17px; }
+  .lb-idea-grid { gap: var(--s7); }
+}
+@media (prefers-reduced-motion: reduce) { .lb-dato-lienzo { transition: none; } }
+
