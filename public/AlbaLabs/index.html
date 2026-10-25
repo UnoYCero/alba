@@ -294,15 +294,18 @@
             <canvas class="lb-modular-lienzo" aria-hidden="true"></canvas>
             <span class="marca-ilus">Concepto</span>
           </div>
-          <ul class="lb-clips" aria-label="Los clips">
-            <li><button type="button" data-clip="camara" aria-pressed="true"><b>Cámara</b><span>Captura lo que tienes enfrente.</span></button></li>
-            <li><button type="button" data-clip="eye-tracking" aria-pressed="false"><b>Seguimiento ocular</b><span>Interacción con la mirada.</span></button></li>
-            <li><button type="button" data-clip="lidar" aria-pressed="false"><b>LiDAR</b><span>Profundidad y distancia.</span></button></li>
-            <li><button type="button" data-clip="pantalla" aria-pressed="false"><b>Pantalla</b><span>Información en tu campo visual.</span></button></li>
-            <li><button type="button" data-clip="termica" aria-pressed="false"><b>Térmica</b><span>La temperatura de lo que ves.</span></button></li>
-            <li><button type="button" data-clip="audio-direccional" aria-pressed="false"><b>Audio direccional</b><span>Escuchar y comunicarte.</span></button></li>
-            <li><button type="button" data-clip="sensores-ambientales" aria-pressed="false"><b>Sensores ambientales</b><span>Registro del entorno.</span></button></li>
+          <div class="lb-clips-lado">
+          <p class="lb-arrastra">Arrastra un módulo hasta los lentes, o tócalo.</p>
+          <ul class="lb-clips lb-clips-tarjetas" aria-label="Los clips">
+            <li><button type="button" data-clip="camara" aria-pressed="true"><img class="lb-clip-dibujo" src="../assets/labs/clip-camara.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Cámara</b><span>Captura lo que tienes enfrente.</span></button></li>
+            <li><button type="button" data-clip="eye-tracking" aria-pressed="false"><img class="lb-clip-dibujo" src="../assets/labs/clip-eye-tracking.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Seguimiento ocular</b><span>Interacción con la mirada.</span></button></li>
+            <li><button type="button" data-clip="lidar" aria-pressed="false"><img class="lb-clip-dibujo" src="../assets/labs/clip-lidar.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>LiDAR</b><span>Profundidad y distancia.</span></button></li>
+            <li><button type="button" data-clip="pantalla" aria-pressed="false"><img class="lb-clip-dibujo" src="../assets/labs/clip-pantalla.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Pantalla</b><span>Información en tu campo visual.</span></button></li>
+            <li><button type="button" data-clip="termica" aria-pressed="false"><img class="lb-clip-dibujo" src="../assets/labs/clip-termica.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Térmica</b><span>La temperatura de lo que ves.</span></button></li>
+            <li><button type="button" data-clip="audio-direccional" aria-pressed="false"><img class="lb-clip-dibujo" src="../assets/labs/clip-audio-direccional.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Audio direccional</b><span>Escuchar y comunicarte.</span></button></li>
+            <li><button type="button" data-clip="sensores-ambientales" aria-pressed="false"><img class="lb-clip-dibujo" src="../assets/labs/clip-sensores-ambientales.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Sensores ambientales</b><span>Registro del entorno.</span></button></li>
           </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -354,18 +357,21 @@
       <div class="wrap lb-idea-grid">
         <form class="lb-idea-form reveal" action="#" onsubmit="return false">
           <h2>El laboratorio empieza <em>por lo que quieres crear.</em></h2>
-          <label>Quiero explorar
-            <select data-i="ruta">
-              <option value="aplicacion">Una aplicación para los lentes</option>
-              <option value="modulo">Un módulo propio</option>
-              <option value="aula">Una experiencia para el aula</option>
-            </select>
-          </label>
+          <fieldset class="lb-idea-rutas">
+            <legend>Quiero explorar</legend>
+            <div class="lb-tarjetas">
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aplicacion" checked data-i="ruta"><b>Una aplicación para los lentes</b><span>Algo que los lentes hagan por ti mientras trabajas.</span></label>
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="modulo" data-i="ruta"><b>Un módulo propio</b><span>Una pieza nueva que se acople a la base.</span></label>
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aula" data-i="ruta"><b>Una experiencia para el aula</b><span>Algo que un grupo pueda observar y construir.</span></label>
+            </div>
+          </fieldset>
           <label>Mi idea
             <textarea data-i="idea" rows="3" maxlength="240" placeholder="Por ejemplo: encontrar las herramientas que dejé en el taller"></textarea>
+            <span class="lb-ejemplos" aria-label="Ejemplos"><button type="button" class="lb-ejemplo" data-para="idea">Encontrar mis herramientas en el taller</button><button type="button" class="lb-ejemplo" data-para="idea">Leer etiquetas en voz alta</button><button type="button" class="lb-ejemplo" data-para="idea">Contar piezas sobre una mesa</button></span>
           </label>
           <label>¿Cómo sabría que ayudó?
             <input data-i="prueba" maxlength="160" placeholder="Por ejemplo: encontrar una herramienta sin pedir ayuda">
+            <span class="lb-ejemplos" aria-label="Ejemplos"><button type="button" class="lb-ejemplo" data-para="prueba">Lo encuentro sin pedir ayuda</button><button type="button" class="lb-ejemplo" data-para="prueba">Me toma menos tiempo</button><button type="button" class="lb-ejemplo" data-para="prueba">Me equivoco menos</button></span>
           </label>
         </form>
         <div class="lb-idea-hoja reveal" aria-live="polite">

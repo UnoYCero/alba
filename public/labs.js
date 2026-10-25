@@ -59,7 +59,54 @@ if (seccion) {
     botones.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
     visor?.poner(botones[i].dataset.clip);
   };
-  botones.forEach((b, i) => b.addEventListener("click", () => { tocado = true; clearInterval(reloj); elegir(i); }));
+  let recienArrastrado = false;
+  botones.forEach((b, i) => b.addEventListener("click", () => {
+    if (recienArrastrado) { recienArrastrado = false; return; }
+    tocado = true; clearInterval(reloj); elegir(i);
+  }));
+  // Arrastrar la tarjeta y soltarla sobre los lentes: el clip entra y se acopla. Con el mouse se
+  // arrastra la tarjeta entera; en el celular, desde el dibujo (el resto de la tarjeta deja bajar).
+  // Si se suelta fuera, la tarjeta regresa a su lugar.
+  botones.forEach((b, i) => b.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0 || (e.pointerType !== "mouse" && !e.target.closest(".lb-clip-dibujo"))) return;
+    const inicio = { x: e.clientX, y: e.clientY };
+    let fantasma = null;
+    const encima = (ev) => { const r = escena.getBoundingClientRect(); return ev.clientX > r.left && ev.clientX < r.right && ev.clientY > r.top && ev.clientY < r.bottom; };
+    const mover = (ev) => {
+      if (!fantasma) {
+        if (Math.hypot(ev.clientX - inicio.x, ev.clientY - inicio.y) < 6) return;
+        fantasma = b.querySelector(".lb-clip-dibujo").cloneNode();
+        fantasma.className = "lb-clip-fantasma";
+        document.body.append(fantasma);
+        b.classList.add("arrastrando");
+      }
+      fantasma.style.transform = `translate(${ev.clientX - 45}px, ${ev.clientY - 45}px)`;
+      escena.classList.toggle("recibiendo", encima(ev));
+    };
+    const soltar = (ev) => {
+      removeEventListener("pointermove", mover);
+      removeEventListener("pointerup", soltar);
+      removeEventListener("pointercancel", soltar);
+      escena.classList.remove("recibiendo");
+      b.classList.remove("arrastrando");
+      if (!fantasma) return;
+      recienArrastrado = true;
+      setTimeout(() => { recienArrastrado = false; }, 0);
+      if (ev.type === "pointerup" && encima(ev)) {
+        fantasma.remove();
+        tocado = true; clearInterval(reloj); elegir(i);
+        return;
+      }
+      // De regreso a su tarjeta
+      const r = b.querySelector(".lb-clip-dibujo").getBoundingClientRect();
+      fantasma.classList.add("regresa");
+      fantasma.style.transform = `translate(${r.left}px, ${r.top}px)`;
+      setTimeout(() => fantasma.remove(), 350);
+    };
+    addEventListener("pointermove", mover);
+    addEventListener("pointerup", soltar);
+    addEventListener("pointercancel", soltar);
+  }));
   if (!tiene3D) return;
   new IntersectionObserver(([e], obs) => {
     if (!e.isIntersecting) return;
@@ -215,7 +262,7 @@ if (seccion) {
     aula: [t("Una experiencia para el aula", "A classroom experience"), t("Algo que el grupo quiera observar o entender.", "Something the group wants to observe or understand."), t("Una actividad corta, una escena de ejemplo y el registro de lo aprendido.", "A short activity, an example scene and a record of what was learned."), t("Definir qué podría explicar o construir cada estudiante.", "Define what each student could explain or build.")],
   };
   const actualizar = () => {
-    const [titulo, idea, experimento, prueba] = RUTAS[campo("ruta").value];
+    const [titulo, idea, experimento, prueba] = RUTAS[caja.querySelector('[data-i="ruta"]:checked').value];
     const suya = campo("idea").value.trim(), comprobar = campo("prueba").value.trim();
     hoja("titulo").textContent = titulo;
     hoja("idea").textContent = suya || idea;
@@ -228,6 +275,12 @@ if (seccion) {
   };
   caja.addEventListener("input", actualizar);
   caja.addEventListener("change", actualizar);
+  // Los ejemplos llenan el campo con un toque, para no empezar en blanco
+  caja.querySelectorAll("[data-para]").forEach((b) => b.addEventListener("click", () => {
+    const destino = campo(b.dataset.para);
+    destino.value = b.textContent;
+    actualizar();
+  }));
   actualizar();
 })();
 

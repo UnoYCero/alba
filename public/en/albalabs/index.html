@@ -294,15 +294,18 @@
             <canvas class="lb-modular-lienzo" aria-hidden="true"></canvas>
             <span class="marca-ilus">Concept</span>
           </div>
-          <ul class="lb-clips" aria-label="The clips">
-            <li><button type="button" data-clip="camara" aria-pressed="true"><b>Camera</b><span>Captures what is in front of you.</span></button></li>
-            <li><button type="button" data-clip="eye-tracking" aria-pressed="false"><b>Eye tracking</b><span>Interaction with your gaze.</span></button></li>
-            <li><button type="button" data-clip="lidar" aria-pressed="false"><b>LiDAR</b><span>Depth and distance.</span></button></li>
-            <li><button type="button" data-clip="pantalla" aria-pressed="false"><b>Display</b><span>Information in your field of view.</span></button></li>
-            <li><button type="button" data-clip="termica" aria-pressed="false"><b>Thermal</b><span>The temperature of what you see.</span></button></li>
-            <li><button type="button" data-clip="audio-direccional" aria-pressed="false"><b>Directional audio</b><span>Listening and communicating.</span></button></li>
-            <li><button type="button" data-clip="sensores-ambientales" aria-pressed="false"><b>Environmental sensors</b><span>A record of your surroundings.</span></button></li>
+          <div class="lb-clips-lado">
+          <p class="lb-arrastra">Drag a module onto the glasses, or tap it.</p>
+          <ul class="lb-clips lb-clips-tarjetas" aria-label="The clips">
+            <li><button type="button" data-clip="camara" aria-pressed="true"><img class="lb-clip-dibujo" src="/assets/labs/clip-camara.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Camera</b><span>Captures what is in front of you.</span></button></li>
+            <li><button type="button" data-clip="eye-tracking" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-eye-tracking.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Eye tracking</b><span>Interaction with your gaze.</span></button></li>
+            <li><button type="button" data-clip="lidar" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-lidar.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>LiDAR</b><span>Depth and distance.</span></button></li>
+            <li><button type="button" data-clip="pantalla" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-pantalla.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Display</b><span>Information in your field of view.</span></button></li>
+            <li><button type="button" data-clip="termica" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-termica.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Thermal</b><span>The temperature of what you see.</span></button></li>
+            <li><button type="button" data-clip="audio-direccional" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-audio-direccional.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Directional audio</b><span>Listening and communicating.</span></button></li>
+            <li><button type="button" data-clip="sensores-ambientales" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-sensores-ambientales.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Environmental sensors</b><span>A record of your surroundings.</span></button></li>
           </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -354,18 +357,21 @@
       <div class="wrap lb-idea-grid">
         <form class="lb-idea-form reveal" action="#" onsubmit="return false">
           <h2>The lab starts <em>with what you want to create.</em></h2>
-          <label>I want to explore
-            <select data-i="ruta">
-              <option value="aplicacion">An app for the glasses</option>
-              <option value="modulo">A module of your own</option>
-              <option value="aula">A classroom experience</option>
-            </select>
-          </label>
+          <fieldset class="lb-idea-rutas">
+            <legend>I want to explore</legend>
+            <div class="lb-tarjetas">
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aplicacion" checked data-i="ruta"><b>An app for the glasses</b><span>Something the glasses do for you while you work.</span></label>
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="modulo" data-i="ruta"><b>A module of your own</b><span>A new piece that attaches to the base.</span></label>
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aula" data-i="ruta"><b>A classroom experience</b><span>Something a group can observe and build.</span></label>
+            </div>
+          </fieldset>
           <label>My idea
             <textarea data-i="idea" rows="3" maxlength="240" placeholder="For example: finding the tools I left in the workshop"></textarea>
+            <span class="lb-ejemplos" aria-label="Examples"><button type="button" class="lb-ejemplo" data-para="idea">Find my tools in the workshop</button><button type="button" class="lb-ejemplo" data-para="idea">Read labels out loud</button><button type="button" class="lb-ejemplo" data-para="idea">Count parts on a table</button></span>
           </label>
           <label>How would I know it helped?
             <input data-i="prueba" maxlength="160" placeholder="For example: finding a tool without asking for help">
+            <span class="lb-ejemplos" aria-label="Examples"><button type="button" class="lb-ejemplo" data-para="prueba">I find it without asking for help</button><button type="button" class="lb-ejemplo" data-para="prueba">It takes me less time</button><button type="button" class="lb-ejemplo" data-para="prueba">I make fewer mistakes</button></span>
           </label>
         </form>
         <div class="lb-idea-hoja reveal" aria-live="polite">
