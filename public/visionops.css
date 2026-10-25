@@ -1,0 +1,273 @@
+/* ═══ Vision Ops: la operación vista desde arriba (visionops-3d.js + visionops.js) ═══
+   La primera sección se queda fija mientras se baja: a la izquierda el texto de cada etapa, a
+   la derecha la escena con sus rótulos, el hallazgo y el tablero. En celular, la escena arriba y
+   el texto abajo. Con «menos movimiento», sin JavaScript o sin 3D, se lee corrida. */
+
+.vo-operacion { position: relative; height: 640svh; }
+.vo-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
+.vo-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.3fr); gap: var(--s7); align-items: center; width: 100%; }
+.vo-texto .sub-title { font-size: clamp(38px, 4.6vw, 68px); max-width: 13ch; }
+.vo-texto .sub-lead { font-size: clamp(16px, 1.3vw, 19px); }
+
+/* Las etapas, una encima de otra: la que sale se va rápido y la que entra espera */
+.vo-etapas { display: grid; }
+.vo-etapas > .vo-etapa, .vo-pasos { grid-area: 1 / 1; }
+.vo-etapa { opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .28s ease, transform .28s ease; }
+.vo-etapa.activa { opacity: 1; transform: none; pointer-events: auto; transition: opacity .5s var(--ease) .26s, transform .5s var(--ease) .26s; }
+.vo-pasos { list-style: none; margin: 0; padding: 0; display: grid; }
+.vo-pasos li { grid-area: 1 / 1; display: grid; gap: var(--s3); align-content: start; }
+.vo-pasos b { font-weight: 300; font-size: clamp(30px, 3vw, 44px); line-height: 1.1; letter-spacing: -.02em; color: #2563eb; }
+.vo-pasos span { max-width: 36ch; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: var(--dim); }
+.vo-pista { margin-top: var(--s6); display: inline-flex; gap: var(--s2); font-size: 14px; color: var(--soft); }
+.vo-pista::after { content: "↓"; animation: vo-pista 1.8s var(--ease) infinite; }
+@keyframes vo-pista { 50% { transform: translateY(4px); } }
+
+/* La escena */
+.vo-escena { position: relative; height: min(76svh, 640px); }
+.vo-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* La ilustración de respaldo: mientras carga el 3D, o si no se puede */
+.vo-respaldo { position: absolute; inset: 0 0 56px; width: 100%; height: calc(100% - 56px); object-fit: contain; transition: opacity .6s var(--ease); }
+.con-3d .vo-respaldo { opacity: 0; pointer-events: none; }
+.vo-rotulos { position: absolute; inset: 0; pointer-events: none; }
+.vo-rotulo { position: absolute; left: 0; top: 0; display: grid; gap: 1px; padding: 6px 10px; border-radius: 10px; background: #0b1f3b; color: #f4f6fa; font-size: 12px; line-height: 1.3; white-space: nowrap; opacity: 0; transition: opacity .4s var(--ease); }
+.vo-rotulo b { font-weight: 400; }
+.vo-rotulo small { color: #8fb2ff; font-size: 11.5px; }
+.vo-hallazgo { position: absolute; left: 0; top: 0; max-width: min(320px, 70%); margin: 0; padding: 10px 14px; border-radius: 12px; background: #2563eb; color: #fff; font-size: 14px; line-height: 1.4; opacity: 0; transform: translateY(6px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.vo-hallazgo.visible { opacity: 1; transform: none; }
+.vo-tablero { position: absolute; left: 0; right: 0; top: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); margin: 0; opacity: 0; transform: translateY(-8px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.vo-tablero.visible { opacity: 1; transform: none; }
+.vo-tablero div { padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,.92); box-shadow: 0 10px 30px rgba(11,31,59,.08); }
+.vo-tablero dt { font-size: 12px; color: var(--dim); }
+.vo-tablero dd { margin: 2px 0 0; font-size: clamp(20px, 2vw, 28px); font-weight: 300; letter-spacing: -.02em; color: #0b1f3b; font-variant-numeric: tabular-nums; }
+.vo-escena .marca-ilus { top: auto; bottom: 60px; right: 0; background: rgba(11,31,59,.08); color: rgba(11,31,59,.7); }
+
+/* Un mismo motor para cualquier operación */
+.vo-escenas { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(11,31,59,.06); }
+.vo-escenas button { min-height: 40px; padding: 0 var(--s4); border: 0; border-radius: 999px; background: none; font: inherit; font-size: 14px; color: var(--dim); white-space: nowrap; cursor: pointer; transition: background .3s, color .3s; }
+.vo-escenas button[aria-pressed="true"] { background: #0b1f3b; color: #f4f6fa; }
+
+/* Lo que recibes, cómo trabajamos y privacidad */
+.vo-cita { margin: 0; }
+.vo-cita blockquote { margin: 0; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.3; letter-spacing: -.015em; }
+.vo-cita figcaption { margin-top: var(--s4); font-size: 14px; color: var(--soft); }
+.vo-recibes, .vo-camino, .vo-garantias { list-style: none; margin: var(--s8) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s6); }
+.vo-garantias { margin: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.vo-recibes li, .vo-camino li, .vo-garantias li { display: grid; gap: var(--s2); align-content: start; }
+.vo-recibes b, .vo-camino b, .vo-garantias b { font-weight: 400; font-size: 18px; }
+.vo-recibes span, .vo-camino span, .vo-garantias span { font-size: 15px; line-height: 1.55; color: var(--dim); }
+.vo-camino { counter-reset: paso; }
+.vo-camino li::before { counter-increment: paso; content: counter(paso, decimal-leading-zero); font-size: 13px; color: #2563eb; font-variant-numeric: tabular-nums; }
+.vo-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5); margin-top: var(--s6); }
+
+/* De la primera cámara a toda la operación: fija mientras se baja; el paso activo se abre */
+.vo-crece { position: relative; height: 460svh; }
+:is(.vo-crece, .vo-reporte) .vo-texto h2 { margin: 0; }
+:is(.vo-crece, .vo-reporte) .vo-camino { margin: var(--s7) 0 0; grid-template-columns: 1fr; gap: var(--s5); }
+:is(.vo-crece, .vo-reporte) .vo-camino li { opacity: .36; transition: opacity .45s var(--ease); }
+:is(.vo-crece, .vo-reporte) .vo-camino li.activa { opacity: 1; }
+:is(.vo-crece, .vo-reporte) .vo-camino b { font-weight: 300; font-size: clamp(24px, 2.3vw, 34px); line-height: 1.15; letter-spacing: -.015em; }
+:is(.vo-crece, .vo-reporte) .vo-camino span { max-width: 34ch; max-height: 0; overflow: hidden; opacity: 0; font-size: clamp(15px, 1.2vw, 17px); transition: max-height .5s var(--ease), opacity .4s var(--ease); }
+:is(.vo-crece, .vo-reporte) .vo-camino li.activa span { max-height: 6em; opacity: 1; }
+.vo-escena-camino .vo-respaldo { inset: 0; height: 100%; }
+.vo-escena-camino .marca-ilus { bottom: 8px; }
+
+/* Privacidad: una cortina entre lo que ve la cámara y lo que mide Vision Ops */
+.vo-privacidad { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s8); align-items: center; margin-top: var(--s7); }
+.vo-privacidad .vo-garantias { grid-template-columns: 1fr; gap: var(--s5); }
+.vo-cortina { --corte: 50%; position: relative; margin: 0; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.vo-cortina:has(.vo-cortina-control:focus-visible) { outline: 2px solid #2563eb; outline-offset: 4px; }
+.vo-cortina-mide, .vo-cortina-ve { position: absolute; inset: 0; }
+.vo-cortina img, .vo-cortina svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+.vo-cortina-ve { clip-path: inset(0 calc(100% - var(--corte)) 0 0); }
+.vo-cortina-tirador { position: absolute; top: 0; bottom: 0; left: var(--corte); width: 2px; margin-left: -1px; background: #fff; pointer-events: none; }
+.vo-cortina-tirador::after { content: "‹ ›"; position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: #fff; color: #0b1f3b; font-size: 18px; letter-spacing: .1em; box-shadow: 0 6px 20px rgba(11,31,59,.18); }
+.vo-cortina-rotulo { position: absolute; top: 12px; padding: 5px 11px; border-radius: 999px; background: rgba(11,31,59,.8); color: #f4f6fa; font-size: 12.5px; pointer-events: none; }
+.vo-cortina-rotulo-ve { left: 12px; }
+.vo-cortina-rotulo-mide { right: 12px; background: #2563eb; }
+.vo-cortina-control { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.vo-cortina .marca-ilus { top: auto; bottom: 12px; right: 12px; }
+
+/* ── Celular: la escena arriba, el texto abajo ── */
+@media (max-width: 760px) {
+  .vo-operacion { height: 600svh; }
+  .vo-pin { align-items: flex-start; padding-top: calc(var(--nav-h) + var(--s2)); }
+  .vo-grid { grid-template-columns: 1fr; gap: var(--s4); }
+  .vo-escena { order: -1; height: 50svh; }
+  .vo-texto .sub-title { font-size: clamp(30px, 8.4vw, 38px); }
+  .vo-texto .sub-lead { margin-top: var(--s3); font-size: 15px; }
+  .vo-texto .status { margin-top: var(--s3); }
+  .vo-pista { display: none; }
+  .vo-pasos b { font-size: 28px; }
+  .vo-pasos span { font-size: 15.5px; }
+  .vo-tablero { gap: 6px; }
+  .vo-tablero div { padding: 8px 10px; }
+  .vo-tablero dd { font-size: 18px; }
+  .vo-escenas button { min-height: 36px; padding: 0 var(--s3); font-size: 13px; }
+  .vo-escena .marca-ilus { bottom: 48px; }
+  .vo-rotulo { font-size: 11px; padding: 4px 8px; }
+  .vo-rotulo small { font-size: 10.5px; }
+  .vo-hallazgo { font-size: 13px; }
+  .vo-recibes, .vo-camino, .vo-garantias { grid-template-columns: 1fr 1fr; gap: var(--s5); }
+  .vo-crece { height: 420svh; }
+  .vo-privacidad { grid-template-columns: 1fr; gap: var(--s6); margin-top: var(--s5); }
+  .vo-privacidad .vo-garantias { grid-template-columns: 1fr 1fr; }
+  .vo-cortina-rotulo { font-size: 11.5px; padding: 4px 9px; }
+  .vo-cortina { aspect-ratio: 4 / 5; }
+  :is(.vo-crece, .vo-reporte) .vo-texto h2 { font-size: clamp(26px, 7vw, 32px); }
+  :is(.vo-crece, .vo-reporte) .vo-camino { margin-top: var(--s4); gap: var(--s3); }
+  :is(.vo-crece, .vo-reporte) .vo-camino b { font-size: 21px; }
+  :is(.vo-crece, .vo-reporte) .vo-camino span { font-size: 14.5px; }
+}
+@media (max-width: 760px) and (max-height: 700px) { .vo-escena { height: 42svh; } }
+
+/* ── Sin 3D, sin JavaScript o con «menos movimiento»: corrida ── */
+.vo-operacion.corrida, html:not(.js) .vo-operacion { height: auto; }
+.corrida .vo-pin, html:not(.js) .vo-pin { position: static; height: auto; padding: calc(var(--nav-h) + var(--s8)) 0 var(--s8); }
+.corrida .vo-etapas, html:not(.js) .vo-etapas { gap: var(--s6); }
+.corrida .vo-etapas > .vo-etapa, .corrida .vo-pasos, .corrida .vo-pasos li, html:not(.js) .vo-etapas > .vo-etapa, html:not(.js) .vo-pasos, html:not(.js) .vo-pasos li { grid-area: auto; opacity: 1; transform: none; }
+.corrida .vo-pasos, html:not(.js) .vo-pasos { gap: var(--s5); }
+.corrida .vo-pasos b, html:not(.js) .vo-pasos b { font-size: 22px; }
+.corrida .vo-pista, html:not(.js) .vo-pista, .corrida :is(.vo-lienzo, .vo-rotulos, .vo-hallazgo, .vo-tablero, .vo-escenas), html:not(.js) :is(.vo-lienzo, .vo-rotulos, .vo-hallazgo, .vo-tablero, .vo-escenas) { display: none; }
+.corrida .vo-escena, html:not(.js) .vo-escena { order: -1; height: auto; aspect-ratio: 3 / 2; }
+.corrida .vo-respaldo, html:not(.js) .vo-respaldo { inset: 0; height: 100%; }
+.corrida .vo-escena .marca-ilus, html:not(.js) .vo-escena .marca-ilus { bottom: 8px; }
+.vo-crece.corrida, html:not(.js) .vo-crece { height: auto; }
+.corrida .vo-camino li, html:not(.js) :is(.vo-crece, .vo-reporte) .vo-camino li { opacity: 1; }
+.corrida .vo-camino span, html:not(.js) :is(.vo-crece, .vo-reporte) .vo-camino span { max-height: none; opacity: 1; }
+
+/* ═══ Lo que recibes: el reporte se arma solo mientras se baja (ronda 20 de marca) ═══
+   Cuatro capas una encima de otra: el correo, la evidencia, las cuentas y la pregunta. La que
+   corresponde al tramo se ve y, dentro de ella, cada parte avanza con el scroll (visionops.js
+   pone las variables; sin JavaScript o corrida valen 1 y todo se ve completo). */
+.vo-reporte { position: relative; height: 480svh; }
+.vo-escena-reporte { display: grid; place-items: center; }
+.vo-capa { position: absolute; inset: 0; display: grid; place-content: center; margin: 0; opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .6s var(--ease); pointer-events: none; }
+.vo-capa.activa { opacity: 1; transform: none; pointer-events: auto; }
+
+/* 1. El correo del día, en el celular */
+.vo-correo { width: min(100%, 330px); padding: 34px 28px 30px; border-radius: 34px; background: #fff; box-shadow: 0 0 0 8px #0b1f3b, 0 30px 70px rgba(11,31,59,.14); }
+.vo-correo-de { margin: 0; font-size: 12px; color: var(--soft); }
+.vo-correo-marca { margin: 18px 0 0; font-size: 15px; color: #2563eb; }
+.vo-correo-frase { margin: 8px 0 0; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.42; color: #0b1f3b; }
+.vo-correo-frase .palabra { opacity: var(--o, 1); transition: opacity .25s var(--ease); }
+.vo-correo-nota { margin: 18px 0 0; font-size: 13px; color: #2563eb; opacity: var(--o, 1); }
+
+/* 2. La evidencia: el fotograma y, encima, la zona, la persona y sus rótulos */
+.vo-evidencia { inset: auto 0; top: 50%; translate: 0 -50%; display: block; aspect-ratio: 3 / 2; border-radius: 14px; overflow: hidden; }
+.vo-evidencia img, .vo-evidencia svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vo-ev-zona { fill: #2563eb; fill-opacity: calc(var(--z, 1) * .1); stroke: #2563eb; stroke-width: 2.5; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--z, 1)); }
+.vo-ev-persona { fill: none; stroke: #2563eb; stroke-width: 4; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 1)); }
+.vo-ev-rotulo { position: absolute; padding: 4px 9px; border-radius: 6px; background: #0b1f3b; color: #f4f6fa; font-size: 12.5px; line-height: 1.3; white-space: nowrap; opacity: var(--o, 1); }
+.vo-ev-hora { left: 28%; top: 4%; }
+.vo-ev-espera { left: 61.8%; top: 33%; background: #2563eb; }
+.vo-ev-fila { left: 42%; top: 86%; background: rgba(244,246,250,.9); color: #0b1f3b; }
+.vo-evidencia .marca-ilus { top: auto; bottom: 10px; right: 10px; }
+
+/* 3. Las cuentas: cada cifra se confirma en orden */
+.vo-cuentas { justify-items: center; padding: 0 var(--s4); }
+.vo-cuentas dl { width: min(100%, 440px); margin: 0; display: grid; gap: var(--s4); }
+.vo-cuentas dl div { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: var(--s4); opacity: var(--o, 1); }
+.vo-cuentas dt { font-size: 15px; color: var(--dim); }
+.vo-cuentas dd { margin: 0; text-align: right; font-size: clamp(24px, 2.3vw, 32px); font-weight: 300; letter-spacing: -.02em; color: #0b1f3b; font-variant-numeric: tabular-nums; }
+.vo-cuentas dd small { display: block; margin-top: 2px; font-size: 12px; letter-spacing: 0; color: #2563eb; }
+.vo-cuentas-resta { margin: var(--s6) 0 0; font-size: clamp(17px, 1.5vw, 21px); color: #0b1f3b; opacity: var(--o, 1); }
+.vo-cuentas-resta em { color: #2563eb; }
+.vo-cuentas-nota { margin: var(--s2) 0 0; font-size: 12.5px; color: var(--soft); }
+
+/* 4. Pregúntale: la pregunta, la respuesta y la gráfica por hora */
+.vo-pregunta { width: 100%; padding: 0 var(--s2); place-content: center stretch; }
+.vo-pregunta-texto { justify-self: end; margin: 0; padding: 12px 18px; border-radius: 20px 20px 4px 20px; background: #0b1f3b; color: #f4f6fa; font-size: clamp(16px, 1.3vw, 18px); }
+.vo-pregunta-texto.escribiendo span::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -2px; background: #8fb2ff; animation: vo-cursor 1s steps(2) infinite; }
+@keyframes vo-cursor { 50% { opacity: 0; } }
+.vo-pregunta-respuesta { margin: var(--s5) 0 0; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.3; letter-spacing: -.01em; color: #0b1f3b; opacity: var(--o, 1); }
+.vo-barras { display: flex; align-items: flex-end; gap: 6px; height: clamp(130px, 24svh, 210px); margin-top: calc(var(--s6) + 18px); }
+.vo-barras span { position: relative; flex: 1; height: calc(var(--v) / 46 * 100% * var(--k, 1)); border-radius: 4px 4px 0 0; background: rgba(11,31,59,.16); }
+.vo-barras span.pico { background: #2563eb; }
+.vo-barras i { position: absolute; left: 0; right: 0; bottom: 100%; padding-bottom: 4px; font-style: normal; font-size: 12px; text-align: center; color: var(--dim); opacity: var(--k, 1); }
+.vo-barras b { position: absolute; left: 0; right: 0; top: 100%; padding-top: 6px; font-weight: 400; font-size: 11px; text-align: center; white-space: nowrap; color: var(--soft); }
+.vo-barras-nota { margin: 30px 0 0; font-size: 12.5px; color: var(--soft); }
+
+/* ═══ Un día de operación: el mismo encuadre, hora por hora ═══ */
+.vo-dia-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--s8); align-items: center; }
+.vo-dia-hora { margin: var(--s6) 0 0; font-size: clamp(56px, 6vw, 88px); font-weight: 300; line-height: 1; letter-spacing: -.03em; color: #0b1f3b; font-variant-numeric: tabular-nums; }
+.vo-dia-lectura { margin: var(--s3) 0 0; max-width: 28ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.45; color: #0b1f3b; }
+.vo-dia-control { display: grid; gap: var(--s2); margin-top: var(--s6); font-size: 15px; color: var(--dim); }
+.vo-dia-control input { width: 100%; min-height: 44px; accent-color: #2563eb; cursor: grab; }
+.vo-dia-escala { display: flex; justify-content: space-between; margin: 0; font-size: 12.5px; color: var(--soft); }
+.vo-dia-escena { position: relative; margin: 0; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; }
+.vo-dia-escena img, .vo-dia-escena svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vo-dia-escena .vo-ev-zona { stroke-width: 2; }
+.vo-dia-puntos circle { fill: #2563eb; stroke: #fff; stroke-width: 3; transition: transform .7s var(--ease), opacity .45s var(--ease); }
+.vo-dia-escena .marca-ilus { top: auto; bottom: 12px; right: 12px; }
+
+/* ═══ El piloto empieza con una pregunta ═══ */
+.vo-piloto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s8); align-items: start; margin-top: var(--s9); }
+.vo-piloto-form { display: grid; gap: var(--s5); }
+.vo-piloto-form h3 { margin: 0 0 var(--s2); font-size: clamp(28px, 2.8vw, 40px); font-weight: 300; line-height: 1.1; letter-spacing: -.02em; color: #0b1f3b; }
+.vo-piloto-form h3 em, .vo-piloto-titulo em { color: #2563eb; }
+.vo-piloto-form label { display: grid; gap: var(--s2); font-size: 14px; color: var(--dim); }
+.vo-piloto-form :is(select, input) { width: 100%; min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid rgba(11,31,59,.28); border-radius: 0; background: none; font: inherit; font-size: 18px; color: #0b1f3b; }
+.vo-piloto-form input[type="number"] { width: 6em; }
+.vo-piloto-form :is(select, input):focus-visible { outline: none; border-bottom-color: #2563eb; box-shadow: 0 1px 0 #2563eb; }
+.vo-piloto-resumen { display: grid; gap: var(--s4); align-content: start; }
+.vo-piloto-titulo { margin: 0; font-size: clamp(24px, 2.2vw, 32px); font-weight: 300; line-height: 1.15; color: #0b1f3b; }
+.vo-piloto-resumen dl { display: grid; gap: var(--s4); margin: 0; }
+.vo-piloto-resumen dt { font-size: 13px; color: var(--soft); }
+.vo-piloto-resumen dd { margin: 2px 0 0; font-size: 19px; color: #0b1f3b; }
+.vo-piloto-alcance { margin: 0; font-size: 14px; color: var(--dim); }
+.vo-piloto-resumen .btn { justify-self: start; }
+.vo-piloto-nota { margin: 0; font-size: 12.5px; color: var(--soft); }
+
+@media (max-width: 760px) {
+  .vo-reporte { height: 440svh; }
+  .vo-escena-reporte { height: 46svh; }
+  .vo-correo { width: min(100%, 290px); padding: 24px 22px; border-radius: 28px; box-shadow: 0 0 0 6px #0b1f3b, 0 20px 50px rgba(11,31,59,.14); }
+  .vo-correo-marca { margin-top: 10px; }
+  .vo-correo-frase { font-size: 15.5px; }
+  .vo-correo-nota { margin-top: 10px; font-size: 12px; }
+  .vo-ev-rotulo { padding: 2px 6px; font-size: 10.5px; }
+  .vo-evidencia .marca-ilus { top: 8px; bottom: auto; right: 8px; }
+  .vo-ev-hora { top: 13%; left: 4%; }
+  .vo-cuentas dl { gap: var(--s3); }
+  .vo-cuentas dt { font-size: 13.5px; }
+  .vo-cuentas dd { font-size: 21px; }
+  .vo-cuentas-resta { margin-top: var(--s4); font-size: 15px; }
+  .vo-pregunta-texto { font-size: 14.5px; padding: 9px 14px; }
+  .vo-pregunta-respuesta { margin-top: var(--s3); font-size: 17px; }
+  .vo-barras { height: 15svh; gap: 4px; margin-top: calc(var(--s5) + 14px); }
+  .vo-barras i { font-size: 10px; }
+  .vo-barras b { font-size: 9.5px; }
+  .vo-barras-nota { margin-top: 24px; font-size: 11.5px; }
+  .vo-dia-grid, .vo-piloto { grid-template-columns: 1fr; gap: var(--s5); }
+  .vo-dia-escena { order: -1; aspect-ratio: 4 / 5; }
+  .vo-dia-hora { margin-top: var(--s4); font-size: 56px; }
+  .vo-piloto { margin-top: var(--s8); gap: var(--s7); }
+}
+
+/* Teléfonos: la lista completa no cabe junto a la escena; sólo se ve el paso activo, con su
+   número. Los demás quedan fuera de la vista pero contados, para que el activo conserve el suyo */
+@media (max-width: 760px) {
+  .js :is(.vo-crece, .vo-reporte):not(.corrida) .vo-camino li:not(.activa) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .js :is(.vo-crece, .vo-reporte):not(.corrida) .vo-camino { margin-top: var(--s3); }
+}
+/* Teléfonos bajos (un iPhone o el S26 con las barras del navegador): la escena se compacta */
+@media (max-width: 760px) and (max-height: 880px) {
+  :is(.vo-crece, .vo-reporte) .vo-texto h2 { font-size: 24px; }
+  .vo-escena-reporte { height: 44svh; }
+  .vo-correo { padding: 18px 18px 16px; }
+  .vo-correo-frase { font-size: 14.5px; line-height: 1.38; }
+  .vo-cuentas dl { gap: var(--s2); }
+  .vo-cuentas dd { font-size: 18px; }
+  .vo-cuentas dd small { font-size: 11px; }
+  .vo-cuentas-resta { margin-top: var(--s3); font-size: 14px; }
+  .vo-cuentas-nota { font-size: 11px; }
+  .vo-barras { height: 12svh; }
+}
+
+/* Corrida (menos movimiento, sin JavaScript o pantallas muy bajas): las cuatro partes del
+   reporte una debajo de otra, completas */
+.vo-reporte.corrida, html:not(.js) .vo-reporte { height: auto; }
+.corrida .vo-escena-reporte, html:not(.js) .vo-escena-reporte { height: auto; aspect-ratio: auto; display: grid; gap: var(--s8); }
+.corrida .vo-capa, html:not(.js) .vo-capa { position: relative; inset: auto; opacity: 1; transform: none; pointer-events: auto; }
+.corrida .vo-evidencia, html:not(.js) .vo-evidencia { top: auto; translate: none; width: 100%; }
+.corrida .vo-barras, html:not(.js) .vo-barras { height: 180px; }
