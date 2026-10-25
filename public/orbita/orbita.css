@@ -130,8 +130,9 @@
 }
 @media (max-width: 760px) {
   .or-portada { padding-top: calc(var(--nav-h) + var(--s6)); }
-  .or-video { width: min(100%, 330px); }
-  .tel { height: min(560px, 74svh); border-width: 7px; border-radius: 40px; }
+  /* La demo del teléfono, más chica: antes ocupaba casi toda la pantalla (visto bueno de Alan) */
+  .or-video { width: min(100%, 260px); }
+  .tel { height: min(440px, 54svh); border-width: 6px; border-radius: 34px; }
   .tm { font-size: 13px; }
   .bandeja { padding: var(--s4) var(--s3); border-radius: 20px; }
   .bandeja li { gap: var(--s3); padding: var(--s2); }
