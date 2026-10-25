@@ -79,8 +79,11 @@
           </div>
           <p class="sub-precio reveal">Estimated price: <b>$5,900 MXN</b></p>
         </div>
-        <figure class="lb-portada-foto labs-foto reveal">
+        <!-- Los lentes en 3D: el clip de cámara llega y se acopla al abrir (labs.js); mientras
+             carga, o sin 3D, el render -->
+        <figure class="lb-portada-foto labs-foto reveal" data-portada3d>
           <img src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs glasses in graphite with a camera clip on the temple" width="1400" height="684" fetchpriority="high">
+          <canvas class="lb-portada-lienzo" aria-hidden="true"></canvas>
           <span class="marca-ilus">Illustration</span>
         </figure>
       </div>
@@ -125,17 +128,38 @@
       </div>
     </section>
 
-    <section class="sub-seccion tema-dia">
+    <!-- Pregúntale al mundo: una conversación de ejemplo y por dónde viaja la pregunta, en tu
+         computadora o en la nube (labs.js). Es un concepto: el Dev Kit todavía no existe -->
+    <section class="sub-seccion tema-dia lb-pregunta" data-conversacion>
       <div class="wrap dos">
         <div>
           <h2 class="reveal">Ask the world <em>in front of you.</em></h2>
           <p class="sub-intro reveal">Connect models that run on your computer or cloud AI services, depending on what you need in privacy, speed and cost.</p>
+          <div class="lb-ruta reveal" role="group" aria-label="Where the artificial intelligence runs">
+            <button type="button" data-ruta="local" aria-pressed="true">On your computer</button>
+            <button type="button" data-ruta="nube" aria-pressed="false">In the cloud</button>
+          </div>
+          <dl class="lb-ruta-datos reveal" aria-live="polite">
+            <div><dt>Privacy</dt><dd data-dato="privacidad">What the glasses see stays on your network</dd></div>
+            <div><dt>Speed</dt><dd data-dato="velocidad">It depends on your computer</dd></div>
+            <div><dt>Cost</dt><dd data-dato="costo">No charge per question</dd></div>
+          </dl>
         </div>
-        <ul class="preguntas">
-          <li class="reveal">«Where did I leave this tool?»</li>
-          <li class="reveal">«Read and summarize this document.»</li>
-          <li class="reveal">«Guide me step by step while I work.»</li>
-        </ul>
+        <figure class="lb-chat reveal">
+          <p class="lb-camino" data-camino="local" aria-hidden="true">
+            <span class="lb-nodo">Glasses</span><i></i><span class="lb-nodo lb-nodo-local">Your computer</span><i class="lb-tramo-nube"></i><span class="lb-nodo lb-nodo-nube">Cloud service</span>
+          </p>
+          <ol class="lb-mensajes">
+            <li class="lb-tu" data-pregunta>«Where did I leave this tool?»</li>
+            <li class="lb-ellos" data-respuesta>On the workbench, next to the blue box. You saw it 12 minutes ago.</li>
+          </ol>
+          <ul class="lb-otras" aria-label="Other questions">
+            <li><button type="button" data-p="0" aria-pressed="true">«Where did I leave this tool?»</button></li>
+            <li><button type="button" data-p="1" aria-pressed="false">«Read and summarize this document.»</button></li>
+            <li><button type="button" data-p="2" aria-pressed="false">«Guide me step by step while I work.»</button></li>
+          </ul>
+          <span class="marca-ilus">Example · Concept</span>
+        </figure>
       </div>
     </section>
 
@@ -233,18 +257,31 @@
       </div>
     </section>
 
-    <!-- Distintas formas de trabajar: configuraciones de tres módulos (concepto) -->
-    <section class="sub-seccion tema-dia lb-configuraciones" aria-labelledby="titulo-configuraciones">
+    <!-- Distintas formas de trabajar: el configurador de las cinco configuraciones en 3D (labs-3d.js).
+         Sin 3D, el render de cada una -->
+    <section class="sub-seccion tema-dia lb-configuraciones" aria-labelledby="titulo-configuraciones" data-configurador>
       <div class="wrap">
-        <h2 class="reveal" id="titulo-configuraciones">One base. <em>Different ways to work.</em></h2>
-        <ul class="lb-config">
-          <li class="reveal"><figure><img src="/assets/labs/config-laboratorio-portatil.webp" alt="The glasses with microscopy, an inspection probe and a display" width="1000" height="617" loading="lazy" decoding="async"></figure><b>Portable lab</b><span>Microscopy · Inspection probe · Display</span></li>
-          <li class="reveal"><figure><img src="/assets/labs/config-mantenimiento-industrial.webp" alt="The glasses with thermal, ultrasound and an instrument interface" width="1000" height="652" loading="lazy" decoding="async"></figure><b>Industrial maintenance</b><span>Thermal · Ultrasound · Instruments</span></li>
-          <li class="reveal"><figure><img src="/assets/labs/config-exploracion-campo.webp" alt="The glasses with LiDAR, a camera and haptic feedback" width="1000" height="569" loading="lazy" decoding="async"></figure><b>Field exploration</b><span>LiDAR · Camera · Haptic feedback</span></li>
-          <li class="reveal"><figure><img src="/assets/labs/config-interaccion-experimental.webp" alt="The glasses with eye tracking, gesture control and haptic feedback" width="1000" height="569" loading="lazy" decoding="async"></figure><b>Experimental interaction</b><span>Gaze · Gestures · Haptic feedback</span></li>
-          <li class="reveal"><figure><img src="/assets/labs/config-trabajo-compartido.webp" alt="The glasses with a camera, projection and directional audio" width="1000" height="554" loading="lazy" decoding="async"></figure><b>Shared work</b><span>Camera · Projection · Directional audio</span></li>
-        </ul>
-        <p class="lb-config-nota reveal">Concept · Illustration. The modules are possibilities we are exploring: neither their shape nor how they work has been validated.</p>
+        <div class="dos">
+          <h2 class="reveal" id="titulo-configuraciones">One base. <em>Different ways to work.</em></h2>
+          <p class="sub-intro reveal">With an adapter, the base carries three modules at once. Pick a way of working and watch it come together.</p>
+        </div>
+        <div class="lb-modular-grid">
+          <div class="lb-modular-escena">
+            <img class="lb-modular-respaldo" src="/assets/labs/config-laboratorio-portatil.webp" alt="The Alba Labs glasses with the three modules of the chosen setup (concept)" width="1000" height="617" loading="lazy" decoding="async">
+            <canvas class="lb-modular-lienzo" aria-hidden="true"></canvas>
+            <span class="marca-ilus">Concept</span>
+          </div>
+          <div>
+            <ul class="lb-clips" aria-label="The setups">
+              <li><button type="button" data-config="laboratorio-portatil" aria-pressed="true"><b>Portable lab</b><span>Microscopy · Inspection probe · Display</span></button></li>
+              <li><button type="button" data-config="mantenimiento-industrial" aria-pressed="false"><b>Industrial maintenance</b><span>Thermal · Ultrasound · Instruments</span></button></li>
+              <li><button type="button" data-config="exploracion-campo" aria-pressed="false"><b>Field exploration</b><span>LiDAR · Camera · Haptic feedback</span></button></li>
+              <li><button type="button" data-config="interaccion-experimental" aria-pressed="false"><b>Experimental interaction</b><span>Gaze · Gestures · Haptic feedback</span></button></li>
+              <li><button type="button" data-config="trabajo-compartido" aria-pressed="false"><b>Shared work</b><span>Camera · Projection · Directional audio</span></button></li>
+            </ul>
+            <p class="lb-config-nota reveal">Concept · Illustration. The modules are possibilities we are exploring: neither their shape nor how they work has been validated.</p>
+          </div>
+        </div>
       </div>
     </section>
 
