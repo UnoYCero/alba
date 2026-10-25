@@ -757,7 +757,7 @@ EN["AlbaLabs/index.html"] = [
  "Any AI.",
  "The",
  "Alba Labs",
- "will be open glasses with a camera to build your own computer vision and AI applications.",
+ "Dev Kit will be a pair of open glasses with a camera to build your own computer vision and AI applications.",
  "In development · not for sale yet",
  "Notify me on WhatsApp when the Dev Kit is ready",
  "Notify me when it's ready",

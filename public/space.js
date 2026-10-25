@@ -426,6 +426,9 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   bucle(canvas, dibujar);
   tierra.addEventListener("load", () => { if (reducir) dibujar(9000); });
   botones.forEach((b) => b.addEventListener("click", () => { activa = +b.dataset.app; tocado = performance.now(); if (reducir) dibujar(9000); }));
+  // Quien se acerca con el mouse o el teclado quiere leer: deja de cambiar sola
+  const lista = botones[0]?.closest("ul");
+  ["focusin", "pointerenter"].forEach((ev) => lista?.addEventListener(ev, () => { tocado = Infinity; }));
 })();
 
 // ── El baffle que se despliega solo en órbita ──

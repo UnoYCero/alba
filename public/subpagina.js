@@ -26,6 +26,7 @@ function cerrarMenu({ devolverFoco = false } = {}) {
   panelMenu.classList.remove("abierto");
   nav.classList.remove("abierto");
   document.body.style.overflow = "";
+  document.querySelectorAll("main, footer, .skip").forEach((el) => { el.inert = false; });
   if (devolverFoco && anchoMenu.matches) boton.focus();
 }
 boton.addEventListener("click", () => {
@@ -35,6 +36,8 @@ boton.addEventListener("click", () => {
   panelMenu.classList.add("abierto");
   nav.classList.add("abierto");
   document.body.style.overflow = "hidden";
+  // Con el menú abierto, el tabulador se queda en el menú: el contenido de fondo no se puede enfocar
+  document.querySelectorAll("main, footer, .skip").forEach((el) => { el.inert = true; });
 });
 panelMenu.querySelectorAll("a, button").forEach((el) => el.addEventListener("click", () => cerrarMenu()));
 addEventListener("keydown", (e) => { if (e.key === "Escape" && menuAbierto()) cerrarMenu({ devolverFoco: true }); });

@@ -59,6 +59,8 @@ if (seccion) {
     botones.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
     visor?.poner(botones[i].dataset.clip);
   };
+  // Quien se acerca con el mouse o el teclado quiere leer: deja de cambiar solo
+  ["focusin", "pointerenter"].forEach((ev) => caja.querySelector(".lb-clips").addEventListener(ev, () => { tocado = true; clearInterval(reloj); }));
   let recienArrastrado = false;
   botones.forEach((b, i) => b.addEventListener("click", () => {
     if (recienArrastrado) { recienArrastrado = false; return; }
@@ -157,6 +159,7 @@ if (seccion) {
     visor?.poner(id);
   };
   botones.forEach((b, i) => b.addEventListener("click", () => { tocado = true; clearInterval(reloj); elegir(i); }));
+  ["focusin", "pointerenter"].forEach((ev) => caja.querySelector(".lb-clips").addEventListener(ev, () => { tocado = true; clearInterval(reloj); }));
   if (!tiene3D) return;
   new IntersectionObserver(([e], obs) => {
     if (!e.isIntersecting) return;
@@ -191,8 +194,15 @@ if (seccion) {
     t("Primero quita los dos tornillos de la tapa. Te aviso cuando veas el filtro.", "First remove the two screws on the cover. I will tell you when you see the filter."),
   ];
   let escritura = 0, tocado = false, actual = 0, reloj = 0;
+  // El lector de pantalla oye la respuesta completa cuando termina, no letra por letra
+  const anuncio = document.createElement("p");
+  anuncio.setAttribute("aria-live", "polite");
+  anuncio.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap";
+  caja.querySelector(".lb-chat").append(anuncio);
+  ["focusin", "pointerenter"].forEach((ev) => caja.querySelector(".lb-chat").addEventListener(ev, () => { tocado = true; }));
   const escribir = (texto) => {
     clearInterval(escritura);
+    anuncio.textContent = texto;
     if (reducir) { respuesta.textContent = texto; return; }
     let n = 0;
     respuesta.textContent = "";

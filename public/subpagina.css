@@ -302,7 +302,7 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .ub-escena-foto > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* Lo que no es real lleva una etiqueta corta en la esquina («Ilustración», «Simulación»),
    en lugar de un pie de foto descriptivo */
-.marca-ilus { position: absolute; z-index: 3; top: 12px; right: 12px; padding: 2px 9px; border-radius: 999px; background: rgba(11,31,59,.6); color: rgba(244,246,250,.88); font-size: 11px; letter-spacing: .02em; pointer-events: none; }
+.marca-ilus { position: absolute; z-index: 3; top: 12px; right: 12px; padding: 3px 10px; border-radius: 999px; background: rgba(11,31,59,.82); color: #f4f6fa; font-size: 12px; letter-spacing: .02em; pointer-events: none; }
 .marca-ilus-abajo { top: auto; bottom: 12px; }
 .capa { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease); }
 .capa.activa { opacity: 1; }
@@ -557,5 +557,12 @@ button.plegable-boton.btn-text { padding: 0; border: 0; background: none; font: 
 .st-galeria .saltar-escena { bottom: var(--s5); }
 @media (max-width: 760px) {
   .saltar-escena { top: calc(var(--nav-h) + var(--s2)); bottom: auto; min-height: 36px; padding: 0 var(--s3); font-size: 12px; }
+}
+
+/* Inspección de Codex (ronda 22): en el celular, todo lo que se toca mide al menos 44 px */
+@media (max-width: 760px) {
+  /* Con «html» delante, para ganarle a los estilos de cada página, que cargan después */
+  html :is(.vo-escenas button, .vistas button, .lb-ruta button, .lb-otras button, .lb-ejemplo, .saltar-escena, .lb-dato-pasos button, .etapas button, .control-baffle input) { min-height: 44px; }
+  html.js .st-galeria:not(.corrida) :is(.etapas button, .control-baffle input, .vistas button) { min-height: 44px; }
 }
 

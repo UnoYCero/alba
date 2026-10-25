@@ -359,6 +359,7 @@ const DATOS = {
   const actualizar = () => {
     const op = campo("operacion").value, obj = campo("objetivo").value;
     const n = Math.min(50, Math.max(1, parseInt(campo("camaras").value, 10) || 1));
+    if (campo("camaras").value !== "" && +campo("camaras").value !== n) campo("camaras").value = String(n);
     const [pregunta, evidencia] = PREGUNTAS[obj], zona = ZONAS[op][obj];
     salida("pregunta").textContent = pregunta;
     salida("zona").textContent = zona;
