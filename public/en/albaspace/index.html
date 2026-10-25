@@ -22,13 +22,14 @@
   <meta property="og:image" content="https://albavision.tech/assets/og-alba-space.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="The Alba Space Star Tracker (illustrative image)">
+  <meta property="og:image:alt" content="The Alba Space Star Tracker (illustration)">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preload" href="/assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/subpagina.css">
+  <link rel="stylesheet" href="/space-3d.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
@@ -59,7 +60,7 @@
       <a href="#aplicaciones">Who it's for</a>
       <a href="#contacto">Message us</a>
       <p class="nav-panel-titulo">Other projects</p>
-      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></div>
+      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></div>
     </div>
   </header>
 
@@ -78,9 +79,9 @@
             <a class="btn-text" href="#orientacion">See how it works</a>
           </div>
         </div>
-        <figure class="sub-visual reveal">
-          <img src="/assets/space/star-tracker.webp" alt="The Alba Space Star Tracker, a metal cube with its baffle, held with gloves in the lab" width="953" height="768" fetchpriority="high">
-          <figcaption>Illustrative image of the Star Tracker</figcaption>
+        <figure class="sub-visual st-portada reveal">
+          <img src="/assets/space/star-tracker-armado.webp" alt="Ark Light 1, the Alba Space Star Tracker: a navy cube with the Alba Space logo and the telescopic baffle stowed on top" width="1047" height="1100" fetchpriority="high">
+          <span class="marca-ilus">Illustration · Design proposal</span>
         </figure>
       </div>
       <div class="wrap">
@@ -123,7 +124,7 @@
         </div>
         <figure class="sim reveal">
           <canvas id="simOrientacion" role="img" aria-label="Simulation: a star field where the algorithm marks the centroids, joins the brightest into triangles, labels them from the catalog and calculates the orientation"></canvas>
-          <figcaption>Illustrative simulation of the algorithm</figcaption>
+          <span class="marca-ilus marca-ilus-abajo">Simulation</span>
         </figure>
       </div>
     </section>
@@ -142,7 +143,7 @@
         </div>
         <figure class="sim reveal">
           <canvas id="simBasura" role="img" aria-label="Simulation: a star field crossed by two objects; in the algorithm view the stars disappear and only the moving objects remain"></canvas>
-          <figcaption>Illustrative simulation of the detection</figcaption>
+          <span class="marca-ilus marca-ilus-abajo">Simulation</span>
         </figure>
       </div>
     </section>
@@ -164,8 +165,34 @@
         </div>
         <figure class="sim reveal">
           <canvas id="simAcoplamiento" role="img" aria-label="Simulation: on the left, the instrument from the side with its cone of view; on the right, what the sensor sees, getting closer to the target vehicle as the baffle extends"></canvas>
-          <figcaption>Illustrative simulation of the field of view</figcaption>
+          <span class="marca-ilus marca-ilus-abajo">Simulation</span>
         </figure>
+      </div>
+    </section>
+
+    <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja -->
+    <section class="st-dentro tema-noche" id="por-dentro" data-por-dentro>
+      <div class="st-pin">
+        <div class="wrap st-grid">
+          <div class="st-texto">
+            <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>inside.</em></h2>
+            <ol class="st-pasos" aria-label="The parts of the instrument">
+              <li class="activa" data-paso="armado"><b>The instrument</b><span>A cube for 3U to 12U CubeSats: 175 g with the mechanism and 1.25 W. Scroll to open it.</span></li>
+              <li data-paso="despiece"><b>It opens</b><span>Each part leaves its place so you can see how it fits inside.</span></li>
+              <li data-paso="computadora"><b>Flight computer</b><span>It runs all three algorithms in parallel, with a real-time operating system.</span></li>
+              <li data-paso="sensor"><b>Sensor</b><span>A single camera to orient itself, detect space debris and dock.</span></li>
+              <li data-paso="optica"><b>Optics</b><span>When the baffle extends, it moves and changes its focal length: from watching more than 20 degrees of sky to seeing up close.</span></li>
+              <li data-paso="baffle"><b>Telescopic baffle</b><span>Its segments travel stowed in less than 50 mm and block stray light in orbit.</span></li>
+              <li data-paso="liberacion"><b>Release</b><span>A dual circuit cuts a wire by heat and spring guides push each segment out.</span></li>
+              <li data-paso="bujes"><b>Teflon bushings</b><span>They keep the metal parts from welding together in a vacuum.</span></li>
+            </ol>
+          </div>
+          <div class="st-escena">
+            <img class="st-respaldo" src="/assets/space/star-tracker-armado.webp" alt="Ark Light 1, the Alba Space Star Tracker, with its baffle stowed" width="1047" height="1100" loading="lazy" decoding="async">
+            <canvas class="st-lienzo" aria-hidden="true"></canvas>
+            <span class="marca-ilus">Illustration · Design proposal</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -181,7 +208,8 @@
             <li class="reveal"><h3>Built for vacuum</h3><p>Teflon bushings keep the metal parts from cold-welding in vacuum, so it works after months in orbit.</p></li>
           </ul>
         </div>
-        <div class="baffle reveal">
+        <div class="baffle reveal" data-baffle>
+          <div class="baffle-3d"><canvas class="baffle-lienzo" aria-hidden="true"></canvas><span class="marca-ilus">Illustration · Design proposal</span></div>
           <svg class="escena-baffle" id="escenaBaffle" viewBox="0 0 300 320" role="img" aria-label="Drawing of the instrument with its three-segment baffle, which extends upward when deployed">
             <defs>
               <linearGradient id="metal" x1="0" x2="1"><stop offset="0" stop-color="#0d1a30"/><stop offset=".5" stop-color="#1d3354"/><stop offset="1" stop-color="#0b1628"/></linearGradient>
@@ -199,15 +227,21 @@
       </div>
     </section>
 
-    <!-- Integración -->
-    <section class="sub-seccion tema-noche galeria-space" aria-label="The instrument in integration">
-      <div class="wrap galeria-par">
-        <figure class="reveal"><img src="/assets/space/star-tracker.webp" alt="The Star Tracker during integration in the lab" width="953" height="768" loading="lazy" decoding="async"><figcaption>Integration and functional testing · illustrative image</figcaption></figure>
-        <figure class="reveal"><img src="/assets/space/baffle-frente.webp" alt="The telescopic baffle seen from the front on the instrument" width="773" height="773" loading="lazy" decoding="async"><figcaption>The telescopic baffle, from the front · illustrative image</figcaption></figure>
+    <!-- Para quién es -->
+    <!-- Hacia dónde vamos: cómo se vería el día que exista (concepto) -->
+    <section class="sub-seccion tema-noche concepto-uso st-concepto" aria-labelledby="titulo-concepto-space">
+      <div class="wrap">
+        <h2 class="reveal" id="titulo-concepto-space">Where we are heading: <em>in orbit.</em></h2>
+        <figure class="concepto-foto reveal">
+          <picture>
+            <source media="(max-width: 760px)" srcset="/assets/space/concepto-en-orbita-vertical.webp" width="720" height="900">
+            <img src="/assets/space/concepto-en-orbita.webp" alt="Ark Light 1 mounted on the face of a 6U CubeSat, in orbit above the Earth" width="1800" height="1200" loading="lazy" decoding="async">
+          </picture>
+          <span class="marca-ilus">Concept · Illustration</span>
+        </figure>
       </div>
     </section>
 
-    <!-- Para quién es -->
     <section class="sub-seccion tema-noche" id="aplicaciones">
       <div class="wrap">
         <h2 class="reveal">One instrument, <em>many missions.</em></h2>
@@ -224,7 +258,7 @@
     <section class="sigue tema-noche" aria-label="Keep exploring">
       <div class="wrap">
         <a class="sigue-siguiente" href="../orbita/">Continue with <em translate="no">Órbita</em>&nbsp;<span aria-hidden="true">→</span></a>
-        <p class="sigue-demas"><span>Also</span><a href="../unblind/" translate="no">UNBLIND</a><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albalabs/" translate="no">Alba Labs</a></p>
+        <p class="sigue-demas"><span>Also</span><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../albalabs/" translate="no">Alba Labs</a></p>
         <a class="sigue-volver" href="../#alba-space">Back to Alba Vision</a>
       </div>
     </section>
@@ -250,7 +284,7 @@
       <nav class="footer-links" aria-label="Other Alba sites">
         <a href="../">Home</a>
         <a href="../unblind/">UNBLIND</a>
-        <a href="https://ops.albavision.tech/en" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="../visionops/">Vision Ops</a>
         <a href="../albaspace/" aria-current="page">Alba Space</a>
         <a href="../albalabs/">Alba Labs</a>
       </nav>
