@@ -38,7 +38,14 @@ html:has(body.pagina-dia) { color-scheme: light; scrollbar-color: rgba(11,31,59,
 .sub-cielo .space-hud { top: 22%; }
 
 /* Secciones */
-.sub-seccion { position: relative; padding: var(--s10) 0; }
+/* El aire entre secciones: el mismo ritmo de UNBLIND en todas las páginas (antes 128 px por lado
+   en computadora y 96 en celular, con huecos de casi una pantalla) */
+.sub-seccion { position: relative; padding: var(--s8) 0; }
+/* Junto a una sección fija (que ya deja su propio aire al centrar su escena), casi nada */
+.sub-seccion:has(+ :is(.vo-reporte, .vo-crece, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos)) { padding-bottom: var(--s5); }
+:is(.vo-reporte, .vo-crece, .vo-operacion, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos) + .sub-seccion { padding-top: var(--s5); }
+/* El cierre de cada página: el contacto ya no ocupa casi una pantalla con el texto al centro */
+.sigue + .contact { min-height: 0; padding: var(--s9) 0; }
 .sub-seccion h2 { max-width: 22ch; }
 .sub-intro { margin: var(--s5) 0 0; max-width: 46ch; font-size: clamp(16px,1.35vw,19px); color: var(--dim); }
 .rasgos { list-style: none; padding: 0; margin: var(--s8) 0 0; display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s7) var(--s6); }
@@ -126,11 +133,11 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 /* Celular */
 @media (max-width: 760px) {
   .sub-hero { min-height: auto; padding: calc(var(--nav-h) + var(--s7)) 0 var(--s8); }
-  .sub-hero-grid, .dos, .producto { grid-template-columns: 1fr; gap: var(--s7); }
+  .sub-hero-grid, .dos, .producto { grid-template-columns: 1fr; gap: var(--s5); }
   .sub-title { font-size: clamp(38px,11vw,52px); }
   .sub-cielo { min-height: 100svh; align-items: flex-end; }
   .sub-cielo .space-veil { background: linear-gradient(0deg, rgba(3,8,26,.95) 0%, rgba(3,8,26,.7) 55%, rgba(3,8,26,.2) 100%); }
-  .sub-seccion { padding: var(--s9) 0; }
+  .sub-seccion { padding: var(--s8) 0; }
   .rasgos, .rasgos.cuatro { grid-template-columns: 1fr; gap: var(--s6); margin-top: var(--s7); }
   .rasgos h3 { font-size: 19px; }
   .rasgos p { font-size: 14.5px; }
@@ -462,7 +469,7 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .nav-panel-otros a { display: inline-flex; align-items: center; min-height: 44px; color: var(--dim); }
 
 /* «Sigue explorando», antes del contacto: el siguiente proyecto como título, los demás y volver */
-.sigue { padding: var(--s9) 0 var(--s8); }
+.sigue { padding: var(--s8) 0 var(--s7); }
 .sigue-siguiente { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 .28em; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -.03em; color: var(--paper); }
 .sigue-siguiente em { color: var(--soft); }
 .sigue-siguiente span { color: var(--soft); transition: transform .4s var(--ease); }
@@ -483,7 +490,8 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .nav-ruta-sep { margin: 0; font-size: 16px; }
   .nav:has(.nav-padre) .nav-brand-hija img { height: 30px; }
   .nav-brand-texto { font-size: 16px; }
-  .sigue { padding: var(--s8) 0 var(--s7); }
+  .sigue { padding: var(--s7) 0 var(--s6); }
+  .sigue + .contact { padding: var(--s8) 0; }
   .sigue-siguiente { font-size: clamp(30px, 9vw, 40px); }
   .sigue-demas { font-size: 15px; }
 }

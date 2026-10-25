@@ -44,7 +44,7 @@
 
 /* Sin 3D, sin JavaScript o con «menos movimiento»: corrida, con el render del despiece */
 .st-dentro.corrida, html:not(.js) .st-dentro { height: auto; }
-.corrida .st-pin, html:not(.js) .st-pin { position: static; height: auto; padding: var(--s9) 0; }
+.corrida .st-pin, html:not(.js) .st-pin { position: static; height: auto; padding: var(--s8) 0; }
 .corrida .st-pasos, html:not(.js) .st-pasos { gap: var(--s5); }
 .corrida .st-pasos li, html:not(.js) .st-pasos li { grid-area: auto; opacity: 1; transform: none; }
 .corrida .st-pasos b, html:not(.js) .st-pasos b { font-size: 22px; }
@@ -112,7 +112,7 @@
 .st-galeria.corrida, html:not(.js) .st-galeria { height: auto; }
 .corrida .st-galeria-pin, html:not(.js) .st-galeria-pin { position: static; height: auto; overflow: visible; }
 .corrida .st-galeria-pista, html:not(.js) .st-galeria-pista { display: block; transform: none !important; }
-.corrida .st-panel, html:not(.js) .st-panel { height: auto; display: block; padding: var(--s10) 0 0; }
+.corrida .st-panel, html:not(.js) .st-panel { height: auto; display: block; padding: var(--s8) 0 0; }
 .corrida .st-panel :is(.mision-texto, .st-intro-texto, .sim, .st-intro-instrumento), html:not(.js) .st-panel :is(.mision-texto, .st-intro-texto, .sim, .st-intro-instrumento) { transform: none; opacity: 1; }
 .corrida .st-panel .sim canvas, html:not(.js) .st-panel .sim canvas { width: 100%; }
 .corrida .st-galeria-indice, html:not(.js) .st-galeria-indice { display: none; }
@@ -121,7 +121,7 @@
 /* ═══ El baffle: fijo mientras se baja y se despliega con el scroll (space.js) ═══ */
 .st-baffle { position: relative; }
 .st-baffle.guiada { height: 260svh; }
-.st-baffle-pin { padding: var(--s10) 0; }
+.st-baffle-pin { padding: var(--s8) 0; }
 .st-baffle.guiada .st-baffle-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding: var(--nav-h) 0 0; overflow: hidden; }
 .st-baffle-pin > .wrap { width: 100%; }
 .baffle-volumen { display: none; margin: var(--s4) 0 0; font-size: clamp(40px, 4.4vw, 64px); font-weight: 300; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: var(--paper); text-align: center; }
