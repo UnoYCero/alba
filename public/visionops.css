@@ -244,6 +244,26 @@
   .vo-piloto { margin-top: var(--s8); gap: var(--s7); }
 }
 
+/* Teléfonos: la lista completa no cabe junto a la escena; sólo se ve el paso activo, con su
+   número. Los demás quedan fuera de la vista pero contados, para que el activo conserve el suyo */
+@media (max-width: 760px) {
+  .js :is(.vo-crece, .vo-reporte):not(.corrida) .vo-camino li:not(.activa) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .js :is(.vo-crece, .vo-reporte):not(.corrida) .vo-camino { margin-top: var(--s3); }
+}
+/* Teléfonos bajos (un iPhone o el S26 con las barras del navegador): la escena se compacta */
+@media (max-width: 760px) and (max-height: 880px) {
+  :is(.vo-crece, .vo-reporte) .vo-texto h2 { font-size: 24px; }
+  .vo-escena-reporte { height: 44svh; }
+  .vo-correo { padding: 18px 18px 16px; }
+  .vo-correo-frase { font-size: 14.5px; line-height: 1.38; }
+  .vo-cuentas dl { gap: var(--s2); }
+  .vo-cuentas dd { font-size: 18px; }
+  .vo-cuentas dd small { font-size: 11px; }
+  .vo-cuentas-resta { margin-top: var(--s3); font-size: 14px; }
+  .vo-cuentas-nota { font-size: 11px; }
+  .vo-barras { height: 12svh; }
+}
+
 /* Corrida (menos movimiento, sin JavaScript o pantallas muy bajas): las cuatro partes del
    reporte una debajo de otra, completas */
 .vo-reporte.corrida, html:not(.js) .vo-reporte { height: auto; }
