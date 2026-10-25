@@ -221,8 +221,6 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .escena-baffle.desplegado .estrella-baffle { opacity: 1; transform: none; }
 .estado-baffle { margin: 0; font-size: 14px; color: var(--dim); }
 
-.galeria-una figure { position: relative; max-width: 620px; margin: 0 auto; }
-.galeria-una img { display: block; width: 100%; height: auto; border-radius: 16px; }
 
 .space-contacto .space-tierra { position: absolute; left: 50%; bottom: -6%; width: min(1200px, 130%); height: auto; transform: translateX(-50%); opacity: .5; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 45%, transparent 75%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 45%, transparent 75%); pointer-events: none; }
 .space-contacto .contact-inner { position: relative; z-index: 2; }

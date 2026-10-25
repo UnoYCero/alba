@@ -98,7 +98,8 @@ def traducir(origen, destino, es_pub, en_pub):
     html = html.replace("</a> y <a", "</a> and <a")
 
     carpeta_es = posixpath.dirname(origen)
-    html = re.sub(r'(\s(?:src|href)=")([^"]+)(")',
+    # src, href y srcset (la versión vertical de las imágenes de concepto, en <source>)
+    html = re.sub(r'(\s(?:src|href|srcset)=")([^"]+)(")',
                   lambda m: m.group(1) + (raiz(m.group(2), carpeta_es) if not re.match(r"^(https?:|#|mailto:|tel:|data:|/)", m.group(2)) and es_activo(m.group(2)) else m.group(2)) + m.group(3), html)
     # Páginas legales de Órbita: sólo existen en español
     html = html.replace('href="privacy.html"', 'href="/orbita/privacy.html" hreflang="es"').replace('href="data-deletion.html"', 'href="/orbita/data-deletion.html" hreflang="es"')
