@@ -76,7 +76,8 @@ export function montarModular({ contenedor, lienzo, url, reducir = false }) {
   }
   const pedir = () => { if (!cuadro && visible) cuadro = requestAnimationFrame(bucle); };
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) pedir(); }, { rootMargin: "100px" }).observe(contenedor);
-  addEventListener("resize", () => { ajustar(); pintar(); });
+  // Se mide cada vez que cambia el contenedor, también al pasar de oculto a visible
+  new ResizeObserver(() => { ajustar(); pintar(); }).observe(contenedor);
 
   lienzo.style.touchAction = "pan-y";
   lienzo.addEventListener("pointerdown", (e) => { arrastre = { x: e.clientX, giro }; lienzo.setPointerCapture(e.pointerId); });

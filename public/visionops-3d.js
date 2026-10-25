@@ -264,7 +264,8 @@ export function montarOperacion({ escena: contenedor, lienzo, alAvance, reducir 
   }
   const pedir = () => { if (!cuadro && visible) cuadro = requestAnimationFrame(bucle); };
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) pedir(); }, { rootMargin: "100px" }).observe(contenedor);
-  addEventListener("resize", () => { ajustar(); pintar(); });
+  // Se mide cada vez que cambia el contenedor, también al pasar de oculto a visible
+  new ResizeObserver(() => { ajustar(); pintar(); }).observe(contenedor);
   ajustar();
 
   let pedida = "restaurante";

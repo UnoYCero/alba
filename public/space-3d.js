@@ -146,7 +146,9 @@ export function montarStarTracker({ contenedor, lienzo, base, modo, pasos = [], 
   }
   const pedir = () => { if (!cuadro && visible) cuadro = requestAnimationFrame(bucle); };
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) pedir(); }, { rootMargin: "100px" }).observe(contenedor);
-  addEventListener("resize", () => { ajustar(); pintar(); });
+  // Se mide cada vez que cambia el contenedor, también cuando pasa de oculto a visible: el
+  // baffle arranca con display:none y, medido entonces, se quedaba en un lienzo de 300 × 150
+  new ResizeObserver(() => { ajustar(); pintar(); }).observe(contenedor);
 
   // Girar arrastrando de lado; en celular la página sigue bajando con el dedo
   lienzo.style.touchAction = "pan-y";
