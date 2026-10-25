@@ -510,3 +510,25 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .concepto-uso .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: center; }
   .concepto-uso .concepto-foto { margin: 0; width: 100%; max-width: calc(70svh * 1.5); justify-self: end; }
 }
+
+/* ═══ Celular: ni huecos entre secciones ni media pantalla vacía en las escenas fijas ═══
+   Un solo estándar para todas las páginas: 40 px por lado entre secciones. En las escenas que se
+   quedan fijas al bajar, la imagen o el 3D se estira hasta llenar la pantalla y el texto queda
+   abajo (antes la escena medía media pantalla y el resto quedaba vacío); donde la imagen tiene
+   proporción fija, el contenido va centrado. */
+@media (max-width: 760px) {
+  .sub-seccion, .pagina-unblind .sub-seccion, .pagina-unblind .cita, .pagina-space .sub-seccion { padding: 40px 0; }
+  .sub-seccion:has(+ :is(.vo-reporte, .vo-crece, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos)) { padding-bottom: var(--s4); }
+  :is(.vo-reporte, .vo-crece, .vo-operacion, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos) + .sub-seccion { padding-top: var(--s4); }
+  .sigue { padding: var(--s6) 0 var(--s5); }
+  .sigue + .contact { padding: var(--s7) 0; }
+
+  .js :is(.vo-operacion, .vo-crece, .vo-reporte):not(.corrida) .vo-pin { align-items: stretch; padding-bottom: var(--s5); }
+  .js :is(.vo-operacion, .vo-crece, .vo-reporte):not(.corrida) .vo-grid { height: 100%; grid-template-rows: minmax(0, 1fr) auto; align-items: stretch; }
+  .js :is(.vo-operacion, .vo-crece, .vo-reporte):not(.corrida) .vo-escena { height: auto; min-height: 0; }
+  .js .st-dentro:not(.corrida) .st-pin { align-items: stretch; padding-bottom: var(--s5); }
+  .js .st-dentro:not(.corrida) .st-grid { height: 100%; grid-template-rows: minmax(0, 1fr) auto; align-items: stretch; }
+  .js .st-dentro:not(.corrida) .st-escena { height: auto; min-height: 0; }
+  .js .st-galeria:not(.corrida) .st-panel { align-items: center; }
+  .lb-tiempos:not(.corrida) .lb-tiempos-pin { align-items: center; }
+}
