@@ -89,3 +89,25 @@
 }
 @media (prefers-reduced-motion: reduce) { .lb-camino i { animation: none; } }
 
+/* Lo que ven los lentes: la escena y, encima, los recuadros y etiquetas en coordenadas de la
+   escena (1536 × 1024); cada tiempo es una capa con su foto */
+.lb-pov { aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; }
+.lb-pov .lb-capa img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lb-pov-caja { position: absolute; left: calc(var(--x) / 1536 * 100%); top: calc(var(--y) / 1024 * 100%); width: calc(var(--w) / 1536 * 100%); height: calc(var(--h) / 1024 * 100%); border: 2.5px solid #2563eb; border-radius: 7px; opacity: 0; transform: scale(1.04); transition: opacity .5s var(--ease) .15s, transform .6s var(--ease) .15s; }
+.lb-pov-rotulo { position: absolute; left: calc(var(--x) / 1536 * 100%); top: calc(var(--y) / 1024 * 100%); padding: 5px 11px; border-radius: 10px; background: #0b1f3b; color: #f4f6fa; font-size: 13.5px; white-space: nowrap; opacity: 0; transform: translateY(6px); transition: opacity .5s var(--ease) .35s, transform .6s var(--ease) .35s; }
+.lb-pov-pendiente { background: #2563eb; transition-delay: .9s; }
+.lb-capa.activa :is(.lb-pov-caja, .lb-pov-rotulo) { opacity: 1; transform: none; }
+.lb-pov .marca-ilus { top: auto; bottom: 10px; right: 10px; }
+@media (max-width: 760px) { .lb-pov-rotulo { padding: 3px 7px; font-size: 10.5px; border-radius: 7px; } .lb-pov-caja { border-width: 2px; } }
+.corrida .lb-pov .lb-capa:not(.activa) { opacity: 0; }
+
+/* Lo que viene: el render de cada idea arriba; en celular se desliza de lado */
+.lb-viene { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lb-viene-foto { margin: 0 0 var(--s4); aspect-ratio: 3 / 2; }
+.lb-viene-foto img { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 760px) {
+  .lb-viene { display: flex; gap: var(--s5); overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scrollbar-width: none; }
+  .lb-viene::-webkit-scrollbar { display: none; }
+  .lb-viene > li { flex: 0 0 78%; scroll-snap-align: start; }
+}
+

@@ -103,25 +103,27 @@
             </ol>
           </div>
           <figure class="lb-escena">
-            <div class="lb-escena-foto">
-              <img src="/assets/labs/labs-acoplado.webp" alt="" width="1400" height="684" loading="lazy" decoding="async">
-              <span class="marca-ilus">Illustration</span>
+            <!-- Lo que ven los lentes (ronda 21 de marca): Ve y Actúa en la mesa de trabajo, Recuerda en
+                 la cocina. Los recuadros y las etiquetas se dibujan encima, en coordenadas de la escena
+                 (1536 × 1024). Escenas de ejemplo: el Dev Kit todavía no existe -->
+            <div class="lb-escena-foto lb-pov">
               <div class="lb-capa activa" data-capa="0">
-                <span class="lb-cono" aria-hidden="true"></span>
-                <span class="lb-chip" style="--x:.74;--y:.06">Text</span>
-                <span class="lb-chip" style="--x:.84;--y:.16">Object</span>
-                <span class="lb-chip" style="--x:.64;--y:.13">Scene</span>
+                <img src="/assets/labs/vista-trabajo.webp" alt="What the person wearing the glasses would see: a printer and its manual open at page 3 on a work desk" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:620;--y:18;--w:675;--h:460" aria-hidden="true"></span><span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:660;--y:48">Printer</span><span class="lb-pov-rotulo" style="--x:460;--y:894">Printer manual · p. 3</span>
               </div>
               <div class="lb-capa" data-capa="1">
-                <span class="lb-nota" style="--x:.03;--y:.04">Keys · kitchen table</span>
-                <span class="lb-nota" style="--x:.08;--y:.17">Printer manual · p. 3</span>
-                <span class="lb-nota" style="--x:.13;--y:.3">To do: buy a filter</span>
+                <img src="/assets/labs/vista-cocina.webp" alt="What the person wearing the glasses would see: a set of keys on the kitchen table" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:610;--y:471;--w:325;--h:182" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:460;--y:686">Keys · kitchen table</span>
               </div>
               <div class="lb-capa" data-capa="2">
-                <span class="lb-chip lb-accion" style="--x:.7;--y:.68">Ask your AI</span>
-                <span class="lb-chip lb-accion" style="--x:.74;--y:.79">Save a note</span>
-                <span class="lb-chip lb-accion" style="--x:.78;--y:.9">Send a message</span>
+                <img src="/assets/labs/vista-trabajo.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:460;--y:894">Printer manual · p. 3</span>
+                <span class="lb-pov-rotulo lb-pov-pendiente" style="--x:980;--y:330">To do: buy a filter</span>
               </div>
+              <span class="marca-ilus">Concept · Illustration</span>
             </div>
           </figure>
         </div>
@@ -194,26 +196,30 @@
     <section class="sub-seccion tema-dia" id="lo-que-viene">
       <div class="wrap">
         <h2 class="reveal">Coming next <em>in the lab.</em></h2>
-        <ul class="rasgos">
+        <ul class="rasgos lb-viene" aria-label="Coming next">
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="/assets/labs/viene-edge.webp" alt="Concept of the Alba Labs Edge camera module: a compact graphite camera with a blue top" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3>Edge camera module</h3>
             <p>Camera, compute and local inference for vision and robotics prototypes.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>Coming soon</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20know%20when%20the%20Edge%20camera%20module%20is%20ready." target="_blank" rel="noopener" aria-label="Let me know on WhatsApp when the Edge camera module is ready">Let me know</a></p>
           </li>
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="/assets/labs/viene-rover.webp" alt="Concept of the Alba Rover: a four-wheel educational robot with a camera, in graphite and blue" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3 translate="no">Alba Rover</h3>
             <p>An educational robot to learn perception, programming and autonomy.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>Coming soon</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20know%20when%20the%20Alba%20Rover%20is%20ready." target="_blank" rel="noopener" aria-label="Let me know on WhatsApp when the Alba Rover is ready">Let me know</a></p>
           </li>
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="/assets/labs/viene-core.webp" alt="Concept of the Vision Core: a compact box with a heat sink and ports for cameras and sensors" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3 translate="no">Vision Core</h3>
             <p>A compact brain to connect cameras, sensors and artificial intelligence models.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>In development</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27m%20interested%20in%20the%20Alba%20Labs%20Vision%20Core." target="_blank" rel="noopener" aria-label="Ask about the Vision Core on WhatsApp">Learn about the project</a></p>
           </li>
         </ul>
+        <p class="lb-config-nota reveal">Concept · Illustration. These are ideas in development: neither their form nor their functions are defined.</p>
       </div>
     </section>
 

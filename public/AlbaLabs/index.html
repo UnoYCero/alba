@@ -103,25 +103,27 @@
             </ol>
           </div>
           <figure class="lb-escena">
-            <div class="lb-escena-foto">
-              <img src="../assets/labs/labs-acoplado.webp" alt="" width="1400" height="684" loading="lazy" decoding="async">
-              <span class="marca-ilus">Ilustración</span>
+            <!-- Lo que ven los lentes (ronda 21 de marca): Ve y Actúa en la mesa de trabajo, Recuerda en
+                 la cocina. Los recuadros y las etiquetas se dibujan encima, en coordenadas de la escena
+                 (1536 × 1024). Escenas de ejemplo: el Dev Kit todavía no existe -->
+            <div class="lb-escena-foto lb-pov">
               <div class="lb-capa activa" data-capa="0">
-                <span class="lb-cono" aria-hidden="true"></span>
-                <span class="lb-chip" style="--x:.74;--y:.06">Texto</span>
-                <span class="lb-chip" style="--x:.84;--y:.16">Objeto</span>
-                <span class="lb-chip" style="--x:.64;--y:.13">Escena</span>
+                <img src="../assets/labs/vista-trabajo.webp" alt="Lo que vería quien lleva los lentes: una impresora y su manual abierto en la página 3 sobre una mesa de trabajo" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:620;--y:18;--w:675;--h:460" aria-hidden="true"></span><span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:660;--y:48">Impresora</span><span class="lb-pov-rotulo" style="--x:460;--y:894">Manual de la impresora · pág. 3</span>
               </div>
               <div class="lb-capa" data-capa="1">
-                <span class="lb-nota" style="--x:.03;--y:.04">Llaves · mesa de la cocina</span>
-                <span class="lb-nota" style="--x:.08;--y:.17">Manual de la impresora · pág. 3</span>
-                <span class="lb-nota" style="--x:.13;--y:.3">Pendiente: comprar filtro</span>
+                <img src="../assets/labs/vista-cocina.webp" alt="Lo que vería quien lleva los lentes: unas llaves sobre la mesa de la cocina" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:610;--y:471;--w:325;--h:182" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:460;--y:686">Llaves · mesa de la cocina</span>
               </div>
               <div class="lb-capa" data-capa="2">
-                <span class="lb-chip lb-accion" style="--x:.7;--y:.68">Pregúntale a tu IA</span>
-                <span class="lb-chip lb-accion" style="--x:.74;--y:.79">Guarda una nota</span>
-                <span class="lb-chip lb-accion" style="--x:.78;--y:.9">Avisa por mensaje</span>
+                <img src="../assets/labs/vista-trabajo.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:460;--y:894">Manual de la impresora · pág. 3</span>
+                <span class="lb-pov-rotulo lb-pov-pendiente" style="--x:980;--y:330">Pendiente: comprar filtro</span>
               </div>
+              <span class="marca-ilus">Concepto · Ilustración</span>
             </div>
           </figure>
         </div>
@@ -194,26 +196,30 @@
     <section class="sub-seccion tema-dia" id="lo-que-viene">
       <div class="wrap">
         <h2 class="reveal">Lo que viene <em>en el laboratorio.</em></h2>
-        <ul class="rasgos">
+        <ul class="rasgos lb-viene" aria-label="Lo que viene">
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="../assets/labs/viene-edge.webp" alt="Concepto del Módulo de cámara Edge de Alba Labs: una cámara compacta en grafito con tapa azul" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3>Módulo de cámara Edge</h3>
             <p>Cámara, cómputo e inferencia local para prototipos de visión y robótica.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>Próximamente</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20quiero%20que%20me%20avisen%20cuando%20est%C3%A9%20el%20m%C3%B3dulo%20de%20c%C3%A1mara%20Edge." target="_blank" rel="noopener" aria-label="Avísame por WhatsApp cuando esté el módulo de cámara Edge">Avísame</a></p>
           </li>
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="../assets/labs/viene-rover.webp" alt="Concepto del Alba Rover: un robot educativo de cuatro ruedas con cámara, en grafito y azul" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3 translate="no">Alba Rover</h3>
             <p>Un robot educativo para aprender percepción, programación y autonomía.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>Próximamente</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20quiero%20que%20me%20avisen%20cuando%20est%C3%A9%20el%20Alba%20Rover." target="_blank" rel="noopener" aria-label="Avísame por WhatsApp cuando esté el Alba Rover">Avísame</a></p>
           </li>
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="../assets/labs/viene-core.webp" alt="Concepto del Vision Core: una caja compacta con disipador y conectores para cámaras y sensores" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3 translate="no">Vision Core</h3>
             <p>Un cerebro compacto para conectar cámaras, sensores y modelos de inteligencia artificial.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>En desarrollo</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20el%20Vision%20Core%20de%20Alba%20Labs." target="_blank" rel="noopener" aria-label="Pregunta por el Vision Core por WhatsApp">Conoce el proyecto</a></p>
           </li>
         </ul>
+        <p class="lb-config-nota reveal">Concepto · Ilustración. Son ideas en desarrollo: ni su forma ni sus funciones están definidas.</p>
       </div>
     </section>
 

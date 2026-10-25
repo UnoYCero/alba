@@ -32,7 +32,7 @@ if (seccion) {
   botones.forEach((b, j) => b.addEventListener("click", () => {
     if (corrida()) { mostrar(j); return; }
     const recorrido = seccion.offsetHeight - innerHeight;
-    scrollTo({ top: seccion.offsetTop + recorrido * ((j + 0.5) / botones.length), behavior: "smooth" });
+    scrollTo({ top: seccion.getBoundingClientRect().top + scrollY + recorrido * ((j + 0.5) / botones.length), behavior: "smooth" });
   }));
 
   let pendiente = false;
