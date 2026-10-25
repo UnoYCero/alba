@@ -29,7 +29,7 @@ export const ESCENAS_NOMBRES = Object.keys(ESCENAS);
 const FRENTE = { montacargas: "-z", carrito: "+x", pieza: "+x" };
 
 // Una polilínea: posición y dirección según la distancia recorrida
-function linea(puntos) {
+export function linea(puntos) {
   const pts = puntos.map(([x, y, z]) => new THREE.Vector3(x, y, z));
   const largos = [0];
   for (let i = 1; i < pts.length; i++) largos.push(largos[i - 1] + pts[i].distanceTo(pts[i - 1]));
@@ -43,7 +43,7 @@ function linea(puntos) {
   } };
 }
 // Ida y vuelta con pausa en cada extremo y frenando al llegar: la distancia en el tiempo t
-function idaYVuelta(total, velocidad, pausa, t) {
+export function idaYVuelta(total, velocidad, pausa, t) {
   const viaje = total / velocidad, ciclo = 2 * (viaje + pausa);
   let s = ((t % ciclo) + ciclo) % ciclo;
   if (s < viaje) return { d: suave(s / viaje) * total, ida: true };

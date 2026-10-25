@@ -143,23 +143,54 @@
       </div>
     </section>
 
-    <!-- Cómo trabajamos -->
-    <section class="sub-seccion tema-dia" id="trabajamos">
-      <div class="wrap">
-        <h2 class="reveal">De la primera cámara <em>a toda la operación.</em></h2>
-        <ol class="vo-camino">
-          <li class="reveal"><b>Diagnóstico</b><span>Qué quieres saber y qué cámaras ya tienes.</span></li>
-          <li class="reveal"><b>Piloto</b><span>Una cámara, unas semanas y números reales de tu operación.</span></li>
-          <li class="reveal"><b>Integración</b><span>Un conector en tu red lee el video, sin abrir puertos ni cámaras nuevas.</span></li>
-          <li class="reveal"><b>Escalamiento</b><span>Más cámaras y más sucursales. El precio va por cámara.</span></li>
-        </ol>
+    <!-- Cómo trabajamos: el mismo restaurante, fijo mientras se baja, de la primera cámara a varias
+         sucursales (visionops-camino.js) -->
+    <section class="vo-crece tema-dia" id="trabajamos" data-camino>
+      <div class="vo-pin">
+        <div class="wrap vo-grid">
+          <div class="vo-texto">
+            <h2>De la primera cámara <em>a toda la operación.</em></h2>
+            <ol class="vo-camino">
+              <li data-paso="diagnostico" class="activa"><b>Diagnóstico</b><span>Qué quieres saber y qué cámaras ya tienes.</span></li>
+              <li data-paso="piloto"><b>Piloto</b><span>Una cámara, unas semanas y números reales de tu operación.</span></li>
+              <li data-paso="integracion"><b>Integración</b><span>Un conector en tu red lee el video, sin abrir puertos ni cámaras nuevas.</span></li>
+              <li data-paso="escalamiento"><b>Escalamiento</b><span>Más cámaras y más sucursales. El precio va por cámara.</span></li>
+            </ol>
+          </div>
+          <div class="vo-escena vo-escena-camino">
+            <img class="vo-respaldo" src="../assets/visionops/restaurante-aerea.webp" alt="" width="1400" height="933" loading="lazy" decoding="async">
+            <canvas class="vo-lienzo" aria-hidden="true"></canvas>
+            <div class="vo-rotulos" aria-hidden="true"></div>
+            <span class="marca-ilus">Ejemplo</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Privacidad -->
     <section class="sub-seccion tema-dia" id="privacidad">
-      <div class="wrap dos">
+      <div class="wrap">
         <h2 class="reveal">Contamos lo que pasa. <em>No reconocemos a nadie.</em></h2>
+      </div>
+      <div class="wrap vo-privacidad">
+        <!-- Una cortina que se arrastra: lo que ve la cámara contra lo que mide Alba -->
+        <figure class="vo-cortina reveal" data-cortina>
+          <div class="vo-cortina-mide">
+            <img src="../assets/visionops/concepto-cocina.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+            <svg viewBox="0 0 1800 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect x="440" y="340" width="380" height="540" rx="70"/><circle cx="630" cy="880" r="16"/>
+              <rect x="1125" y="430" width="370" height="360" rx="70"/><circle cx="1310" cy="790" r="16"/>
+            </svg>
+          </div>
+          <div class="vo-cortina-ve">
+            <img src="../assets/visionops/concepto-cocina.webp" alt="La cocina de un restaurante con dos cocineros trabajando; del otro lado de la cortina, la misma cocina como la mide Vision Ops, con cada persona convertida en una silueta anónima" width="1800" height="1200" loading="lazy" decoding="async">
+          </div>
+          <span class="vo-cortina-tirador" aria-hidden="true"></span>
+          <span class="vo-cortina-rotulo vo-cortina-rotulo-ve" aria-hidden="true">Lo que ve la cámara</span>
+          <span class="vo-cortina-rotulo vo-cortina-rotulo-mide" aria-hidden="true">Lo que mide Vision Ops</span>
+          <input class="vo-cortina-control" type="range" min="0" max="100" value="50" aria-label="Mueve la cortina entre lo que ve la cámara y lo que mide Vision Ops">
+          <span class="marca-ilus">Ilustración</span>
+        </figure>
         <ul class="vo-garantias">
           <li class="reveal"><b>Sin reconocimiento facial</b><span>Detecta siluetas y las sigue mientras están en cuadro. No sabe quién es nadie.</span></li>
           <li class="reveal"><b>Cifrado y se borra</b><span>El video viaja cifrado y el original se borra solo a los 30 días.</span></li>

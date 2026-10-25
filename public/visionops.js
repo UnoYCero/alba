@@ -125,3 +125,96 @@ const DATOS = {
   iniciar();
   addEventListener("scroll", () => visor?.avanzar(avance()), { passive: true });
 })();
+
+// De la primera cámara a toda la operación: el paso activo y los rótulos de la escena
+(function camino() {
+  const seccion = document.querySelector("[data-camino]");
+  if (!seccion) return;
+  const escena = seccion.querySelector(".vo-escena");
+  const lienzo = seccion.querySelector(".vo-lienzo");
+  const capa = seccion.querySelector(".vo-rotulos");
+  const pasos = [...seccion.querySelectorAll("[data-paso]")];
+  const soporta3D = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
+  if (reducir || !soporta3D) { seccion.classList.add("corrida"); return; }
+
+  // Un rótulo por paso, pegado a lo que señala en la escena (son datos de ejemplo)
+  const ROTULOS = {
+    diagnostico: ["camara", t("3 cámaras", "3 cameras"), t("las que ya tenías", "the ones you already had")],
+    piloto: ["fila", t("Fila", "Queue"), t("espera típica 0:16", "typical wait 0:16")],
+    integracion: ["conector", t("Conector", "Connector"), t("lee el video en tu red", "reads the video on your network")],
+    escalamiento: ["centro", t("6 sucursales · 18 cámaras", "6 locations · 18 cameras"), t("un solo reporte", "one report")],
+  };
+  const rotulos = Object.fromEntries(Object.entries(ROTULOS).map(([paso, [ancla, titulo, dato]]) => {
+    const el = document.createElement("span");
+    el.className = "vo-rotulo";
+    el.innerHTML = "<b></b><small></small>";
+    el.querySelector("b").textContent = titulo;
+    el.querySelector("small").textContent = dato;
+    capa.append(el);
+    return [paso, { el, ancla }];
+  }));
+
+  const avance = () => {
+    const r = seccion.getBoundingClientRect();
+    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+  };
+  let pasoActual = "";
+  const alAvance = ({ paso, anclas, fuerza }) => {
+    if (paso !== pasoActual) {
+      pasoActual = paso;
+      pasos.forEach((li) => li.classList.toggle("activa", li.dataset.paso === paso));
+    }
+    const ancho = escena.clientWidth, alto = escena.clientHeight;
+    for (const [clave, { el, ancla }] of Object.entries(rotulos)) {
+      const a = anclas[ancla];
+      const x = Math.min(ancho - el.offsetWidth - 4, Math.max(4, a.x - el.offsetWidth / 2));
+      const y = Math.min(alto - el.offsetHeight - 36, Math.max(4, a.y - el.offsetHeight - 14));
+      el.style.transform = `translate(${x}px, ${y}px)`;
+      el.style.opacity = Math.min(1, fuerza[clave] * 1.6);
+    }
+  };
+
+  let visor = null;
+  // Se monta cuando ya casi se ve: el restaurante ya lo bajó la escena de arriba
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    import("./visionops-camino.js")
+      .then((m) => {
+        visor = m.montarCamino({ escena, lienzo, alAvance, base: new URL("assets/visionops/", import.meta.url).href });
+        visor.avanzar(avance());
+        visor.listo.then(() => escena.classList.add("con-3d"));
+      })
+      .catch((err) => { console.warn("No se pudo montar el camino de Vision Ops:", err); seccion.classList.add("corrida"); });
+  }, { rootMargin: "600px" }).observe(seccion);
+  addEventListener("scroll", () => visor?.avanzar(avance()), { passive: true });
+})();
+
+// Privacidad: la cortina entre lo que ve la cámara y lo que mide Vision Ops. Se arrastra con el
+// dedo o el mouse, o con las flechas desde el control (oculto a la vista, no al teclado)
+(function cortina() {
+  const fig = document.querySelector("[data-cortina]");
+  if (!fig) return;
+  const control = fig.querySelector(".vo-cortina-control");
+  const poner = (v) => { v = Math.min(100, Math.max(0, v)); fig.style.setProperty("--corte", `${v}%`); control.value = String(Math.round(v)); };
+  const desde = (e) => { const r = fig.getBoundingClientRect(); poner(((e.clientX - r.left) / r.width) * 100); };
+  let tocada = false, arrastre = false;
+  fig.addEventListener("pointerdown", (e) => { tocada = arrastre = true; fig.setPointerCapture(e.pointerId); desde(e); });
+  fig.addEventListener("pointermove", (e) => { if (arrastre) desde(e); });
+  ["pointerup", "pointercancel"].forEach((ev) => fig.addEventListener(ev, () => { arrastre = false; }));
+  control.addEventListener("input", () => { tocada = true; poner(+control.value); });
+  // Al aparecer, la cortina se mueve sola una vez para que se note que se puede arrastrar
+  if (reducir) return;
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    const t0 = performance.now();
+    const paso = (t) => {
+      if (tocada) return;
+      const k = Math.min(1, (t - t0) / 1600);
+      poner(50 + 30 * Math.sin(k * Math.PI * 2) * (1 - k));
+      if (k < 1) requestAnimationFrame(paso);
+    };
+    requestAnimationFrame(paso);
+  }, { threshold: 0.6 }).observe(fig);
+})();
