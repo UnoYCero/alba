@@ -186,5 +186,7 @@ export function montarStarTracker({ contenedor, lienzo, base, modo, pasos = [], 
     listo,
     avanzar(p) { objetivo = limitar(p); pedir(); },
     desplegar(si) { metaDespliegue = si ? 1 : 0; pedir(); },
+    // Cuánto está desplegado (0 → 1), para seguir el scroll
+    fijar(k) { metaDespliegue = limitar(k); pedir(); },
   };
 }

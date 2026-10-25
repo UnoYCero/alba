@@ -94,79 +94,94 @@
       </div>
     </section>
 
-    <!-- Por qué tres en uno -->
-    <section class="sub-seccion tema-noche" id="misiones">
-      <div class="wrap dos">
-        <h2 class="reveal">Una sola cámara <em>hace tres trabajos.</em></h2>
-        <div>
-          <p class="sub-intro reveal">En una misión tradicional, orientarse, vigilar la basura espacial y acoplarse con otro vehículo piden cámaras y equipo distintos: más costo, más masa y más consumo. Nuestro instrumento corre los tres algoritmos en paralelo, en una computadora de vuelo con sistema operativo en tiempo real.</p>
-          <nav class="indice-misiones reveal" aria-label="Las tres misiones">
-            <a href="#orientacion">Orientarse con las estrellas</a>
-            <a href="#basura">Detectar basura espacial</a>
-            <a href="#acoplamiento">Acercarse y acoplarse</a>
-          </nav>
-        </div>
-      </div>
-    </section>
-
-    <!-- Misión 1: orientarse -->
-    <section class="sub-seccion tema-noche mision" id="orientacion">
-      <div class="wrap mision-grid">
-        <div class="mision-texto">
-          <h2 class="reveal">Cómo sabe <em>hacia dónde apunta.</em></h2>
-          <p class="sub-intro reveal">Resuelve solo el problema que en el espacio llaman «perdido en el espacio»: sin saber nada antes, fotografía el cielo, reconoce las estrellas y calcula su orientación. Toca una etapa o deja que corra.</p>
-          <ol class="etapas reveal">
-            <li><button type="button" data-etapa="0"><b>Toma la foto</b><span>El sensor expone un fotograma del cielo y filtra el ruido y los píxeles calientes.</span></button></li>
-            <li><button type="button" data-etapa="1"><b>Encuentra los centros</b><span>Localiza cada punto brillante y calcula su centro con precisión menor a un píxel.</span></button></li>
-            <li><button type="button" data-etapa="2"><b>Reconoce las estrellas</b><span>Compara los triángulos que forman las más brillantes con un catálogo que lleva a bordo.</span></button></li>
-            <li><button type="button" data-etapa="3"><b>Calcula su orientación</b><span>Con las estrellas identificadas, obtiene hacia dónde apunta el satélite, de una a cinco veces por segundo.</span></button></li>
-          </ol>
-        </div>
-        <figure class="sim reveal">
-          <canvas id="simOrientacion" role="img" aria-label="Simulación: un campo de estrellas donde el algoritmo marca los centros, une las más brillantes en triángulos, les pone nombre de catálogo y calcula la orientación"></canvas>
-          <span class="marca-ilus marca-ilus-abajo">Simulación</span>
-        </figure>
-      </div>
-    </section>
-
-    <!-- Misión 2: basura espacial -->
-    <section class="sub-seccion tema-noche mision" id="basura">
-      <div class="wrap mision-grid mision-invertida">
-        <div class="mision-texto">
-          <h2 class="reveal">Basura escondida <em>entre las estrellas.</em></h2>
-          <p class="sub-intro reveal">Entre dos fotos seguidas las estrellas no se mueven, pero la basura y los satélites sí. El instrumento resta una foto de la otra, limpia lo que sobra y se queda con lo que se mueve: su posición, su rumbo y su velocidad.</p>
-          <div class="vistas reveal" role="group" aria-label="Cambiar de vista">
-            <button type="button" data-vista="sensor" aria-pressed="true">Lo que ve el sensor</button>
-            <button type="button" data-vista="algoritmo" aria-pressed="false">Lo que ve el algoritmo</button>
+    <!-- Las tres misiones: una galería de pantalla completa que pasa de lado mientras se baja; cada
+         simulación avanza con el scroll (space.js). Con «menos movimiento» o sin JavaScript, corrida -->
+    <section class="st-galeria tema-noche" id="misiones" data-galeria>
+      <div class="st-galeria-pin">
+        <div class="st-galeria-pista">
+        <!-- Por qué tres en uno -->
+        <article class="st-panel st-panel-intro" data-panel>
+          <div class="wrap st-intro-grid">
+            <div class="st-intro-texto">
+              <h2 class="reveal">Una sola cámara <em>hace tres trabajos.</em></h2>
+              <div>
+                <p class="sub-intro reveal">En una misión tradicional, orientarse, vigilar la basura espacial y acoplarse con otro vehículo piden cámaras y equipo distintos: más costo, más masa y más consumo. Nuestro instrumento corre los tres algoritmos en paralelo, en una computadora de vuelo con sistema operativo en tiempo real.</p>
+                <nav class="indice-misiones reveal" aria-label="Las tres misiones">
+                  <a href="#orientacion">Orientarse con las estrellas</a>
+                  <a href="#basura">Detectar basura espacial</a>
+                  <a href="#acoplamiento">Acercarse y acoplarse</a>
+                </nav>
+              </div>
+            </div>
+            <figure class="st-intro-instrumento" aria-hidden="true">
+              <img src="../assets/space/star-tracker-armado.webp" alt="" width="1047" height="1100" loading="lazy" decoding="async">
+            </figure>
           </div>
-          <pre class="bitacora reveal" id="bitacoraBasura" aria-live="off"></pre>
+        </article>
+        <!-- Misión 1: orientarse -->
+        <article class="st-panel mision" id="orientacion" data-panel>
+          <div class="wrap mision-grid">
+            <div class="mision-texto">
+              <h2 class="reveal">Cómo sabe <em>hacia dónde apunta.</em></h2>
+              <p class="sub-intro reveal">Resuelve solo el problema que en el espacio llaman «perdido en el espacio»: sin saber nada antes, fotografía el cielo, reconoce las estrellas y calcula su orientación.</p>
+              <ol class="etapas reveal">
+                <li><button type="button" data-etapa="0"><b>Toma la foto</b><span>El sensor expone un fotograma del cielo y filtra el ruido y los píxeles calientes.</span></button></li>
+                <li><button type="button" data-etapa="1"><b>Encuentra los centros</b><span>Localiza cada punto brillante y calcula su centro con precisión menor a un píxel.</span></button></li>
+                <li><button type="button" data-etapa="2"><b>Reconoce las estrellas</b><span>Compara los triángulos que forman las más brillantes con un catálogo que lleva a bordo.</span></button></li>
+                <li><button type="button" data-etapa="3"><b>Calcula su orientación</b><span>Con las estrellas identificadas, obtiene hacia dónde apunta el satélite, de una a cinco veces por segundo.</span></button></li>
+              </ol>
+            </div>
+            <figure class="sim reveal">
+              <canvas id="simOrientacion" role="img" aria-label="Simulación: un campo de estrellas donde el algoritmo marca los centros, une las más brillantes en triángulos, les pone nombre de catálogo y calcula la orientación"></canvas>
+              <span class="marca-ilus marca-ilus-abajo">Simulación</span>
+            </figure>
+          </div>
+        </article>
+        <!-- Misión 2: basura espacial -->
+        <article class="st-panel mision" id="basura" data-panel>
+          <div class="wrap mision-grid mision-invertida">
+            <div class="mision-texto">
+              <h2 class="reveal">Basura escondida <em>entre las estrellas.</em></h2>
+              <p class="sub-intro reveal">Entre dos fotos seguidas las estrellas no se mueven, pero la basura y los satélites sí. El instrumento resta una foto de la otra, limpia lo que sobra y se queda con lo que se mueve: su posición, su rumbo y su velocidad.</p>
+              <div class="vistas reveal" role="group" aria-label="Cambiar de vista">
+                <button type="button" data-vista="sensor" aria-pressed="true">Lo que ve el sensor</button>
+                <button type="button" data-vista="algoritmo" aria-pressed="false">Lo que ve el algoritmo</button>
+              </div>
+              <pre class="bitacora reveal" id="bitacoraBasura" aria-live="off"></pre>
+            </div>
+            <figure class="sim reveal">
+              <canvas id="simBasura" role="img" aria-label="Simulación: un campo de estrellas con dos objetos que lo cruzan; en la vista del algoritmo las estrellas desaparecen y sólo quedan los objetos en movimiento"></canvas>
+              <span class="marca-ilus marca-ilus-abajo">Simulación</span>
+            </figure>
+          </div>
+        </article>
+        <!-- Misión 3: acoplarse -->
+        <article class="st-panel mision" id="acoplamiento" data-panel>
+          <div class="wrap mision-grid">
+            <div class="mision-texto">
+              <h2 class="reveal">Un zoom hecho <em>de estructura.</em></h2>
+              <p class="sub-intro reveal">El baffle no sólo protege de la luz. Al extenderlo se mueve la óptica y cambia la distancia focal: el mismo sensor pasa de vigilar más de 20 grados de cielo a ver de cerca el vehículo con el que se va a acoplar.</p>
+              <label class="control-baffle reveal" for="controlBaffle">Extiende el baffle
+                <input type="range" id="controlBaffle" min="0" max="100" value="0">
+              </label>
+              <dl class="lecturas reveal">
+                <div><dt>Campo de visión</dt><dd id="lecturaCampo">22.0°</dd></div>
+                <div><dt>Distancia focal</dt><dd id="lecturaFocal">16 mm</dd></div>
+                <div><dt>Modo</dt><dd id="lecturaModo">Orientación</dd></div>
+              </dl>
+            </div>
+            <figure class="sim reveal">
+              <canvas id="simAcoplamiento" role="img" aria-label="Simulación: a la izquierda el instrumento de lado con su cono de visión; a la derecha lo que ve el sensor, que se acerca al vehículo objetivo al extender el baffle"></canvas>
+              <span class="marca-ilus marca-ilus-abajo">Simulación</span>
+            </figure>
+          </div>
+        </article>
         </div>
-        <figure class="sim reveal">
-          <canvas id="simBasura" role="img" aria-label="Simulación: un campo de estrellas con dos objetos que lo cruzan; en la vista del algoritmo las estrellas desaparecen y sólo quedan los objetos en movimiento"></canvas>
-          <span class="marca-ilus marca-ilus-abajo">Simulación</span>
-        </figure>
-      </div>
-    </section>
-
-    <!-- Misión 3: acoplarse -->
-    <section class="sub-seccion tema-noche mision" id="acoplamiento">
-      <div class="wrap mision-grid">
-        <div class="mision-texto">
-          <h2 class="reveal">Un zoom hecho <em>de estructura.</em></h2>
-          <p class="sub-intro reveal">El baffle no sólo protege de la luz. Al extenderlo se mueve la óptica y cambia la distancia focal: el mismo sensor pasa de vigilar más de 20 grados de cielo a ver de cerca el vehículo con el que se va a acoplar.</p>
-          <label class="control-baffle reveal" for="controlBaffle">Extiende el baffle
-            <input type="range" id="controlBaffle" min="0" max="100" value="0">
-          </label>
-          <dl class="lecturas reveal">
-            <div><dt>Campo de visión</dt><dd id="lecturaCampo">22.0°</dd></div>
-            <div><dt>Distancia focal</dt><dd id="lecturaFocal">16 mm</dd></div>
-            <div><dt>Modo</dt><dd id="lecturaModo">Orientación</dd></div>
-          </dl>
-        </div>
-        <figure class="sim reveal">
-          <canvas id="simAcoplamiento" role="img" aria-label="Simulación: a la izquierda el instrumento de lado con su cono de visión; a la derecha lo que ve el sensor, que se acerca al vehículo objetivo al extender el baffle"></canvas>
-          <span class="marca-ilus marca-ilus-abajo">Simulación</span>
-        </figure>
+        <nav class="st-galeria-indice" aria-label="Las tres misiones">
+          <a href="#orientacion" data-ir="1">Orientarse</a>
+          <a href="#basura" data-ir="2">Basura espacial</a>
+          <a href="#acoplamiento" data-ir="3">Acoplarse</a>
+        </nav>
       </div>
     </section>
 
@@ -196,8 +211,9 @@
       </div>
     </section>
 
-    <!-- El baffle -->
-    <section class="sub-seccion tema-noche" id="baffle">
+    <!-- El baffle: fijo mientras se baja, se despliega con el scroll (space.js); corrido, con su botón -->
+    <section class="st-baffle tema-noche" id="baffle" data-baffle-seccion>
+      <div class="st-baffle-pin">
       <div class="wrap mision-grid mision-invertida">
         <div class="mision-texto">
           <h2 class="reveal">Un baffle que se despliega <em>solo en órbita.</em></h2>
@@ -221,9 +237,11 @@
             <g class="seg seg-3"><rect x="121" y="184" width="58" height="40" rx="4" fill="url(#metal)" stroke="#8fb2ff"/><ellipse cx="150" cy="186" rx="22" ry="5" fill="#2563eb" fill-opacity=".55"/></g>
             <path class="estrella-baffle" d="M150 20 l4 12 12 4 -12 4 -4 12 -4 -12 -12 -4 12 -4z" fill="#f4f6fa"/>
           </svg>
+          <p class="baffle-volumen" aria-hidden="true"><span data-volumen>0.13</span> dm³</p>
           <p class="estado-baffle" id="estadoBaffle" aria-live="polite">Plegado para el lanzamiento · 0.13 dm³</p>
           <button type="button" class="btn btn-ghost" id="botonBaffle" aria-pressed="false">Desplegar el baffle</button>
         </div>
+      </div>
       </div>
     </section>
 
@@ -242,15 +260,22 @@
       </div>
     </section>
 
+    <!-- Para quién: la Tierra con cuatro órbitas; cada aplicación enciende la suya (space.js) -->
     <section class="sub-seccion tema-noche" id="aplicaciones">
-      <div class="wrap">
-        <h2 class="reveal">Un instrumento, <em>muchas misiones.</em></h2>
-        <ul class="rasgos cuatro">
-          <li class="reveal"><h3>Constelaciones de satélites</h3><p>Apuntar con precisión y vigilar lo que pasa alrededor, en cada satélite de la flota y sin equipo extra.</p></li>
-          <li class="reveal"><h3>Seguridad en el espacio</h3><p>Vigilar la basura espacial y ayudar a evitar choques desde la órbita.</p></li>
-          <li class="reveal"><h3>Ciencia y observación de la Tierra</h3><p>Un apuntamiento estable para instrumentos exigentes, con poca masa y poco volumen.</p></li>
-          <li class="reveal"><h3>Servicio e inspección</h3><p>Imágenes de cerca para acercarse, inspeccionar y acoplarse con otro vehículo.</p></li>
-        </ul>
+      <div class="wrap st-apps">
+        <div class="st-apps-texto">
+          <h2 class="reveal">Un instrumento, <em>muchas misiones.</em></h2>
+          <ul class="st-apps-lista reveal">
+            <li><button type="button" data-app="0" aria-pressed="true"><b>Constelaciones de satélites</b><span>Apuntar con precisión y vigilar lo que pasa alrededor, en cada satélite de la flota y sin equipo extra.</span></button></li>
+            <li><button type="button" data-app="1" aria-pressed="false"><b>Seguridad en el espacio</b><span>Vigilar la basura espacial y ayudar a evitar choques desde la órbita.</span></button></li>
+            <li><button type="button" data-app="2" aria-pressed="false"><b>Ciencia y observación de la Tierra</b><span>Un apuntamiento estable para instrumentos exigentes, con poca masa y poco volumen.</span></button></li>
+            <li><button type="button" data-app="3" aria-pressed="false"><b>Servicio e inspección</b><span>Imágenes de cerca para acercarse, inspeccionar y acoplarse con otro vehículo.</span></button></li>
+          </ul>
+        </div>
+        <figure class="st-orbitas reveal">
+          <canvas id="simOrbitas" role="img" aria-label="Ilustración: la Tierra con cuatro órbitas a su alrededor; se enciende la de la aplicación elegida"></canvas>
+          <span class="marca-ilus marca-ilus-abajo">Ilustración</span>
+        </figure>
       </div>
     </section>
 
