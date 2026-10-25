@@ -157,6 +157,33 @@
   .st-baffle.guiada .baffle-volumen { margin-top: 0; font-size: 30px; }
   .st-baffle.guiada .mision-texto h2 { font-size: 24px; }
 }
+/* Teléfonos bajos (un iPhone con las barras del navegador a la vista): la simulación más chica,
+   los botones en una sola fila y fuera lo que no cabe; el estado del baffle sigue para el lector */
+@media (max-width: 760px) and (max-height: 760px) {
+  .st-panel { padding-top: calc(var(--nav-h) + var(--s2)); padding-bottom: calc(var(--s6) + 12px); }
+  .js .st-galeria:not(.corrida) .sim canvas { width: min(100%, calc(31svh * 680 / 460)); }
+  .js .st-galeria:not(.corrida) .mision-grid { gap: var(--s3); }
+  .js .st-galeria:not(.corrida) .mision-texto h2, .js .st-galeria:not(.corrida) .st-intro-texto h2 { font-size: 23px; }
+  .js .st-galeria:not(.corrida) .sub-intro { margin-top: var(--s2); font-size: 13.5px; line-height: 1.45; }
+  .js .st-galeria:not(.corrida) .vistas { flex-wrap: nowrap; gap: 6px; margin-top: var(--s3); }
+  .js .st-galeria:not(.corrida) .vistas button { min-height: 40px; padding: 0 var(--s3); font-size: 12.5px; white-space: nowrap; }
+  .js .st-galeria:not(.corrida) .bitacora { display: none; }
+  .js .st-galeria:not(.corrida) .control-baffle { margin-top: var(--s3); font-size: 14px; }
+  .js .st-galeria:not(.corrida) .control-baffle input { min-height: 36px; }
+  .js .st-galeria:not(.corrida) .lecturas dd { font-size: 18px; }
+  .js .st-galeria:not(.corrida) .etapas button { padding: 5px 0 5px var(--s5); }
+  .js .st-galeria:not(.corrida) .etapas b { font-size: 16px; }
+  .js .st-galeria:not(.corrida) .etapas span { font-size: 13px; }
+  .js .st-galeria:not(.corrida) .indice-misiones a { min-height: 36px; font-size: 16px; }
+  .st-intro-instrumento img { width: min(36vw, 150px); }
+  .st-galeria-indice { bottom: var(--s2); }
+  .st-baffle.guiada .baffle-3d { height: 22svh; }
+  .st-baffle.guiada .estado-baffle { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .st-baffle.guiada .sub-intro { margin-top: var(--s2); font-size: 13.5px; line-height: 1.45; }
+  .st-baffle.guiada .rasgos-lista { margin-top: var(--s3); gap: var(--s2); }
+  .st-baffle.guiada .rasgos-lista h3 { font-size: 16px; }
+  .st-baffle.guiada .rasgos-lista p { font-size: 13px; }
+}
 
 /* ═══ Para quién: la Tierra con cuatro órbitas (space.js) ═══
    La lista a un lado: la aplicación activa se explica y enciende su órbita. */

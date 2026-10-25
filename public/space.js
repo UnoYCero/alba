@@ -266,7 +266,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const seccion = document.querySelector("[data-galeria]");
   if (!seccion) return;
   // Con «menos movimiento» o en pantallas muy bajas (un teléfono acostado), una misión debajo de otra
-  if (reducir || innerHeight < 560) { seccion.classList.add("corrida"); return; }
+  if (reducir || innerHeight < 600) { seccion.classList.add("corrida"); return; }
   const pista = seccion.querySelector(".st-galeria-pista");
   const paneles = [...seccion.querySelectorAll("[data-panel]")];
   const indice = [...seccion.querySelectorAll("[data-ir]")];
@@ -448,7 +448,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   // Con la sección fija, el baffle se despliega mientras se baja: el volumen cuenta y cada rasgo
   // se enciende a su tiempo. Con «menos movimiento» o en pantallas muy bajas, el botón
   const seccion = caja.closest("[data-baffle-seccion]");
-  const guiada = !!seccion && !reducir && innerHeight >= 560;
+  const guiada = !!seccion && !reducir && innerHeight >= 600;
   let visor3D = null, kd = 0;
   if (guiada) {
     seccion.classList.add("guiada");
