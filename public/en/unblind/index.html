@@ -19,10 +19,10 @@
   <meta property="og:url" content="https://albavision.tech/en/unblind/">
   <meta property="og:title" content="UNBLIND — We see with the heart">
   <meta property="og:description" content="AI glasses for people with visual disability that guide you with 3D audio. In development.">
-  <meta property="og:image" content="https://albavision.tech/assets/marcas/unblind/compartir-1200x630.png">
+  <meta property="og:image" content="https://albavision.tech/assets/marcas/unblind/compartir-lentes-1200x630.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="UNBLIND brand, by Alba Vision">
+  <meta property="og:image:alt" content="The UNBLIND signature, by Alba Vision, over an illustration of the UNBLIND glasses">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/landing.css">
@@ -63,7 +63,7 @@
       <a href="#historia">Story</a>
       <a href="#contacto">Message us</a>
       <p class="nav-panel-titulo">Other projects</p>
-      <div class="nav-panel-otros"><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></div>
+      <div class="nav-panel-otros"><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></div>
     </div>
   </header>
 
@@ -72,7 +72,6 @@
     <section class="ub-portada tema-alba">
       <figure class="ub-portada-foto">
         <img src="/assets/unblind-en-la-calle.webp" alt="Max and Alan, co-founders of Alba, test UNBLIND on the street with Omar Ledezma, UNBLIND advisor and a person with visual disability, and his guide dog" width="640" height="800" fetchpriority="high">
-        <figcaption>Max and Alan, co-founders of Alba, testing UNBLIND on the street with Omar Ledezma, UNBLIND advisor and a person with visual disability</figcaption>
       </figure>
       <div class="ub-portada-texto">
         <h1 class="sub-title reveal"><span translate="no">UNBLIND.</span> We see <em>with the heart.</em></h1>
@@ -103,6 +102,7 @@
         </div>
         <figure class="ub-demo reveal" data-cuarto>
           <div class="ub-demo-vista" aria-label="Turn your head with the arrow keys">
+            <span class="marca-ilus" id="notaAudio">Illustration</span>
             <div class="ub-demo-mundo">
               <img src="/assets/unblind/audio-cuarto.webp" alt="" width="1396" height="616" loading="lazy" decoding="async">
               <span class="ub-fuente" data-fuente="pared" style="--x:.11;--y:.52" aria-hidden="true"><i></i>Wall</span>
@@ -116,7 +116,6 @@
             <span class="ub-demo-pista" hidden>Drag the image to turn your head</span>
           </div>
           <audio id="audioDemo" preload="none" src="/assets/unblind/audio-3d-demo.mp3"></audio>
-          <figcaption id="notaAudio">Illustration with sample sounds · best with headphones</figcaption>
         </figure>
       </div>
     </section>
@@ -136,9 +135,10 @@
           </ul>
           <p class="nota reveal">It also reads text aloud and recognizes products and codes. While it is in development, it does not replace the white cane or the guide dog.</p>
         </div>
-        <figure class="ub-escena reveal" aria-describedby="notaEscena">
+        <figure class="ub-escena reveal">
           <div class="ub-escena-foto">
-            <img src="/assets/unblind-en-la-calle.webp" alt="" width="640" height="800" loading="lazy" decoding="async">
+            <img src="/assets/unblind-en-la-calle.webp" alt="Real photo of a street with three people and a guide dog; on top, illustrated, what UNBLIND recognizes" width="640" height="800" loading="lazy" decoding="async">
+            <span class="marca-ilus">Illustration</span>
             <div class="capa" data-capa="0">
               <span class="caja" style="--x:.01;--y:.18;--w:.36;--h:.8"></span>
               <span class="caja" style="--x:.34;--y:.15;--w:.36;--h:.82"></span>
@@ -167,7 +167,6 @@
               <span class="etiqueta" style="--x:.62;--y:.84">Golden coat</span>
             </div>
           </div>
-          <figcaption id="notaEscena">Illustration of how UNBLIND describes a scene · real photo</figcaption>
         </figure>
       </div>
     </section>
@@ -229,6 +228,20 @@
     </section>
 
     <!-- Del prototipo a la calle -->
+    <!-- Hacia dónde vamos: cómo se verían el día que existan (concepto) -->
+    <section class="sub-seccion tema-alba concepto-uso ub-concepto" aria-labelledby="titulo-concepto">
+      <div class="wrap">
+        <h2 class="reveal" id="titulo-concepto">Where we are heading: <em>glasses for every day.</em></h2>
+        <figure class="concepto-foto reveal">
+          <picture>
+            <source media="(max-width: 760px)" srcset="/assets/unblind/concepto-en-uso-vertical.webp" width="720" height="900">
+            <img src="/assets/unblind/concepto-en-uso.webp" alt="A man walks down a city sidewalk with his white cane, wearing the UNBLIND glasses" width="1800" height="1200" loading="lazy" decoding="async">
+          </picture>
+          <span class="marca-ilus">Concept · Illustration</span>
+        </figure>
+      </div>
+    </section>
+
     <section class="sub-seccion tema-alba" id="historia">
       <div class="wrap">
         <h2 class="reveal">From the first prototype <em>to the street.</em></h2>
@@ -277,8 +290,8 @@
     <!-- Sigue explorando: el siguiente proyecto, los demás y volver a la portada -->
     <section class="sigue tema-alba" aria-label="Keep exploring">
       <div class="wrap">
-        <a class="sigue-siguiente" href="../albaspace/">Continue with <em translate="no">Alba Space</em>&nbsp;<span aria-hidden="true">→</span></a>
-        <p class="sigue-demas"><span>Also</span><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></p>
+        <a class="sigue-siguiente" href="../visionops/">Continue with <em translate="no">Vision Ops</em>&nbsp;<span aria-hidden="true">→</span></a>
+        <p class="sigue-demas"><span>Also</span><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../albalabs/" translate="no">Alba Labs</a></p>
         <a class="sigue-volver" href="../#proyecto-unblind">Back to Alba Vision</a>
       </div>
     </section>
@@ -303,7 +316,7 @@
       <nav class="footer-links" aria-label="Other Alba sites">
         <a href="../">Home</a>
         <a href="../unblind/" aria-current="page">UNBLIND</a>
-        <a href="https://ops.albavision.tech/en" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="../visionops/">Vision Ops</a>
         <a href="../albaspace/">Alba Space</a>
         <a href="../albalabs/">Alba Labs</a>
       </nav>
