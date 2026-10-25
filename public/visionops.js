@@ -218,3 +218,161 @@ const DATOS = {
     requestAnimationFrame(paso);
   }, { threshold: 0.6 }).observe(fig);
 })();
+
+// Lo que recibes: el reporte se arma solo mientras se baja, en cuatro tiempos (ronda 20 de marca).
+// Cada tiempo ocupa una cuarta parte del tramo fijo; dentro de él, cada parte avanza con el
+// scroll. Con «menos movimiento» o pantallas muy bajas se ve todo completo, una parte debajo de otra.
+(function reporte() {
+  const seccion = document.querySelector("[data-reporte]");
+  if (!seccion) return;
+  if (reducir || innerHeight < 600) { seccion.classList.add("corrida"); return; }
+  const limitar = (v) => Math.min(1, Math.max(0, v));
+  const tramo = (k, a, b) => limitar((k - a) / (b - a));
+  const suave = (x) => x * x * (3 - 2 * x);
+  const capas = Object.fromEntries([...seccion.querySelectorAll("[data-capa]")].map((el) => [el.dataset.capa, el]));
+  const pasos = [...seccion.querySelectorAll("[data-tiempo]")];
+  const TIEMPOS = ["aviso", "evidencia", "cuentas", "pregunta"];
+
+  // El correo: la frase se lee palabra por palabra
+  const frase = capas.aviso.querySelector(".vo-correo-frase");
+  const palabras = frase.textContent.trim().split(/\s+/).map((texto) => {
+    const span = document.createElement("span");
+    span.className = "palabra";
+    span.textContent = texto;
+    return span;
+  });
+  frase.replaceChildren(...palabras.flatMap((span, i) => (i ? [" ", span] : [span])));
+  const notaCorreo = capas.aviso.querySelector(".vo-correo-nota");
+  // La evidencia, las cuentas y la pregunta
+  const zona = capas.evidencia.querySelector(".vo-ev-zona"), persona = capas.evidencia.querySelector(".vo-ev-persona");
+  const rotulos = ["hora", "espera", "fila"].map((n) => capas.evidencia.querySelector(`.vo-ev-${n}`));
+  const filas = [...capas.cuentas.querySelectorAll("dl div")], resta = capas.cuentas.querySelector(".vo-cuentas-resta");
+  const escrita = capas.pregunta.querySelector("[data-escribe]"), textoPregunta = escrita.textContent;
+  const burbuja = capas.pregunta.querySelector(".vo-pregunta-texto"), respuesta = capas.pregunta.querySelector(".vo-pregunta-respuesta");
+  const barras = capas.pregunta.querySelector(".vo-barras");
+
+  let actual = "";
+  const pintar = () => {
+    const r = seccion.getBoundingClientRect();
+    const p = limitar(-r.top / (r.height - innerHeight));
+    const i = Math.min(3, Math.floor(p * 4)), k = p * 4 - i, tiempo = TIEMPOS[i];
+    if (tiempo !== actual) {
+      actual = tiempo;
+      pasos.forEach((li) => li.classList.toggle("activa", li.dataset.tiempo === tiempo));
+      Object.entries(capas).forEach(([nombre, el]) => el.classList.toggle("activa", nombre === tiempo));
+    }
+    // Cada capa queda completa al pasar a la siguiente y vacía antes de su turno
+    const de = (j) => (i > j ? 1 : i < j ? 0 : k);
+    const k0 = de(0), k1 = de(1), k2 = de(2), k3 = de(3);
+    const leidas = Math.ceil(tramo(k0, 0.05, 0.62) * palabras.length);
+    palabras.forEach((span, j) => span.style.setProperty("--o", j < leidas ? 1 : 0.12));
+    notaCorreo.style.setProperty("--o", tramo(k0, 0.62, 0.75));
+    zona.style.setProperty("--z", suave(tramo(k1, 0.05, 0.4)));
+    persona.style.setProperty("--p", suave(tramo(k1, 0.35, 0.65)));
+    rotulos[0].style.setProperty("--o", tramo(k1, 0.15, 0.3));
+    rotulos[1].style.setProperty("--o", tramo(k1, 0.6, 0.75));
+    rotulos[2].style.setProperty("--o", tramo(k1, 0.3, 0.45));
+    filas.forEach((el, j) => el.style.setProperty("--o", 0.2 + 0.8 * tramo(k2, 0.08 + j * 0.16, 0.2 + j * 0.16)));
+    resta.style.setProperty("--o", tramo(k2, 0.74, 0.86));
+    const letras = Math.round(tramo(k3, 0.02, 0.3) * textoPregunta.length);
+    escrita.textContent = textoPregunta.slice(0, letras);
+    burbuja.classList.toggle("escribiendo", letras < textoPregunta.length);
+    respuesta.style.setProperty("--o", tramo(k3, 0.34, 0.46));
+    barras.style.setProperty("--k", suave(tramo(k3, 0.42, 0.78)).toFixed(3));
+  };
+  addEventListener("scroll", pintar, { passive: true });
+  addEventListener("resize", pintar);
+  pintar();
+})();
+
+// Un día de operación: el mismo encuadre de la paletería, hora por hora. Al aparecer recorre el
+// día una vez; después se mueve a mano. Son datos de ejemplo (ronda 20 de marca).
+(function dia() {
+  const seccion = document.querySelector("[data-dia]");
+  if (!seccion) return;
+  const control = seccion.querySelector("[data-dia-control]");
+  const hora = seccion.querySelector("[data-dia-hora]"), lectura = seccion.querySelector("[data-dia-lectura]");
+  const svg = seccion.querySelector("[data-dia-svg]"), grupo = seccion.querySelector("[data-dia-puntos]");
+  const FILA = { 13: 1, 14: 2, 15: 2, 16: 3, 17: 5, 18: 6, 19: 4, 20: 2, 21: 1 };
+  // Los lugares de la fila (en el orden en que se llena) y uno en la entrega, que siempre está
+  const PUNTOS = [[532, 653], [672, 810], [810, 934], [1050, 760], [695, 700], [930, 875], [1010, 680]], ENTREGA = [875, 554];
+  const ns = "http://www.w3.org/2000/svg";
+  const puntos = [...PUNTOS, ENTREGA].map(() => {
+    const c = document.createElementNS(ns, "circle");
+    c.setAttribute("r", "13");
+    grupo.append(c);
+    return c;
+  });
+  const poner = (h) => {
+    const n = FILA[h], d = h - 18;
+    hora.textContent = `${h - 12} pm`;
+    lectura.textContent = (n === 1 ? t("1 persona en la fila.", "1 person in the queue.") : t(`${n} personas en la fila.`, `${n} people in the queue.`)) + (h === 18 ? t(" La hora con más espera.", " The hour with the longest wait.") : "");
+    puntos.forEach((c, j) => {
+      const [x, y] = j < PUNTOS.length ? PUNTOS[j] : ENTREGA, mueve = j < PUNTOS.length;
+      c.style.transform = `translate(${x + (mueve ? d * (j % 2 ? 9 : -7) : 0)}px, ${y - (mueve ? d * 5 : 0)}px)`;
+      c.style.opacity = j < n || !mueve ? "1" : "0";
+    });
+    control.value = String(h);
+  };
+  // En celular, la imagen vertical es un recorte del mismo encuadre
+  const vertical = matchMedia("(max-width: 760px)");
+  const encuadre = () => svg.setAttribute("viewBox", vertical.matches ? "400 12 800 1000" : "0 0 1536 1024");
+  vertical.addEventListener("change", encuadre);
+  encuadre();
+  poner(18);
+
+  let reloj = 0;
+  const parar = () => { clearInterval(reloj); reloj = 0; };
+  control.addEventListener("input", () => { parar(); poner(+control.value); });
+  control.addEventListener("pointerdown", parar);
+  if (reducir) return;
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    obs.disconnect();
+    let h = 13;
+    poner(h);
+    reloj = setInterval(() => {
+      h++;
+      if (h > 21) { parar(); poner(18); return; }
+      poner(h);
+    }, 1100);
+  }, { threshold: 0.5 }).observe(seccion.querySelector(".vo-dia-escena"));
+})();
+
+// El piloto empieza con una pregunta: con lo que elige la persona se arma su idea y el mensaje de
+// WhatsApp. No se manda nada: el botón sólo abre WhatsApp con el texto escrito.
+(function piloto() {
+  const caja = document.querySelector("[data-piloto]");
+  if (!caja) return;
+  const campo = (n) => caja.querySelector(`[data-p="${n}"]`), salida = (n) => caja.querySelector(`[data-r="${n}"]`);
+  const PREGUNTAS = {
+    espera: [t("¿Dónde se acumula la espera?", "Where does the wait build up?"), t("Fotogramas, tiempos de espera y abandonos", "Frames, wait times and walk-outs")],
+    cobertura: [t("¿Cuándo queda una zona sin nadie?", "When is an area left empty?"), t("Fotogramas y presencia por zona", "Frames and presence per area")],
+    recorridos: [t("¿Por dónde se mueve la gente?", "Where do people move?"), t("Fotogramas y mapa de recorridos", "Frames and a map of paths")],
+  };
+  const ZONAS = {
+    restaurante: { espera: t("La fila y el mostrador", "The queue and the counter"), cobertura: t("La entrega y las mesas", "Pickup and tables"), recorridos: t("La entrada, el mostrador y las mesas", "The entrance, the counter and the tables") },
+    almacen: { espera: t("La recepción y la salida", "Receiving and shipping"), cobertura: t("La recepción y la preparación", "Receiving and picking"), recorridos: t("La recepción, la preparación y la salida", "Receiving, picking and shipping") },
+    linea: { espera: t("La entrada y el empaque", "Intake and packing"), cobertura: t("Las estaciones del proceso", "The process stations"), recorridos: t("La entrada, el proceso y el empaque", "Intake, process and packing") },
+  };
+  const NOMBRE = { restaurante: t("restaurante o comercio de comida", "restaurant or food business"), almacen: t("almacén", "warehouse"), linea: t("línea de producción", "production line") };
+  const actualizar = () => {
+    const op = campo("operacion").value, obj = campo("objetivo").value;
+    const n = Math.min(50, Math.max(1, parseInt(campo("camaras").value, 10) || 1));
+    const [pregunta, evidencia] = PREGUNTAS[obj], zona = ZONAS[op][obj];
+    salida("pregunta").textContent = pregunta;
+    salida("zona").textContent = zona;
+    salida("evidencia").textContent = evidencia;
+    salida("alcance").textContent = (n === 1 ? t("Para empezar: 1 cámara.", "To start: 1 camera.") : t(`Para empezar: ${n} cámaras.`, `To start: ${n} cameras.`))
+      + t(" Lo confirmamos juntos en el diagnóstico.", " We confirm it together in the assessment.")
+      + (op === "restaurante" ? "" : t(" Fuera de restaurantes, lo armamos a la medida.", " Outside restaurants, we build it to measure."));
+    const mensaje = t(
+      `Hola, vengo de albavision.tech y quiero un piloto de Vision Ops.\nMi operación: ${NOMBRE[op]}\nQuiero entender: ${pregunta}\nZona: ${zona}\nCámaras para revisar: ${n}`,
+      `Hi, I found you on albavision.tech and I want a Vision Ops pilot.\nMy operation: ${NOMBRE[op]}\nI want to understand: ${pregunta}\nArea: ${zona}\nCameras to review: ${n}`);
+    salida("enviar").href = `https://wa.me/525616908570?text=${encodeURIComponent(mensaje)}`;
+  };
+  caja.addEventListener("input", actualizar);
+  caja.addEventListener("change", actualizar);
+  actualizar();
+})();
+

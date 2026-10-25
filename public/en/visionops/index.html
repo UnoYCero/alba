@@ -121,25 +121,98 @@
       </div>
     </section>
 
-    <!-- Lo que recibes -->
-    <section class="sub-seccion tema-dia" id="recibes">
-      <div class="wrap dos">
-        <div>
-          <h2 class="reveal">Not a table. <em>A sentence you can use.</em></h2>
-          <p class="sub-intro reveal">Vision Ops reads its own numbers and tells you what it found: the finding with the action it suggests, the video evidence and the checks that prove it.</p>
+    <!-- Lo que recibes: el reporte se arma solo mientras se baja, en cuatro tiempos (visionops.js).
+         Piezas de la ronda 20 de marca. Sólo la frase de la paletería es real; lo demás es ejemplo -->
+    <section class="vo-reporte tema-dia" id="recibes" data-reporte>
+      <div class="vo-pin">
+        <div class="wrap vo-grid">
+          <div class="vo-texto">
+            <h2>Not a table. <em>A sentence you can use.</em></h2>
+            <ol class="vo-camino vo-tiempos">
+              <li data-tiempo="aviso" class="activa"><b>The report</b><span>Every day, by email, with the findings in plain language.</span></li>
+              <li data-tiempo="evidencia"><b>The evidence</b><span>The frame behind every number.</span></li>
+              <li data-tiempo="cuentas"><b>The checks</b><span>Every figure is verified before it is sent.</span></li>
+              <li data-tiempo="pregunta"><b>Ask it</b><span>«When was it busiest?» and it answers with your data.</span></li>
+            </ol>
+          </div>
+          <div class="vo-escena vo-escena-reporte">
+            <!-- 1. El aviso: el correo del día, en el celular -->
+            <div class="vo-capa vo-aviso activa" data-capa="aviso">
+              <div class="vo-correo">
+                <p class="vo-correo-de">Email · Daily report</p>
+                <p class="vo-correo-marca" translate="no">Vision Ops</p>
+                <p class="vo-correo-frase">«You lost a sale at 6:12 pm: someone waited 41 seconds in line and left. With this volume you need another person at the counter at that time.»</p>
+                <p class="vo-correo-nota">A real finding, from a Saturday at an ice cream shop.</p>
+              </div>
+            </div>
+            <!-- 2. La evidencia: el fotograma que lo sostiene, con sus marcas encima -->
+            <figure class="vo-capa vo-evidencia" data-capa="evidencia">
+              <img src="/assets/visionops/paleteria-camara.webp" alt="Illustration of an ice-pop shop seen from the ceiling camera: four people queuing at the counter and one heading for the door" width="1800" height="1200" loading="lazy" decoding="async">
+              <svg viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <polygon class="vo-ev-zona" points="455,600 680,510 1110,790 800,995" pathLength="1"/>
+                <rect class="vo-ev-persona" x="987" y="436" width="166" height="331" pathLength="1"/>
+              </svg>
+              <span class="vo-ev-rotulo vo-ev-hora" aria-hidden="true">18:12:00 · Example</span>
+              <span class="vo-ev-rotulo vo-ev-espera" aria-hidden="true">41 s wait</span>
+              <span class="vo-ev-rotulo vo-ev-fila" aria-hidden="true">Queue</span>
+              <span class="marca-ilus">Illustration · Recreated evidence</span>
+            </figure>
+            <!-- 3. Las cuentas: entrada, salida, resta y abandono, en ese orden -->
+            <div class="vo-capa vo-cuentas" data-capa="cuentas">
+              <dl>
+                <div><dt>Joined the queue</dt><dd>18:11:19<small>Checked</small></dd></div>
+                <div><dt>Left without ordering</dt><dd>18:12:00<small>Checked</small></dd></div>
+                <div><dt>Wait time</dt><dd>41 s<small>Checked</small></dd></div>
+                <div><dt>Result</dt><dd>1 walk-out<small>Checked</small></dd></div>
+              </dl>
+              <p class="vo-cuentas-resta">18:12:00 − 18:11:19 = <em>41 seconds</em></p>
+              <p class="vo-cuentas-nota">Example data: this is how every figure is checked before it is sent.</p>
+            </div>
+            <!-- 4. Pregúntale: la pregunta se escribe, llega la respuesta y la gráfica -->
+            <div class="vo-capa vo-pregunta" data-capa="pregunta">
+              <p class="vo-pregunta-texto"><span data-escribe>When were the most people here?</span></p>
+              <p class="vo-pregunta-respuesta">Between 6 and 7 pm: 46 people.</p>
+              <div class="vo-barras" aria-hidden="true">
+                <span style="--v:10"><i>10</i><b>1 pm</b></span>
+                <span style="--v:14"><i>14</i><b>2 pm</b></span>
+                <span style="--v:21"><i>21</i><b>3 pm</b></span>
+                <span style="--v:28"><i>28</i><b>4 pm</b></span>
+                <span style="--v:37"><i>37</i><b>5 pm</b></span>
+                <span class="pico" style="--v:46"><i>46</i><b>6 pm</b></span>
+                <span style="--v:32"><i>32</i><b>7 pm</b></span>
+                <span style="--v:22"><i>22</i><b>8 pm</b></span>
+                <span style="--v:11"><i>11</i><b>9 pm</b></span>
+              </div>
+              <p class="vo-barras-nota">People per hour · Example</p>
+            </div>
+          </div>
         </div>
-        <figure class="vo-cita reveal">
-          <blockquote>«You lost a sale at 6:12 pm: someone waited 41 seconds in line and left. With this volume you need another person at the counter at that time.»</blockquote>
-          <figcaption>A real finding, from a Saturday at an ice cream shop.</figcaption>
-        </figure>
       </div>
-      <div class="wrap">
-        <ul class="vo-recibes">
-          <li class="reveal"><b>The report</b><span>Every day, by email, with the findings in plain language.</span></li>
-          <li class="reveal"><b>The evidence</b><span>The frame behind every number.</span></li>
-          <li class="reveal"><b>The checks</b><span>Every figure is verified before it is sent.</span></li>
-          <li class="reveal"><b>Ask it</b><span>«When was it busiest?» and it answers with your data.</span></li>
-        </ul>
+    </section>
+
+    <!-- Un día de operación: el mismo encuadre de la paletería, hora por hora (visionops.js) -->
+    <section class="sub-seccion tema-dia vo-dia" id="un-dia" data-dia>
+      <div class="wrap vo-dia-grid">
+        <div class="vo-dia-texto">
+          <h2 class="reveal">A day of operation, <em>in twenty seconds.</em></h2>
+          <p class="vo-dia-hora" data-dia-hora>6 pm</p>
+          <p class="vo-dia-lectura" data-dia-lectura aria-live="polite">6 people in the queue. The hour with the longest wait.</p>
+          <label class="vo-dia-control">Move through the day
+            <input type="range" min="13" max="21" step="1" value="18" data-dia-control>
+          </label>
+          <p class="vo-dia-escala" aria-hidden="true"><span>1 pm</span><span>5 pm</span><span>9 pm</span></p>
+        </div>
+        <figure class="vo-dia-escena">
+          <picture>
+            <source media="(max-width: 760px)" srcset="/assets/visionops/paleteria-vacio-vertical.webp" width="960" height="1200">
+            <img src="/assets/visionops/paleteria-vacio.webp" alt="Illustration of the same ice-pop shop seen from the ceiling, with the queue area marked and one dot for each person queuing at the chosen hour" width="1800" height="1200" loading="lazy" decoding="async">
+          </picture>
+          <svg viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid slice" data-dia-svg aria-hidden="true">
+            <polygon class="vo-ev-zona" points="455,600 680,510 1110,790 800,995"/>
+            <g class="vo-dia-puntos" data-dia-puntos></g>
+          </svg>
+          <span class="marca-ilus">Illustration · Example</span>
+        </figure>
       </div>
     </section>
 
@@ -176,20 +249,22 @@
         <!-- Una cortina que se arrastra: lo que ve la cámara contra lo que mide Alba -->
         <figure class="vo-cortina reveal" data-cortina>
           <div class="vo-cortina-mide">
-            <img src="/assets/visionops/concepto-cocina.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
-            <svg viewBox="0 0 1800 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect x="440" y="340" width="380" height="540" rx="70"/><circle cx="630" cy="880" r="16"/>
-              <rect x="1125" y="430" width="370" height="360" rx="70"/><circle cx="1310" cy="790" r="16"/>
-            </svg>
+            <picture>
+              <source media="(max-width: 760px)" srcset="/assets/visionops/paleteria-medicion-vertical.webp" width="960" height="1200">
+              <img src="/assets/visionops/paleteria-medicion.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+            </picture>
           </div>
           <div class="vo-cortina-ve">
-            <img src="/assets/visionops/concepto-cocina.webp" alt="A restaurant kitchen with two cooks at work; on the other side of the curtain, the same kitchen as Vision Ops measures it, with each person turned into an anonymous silhouette" width="1800" height="1200" loading="lazy" decoding="async">
+            <picture>
+              <source media="(max-width: 760px)" srcset="/assets/visionops/paleteria-camara-vertical.webp" width="960" height="1200">
+              <img src="/assets/visionops/paleteria-camara.webp" alt="An ice-pop shop seen from the ceiling camera, with five people; on the other side of the curtain, the same place as Vision Ops measures it: only dots, their paths and the queue and pickup areas" width="1800" height="1200" loading="lazy" decoding="async">
+            </picture>
           </div>
           <span class="vo-cortina-tirador" aria-hidden="true"></span>
           <span class="vo-cortina-rotulo vo-cortina-rotulo-ve" aria-hidden="true">What the camera sees</span>
           <span class="vo-cortina-rotulo vo-cortina-rotulo-mide" aria-hidden="true">What Vision Ops measures</span>
           <input class="vo-cortina-control" type="range" min="0" max="100" value="50" aria-label="Move the curtain between what the camera sees and what Vision Ops measures">
-          <span class="marca-ilus">Illustration</span>
+          <span class="marca-ilus">Illustration · Example</span>
         </figure>
         <ul class="vo-garantias">
           <li class="reveal"><b>No facial recognition</b><span>It detects silhouettes and follows them while they are in frame. It does not know who anyone is.</span></li>
@@ -206,7 +281,41 @@
         <h2 class="reveal">We start with <em>restaurants.</em></h2>
         <div>
           <p class="sub-intro reveal">Today Vision Ops analyzes restaurants, taco shops, food trucks and food businesses. For warehouses, production lines and other operations, we build it to measure.</p>
-          <p class="vo-acciones reveal"><a class="btn btn-solid" href="https://ops.albavision.tech/en" target="_blank" rel="noopener">See the platform</a><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20want%20to%20talk%20about%20Vision%20Ops%20for%20my%20business." target="_blank" rel="noopener">Tell us about your operation</a></p>
+          <p class="vo-acciones reveal"><a class="btn-text" href="https://ops.albavision.tech/en" target="_blank" rel="noopener">See the platform</a></p>
+        </div>
+      </div>
+      <!-- El piloto empieza con una pregunta: arma tu idea y mándala por WhatsApp si quieres (visionops.js) -->
+      <div class="wrap vo-piloto" data-piloto>
+        <form class="vo-piloto-form reveal" action="#" onsubmit="return false">
+          <h3>The pilot starts <em>with a question.</em></h3>
+          <label>My operation
+            <select data-p="operacion">
+              <option value="restaurante">Restaurant or food business</option>
+              <option value="almacen">Warehouse</option>
+              <option value="linea">Production line</option>
+            </select>
+          </label>
+          <label>I want to understand
+            <select data-p="objetivo">
+              <option value="espera">Where the wait builds up</option>
+              <option value="cobertura">When an area is left empty</option>
+              <option value="recorridos">Where people move</option>
+            </select>
+          </label>
+          <label>Cameras I want to review
+            <input type="number" min="1" max="50" value="1" inputmode="numeric" data-p="camaras">
+          </label>
+        </form>
+        <div class="vo-piloto-resumen reveal" aria-live="polite">
+          <p class="vo-piloto-titulo">We can start <em>here.</em></p>
+          <dl>
+            <div><dt>The question</dt><dd data-r="pregunta">Where does the wait build up?</dd></div>
+            <div><dt>The area</dt><dd data-r="zona">The queue and the counter</dd></div>
+            <div><dt>What you would get</dt><dd data-r="evidencia">Frames, wait times and walk-outs</dd></div>
+          </dl>
+          <p class="vo-piloto-alcance" data-r="alcance">To start: 1 camera. We confirm it together in the assessment.</p>
+          <a class="btn btn-solid" data-r="enviar" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20want%20to%20talk%20about%20Vision%20Ops%20for%20my%20business." target="_blank" rel="noopener">Send us your idea on WhatsApp</a>
+          <p class="vo-piloto-nota">WhatsApp opens with your idea already written; you decide whether to send it.</p>
         </div>
       </div>
     </section>
