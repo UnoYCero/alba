@@ -574,3 +574,11 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 
 /* El panel de Vision Ops: la vista aérea del restaurante de la ronda 13, en lugar del plano dibujado */
 .kitchen-aerea { width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+
+/* Alba Space: el instrumento flota sobre el cielo (propuesta de diseño de la ronda 14); no
+   estorba para arrastrar el cielo */
+.space-instrumento { position: absolute; z-index: 1; right: 19%; top: calc(var(--nav-h) + 8svh); width: min(18vw, 270px); margin: 0; pointer-events: none; }
+.space-instrumento img { display: block; width: 100%; height: auto; animation: flotar 9s ease-in-out infinite; filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+.space-instrumento .marca-ilus { position: absolute; top: auto; bottom: -28px; right: 0; padding: 2px 9px; border-radius: 999px; background: rgba(244,246,250,.1); color: rgba(244,246,250,.75); font-size: 11px; white-space: nowrap; }
+@keyframes flotar { 50% { transform: translateY(-10px) rotate(-1.5deg); } }
+@media (prefers-reduced-motion: reduce) { .space-instrumento img { animation: none; } }

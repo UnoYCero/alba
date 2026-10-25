@@ -110,7 +110,16 @@ const DATOS = {
       visor = m.montarOperacion({ escena, lienzo, alAvance, base: new URL("assets/visionops/", import.meta.url).href });
       visor.avanzar(avance());
       visor.listo.then(() => escena.classList.add("con-3d"));
-      botones.forEach((b) => b.addEventListener("click", () => { poner(b.dataset.escena); visor.cambiar(b.dataset.escena); }));
+      botones.forEach((b) => {
+        // Al acercar el dedo o el mouse ya se pide el modelo; mientras llega se ve su ilustración
+        const precargar = () => visor.precargar(b.dataset.escena);
+        ["pointerenter", "focus", "touchstart"].forEach((ev) => b.addEventListener(ev, precargar, { passive: true }));
+        b.addEventListener("click", () => {
+          poner(b.dataset.escena);
+          escena.classList.remove("con-3d");
+          visor.cambiar(b.dataset.escena).then(() => escena.classList.add("con-3d"));
+        });
+      });
     })
     .catch((err) => { console.warn("No se pudo montar la escena de Vision Ops:", err); seccion.classList.add("corrida"); });
   iniciar();

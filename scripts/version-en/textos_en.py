@@ -189,6 +189,8 @@ EN["index.html"] = [
  "Request ready · the team reviews it before preparing it",
  "The Alba Labs Dev Kit glasses (illustration)",
  "Screenshot of the Surface Ops app: the cut plan of a pothole with its measurements, on a test photo",
+ "Ark Light 1, the Alba Space Star Tracker, with its baffle stowed",
+ "Illustration · Design proposal",
  "Alba Space.",
  "Perception beyond.",
  "A 3-in-1 instrument for small satellites: a single camera that finds its way by the stars, detects space debris and guides docking with another vehicle.",

@@ -271,17 +271,17 @@ export function montarOperacion({ escena: contenedor, lienzo, alAvance, reducir 
   const listo = cargar("restaurante").then((datos) => {
     construir("restaurante", datos);
     pedir();
-    // Las otras dos se piden después, para que el cambio de escena sea inmediato
-    ESCENAS_NOMBRES.forEach((n) => cargar(n).catch(() => {}));
   });
 
   return {
     listo,
     avanzar(p) { objetivo = limitar(p); pedir(); },
+    // Las otras escenas sólo se piden cuando alguien va a usarlas (no se bajan de más en el celular)
+    precargar(nombre) { if (ESCENAS[nombre]) cargar(nombre).catch(() => {}); },
     cambiar(nombre) {
-      if (!ESCENAS[nombre] || nombre === pedida) return;
+      if (!ESCENAS[nombre] || nombre === pedida) return Promise.resolve();
       pedida = nombre;
-      cargar(nombre).then((datos) => { if (pedida === nombre) construir(nombre, datos); });
+      return cargar(nombre).then((datos) => { if (pedida === nombre) construir(nombre, datos); });
     },
   };
 }
