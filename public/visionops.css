@@ -3,7 +3,7 @@
    la derecha la escena con sus rótulos, el hallazgo y el tablero. En celular, la escena arriba y
    el texto abajo. Con «menos movimiento», sin JavaScript o sin 3D, se lee corrida. */
 
-.vo-operacion { position: relative; height: 640svh; }
+.vo-operacion { position: relative; height: 420svh; }
 .vo-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
 .vo-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.3fr); gap: var(--s7); align-items: center; width: 100%; }
 .vo-texto .sub-title { font-size: clamp(38px, 4.6vw, 68px); max-width: 13ch; }
@@ -60,7 +60,7 @@
 .vo-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5); margin-top: var(--s6); }
 
 /* De la primera cámara a toda la operación: fija mientras se baja; el paso activo se abre */
-.vo-crece { position: relative; height: 460svh; }
+.vo-crece { position: relative; height: 300svh; }
 :is(.vo-crece, .vo-reporte) .vo-texto h2 { margin: 0; }
 :is(.vo-crece, .vo-reporte) .vo-camino { margin: var(--s7) 0 0; grid-template-columns: 1fr; gap: var(--s5); }
 :is(.vo-crece, .vo-reporte) .vo-camino li { opacity: .36; transition: opacity .45s var(--ease); }
@@ -89,7 +89,7 @@
 
 /* ── Celular: la escena arriba, el texto abajo ── */
 @media (max-width: 760px) {
-  .vo-operacion { height: 600svh; }
+  .vo-operacion { height: 400svh; }
   .vo-pin { align-items: flex-start; padding-top: calc(var(--nav-h) + var(--s2)); }
   .vo-grid { grid-template-columns: 1fr; gap: var(--s4); }
   .vo-escena { order: -1; height: 50svh; }
@@ -108,7 +108,7 @@
   .vo-rotulo small { font-size: 10.5px; }
   .vo-hallazgo { font-size: 13px; }
   .vo-recibes, .vo-camino, .vo-garantias { grid-template-columns: 1fr 1fr; gap: var(--s5); }
-  .vo-crece { height: 420svh; }
+  .vo-crece { height: 290svh; }
   .vo-privacidad { grid-template-columns: 1fr; gap: var(--s6); margin-top: var(--s5); }
   .vo-privacidad .vo-garantias { grid-template-columns: 1fr 1fr; }
   .vo-cortina-rotulo { font-size: 11.5px; padding: 4px 9px; }
@@ -139,7 +139,7 @@
    Cuatro capas una encima de otra: el correo, la evidencia, las cuentas y la pregunta. La que
    corresponde al tramo se ve y, dentro de ella, cada parte avanza con el scroll (visionops.js
    pone las variables; sin JavaScript o corrida valen 1 y todo se ve completo). */
-.vo-reporte { position: relative; height: 480svh; }
+.vo-reporte { position: relative; height: 330svh; }
 .vo-escena-reporte { display: grid; place-items: center; }
 .vo-capa { position: absolute; inset: 0; display: grid; place-content: center; margin: 0; opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .6s var(--ease); pointer-events: none; }
 .vo-capa.activa { opacity: 1; transform: none; pointer-events: auto; }
@@ -219,7 +219,7 @@
 .vo-piloto-nota { margin: 0; font-size: 12.5px; color: var(--soft); }
 
 @media (max-width: 760px) {
-  .vo-reporte { height: 440svh; }
+  .vo-reporte { height: 310svh; }
   .vo-escena-reporte { height: 46svh; }
   .vo-correo { width: min(100%, 290px); padding: 24px 22px; border-radius: 28px; box-shadow: 0 0 0 6px #0b1f3b, 0 20px 50px rgba(11,31,59,.14); }
   .vo-correo-marca { margin-top: 10px; }

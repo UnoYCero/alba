@@ -167,12 +167,14 @@
 
     <!-- Entre ver y crear (ronda 21-C2 de marca): del fotograma al dato que usaría tu aplicación,
          en cuatro pasos sobre la misma escena del escritorio (labs.js). Ejemplo escrito a mano -->
-    <section class="sub-seccion tema-dia lb-dato" data-dato-pasos>
+    <section class="sub-seccion tema-dia lb-dato" data-dato-pasos data-plegable>
       <div class="wrap">
         <div class="dos">
           <h2 class="reveal">Mira lo que pasa <em>entre ver y crear.</em></h2>
           <p class="sub-intro reveal">Por dentro no hay magia: una escena se convierte en un objeto, el objeto en contexto y el contexto en algo que tu aplicación puede usar.</p>
         </div>
+        <p class="lb-plegar reveal"><button type="button" class="plegable-boton btn-text" aria-expanded="false" aria-controls="dato-cuerpo"><span class="plegable-abrir">Mira el recorrido</span><span class="plegable-cerrar">Ocultar</span></button></p>
+        <div class="plegable-cuerpo" id="dato-cuerpo" hidden>
         <div class="lb-dato-grid">
           <figure class="lb-dato-escena reveal">
             <div class="lb-dato-lienzo">
@@ -202,6 +204,7 @@
             </div>
             <p class="lb-config-nota">Concepto · Ejemplo escrito a mano: no es reconocimiento en vivo ni el software final.</p>
           </div>
+        </div>
         </div>
       </div>
     </section>

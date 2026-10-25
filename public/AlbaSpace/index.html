@@ -185,6 +185,18 @@
       </div>
     </section>
 
+    <!-- Por dentro, plegado: se ve el título y una frase; quien quiera lo abre (subpagina.js) -->
+    <div class="plegable plegable-escena" data-plegable>
+      <section class="sub-seccion tema-noche plegable-cabeza">
+        <div class="wrap dos">
+          <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>por dentro.</em></h2>
+          <div>
+            <p class="sub-intro reveal">La computadora de vuelo, el sensor, la óptica y el baffle telescópico, pieza por pieza.</p>
+            <p class="reveal"><button type="button" class="plegable-boton btn btn-ghost" aria-expanded="false" aria-controls="por-dentro-cuerpo"><span class="plegable-abrir">Ábrelo por dentro</span><span class="plegable-cerrar">Ocultar</span></button></p>
+          </div>
+        </div>
+      </section>
+      <div class="plegable-cuerpo" id="por-dentro-cuerpo" hidden>
     <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja -->
     <section class="st-dentro tema-noche" id="por-dentro" data-por-dentro>
       <div class="st-pin">
@@ -210,6 +222,8 @@
         </div>
       </div>
     </section>
+      </div>
+    </div>
 
     <!-- El baffle: fijo mientras se baja, se despliega con el scroll (space.js); corrido, con su botón -->
     <section class="st-baffle tema-noche" id="baffle" data-baffle-seccion>

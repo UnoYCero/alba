@@ -272,7 +272,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const indice = [...seccion.querySelectorAll("[data-ir]")];
   const MISIONES = [null, "orientacion", "basura", "acoplamiento"];
   // Los tramos del recorrido: quieto en un panel, pasar al siguiente, quieto, pasar… (en pantallas)
-  const PESOS = [0.5, 0.6, 1.4, 0.6, 1.0, 0.6, 1.2];
+  const PESOS = [0.3, 0.45, 0.9, 0.45, 0.7, 0.45, 0.8];
   const SUMA = PESOS.reduce((a, b) => a + b, 0);
   seccion.style.height = `${(SUMA + 1) * 100}svh`;
   const suave = (x) => x * x * (3 - 2 * x);

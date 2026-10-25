@@ -5,7 +5,7 @@
 
 .st-portada img { width: min(100%, 520px); margin-inline: auto; border-radius: 0; }
 
-.st-dentro { position: relative; height: 640svh; }
+.st-dentro { position: relative; height: 420svh; }
 .st-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
 .st-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); gap: var(--s7); align-items: center; width: 100%; }
 .st-texto h2 { max-width: 12ch; }
@@ -30,7 +30,7 @@
 .baffle.con-3d .escena-baffle { display: none; }
 
 @media (max-width: 760px) {
-  .st-dentro { height: 600svh; }
+  .st-dentro { height: 400svh; }
   .st-pin { align-items: flex-start; padding-top: calc(var(--nav-h) + var(--s2)); }
   .st-grid { grid-template-columns: 1fr; gap: var(--s4); }
   .st-escena { order: -1; height: 52svh; }
@@ -120,7 +120,7 @@
 
 /* ═══ El baffle: fijo mientras se baja y se despliega con el scroll (space.js) ═══ */
 .st-baffle { position: relative; }
-.st-baffle.guiada { height: 260svh; }
+.st-baffle.guiada { height: 190svh; }
 .st-baffle-pin { padding: var(--s8) 0; }
 .st-baffle.guiada .st-baffle-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding: var(--nav-h) 0 0; overflow: hidden; }
 .st-baffle-pin > .wrap { width: 100%; }
@@ -131,7 +131,7 @@
 .guiada .rasgos-lista li { opacity: .38; transition: opacity .45s var(--ease); }
 .guiada .rasgos-lista li.activa { opacity: 1; }
 @media (max-width: 760px) {
-  .st-baffle.guiada { height: 240svh; }
+  .st-baffle.guiada { height: 180svh; }
   .st-baffle.guiada .st-baffle-pin { align-items: flex-start; padding-top: calc(var(--nav-h) + var(--s3)); }
   .st-baffle.guiada .mision-grid { gap: var(--s3); }
   .st-baffle.guiada .baffle { order: -1; }

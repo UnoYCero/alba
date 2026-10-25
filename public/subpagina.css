@@ -375,7 +375,7 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .lb-portada .sub-precio { margin-top: var(--s5); }
 
 /* Ve. Recuerda. Actúa.: pantalla fija */
-.lb-tiempos { position: relative; height: 300svh; }
+.lb-tiempos { position: relative; height: 230svh; }
 .lb-tiempos-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
 .lb-tiempos-grid { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: var(--s8); align-items: center; }
 .lb-tiempos-texto h2 { max-width: 14ch; }
@@ -532,3 +532,30 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .js .st-galeria:not(.corrida) .st-panel { align-items: center; }
   .lb-tiempos:not(.corrida) .lb-tiempos-pin { align-items: center; }
 }
+
+/* ═══ Lo secundario, plegado, y las escenas fijas que se pueden saltar ═══ */
+.plegable-boton { cursor: pointer; }
+button.plegable-boton.btn-text { padding: 0; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 400; color: inherit; }
+.plegable-boton .plegable-cerrar, .plegable-boton[aria-expanded="true"] .plegable-abrir { display: none; }
+.plegable-boton[aria-expanded="true"] .plegable-cerrar { display: inline; }
+.plegable-escena .plegable-boton[aria-expanded="true"] { display: none; }
+.lb-plegar { margin: var(--s5) 0 0; }
+/* En computadora hay lugar: lo que se pliega sólo en celular se ve completo */
+@media (min-width: 761px) {
+  .plegable-solo-celular > .plegable-boton { display: none; }
+  .plegable-solo-celular > .plegable-cuerpo[hidden] { display: block; }
+}
+@media (max-width: 760px) { .plegable-solo-celular > .plegable-cuerpo { margin-top: var(--s4); } }
+
+.saltar-escena { position: absolute; z-index: 5; right: var(--gutter); bottom: var(--s3); min-height: 44px; padding: 0 var(--s4); border: 0; border-radius: 999px; background: rgba(11,31,59,.06); font: inherit; font-size: 13px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
+.saltar-escena::after { content: " ↓"; }
+.saltar-escena:hover { color: var(--paper); background: rgba(11,31,59,.1); }
+.tema-noche .saltar-escena { background: rgba(244,246,250,.08); }
+.tema-noche .saltar-escena:hover { background: rgba(244,246,250,.16); }
+.corrida .saltar-escena, html:not(.js) .saltar-escena, .st-baffle:not(.guiada) .saltar-escena { display: none; }
+/* Las misiones de Space tienen su índice abajo al centro: el botón sube un poco */
+.st-galeria .saltar-escena { bottom: var(--s5); }
+@media (max-width: 760px) {
+  .saltar-escena { top: calc(var(--nav-h) + var(--s2)); bottom: auto; min-height: 36px; padding: 0 var(--s3); font-size: 12px; }
+}
+
