@@ -582,3 +582,32 @@ html:not(.js) .proyecto-detalle { grid-template-rows: 1fr; }
 .space-instrumento .marca-ilus { position: absolute; top: auto; bottom: -28px; right: 0; padding: 2px 9px; border-radius: 999px; background: rgba(244,246,250,.1); color: rgba(244,246,250,.75); font-size: 11px; white-space: nowrap; }
 @keyframes flotar { 50% { transform: translateY(-10px) rotate(-1.5deg); } }
 @media (prefers-reduced-motion: reduce) { .space-instrumento img { animation: none; } }
+
+/* Alba Space en la portada: cada misión con su dibujo animado, del mismo lenguaje que las
+   simulaciones de su página (las estrellas se unen, algo cruza entre ellas, la mira se cierra) */
+.sistema-dibujo { display: block; width: min(100%, 190px); height: auto; margin: 0 0 var(--s3); overflow: visible; }
+.sistema-dibujo .estrellas circle { fill: rgba(220,232,255,.75); }
+.sistema-orientarse .trazo { fill: none; stroke: #8fb2ff; stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 1; animation: sistema-trazo 6s var(--ease) infinite; }
+.sistema-orientarse .centros circle { fill: none; stroke: rgba(143,178,255,.9); stroke-width: 1; opacity: 0; animation: sistema-centros 6s var(--ease) infinite; }
+@keyframes sistema-trazo { 0%, 22% { stroke-dashoffset: 1; opacity: 1; } 62%, 86% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes sistema-centros { 0% { opacity: 0; } 12%, 86% { opacity: 1; } 100% { opacity: 0; } }
+.sistema-basura .objeto { animation: sistema-cruza 5s linear infinite; }
+.sistema-basura .objeto circle:not(.aro) { fill: #f4f6fa; }
+.sistema-basura .estela { stroke: rgba(244,246,250,.55); stroke-width: 1.5; stroke-linecap: round; }
+.sistema-basura .aro { fill: none; stroke: #8fb2ff; stroke-width: 1; animation: sistema-aro 5s linear infinite; }
+@keyframes sistema-cruza { from { transform: translate(-10px, 70px); } to { transform: translate(170px, 22px); } }
+@keyframes sistema-aro { 0%, 30% { opacity: 0; } 40%, 85% { opacity: 1; } 100% { opacity: 0; } }
+.sistema-acoplarse .vehiculo rect { fill: #1d3152; stroke: #8fb2ff; stroke-width: 1; }
+.sistema-acoplarse .luz { fill: #f4f6fa; }
+.sistema-acoplarse .mira path { fill: none; stroke: #f4f6fa; stroke-width: 1.2; stroke-linecap: round; }
+.sistema-acoplarse .mira { transform-box: fill-box; transform-origin: center; animation: sistema-mira 4.5s var(--ease) infinite; }
+.sistema-acoplarse .vehiculo { transform-box: fill-box; transform-origin: center; animation: sistema-acerca 4.5s var(--ease) infinite; }
+@keyframes sistema-mira { 0%, 15% { transform: scale(1.5); opacity: .35; } 55%, 90% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: .35; } }
+@keyframes sistema-acerca { 0%, 15% { transform: scale(.6); } 55%, 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .sistema-dibujo *, .sistema-dibujo .objeto { animation: none !important; }
+  .sistema-orientarse .trazo { stroke-dashoffset: 0; }
+  .sistema-orientarse .centros circle, .sistema-basura .aro { opacity: 1; }
+  .sistema-basura .objeto { transform: translate(90px, 40px); }
+}
+
