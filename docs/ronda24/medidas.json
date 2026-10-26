@@ -1,0 +1,880 @@
+[
+  {
+    "pagina": "portada",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 8302,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Hablemos"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 14068,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "EscrÃ­benos"
+      },
+      {
+        "alto": 40,
+        "texto": "Restaurante"
+      },
+      {
+        "alto": 40,
+        "texto": "AlmacÃ©n"
+      },
+      {
+        "alto": 40,
+        "texto": "LÃ­nea de producciÃ³n"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 10656,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "En tu computadora"
+      },
+      {
+        "alto": 40,
+        "texto": "En la nube"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Â¿DÃ³nde dejÃ© esta herramienta?Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Lee y resume este documento.Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«GuÃ­ame paso a paso mientras trabajo.Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Encontrar mis herramientas en el taller"
+      },
+      {
+        "alto": 36,
+        "texto": "Leer etiquetas en voz alta"
+      },
+      {
+        "alto": 36,
+        "texto": "Contar piezas sobre una mesa"
+      },
+      {
+        "alto": 36,
+        "texto": "Lo encuentro sin pedir ayuda"
+      },
+      {
+        "alto": 36,
+        "texto": "Me toma menos tiempo"
+      },
+      {
+        "alto": 36,
+        "texto": "Me equivoco menos"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 3155.199951171875
+  },
+  {
+    "pagina": "space",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 10158,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "EscrÃ­benos"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 6651,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Agenda una prueba"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 7717,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 14076,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 12007,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 3409.60009765625
+  },
+  {
+    "pagina": "space",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 10146,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 7558,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 7603,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 12236,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 10696,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 2395.199951171875
+  },
+  {
+    "pagina": "space",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 8886,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 6067,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 8254,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Let's talk"
+      },
+      {
+        "alto": 40,
+        "texto": "What you see"
+      },
+      {
+        "alto": 40,
+        "texto": "What Alba sees"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 14127,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Message us"
+      },
+      {
+        "alto": 40,
+        "texto": "Restaurant"
+      },
+      {
+        "alto": 40,
+        "texto": "Warehouse"
+      },
+      {
+        "alto": 40,
+        "texto": "Production line"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 10714,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "On your computer"
+      },
+      {
+        "alto": 40,
+        "texto": "In the cloud"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Where did I leave this tool?Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Read and summarize this document.Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Guide me step by step while I work.Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Find my tools in the workshop"
+      },
+      {
+        "alto": 36,
+        "texto": "Read labels out loud"
+      },
+      {
+        "alto": 36,
+        "texto": "Count parts on a table"
+      },
+      {
+        "alto": 36,
+        "texto": "I find it without asking for help"
+      },
+      {
+        "alto": 36,
+        "texto": "It takes me less time"
+      },
+      {
+        "alto": 36,
+        "texto": "I make fewer mistakes"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 3161.60009765625
+  },
+  {
+    "pagina": "space",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 10126,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Message us"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 6579,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Book a trial"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 7829,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 14013,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 11908,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 3326.39990234375
+  },
+  {
+    "pagina": "space",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 10114,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 7482,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 7715,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 12173,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 10554,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 2243.199951171875
+  },
+  {
+    "pagina": "space",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 8853,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 6010,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 8052,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 12267,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Restaurante"
+      },
+      {
+        "alto": 40,
+        "texto": "AlmacÃ©n"
+      },
+      {
+        "alto": 40,
+        "texto": "LÃ­nea de producciÃ³n"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 9966,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "En tu computadora"
+      },
+      {
+        "alto": 40,
+        "texto": "En la nube"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Â¿DÃ³nde dejÃ© esta herramienta?Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«Lee y resume este documento.Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Â«GuÃ­ame paso a paso mientras trabajo.Â»"
+      },
+      {
+        "alto": 36,
+        "texto": "Encontrar mis herramientas en el taller"
+      },
+      {
+        "alto": 36,
+        "texto": "Leer etiquetas en voz alta"
+      },
+      {
+        "alto": 36,
+        "texto": "Contar piezas sobre una mesa"
+      },
+      {
+        "alto": 36,
+        "texto": "Lo encuentro sin pedir ayuda"
+      },
+      {
+        "alto": 36,
+        "texto": "Me toma menos tiempo"
+      },
+      {
+        "alto": 36,
+        "texto": "Me equivoco menos"
+      }
+    ],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1024,
+    "y": 3013.60009765625
+  },
+  {
+    "pagina": "space",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 9608,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 6075,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 7886,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 11362,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 11016,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 320,
+    "y": 2368,
+    "confirmacion": "correcciones.json, lote 2"
+  },
+  {
+    "pagina": "space",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 8585,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 6188,
+    "css": [
+      "http://localhost:8771/ronda24.css?v=20261025"
+    ],
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  }
+]

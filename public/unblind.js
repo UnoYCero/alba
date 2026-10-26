@@ -225,6 +225,8 @@ const alAcercarse = (el, fn) => new IntersectionObserver(([e], obs) => { if (e.i
   const abrir = () => {
     capa.hidden = false;
     document.documentElement.classList.add("explorando");
+    // Mientras se explora, lo de fondo no se puede enfocar: el tabulador se queda en la capa
+    [...document.body.children].forEach((el) => { if (el !== capa) el.inert = true; });
     lugar.append(lienzo);
     visor.explorar.abrir(mostrarFicha);
     separar.setAttribute("aria-pressed", "false"); separar.textContent = t("Separar piezas", "Take it apart");
@@ -236,6 +238,7 @@ const alAcercarse = (el, fn) => new IntersectionObserver(([e], obs) => { if (e.i
     escena.insertBefore(lienzo, guia);
     capa.hidden = true;
     document.documentElement.classList.remove("explorando");
+    [...document.body.children].forEach((el) => { el.inert = false; });
     visor.avanzar(avance());
     abrirExplorar.focus();
   };

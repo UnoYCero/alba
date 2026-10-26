@@ -26,6 +26,7 @@ function cerrarMenu({ devolverFoco = false } = {}) {
   panelMenu.classList.remove("abierto");
   nav.classList.remove("abierto");
   document.body.style.overflow = "";
+  document.querySelectorAll("main, footer, .skip").forEach((el) => { el.inert = false; });
   if (devolverFoco && anchoMenu.matches) boton.focus();
 }
 boton.addEventListener("click", () => {
@@ -35,6 +36,8 @@ boton.addEventListener("click", () => {
   panelMenu.classList.add("abierto");
   nav.classList.add("abierto");
   document.body.style.overflow = "hidden";
+  // Con el menú abierto, el tabulador se queda en el menú: el contenido de fondo no se puede enfocar
+  document.querySelectorAll("main, footer, .skip").forEach((el) => { el.inert = true; });
 });
 panelMenu.querySelectorAll("a, button").forEach((el) => el.addEventListener("click", () => cerrarMenu()));
 addEventListener("keydown", (e) => { if (e.key === "Escape" && menuAbierto()) cerrarMenu({ devolverFoco: true }); });
@@ -59,3 +62,41 @@ if (lienzo) {
     .then((m) => m.montar(lienzo, lienzo.dataset["3d"], { reducir, punteroFino }))
     .catch((err) => { lienzo.remove(); console.warn("No se pudo cargar el cielo 3D:", err); });
 }
+
+// ── Lo secundario, plegado: se ve el título y una frase; quien quiera lo abre ──
+// En «plegable-escena» la cabeza se va al abrir y aparece la escena completa con su propio título.
+document.querySelectorAll("[data-plegable]").forEach((caja) => {
+  const boton = caja.querySelector(".plegable-boton");
+  const cuerpo = caja.querySelector(".plegable-cuerpo");
+  if (!boton || !cuerpo) return;
+  boton.addEventListener("click", () => {
+    const abrir = cuerpo.hidden;
+    cuerpo.hidden = !abrir;
+    boton.setAttribute("aria-expanded", String(abrir));
+    if (abrir && caja.classList.contains("plegable-escena")) {
+      caja.querySelector(".plegable-cabeza").hidden = true;
+      cuerpo.scrollIntoView({ behavior: reducir ? "auto" : "smooth" });
+    }
+    // Las escenas que dependen del scroll vuelven a medirse
+    dispatchEvent(new Event("scroll"));
+    dispatchEvent(new Event("resize"));
+  });
+});
+
+// ── Escenas que se quedan fijas al bajar: un botón para pasar a lo siguiente ──
+const navAlto = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 72;
+document.querySelectorAll(".vo-operacion, .vo-reporte, .vo-crece, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos").forEach((seccion) => {
+  const pin = seccion.querySelector(".vo-pin, .st-galeria-pin, .st-pin, .st-baffle-pin, .lb-tiempos-pin");
+  if (!pin) return;
+  const saltar = document.createElement("button");
+  saltar.type = "button";
+  saltar.className = "saltar-escena";
+  saltar.textContent = t("Saltar", "Skip");
+  saltar.setAttribute("aria-label", t("Saltar esta parte y seguir", "Skip this part and continue"));
+  saltar.addEventListener("click", () => {
+    const fin = seccion.getBoundingClientRect().bottom + scrollY - navAlto() + 1;
+    scrollTo({ top: fin, behavior: reducir ? "auto" : "smooth" });
+  });
+  pin.append(saltar);
+});
+

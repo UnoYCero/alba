@@ -4,7 +4,7 @@ from html.parser import HTMLParser
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 PUBLICO = os.path.join(AQUI, "..", "..", "public")
-PAGINAS = ["index.html", "Unblind/index.html", "AlbaSpace/index.html", "AlbaLabs/index.html", "orbita/index.html"]
+PAGINAS = ["index.html", "Unblind/index.html", "AlbaSpace/index.html", "visionops/index.html", "AlbaLabs/index.html", "orbita/index.html", "surfaceops/index.html"]
 ATRS = {"alt", "aria-label", "title", "content", "placeholder", "data-label"}
 # El botón de idioma que agrega generar_en.py no se traduce
 OMITIR = {"EN", "English version"}
