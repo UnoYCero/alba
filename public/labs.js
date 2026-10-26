@@ -238,28 +238,6 @@ if (seccion) {
 })();
 
 // ── Entre ver y crear: del fotograma al dato, en cuatro pasos sobre la misma escena ──
-// Al aparecer avanza solo; al tocar un paso se queda en él.
-(function verYCrear() {
-  const seccion = document.querySelector("[data-dato-pasos]");
-  if (!seccion) return;
-  const botones = [...seccion.querySelectorAll("[data-paso]")], textos = [...seccion.querySelectorAll("[data-dato-paso]")];
-  let actual = 0, reloj = 0;
-  const mostrar = (n) => {
-    actual = n;
-    seccion.dataset.paso = String(n);
-    botones.forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.paso === n)));
-    textos.forEach((d) => d.classList.toggle("activo", +d.dataset.datoPaso === n));
-  };
-  botones.forEach((b) => b.addEventListener("click", () => { clearInterval(reloj); mostrar(+b.dataset.paso); }));
-  mostrar(0);
-  if (reducir) return;
-  new IntersectionObserver(([e], obs) => {
-    if (!e.isIntersecting) return;
-    obs.disconnect();
-    reloj = setInterval(() => { if (document.hidden) return; if (actual === 3) { clearInterval(reloj); return; } mostrar(actual + 1); }, 3200);
-  }, { threshold: 0.5 }).observe(seccion.querySelector(".lb-dato-escena"));
-})();
-
 // ── Tu idea en el laboratorio: con lo que escribe la persona se arma su experimento y el mensaje de
 // WhatsApp. No se manda nada: el botón sólo abre WhatsApp con el texto escrito ──
 (function tuIdea() {

@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="../amanecer.css">
   <link rel="stylesheet" href="../subpagina.css">
   <link rel="stylesheet" href="../labs-3d.css">
+  <link rel="stylesheet" href="../ronda24.css?v=20261025c">
+  <script type="module" src="../ronda24.js"></script>
   <link rel="stylesheet" href="../assets/marcas/menu.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -61,7 +63,7 @@
       <a href="#tienda">Avísame</a>
       <a href="#lo-que-viene">Lo que viene</a>
       <p class="nav-panel-titulo">Otros proyectos</p>
-      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></div>
+      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../surfaceops/" translate="no">Surface Ops</a></div>
     </div>
   </header>
 
@@ -165,47 +167,30 @@
       </div>
     </section>
 
-    <!-- Entre ver y crear (ronda 21-C2 de marca): del fotograma al dato que usaría tu aplicación,
-         en cuatro pasos sobre la misma escena del escritorio (labs.js). Ejemplo escrito a mano -->
-    <section class="sub-seccion tema-dia lb-dato" data-dato-pasos data-plegable>
+    <!-- Ronda 24: reemplaza Entre ver y crear; selección manual, sin IA en vivo. -->
+    <section class="sub-seccion tema-dia r24-receta" id="receta" data-receta>
       <div class="wrap">
-        <div class="dos">
-          <h2 class="reveal">Mira lo que pasa <em>entre ver y crear.</em></h2>
-          <p class="sub-intro reveal">Por dentro no hay magia: una escena se convierte en un objeto, el objeto en contexto y el contexto en algo que tu aplicación puede usar.</p>
-        </div>
-        <p class="lb-plegar reveal"><button type="button" class="plegable-boton btn-text" aria-expanded="false" aria-controls="dato-cuerpo"><span class="plegable-abrir">Mira el recorrido</span><span class="plegable-cerrar">Ocultar</span></button></p>
-        <div class="plegable-cuerpo" id="dato-cuerpo" hidden>
-        <div class="lb-dato-grid">
-          <figure class="lb-dato-escena reveal">
-            <div class="lb-dato-lienzo">
-              <img src="../assets/labs/vista-trabajo.webp" alt="La misma mesa de trabajo vista desde los lentes, con el manual de la impresora abierto" width="1800" height="1200" loading="lazy" decoding="async">
-              <span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+        <h2>De lo que ves <em>a lo que quieres crear.</em></h2>
+        <p class="sub-intro">Toca el manual y recorre una receta de ejemplo. Todo lo mostrado sigue siendo concepto.</p>
+        <div class="r24-receta-grid">
+          <figure class="r24-manual">
+            <div class="r24-manual-foto">
+              <img src="../assets/labs/vista-trabajo.webp" alt="Escena ilustrativa con una impresora y su manual sobre una mesa" width="1800" height="1200" loading="lazy" decoding="async">
+              <button type="button" class="r24-manual-elegir" data-receta-elegir aria-pressed="false"><span>Elegir el manual</span></button>
             </div>
-            <span class="marca-ilus">Concepto · Ejemplo</span>
+            <figcaption>Concepto · Ilustración. El objeto se selecciona a mano en esta demostración.</figcaption>
           </figure>
-          <div class="lb-dato-lectura">
-            <div class="lb-dato-pasos" role="group" aria-label="Del fotograma al dato">
-              <button type="button" data-paso="0" aria-pressed="true">Fotograma</button>
-              <button type="button" data-paso="1" aria-pressed="false">Objeto</button>
-              <button type="button" data-paso="2" aria-pressed="false">Contexto</button>
-              <button type="button" data-paso="3" aria-pressed="false">Salida</button>
+          <div class="r24-receta-lectura">
+            <div aria-live="polite" aria-atomic="true">
+              <div data-receta-paso="0"><h3>Empieza por un objeto.</h3><p>Elige la parte de la escena que le da sentido a tu pregunta.</p><p class="r24-receta-salida">Tu receta todavía no tiene contexto.</p></div>
+              <div data-receta-paso="1" hidden><h3>El manual es el contexto.</h3><p>Una imagen concreta prepara una pregunta concreta.</p><dl class="r24-contexto"><div><dt>Objeto</dt><dd>Manual de la impresora</dd></div><div><dt>Lugar</dt><dd>Mesa de trabajo</dd></div><div><dt>Referencia de ejemplo</dt><dd>Página 3</dd></div></dl></div>
+              <div data-receta-paso="2" hidden><h3>«¿Qué dice este paso?»</h3><p>Tu aplicación podría relacionar la pregunta con el fragmento elegido.</p><p class="r24-receta-salida">Respuesta de ejemplo: consulta el paso del manual que tienes enfrente y comprueba sus instrucciones antes de actuar.</p></div>
             </div>
-            <div class="lb-dato-texto" aria-live="polite">
-              <div data-dato-paso="0" class="activo"><h3>El punto de partida es lo que ves.</h3><p>Una imagen del entorno. Antes de responder, se elige qué parte importa.</p></div>
-              <div data-dato-paso="1"><h3>Un objeto, no toda la escena.</h3><p>El manual, sin perder su relación con la impresora que tiene enfrente.</p></div>
-              <div data-dato-paso="2"><h3>El contexto le da sentido.</h3>
-                <dl><div><dt>Objeto</dt><dd>Manual de la impresora</dd></div><div><dt>Lugar</dt><dd>Mesa de trabajo</dd></div><div><dt>Referencia</dt><dd>Página 3</dd></div></dl></div>
-              <div data-dato-paso="3"><h3>Tu aplicación recibe una estructura.</h3>
-                <pre class="lb-dato-salida" translate="no">{
-  "objeto": "manual",
-  "referencia": "pág. 3",
-  "lugar": "mesa de trabajo"
-}</pre></div>
-            </div>
-            <p class="lb-config-nota">Concepto · Ejemplo escrito a mano: no es reconocimiento en vivo ni el software final.</p>
+            <div class="r24-receta-acciones"><button type="button" class="btn btn-solid" data-receta-siguiente disabled>Continuar con la pregunta</button><button type="button" class="btn-text r24-reiniciar" data-receta-reiniciar hidden>Volver a elegir contexto</button></div>
+            <p class="r24-nota">No hay reconocimiento ni IA funcionando en esta demostración. El Dev Kit está en desarrollo.</p>
           </div>
         </div>
-        </div>
+        <noscript><p>Este ejemplo relaciona un manual, su contexto y una pregunta. Para recorrerlo, activa JavaScript.</p></noscript>
       </div>
     </section>
 
@@ -391,7 +376,7 @@
     <section class="sigue tema-dia" aria-label="Sigue explorando">
       <div class="wrap">
         <a class="sigue-siguiente" href="../unblind/">Sigue con <em translate="no">UNBLIND</em>&nbsp;<span aria-hidden="true">→</span></a>
-        <p class="sigue-demas"><span>También</span><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></p>
+        <p class="sigue-demas"><span>También</span><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../surfaceops/" translate="no">Surface Ops</a></p>
         <a class="sigue-volver" href="../#proyecto-alba-labs">Volver a Alba Vision</a>
       </div>
     </section>
@@ -415,6 +400,7 @@
       <img src="../assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
       <p class="footer-tag"><em>Más allá de lo visible.</em></p>
       <nav class="footer-links" aria-label="Otros sitios de Alba">
+        <a href="../surfaceops/">Surface Ops</a>
         <a href="../">Portada</a>
         <a href="../unblind/">UNBLIND</a>
         <a href="../visionops/">Vision Ops</a>

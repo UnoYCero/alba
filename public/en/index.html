@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/celular.css" media="(max-width: 760px)">
+  <link rel="stylesheet" href="/ronda24.css?v=20261025c">
+  <script type="module" src="/ronda24.js"></script>
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/landing.js"></script>
@@ -61,14 +63,16 @@
       <a href="#alba-vision">Alba Vision</a>
       <a href="#alba-space">Alba Space</a>
       <a href="#contacto">Let's talk</a>
+      <a href="surfaceops/" translate="no">Surface Ops</a>
     </div>
   </header>
 
   <main id="contenido">
     <!-- Portada -->
-    <section class="hero tema-noche" id="inicio">
+    <section class="hero tema-noche r24-hero" id="inicio">
       <div class="hero-veil" aria-hidden="true"></div>
-      <div class="wrap hero-inner">
+      <div class="wrap hero-inner r24-entrada">
+        <div>
         <h1 class="hero-title">
           <span class="line"><span>The vision that</span></span>
           <span class="line"><span><em>works alongside you.</em></span></span>
@@ -78,6 +82,38 @@
         <div class="hero-cta">
           <a class="btn btn-solid magnetic" href="#contacto">Let's talk</a>
           <a class="btn-text" href="#capacidades">What we do</a>
+        </div>
+        </div>
+        <div class="r24-puertas" data-puertas>
+          <p class="r24-pregunta">What would you like vision to help you do?</p>
+          <div class="r24-opciones" role="group" aria-label="Find your project">
+            <button type="button" data-puerta="0" aria-pressed="true" aria-controls="puerta-acompanar">Support someone</button>
+            <button type="button" data-puerta="1" aria-pressed="false" aria-controls="puerta-operacion">Understand an operation</button>
+            <button type="button" data-puerta="2" aria-pressed="false" aria-controls="puerta-espacio">Navigate in space</button>
+          </div>
+          <div aria-live="polite">
+            <article class="r24-puerta" id="puerta-acompanar">
+              <img src="/assets/unblind-en-la-calle.webp" width="1400" height="933" alt="Max and Alan test UNBLIND with Omar Ledezma and his guide dog">
+              <p class="status">UNBLIND · In development</p>
+              <p>Vision and AI to support people with visual impairments.</p>
+              <a class="btn-text" href="unblind/">Discover UNBLIND</a>
+            </article>
+            <article class="r24-puerta" id="puerta-operacion" hidden>
+              <img src="/assets/visionops/restaurante-aerea.webp" width="1400" height="933" alt="Illustration of a restaurant viewed from above">
+              <p class="status">Vision Ops · In operation</p>
+              <p>From your business cameras to timings, queues and decisions.</p>
+              <p class="r24-nota">Illustration · Example operation</p>
+              <a class="btn-text" href="visionops/">Explore Vision Ops</a>
+            </article>
+            <article class="r24-puerta" id="puerta-espacio" hidden>
+              <img src="/assets/space/concepto-en-orbita.webp" width="1800" height="1200" alt="Concept of a CubeSat above Earth">
+              <p class="status">Alba Space · In the lab</p>
+              <p>One optical instrument, three functions for a mission.</p>
+              <p class="r24-nota">Concept · Integration illustration</p>
+              <a class="btn-text" href="albaspace/">Explore Alba Space</a>
+            </article>
+          </div>
+          <noscript><p><a class="btn-text" href="visionops/">Vision Ops</a> · <a class="btn-text" href="albaspace/">Alba Space</a></p></noscript>
         </div>
       </div>
       <div class="wrap hero-doors">
@@ -318,8 +354,8 @@
           <li class="proyecto" id="proyecto-surface-ops" data-proyecto="5">
             <button type="button" class="proyecto-nombre" aria-expanded="false" aria-controls="detalle-5"><span translate="no">Surface Ops</span><small>In testing</small></button>
             <div class="proyecto-detalle" id="detalle-5"><div>
-              <p>Measure a pothole with a photo: the office receives the outline, the area, the cut and the location, with no tape or sketch. It works without signal and delivers PDF and AutoCAD files.</p>
-              <p class="proyecto-enlaces"><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27m%20interested%20in%20a%20Surface%20Ops%20trial%20to%20measure%20potholes." target="_blank" rel="noopener" aria-label="Book a Surface Ops trial on WhatsApp">Book a trial</a></p>
+              <p>Measure a pothole from a photo: the office receives its outline, area, cut and location, using a printed marker or tape measurement for scale. It works offline and exports PDF and AutoCAD files.</p>
+              <p class="proyecto-enlaces"><a class="btn-text" href="surfaceops/">Explore Surface Ops</a></p>
             </div></div>
           </li>
           </ol>
@@ -417,6 +453,7 @@
       <img src="/assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
       <p class="footer-tag"><em>Beyond the visible.</em></p>
       <nav class="footer-links" aria-label="Other Alba sites">
+        <a href="surfaceops/">Surface Ops</a>
         <a href="unblind/">UNBLIND</a>
         <a href="visionops/">Vision Ops</a>
         <a href="albaspace/">Alba Space</a>

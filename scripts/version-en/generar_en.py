@@ -16,6 +16,7 @@ SITIO = "https://albavision.tech/"
 
 # página en español → (ruta del archivo en inglés, dirección pública en español, en inglés)
 PAGINAS = {
+    "surfaceops/index.html": ("en/surfaceops/index.html", "surfaceops/", "en/surfaceops/"),
     "index.html": ("en/index.html", "", "en/"),
     "Unblind/index.html": ("en/unblind/index.html", "unblind/", "en/unblind/"),
     "AlbaSpace/index.html": ("en/albaspace/index.html", "albaspace/", "en/albaspace/"),
@@ -118,6 +119,7 @@ def traducir(origen, destino, es_pub, en_pub):
         return "wa.me/525616908570?text=" + up.quote(WA[texto], safe="")
     html = re.sub(r'wa\.me/525616908570\?text=([^"]+)', wa, html)
 
+    html = html.replace("assets/surfaceops/compartir-es.jpg", "assets/surfaceops/compartir-en.jpg")
     html = html.replace('<html lang="es">', '<html lang="en">', 1)
     html = html.replace('content="es_MX"', 'content="en_US"')
     html = html.replace(f'<link rel="canonical" href="{SITIO}{es_pub}">', f'<link rel="canonical" href="{SITIO}{en_pub}">')
