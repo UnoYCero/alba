@@ -397,3 +397,30 @@ const DATOS = {
   actualizar();
 })();
 
+// ── Un solo fondo a lo largo de la página (ronda 26), como el cielo de la portada (landing.js) ──
+// Papel en el hallazgo, azul hielo en cómo funciona y el reporte, un poco más azul en un día y cómo
+// trabajamos, de regreso al papel en privacidad y el piloto, y noche antes del título del contacto.
+// Las paradas salen de la posición real de cada capítulo; las secciones no pintan el suyo.
+const cielo = document.querySelector(".cielo-alba");
+const capitulos = ["como", "un-dia", "privacidad", "contacto"].map((id) => document.getElementById(id));
+if (cielo && capitulos.every(Boolean)) {
+  const [como, dia, privacidad, contacto] = capitulos;
+  const pie = document.querySelector(".footer");
+  const y = (e) => e.getBoundingClientRect().top + scrollY;
+  const papel = "#f4f6fa", hielo = "#e8effc", azul = "#dce7fb", noche = "#050d1c";
+  let pendiente = 0;
+  const pintarFondo = () => {
+    pendiente = 0;
+    const alto = y(pie) + pie.offsetHeight;
+    const titulo = contacto.querySelector("h2");
+    const paradas = [[0, papel], [Math.max(0, y(como) - 160), papel], [y(como) + 160, hielo], [y(dia) - 160, hielo], [y(dia) + 160, azul],
+      [y(privacidad) - 160, azul], [y(privacidad) + 120, papel], [y(contacto) - 40, papel], [Math.max(y(contacto) + 120, y(titulo) - 36), noche], [alto, noche]];
+    cielo.style.height = `${Math.ceil(alto)}px`;
+    cielo.style.background = `linear-gradient(180deg, ${paradas.map(([p, c]) => `${c} ${Math.round(p)}px`).join(", ")})`;
+  };
+  const pedirFondo = () => { if (!pendiente) pendiente = requestAnimationFrame(pintarFondo); };
+  cielo.classList.add("cielo-pagina");
+  document.body.classList.add("fondo-continuo");
+  new ResizeObserver(pedirFondo).observe(document.querySelector("main"));
+  addEventListener("resize", pedirFondo); document.fonts.ready.then(pedirFondo); addEventListener("load", pedirFondo); pedirFondo();
+}

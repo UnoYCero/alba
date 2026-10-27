@@ -101,51 +101,55 @@ if (dialogo) {
   });
 }
 
-// Una sola reproducción breve: se puede pausar, recorrer o repetir.
-const momento = document.querySelector('[data-hallazgo]');
+// Los 41 segundos: la fila quieta, una persona que espera y se va, y el hallazgo. Corre una vez al
+// llegar y se queda en el final; puede volver a correr si la persona regresa después de un rato.
+const momento = document.querySelector('[data-momento]');
 if (momento) {
-  const figura = momento.closest('figure');
-  const control = figura.querySelector('[data-hallazgo-control]');
-  const play = figura.querySelector('[data-hallazgo-play]');
-  const punto = momento.querySelector('.hallazgo-punto');
-  const segundos = momento.querySelector('[data-hallazgo-segundos]');
-  let cuadro = 0, inicio = 0, valor = 41, reproduciendo = false, usado = false;
-  const pintar = v => {
-    valor = Math.min(41,Math.max(0,v)); control.value = Math.round(valor);
-    segundos.textContent = Math.round(valor);
-    const p = valor/41;
-    const x = p < .65 ? 950-70*(p/.65) : 880+590*((p-.65)/.35);
-    const y = p < .65 ? 1000-350*(p/.65) : 650+120*((p-.65)/.35);
-    punto.setAttribute('cx',x); punto.setAttribute('cy',y);
-    momento.style.setProperty('--recorrido',p.toFixed(3));
-    momento.classList.toggle('hallazgo-final',p >= .97);
-    control.setAttribute('aria-valuetext',texto(`${Math.round(valor)} segundos de espera`,`${Math.round(valor)} seconds of waiting`));
+  const svg=momento.querySelector('[data-escena]'), cliente=momento.querySelector('[data-cliente]');
+  const halo=cliente.querySelector('.motion-halo'), reloj=momento.querySelector('[data-segundos]'), hallazgo=momento.querySelector('[data-final]');
+  const movil=matchMedia('(max-width: 760px)');
+  const DURACION=5800, REGRESO=20000;
+  const limitar=n=>Math.max(0,Math.min(1,n)), suave=n=>n*n*(3-2*n);
+  let cuadro=0, inicio=0, visible=false, listo=false, hecho=false, salio=0;
+  // En celular se acerca el encuadre sin perder la fila ni la puerta
+  const encuadre=()=>svg.setAttribute('viewBox',movil.matches ? '400 0 1100 1024' : '0 0 1536 1024');
+  movil.addEventListener('change',encuadre); encuadre();
+  const pintar=fraccion=>{
+    const tiempo=fraccion*DURACION;
+    const espera=limitar((tiempo-1050)/2500);
+    // El final de la cuenta tarda más que su principio: se siente la espera
+    const segundos=espera<.55 ? 35*espera/.55 : 35+6*(espera-.55)/.45;
+    const salida=suave(limitar((tiempo-3650)/1300));
+    // Sale por el pasillo libre, rodea a la otra persona y va hacia la puerta
+    const x=salida<.52 ? 330*salida/.52 : 330+205*(salida-.52)/.48;
+    const y=salida<.52 ? -25*salida/.52 : -25-355*(salida-.52)/.48;
+    const balance=salida>0 && salida<1 ? Math.sin(salida*Math.PI*6)*1.8 : 0;
+    cliente.setAttribute('transform',`translate(${x} ${y+balance}) translate(812 947) scale(${1-.22*salida}) translate(-812 -947)`);
+    cliente.setAttribute('opacity',String(1-suave(limitar((salida-.82)/.18))));
+    halo.setAttribute('opacity',String(suave(limitar((tiempo-450)/450))*(1-suave(limitar((tiempo-3400)/650)))));
+    reloj.textContent=String(Math.min(41,Math.round(segundos)));
+    const final=suave(limitar((tiempo-4950)/650));
+    hallazgo.style.opacity=String(final); hallazgo.style.transform=`translateY(${(1-final)*8}px)`;
   };
-  const parar = () => {
-    cancelAnimationFrame(cuadro); cuadro=0; reproduciendo=false;
-    play.textContent=texto('Repetir el momento','Replay the moment');
+  const terminar=()=>{cancelAnimationFrame(cuadro); cuadro=0; hecho=true; pintar(1);};
+  const animar=ahora=>{const p=limitar((ahora-inicio)/DURACION); pintar(p); if(p<1) cuadro=requestAnimationFrame(animar); else terminar();};
+  const entrar=()=>{
+    if(!listo || !visible || document.hidden) return;
+    if(quieto.matches) {terminar(); return;}
+    if(cuadro || hecho) return;
+    inicio=performance.now(); pintar(0); cuadro=requestAnimationFrame(animar);
   };
-  const animar = ahora => {
-    pintar((ahora-inicio)/5200*41);
-    if (valor < 41) cuadro=requestAnimationFrame(animar); else parar();
-  };
-  const reproducir = () => {
-    usado=true;
-    if (quieto.matches) { pintar(41); return; }
-    reproduciendo=true; inicio=performance.now(); pintar(0);
-    play.textContent=texto('Pausar el momento','Pause the moment');
-    cuadro=requestAnimationFrame(animar);
-  };
-  play.addEventListener('click',()=>reproduciendo ? parar() : reproducir());
-  control.addEventListener('input',()=>{usado=true;parar();pintar(+control.value);});
-  figura.addEventListener('focusin',e=>{usado=true;if(e.target !== play && reproduciendo) parar();});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden) parar();});
   new IntersectionObserver(([e])=>{
-    if(e.isIntersecting && !usado && !quieto.matches) reproducir();
-    else if(!e.isIntersecting && reproduciendo) parar();
-  },{threshold:.55}).observe(momento);
-  quieto.addEventListener('change',()=>{parar();pintar(41);});
-  pintar(41);
+    visible=e.isIntersecting;
+    if(visible) {if(salio && performance.now()-salio>=REGRESO) hecho=false; entrar();}
+    else {salio=performance.now(); if(cuadro) terminar();}
+  },{threshold:.5}).observe(momento);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden && cuadro) terminar(); else entrar();});
+  quieto.addEventListener('change',()=>{if(quieto.matches) terminar();});
+  // Sin JavaScript o sin imágenes, la figura ya muestra el final
+  const urls=[...new Set([...svg.querySelectorAll('image')].map(i=>i.href.baseVal))];
+  Promise.all(urls.map(url=>{const img=new Image(); img.src=new URL(url,location.href).href; return img.decode();}))
+    .then(()=>{listo=true; entrar();}).catch(terminar);
 }
 
 // CubeSat → instrumento: el modelo del sitio se reutiliza y sólo se carga al pedirlo.

@@ -276,3 +276,16 @@
 .corrida .vo-capa, html:not(.js) .vo-capa { position: relative; inset: auto; opacity: 1; transform: none; pointer-events: auto; }
 .corrida .vo-evidencia, html:not(.js) .vo-evidencia { top: auto; translate: none; width: 100%; }
 .corrida .vo-barras, html:not(.js) .vo-barras { height: 180px; }
+
+/* Un solo fondo a lo largo de la página (visionops.js). Mientras se ve la ilustración fija (antes
+   del 3D o en lectura natural), la escena se funde con el azul para que su papel no forme un
+   recuadro. Con el 3D no se funde: sus tarjetas blancas y sus colores se quedan como son. */
+.fondo-continuo main { z-index: auto; }
+.fondo-continuo .footer { background: transparent; }
+.fondo-continuo .contact { background: radial-gradient(circle at 50% 115%, rgba(37,99,235,.38), transparent 58%); }
+.fondo-continuo :is(.vo-operacion, .vo-crece):not(:has(.con-3d)) { mix-blend-mode: multiply; }
+.fondo-continuo .vo-respaldo { filter: brightness(1.05); }
+.fondo-continuo .vo-correo { background: #e8effc; }
+/* Sobre el azul, la letra chica azul va un tono más oscuro para leerse bien; los titulares no cambian */
+.fondo-continuo .tema-dia { --soft: #1d4ed8; }
+.fondo-continuo .tema-dia :is(.btn-text, .vo-piloto-resumen dt) { color: #1d4ed8; }

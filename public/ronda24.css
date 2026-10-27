@@ -23,7 +23,6 @@
 .r24-puerta [hidden], [data-receta] [hidden], [data-mision] [hidden], .r24-puertas [hidden] { display: none; }
 .r24-hallazgo .sub-title { font-size: clamp(40px, 4.6vw, 66px); }
 .r24-hallazgo-figura { margin: 0; }
-.r24-hallazgo-figura img { width: 100%; height: auto; }
 .r24-hallazgo-figura figcaption { margin-top: 12px; }
 .r24-dato { margin: 12px 0 0; font-size: clamp(56px, 6vw, 88px); line-height: 1; color: var(--soft); font-variant-numeric: tabular-nums; }
 .r24-dato span { font-size: 18px; color: var(--paper); }
@@ -123,7 +122,6 @@
   .r24-puerta > p { font-size: 16px; }
   .r24-hallazgo .sub-hero-grid, .r24-receta-grid, .surface-oficina, .surface-offline { grid-template-columns: 1fr; gap: 28px; }
   .r24-hallazgo-figura { order: -1; }
-  .r24-hallazgo-figura img { aspect-ratio: 16/9; object-fit: cover; }
   .r24-hallazgo { padding-top: calc(var(--nav-h) + 24px); }
   .r24-hallazgo .sub-title { font-size: 39px; }
   .r24-dato { font-size: 54px; }

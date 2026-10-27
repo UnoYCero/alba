@@ -29,14 +29,14 @@
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/subpagina.css">
-  <link rel="stylesheet" href="/visionops.css?v=20261027a">
-  <link rel="stylesheet" href="/ronda24.css?v=20261027a">
-  <link rel="stylesheet" href="/ritmo.css?v=20261027a">
+  <link rel="stylesheet" href="/visionops.css?v=20261027b">
+  <link rel="stylesheet" href="/ronda24.css?v=20261027b">
+  <link rel="stylesheet" href="/ritmo.css?v=20261027b">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/visionops.js?v=20261027a"></script>
-  <script type="module" src="/integral.js?v=20261027a"></script>
+  <script type="module" src="/visionops.js?v=20261027b"></script>
+  <script type="module" src="/integral.js?v=20261027b"></script>
 </head>
 <body class="pagina-dia pagina-visionops">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -80,18 +80,32 @@
           <div class="sub-cta"><a class="btn btn-solid" href="#recibes">See the sample report</a><a class="btn-text" href="#contacto">Let's talk about your operation</a></div>
           <p class="r24-nota">Data analytics with computer vision. We are starting with restaurants and food businesses, without facial recognition.</p>
         </div>
-        <figure class="r24-hallazgo-figura">
-          <div class="hallazgo-escena" data-hallazgo><img src="/assets/visionops/paleteria-camara.webp" width="1800" height="1200" fetchpriority="high" alt="Illustration of an ice pop shop with people queuing and one person leaving">
-            <svg class="hallazgo-trazos" viewBox="0 0 1800 1200" aria-hidden="true">
-              <path class="hallazgo-zona" d="m720 570 240-230 540 360-230 260Z"/>
-              <path class="hallazgo-ruta" d="M950 1000Q760 800 880 650T1470 770" pathLength="1"/>
-              <circle class="hallazgo-punto" cx="950" cy="1000" r="19"/>
-              <g class="hallazgo-reloj"><rect x="1100" y="85" width="560" height="150" rx="12"/><text x="1140" y="183"><tspan data-hallazgo-segundos>41</tspan> s</text></g>
+        <!-- Los 41 segundos (ronda 26): la ilustración en capas; una persona espera, sale y queda el
+             hallazgo. Corre una vez al llegar, sin controles (integral.js) -->
+        <figure class="r24-hallazgo-figura motion-41" data-momento>
+          <div class="motion-escena">
+            <svg viewBox="0 0 1536 1024" role="img" aria-labelledby="momento-titulo momento-descripcion" data-escena>
+              <title id="momento-titulo">A wait that ends in a lost sale</title>
+              <desc id="momento-descripcion">Recreation: the queue stays still while an anonymous person waits 41 seconds. Then they leave the queue and walk out the door.</desc>
+              <defs>
+                <!-- El corte pasa por la transparencia entre figuras: la persona conserva su contorno original -->
+                <clipPath id="solo-cliente"><path d="M930 580H1120V990H885V755L910 700Z"/></clipPath>
+                <clipPath id="resto-fila"><path d="M0 0H1536V1024H0ZM930 580 910 700 885 755V990H1120V580Z" clip-rule="evenodd"/></clipPath>
+              </defs>
+              <image href="/assets/visionops/paleteria-vacio.webp" width="1536" height="1024"/>
+              <g transform="translate(0 160) scale(.82)" clip-path="url(#resto-fila)"><image href="/assets/visionops/paleteria-personas.webp" width="1536" height="1024"/></g>
+              <g data-cliente opacity="0">
+                <ellipse class="motion-halo" cx="812" cy="947" rx="67" ry="21" opacity="0"/>
+                <g transform="translate(0 160) scale(.82)"><g clip-path="url(#solo-cliente)"><image href="/assets/visionops/paleteria-personas.webp" width="1536" height="1024"/></g></g>
+              </g>
+              <g class="motion-reloj" aria-hidden="true">
+                <rect x="1170" y="72" width="262" height="120" rx="60"/>
+                <text x="1301" y="166" text-anchor="middle"><tspan data-segundos>41</tspan><tspan class="motion-unidad" dx="12">s</tspan></text>
+              </g>
             </svg>
-            <div class="hallazgo-reporte"><p>From a moment to a finding.</p><p><em>They waited 41 seconds and left.</em></p></div>
+            <p class="motion-final" data-final>They waited 41 seconds<br><em>and left.</em></p>
           </div>
           <figcaption>Recreated illustration · not the frame from the real finding</figcaption>
-          <div class="hallazgo-control"><button type="button" data-hallazgo-play>Watch the 41 seconds</button><label>Explore the moment<input type="range" min="0" max="41" value="41" step="1" data-hallazgo-control></label></div>
         </figure>
       </div>
     </section>
