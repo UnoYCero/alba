@@ -1,0 +1,15 @@
+{
+  "orientacion": {
+    "etapaElegida": 2,
+    "comprobacion": "Clase activa conservada tras más de7 segundos; captura space-es-1440-eleccion-persistente.jpg"
+  },
+  "acoplamiento": {
+    "secuencia": "End → Home → desplazamiento",
+    "baffleTrasScroll": "0",
+    "limite": "Confirmación posterior con guardas de foco/teclado en correcciones.json; Home sobre0 conserva la elección."
+  },
+  "dia": {
+    "secuencia": "End→Home→desplazamiento",
+    "valor": "13"
+  }
+}

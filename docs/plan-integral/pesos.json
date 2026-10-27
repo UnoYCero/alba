@@ -1,0 +1,72 @@
+{
+  "recursos_nuevos": [
+    {
+      "archivo": "public/assets/marcas/surface-ops/apple-touch-icon-180.png",
+      "bytes": 5300
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/compartir-1200x630.png",
+      "bytes": 39017
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/favicon-16.png",
+      "bytes": 839
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/favicon-32.png",
+      "bytes": 1407
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/favicon.ico",
+      "bytes": 3658
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/favicon.svg",
+      "bytes": 6190
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/firma-horizontal-claro.svg",
+      "bytes": 24413
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/firma-horizontal-oscuro.svg",
+      "bytes": 24415
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/menu-claro.svg",
+      "bytes": 8335
+    },
+    {
+      "archivo": "public/assets/marcas/surface-ops/menu-oscuro.svg",
+      "bytes": 8337
+    },
+    {
+      "archivo": "public/assets/surfaceops/compartir-plan-en.jpg",
+      "bytes": 81510
+    },
+    {
+      "archivo": "public/assets/surfaceops/compartir-plan-es.jpg",
+      "bytes": 83047
+    },
+    {
+      "archivo": "public/assets/surfaceops/compartir-plantilla-en.html",
+      "bytes": 1507
+    },
+    {
+      "archivo": "public/assets/surfaceops/compartir-plantilla.html",
+      "bytes": 1520
+    }
+  ],
+  "total_bytes": 289495,
+  "css_js_nuevos": [
+    {
+      "archivo": "public/ritmo.css",
+      "bytes": 16287
+    },
+    {
+      "archivo": "public/integral.js",
+      "bytes": 11178
+    }
+  ],
+  "nota": "Bytes sin compresión HTTP. Se reutilizan los GLB existentes; no se añade vídeo ni librería externa. Sólo los recursos necesarios se solicitan en cada página."
+}

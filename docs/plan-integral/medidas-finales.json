@@ -1,0 +1,3362 @@
+[
+  {
+    "ruta": "",
+    "revision": {
+      "altos": [
+        {
+          "height": 900,
+          "id": "inicio"
+        },
+        {
+          "height": 1170,
+          "id": "origen"
+        },
+        {
+          "height": 900,
+          "id": "mision"
+        },
+        {
+          "height": 1777,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 763,
+          "id": "capacidades"
+        },
+        {
+          "height": 888,
+          "id": "alba-vision"
+        },
+        {
+          "height": 985,
+          "id": "alba-space"
+        },
+        {
+          "height": 684,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 7880,
+          "clase": "collage-row",
+          "der": 7880,
+          "tag": "UL"
+        },
+        {
+          "ancho": 311,
+          "clase": "postal",
+          "der": 1665,
+          "tag": "LI"
+        },
+        {
+          "ancho": 285,
+          "clase": "",
+          "der": 1655,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 284,
+          "clase": "postal-texto",
+          "der": 1649,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 269,
+          "clase": "postal-year",
+          "der": 1643,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 269,
+          "clase": "",
+          "der": 1642,
+          "tag": "B"
+        },
+        {
+          "ancho": 269,
+          "clase": "postal-nota",
+          "der": 1641,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 269,
+          "clase": "postal-enlace",
+          "der": 1640,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 900,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 759,
+          "id": "como"
+        },
+        {
+          "height": 601,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1955,
+          "id": "recibes"
+        },
+        {
+          "height": 641,
+          "id": "un-dia"
+        },
+        {
+          "height": 1595,
+          "id": "trabajamos"
+        },
+        {
+          "height": 767,
+          "id": "privacidad"
+        },
+        {
+          "height": 446,
+          "id": "empezamos"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 600,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaSpace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1050,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 2646,
+          "id": "misiones"
+        },
+        {
+          "height": 1243,
+          "id": "baffle"
+        },
+        {
+          "height": 601,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 664,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 700,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaLabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 900,
+          "id": "dev-kit"
+        },
+        {
+          "height": 2070,
+          "id": "como-funciona"
+        },
+        {
+          "height": 497,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 796,
+          "id": "receta"
+        },
+        {
+          "height": 694,
+          "id": "tienda"
+        },
+        {
+          "height": 783,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 529,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 798,
+          "id": "modular"
+        },
+        {
+          "height": 798,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 310,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 942,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 568,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 931,
+          "clase": "",
+          "der": 1538,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 931,
+          "clase": "lb-portada-lienzo",
+          "der": 1538,
+          "tag": "CANVAS"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 936,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1825,
+          "id": "como"
+        },
+        {
+          "height": 558,
+          "id": "oficina"
+        },
+        {
+          "height": 731,
+          "id": "sin-senal"
+        },
+        {
+          "height": 414,
+          "id": "para-quien"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 649,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "en/",
+    "revision": {
+      "altos": [
+        {
+          "height": 900,
+          "id": "inicio"
+        },
+        {
+          "height": 1170,
+          "id": "origen"
+        },
+        {
+          "height": 900,
+          "id": "mision"
+        },
+        {
+          "height": 1759,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 763,
+          "id": "capacidades"
+        },
+        {
+          "height": 888,
+          "id": "alba-vision"
+        },
+        {
+          "height": 955,
+          "id": "alba-space"
+        },
+        {
+          "height": 684,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 7880,
+          "clase": "collage-row",
+          "der": 7880,
+          "tag": "UL"
+        },
+        {
+          "ancho": 311,
+          "clase": "postal",
+          "der": 1665,
+          "tag": "LI"
+        },
+        {
+          "ancho": 285,
+          "clase": "",
+          "der": 1655,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 284,
+          "clase": "postal-texto",
+          "der": 1649,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 269,
+          "clase": "postal-year",
+          "der": 1643,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 269,
+          "clase": "",
+          "der": 1642,
+          "tag": "B"
+        },
+        {
+          "ancho": 269,
+          "clase": "postal-nota",
+          "der": 1641,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 269,
+          "clase": "postal-enlace",
+          "der": 1640,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "en/visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 900,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 722,
+          "id": "como"
+        },
+        {
+          "height": 601,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1955,
+          "id": "recibes"
+        },
+        {
+          "height": 614,
+          "id": "un-dia"
+        },
+        {
+          "height": 1595,
+          "id": "trabajamos"
+        },
+        {
+          "height": 767,
+          "id": "privacidad"
+        },
+        {
+          "height": 446,
+          "id": "empezamos"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 696,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "en/albaspace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1050,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 2646,
+          "id": "misiones"
+        },
+        {
+          "height": 1160,
+          "id": "baffle"
+        },
+        {
+          "height": 601,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 664,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 668,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "en/albalabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 900,
+          "id": "dev-kit"
+        },
+        {
+          "height": 2070,
+          "id": "como-funciona"
+        },
+        {
+          "height": 497,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 796,
+          "id": "receta"
+        },
+        {
+          "height": 724,
+          "id": "tienda"
+        },
+        {
+          "height": 725,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 529,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 798,
+          "id": "modular"
+        },
+        {
+          "height": 798,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 310,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 900,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 696,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 931,
+          "clase": "",
+          "der": 1538,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 931,
+          "clase": "lb-portada-lienzo",
+          "der": 1538,
+          "tag": "CANVAS"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "en/surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 936,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1825,
+          "id": "como"
+        },
+        {
+          "height": 558,
+          "id": "oficina"
+        },
+        {
+          "height": 731,
+          "id": "sin-senal"
+        },
+        {
+          "height": 438,
+          "id": "para-quien"
+        },
+        {
+          "height": 297,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 553,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1440,
+        900
+      ]
+    }
+  },
+  {
+    "ruta": "",
+    "revision": {
+      "altos": [
+        {
+          "height": 768,
+          "id": "inicio"
+        },
+        {
+          "height": 998,
+          "id": "origen"
+        },
+        {
+          "height": 786,
+          "id": "mision"
+        },
+        {
+          "height": 1527,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 734,
+          "id": "capacidades"
+        },
+        {
+          "height": 1161,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1181,
+          "id": "alba-space"
+        },
+        {
+          "height": 584,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 6404,
+          "clase": "collage-row",
+          "der": 6404,
+          "tag": "UL"
+        },
+        {
+          "ancho": 256,
+          "clase": "postal",
+          "der": 1086,
+          "tag": "LI"
+        },
+        {
+          "ancho": 229,
+          "clase": "",
+          "der": 1070,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 226,
+          "clase": "postal-texto",
+          "der": 1076,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 209,
+          "clase": "postal-year",
+          "der": 1065,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 209,
+          "clase": "",
+          "der": 1067,
+          "tag": "B"
+        },
+        {
+          "ancho": 211,
+          "clase": "postal-nota",
+          "der": 1070,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 250,
+          "clase": "postal",
+          "der": 1347,
+          "tag": "LI"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 768,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 716,
+          "id": "como"
+        },
+        {
+          "height": 434,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1688,
+          "id": "recibes"
+        },
+        {
+          "height": 518,
+          "id": "un-dia"
+        },
+        {
+          "height": 1381,
+          "id": "trabajamos"
+        },
+        {
+          "height": 642,
+          "id": "privacidad"
+        },
+        {
+          "height": 365,
+          "id": "empezamos"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 553,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaSpace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1742,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 2229,
+          "id": "misiones"
+        },
+        {
+          "height": 1165,
+          "id": "baffle"
+        },
+        {
+          "height": 434,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 503,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 646,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaLabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1054,
+          "id": "dev-kit"
+        },
+        {
+          "height": 1766,
+          "id": "como-funciona"
+        },
+        {
+          "height": 451,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 610,
+          "id": "receta"
+        },
+        {
+          "height": 697,
+          "id": "tienda"
+        },
+        {
+          "height": 683,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 383,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 692,
+          "id": "modular"
+        },
+        {
+          "height": 679,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 270,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 932,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 527,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 796,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1513,
+          "id": "como"
+        },
+        {
+          "height": 496,
+          "id": "oficina"
+        },
+        {
+          "height": 678,
+          "id": "sin-senal"
+        },
+        {
+          "height": 361,
+          "id": "para-quien"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 602,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "en/",
+    "revision": {
+      "altos": [
+        {
+          "height": 768,
+          "id": "inicio"
+        },
+        {
+          "height": 998,
+          "id": "origen"
+        },
+        {
+          "height": 786,
+          "id": "mision"
+        },
+        {
+          "height": 1527,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 674,
+          "id": "capacidades"
+        },
+        {
+          "height": 1135,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1156,
+          "id": "alba-space"
+        },
+        {
+          "height": 584,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 6404,
+          "clase": "collage-row",
+          "der": 6404,
+          "tag": "UL"
+        },
+        {
+          "ancho": 256,
+          "clase": "postal",
+          "der": 1086,
+          "tag": "LI"
+        },
+        {
+          "ancho": 229,
+          "clase": "",
+          "der": 1070,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 226,
+          "clase": "postal-texto",
+          "der": 1076,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 209,
+          "clase": "postal-year",
+          "der": 1065,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 209,
+          "clase": "",
+          "der": 1067,
+          "tag": "B"
+        },
+        {
+          "ancho": 211,
+          "clase": "postal-nota",
+          "der": 1070,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 250,
+          "clase": "postal",
+          "der": 1347,
+          "tag": "LI"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "en/visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 768,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 706,
+          "id": "como"
+        },
+        {
+          "height": 434,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1688,
+          "id": "recibes"
+        },
+        {
+          "height": 475,
+          "id": "un-dia"
+        },
+        {
+          "height": 1381,
+          "id": "trabajamos"
+        },
+        {
+          "height": 642,
+          "id": "privacidad"
+        },
+        {
+          "height": 365,
+          "id": "empezamos"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 635,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "en/albaspace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1742,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 2234,
+          "id": "misiones"
+        },
+        {
+          "height": 1102,
+          "id": "baffle"
+        },
+        {
+          "height": 434,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 503,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 621,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "en/albalabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1054,
+          "id": "dev-kit"
+        },
+        {
+          "height": 1766,
+          "id": "como-funciona"
+        },
+        {
+          "height": 451,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 610,
+          "id": "receta"
+        },
+        {
+          "height": 723,
+          "id": "tienda"
+        },
+        {
+          "height": 616,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 383,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 677,
+          "id": "modular"
+        },
+        {
+          "height": 679,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 270,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 932,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 635,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "en/surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 796,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1513,
+          "id": "como"
+        },
+        {
+          "height": 496,
+          "id": "oficina"
+        },
+        {
+          "height": 678,
+          "id": "sin-senal"
+        },
+        {
+          "height": 385,
+          "id": "para-quien"
+        },
+        {
+          "height": 283,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 520,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        1024,
+        768
+      ]
+    }
+  },
+  {
+    "ruta": "",
+    "revision": {
+      "altos": [
+        {
+          "height": 1168,
+          "id": "inicio"
+        },
+        {
+          "height": 281,
+          "id": "origen"
+        },
+        {
+          "height": 785,
+          "id": "mision"
+        },
+        {
+          "height": 1388,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 723,
+          "id": "capacidades"
+        },
+        {
+          "height": 1237,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1529,
+          "id": "alba-space"
+        },
+        {
+          "height": 339,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 5400,
+          "clase": "collage-row",
+          "der": 5400,
+          "tag": "UL"
+        },
+        {
+          "ancho": 219,
+          "clase": "postal",
+          "der": 458,
+          "tag": "LI"
+        },
+        {
+          "ancho": 194,
+          "clase": "",
+          "der": 447,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 192,
+          "clase": "postal-texto",
+          "der": 441,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-year",
+          "der": 435,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "",
+          "der": 434,
+          "tag": "B"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-nota",
+          "der": 433,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-enlace",
+          "der": 432,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1114,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 900,
+          "id": "como"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1893,
+          "id": "recibes"
+        },
+        {
+          "height": 854,
+          "id": "un-dia"
+        },
+        {
+          "height": 849,
+          "id": "trabajamos"
+        },
+        {
+          "height": 665,
+          "id": "privacidad"
+        },
+        {
+          "height": 527,
+          "id": "empezamos"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaSpace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1430,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 3101,
+          "id": "misiones"
+        },
+        {
+          "height": 1257,
+          "id": "baffle"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 732,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 258,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 532,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaLabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 938,
+          "id": "dev-kit"
+        },
+        {
+          "height": 1941,
+          "id": "como-funciona"
+        },
+        {
+          "height": 864,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 826,
+          "id": "receta"
+        },
+        {
+          "height": 896,
+          "id": "tienda"
+        },
+        {
+          "height": 637,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 573,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 965,
+          "id": "modular"
+        },
+        {
+          "height": 942,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 374,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 1525,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 439,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 547,
+          "tag": "LI"
+        },
+        {
+          "ancho": 261,
+          "clase": "lb-viene-foto",
+          "der": 547,
+          "tag": "FIGURE"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "H3"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 832,
+          "tag": "LI"
+        },
+        {
+          "ancho": 261,
+          "clase": "lb-viene-foto",
+          "der": 832,
+          "tag": "FIGURE"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1046,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1562,
+          "id": "como"
+        },
+        {
+          "height": 876,
+          "id": "oficina"
+        },
+        {
+          "height": 1087,
+          "id": "sin-senal"
+        },
+        {
+          "height": 568,
+          "id": "para-quien"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 530,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "en/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1200,
+          "id": "inicio"
+        },
+        {
+          "height": 281,
+          "id": "origen"
+        },
+        {
+          "height": 808,
+          "id": "mision"
+        },
+        {
+          "height": 1388,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 690,
+          "id": "capacidades"
+        },
+        {
+          "height": 1265,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1551,
+          "id": "alba-space"
+        },
+        {
+          "height": 378,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 5400,
+          "clase": "collage-row",
+          "der": 5400,
+          "tag": "UL"
+        },
+        {
+          "ancho": 219,
+          "clase": "postal",
+          "der": 458,
+          "tag": "LI"
+        },
+        {
+          "ancho": 194,
+          "clase": "",
+          "der": 447,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 192,
+          "clase": "postal-texto",
+          "der": 441,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-year",
+          "der": 435,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "",
+          "der": 434,
+          "tag": "B"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-nota",
+          "der": 433,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-enlace",
+          "der": 432,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "en/visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1114,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 895,
+          "id": "como"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1851,
+          "id": "recibes"
+        },
+        {
+          "height": 854,
+          "id": "un-dia"
+        },
+        {
+          "height": 872,
+          "id": "trabajamos"
+        },
+        {
+          "height": 665,
+          "id": "privacidad"
+        },
+        {
+          "height": 494,
+          "id": "empezamos"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "en/albaspace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1380,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 3106,
+          "id": "misiones"
+        },
+        {
+          "height": 1152,
+          "id": "baffle"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 732,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 512,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "en/albalabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 894,
+          "id": "dev-kit"
+        },
+        {
+          "height": 1941,
+          "id": "como-funciona"
+        },
+        {
+          "height": 838,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 826,
+          "id": "receta"
+        },
+        {
+          "height": 863,
+          "id": "tienda"
+        },
+        {
+          "height": 604,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 573,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 963,
+          "id": "modular"
+        },
+        {
+          "height": 942,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 399,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 1472,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 547,
+          "tag": "LI"
+        },
+        {
+          "ancho": 261,
+          "clase": "lb-viene-foto",
+          "der": 547,
+          "tag": "FIGURE"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "H3"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 109,
+          "clase": "btn-text",
+          "der": 395,
+          "tag": "A"
+        },
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 832,
+          "tag": "LI"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "en/surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1046,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1582,
+          "id": "como"
+        },
+        {
+          "height": 851,
+          "id": "oficina"
+        },
+        {
+          "height": 1105,
+          "id": "sin-senal"
+        },
+        {
+          "height": 568,
+          "id": "para-quien"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 462,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "ruta": "",
+    "revision": {
+      "altos": [
+        {
+          "height": 1128,
+          "id": "inicio"
+        },
+        {
+          "height": 281,
+          "id": "origen"
+        },
+        {
+          "height": 785,
+          "id": "mision"
+        },
+        {
+          "height": 1388,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 723,
+          "id": "capacidades"
+        },
+        {
+          "height": 1237,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1455,
+          "id": "alba-space"
+        },
+        {
+          "height": 339,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 5400,
+          "clase": "collage-row",
+          "der": 5400,
+          "tag": "UL"
+        },
+        {
+          "ancho": 219,
+          "clase": "postal",
+          "der": 458,
+          "tag": "LI"
+        },
+        {
+          "ancho": 194,
+          "clase": "",
+          "der": 447,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 192,
+          "clase": "postal-texto",
+          "der": 441,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-year",
+          "der": 435,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "",
+          "der": 434,
+          "tag": "B"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-nota",
+          "der": 433,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-enlace",
+          "der": 432,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1114,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 900,
+          "id": "como"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1893,
+          "id": "recibes"
+        },
+        {
+          "height": 854,
+          "id": "un-dia"
+        },
+        {
+          "height": 849,
+          "id": "trabajamos"
+        },
+        {
+          "height": 665,
+          "id": "privacidad"
+        },
+        {
+          "height": 527,
+          "id": "empezamos"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaSpace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1430,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 3052,
+          "id": "misiones"
+        },
+        {
+          "height": 1257,
+          "id": "baffle"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 732,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 258,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 532,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaLabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 938,
+          "id": "dev-kit"
+        },
+        {
+          "height": 777,
+          "id": "como-funciona"
+        },
+        {
+          "height": 864,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 826,
+          "id": "receta"
+        },
+        {
+          "height": 896,
+          "id": "tienda"
+        },
+        {
+          "height": 637,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 573,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 880,
+          "id": "modular"
+        },
+        {
+          "height": 857,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 374,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 1525,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 439,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 547,
+          "tag": "LI"
+        },
+        {
+          "ancho": 261,
+          "clase": "lb-viene-foto",
+          "der": 547,
+          "tag": "FIGURE"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "H3"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 832,
+          "tag": "LI"
+        },
+        {
+          "ancho": 261,
+          "clase": "lb-viene-foto",
+          "der": 832,
+          "tag": "FIGURE"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1046,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1025,
+          "id": "como"
+        },
+        {
+          "height": 876,
+          "id": "oficina"
+        },
+        {
+          "height": 1087,
+          "id": "sin-senal"
+        },
+        {
+          "height": 568,
+          "id": "para-quien"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 530,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "en/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1160,
+          "id": "inicio"
+        },
+        {
+          "height": 281,
+          "id": "origen"
+        },
+        {
+          "height": 808,
+          "id": "mision"
+        },
+        {
+          "height": 1388,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 690,
+          "id": "capacidades"
+        },
+        {
+          "height": 1265,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1477,
+          "id": "alba-space"
+        },
+        {
+          "height": 378,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 5400,
+          "clase": "collage-row",
+          "der": 5400,
+          "tag": "UL"
+        },
+        {
+          "ancho": 219,
+          "clase": "postal",
+          "der": 458,
+          "tag": "LI"
+        },
+        {
+          "ancho": 194,
+          "clase": "",
+          "der": 447,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 192,
+          "clase": "postal-texto",
+          "der": 441,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-year",
+          "der": 435,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "",
+          "der": 434,
+          "tag": "B"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-nota",
+          "der": 433,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-enlace",
+          "der": 432,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "en/visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1114,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 895,
+          "id": "como"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1851,
+          "id": "recibes"
+        },
+        {
+          "height": 854,
+          "id": "un-dia"
+        },
+        {
+          "height": 872,
+          "id": "trabajamos"
+        },
+        {
+          "height": 665,
+          "id": "privacidad"
+        },
+        {
+          "height": 494,
+          "id": "empezamos"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "en/albaspace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1380,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 3057,
+          "id": "misiones"
+        },
+        {
+          "height": 1152,
+          "id": "baffle"
+        },
+        {
+          "height": 613,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 732,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 512,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "en/albalabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 894,
+          "id": "dev-kit"
+        },
+        {
+          "height": 757,
+          "id": "como-funciona"
+        },
+        {
+          "height": 838,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 826,
+          "id": "receta"
+        },
+        {
+          "height": 863,
+          "id": "tienda"
+        },
+        {
+          "height": 604,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 573,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 879,
+          "id": "modular"
+        },
+        {
+          "height": 857,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 399,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 1472,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 547,
+          "tag": "LI"
+        },
+        {
+          "ancho": 261,
+          "clase": "lb-viene-foto",
+          "der": 547,
+          "tag": "FIGURE"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "H3"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 261,
+          "clase": "",
+          "der": 547,
+          "tag": "P"
+        },
+        {
+          "ancho": 109,
+          "clase": "btn-text",
+          "der": 395,
+          "tag": "A"
+        },
+        {
+          "ancho": 261,
+          "clase": "reveal",
+          "der": 832,
+          "tag": "LI"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "en/surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1046,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1045,
+          "id": "como"
+        },
+        {
+          "height": 851,
+          "id": "oficina"
+        },
+        {
+          "height": 1105,
+          "id": "sin-senal"
+        },
+        {
+          "height": 568,
+          "id": "para-quien"
+        },
+        {
+          "height": 296,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 462,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        390,
+        660
+      ]
+    }
+  },
+  {
+    "ruta": "",
+    "revision": {
+      "altos": [
+        {
+          "height": 1256,
+          "id": "inicio"
+        },
+        {
+          "height": 290,
+          "id": "origen"
+        },
+        {
+          "height": 747,
+          "id": "mision"
+        },
+        {
+          "height": 1538,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 643,
+          "id": "capacidades"
+        },
+        {
+          "height": 1228,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1537,
+          "id": "alba-space"
+        },
+        {
+          "height": 358,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 5400,
+          "clase": "collage-row",
+          "der": 5400,
+          "tag": "UL"
+        },
+        {
+          "ancho": 219,
+          "clase": "postal",
+          "der": 458,
+          "tag": "LI"
+        },
+        {
+          "ancho": 194,
+          "clase": "",
+          "der": 447,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 192,
+          "clase": "postal-texto",
+          "der": 441,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-year",
+          "der": 435,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "",
+          "der": 434,
+          "tag": "B"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-nota",
+          "der": 433,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-enlace",
+          "der": 432,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1134,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 921,
+          "id": "como"
+        },
+        {
+          "height": 518,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1869,
+          "id": "recibes"
+        },
+        {
+          "height": 759,
+          "id": "un-dia"
+        },
+        {
+          "height": 803,
+          "id": "trabajamos"
+        },
+        {
+          "height": 599,
+          "id": "privacidad"
+        },
+        {
+          "height": 546,
+          "id": "empezamos"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 492,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaSpace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1409,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 3088,
+          "id": "misiones"
+        },
+        {
+          "height": 1195,
+          "id": "baffle"
+        },
+        {
+          "height": 518,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 714,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 254,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 554,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "AlbaLabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 903,
+          "id": "dev-kit"
+        },
+        {
+          "height": 723,
+          "id": "como-funciona"
+        },
+        {
+          "height": 989,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 825,
+          "id": "receta"
+        },
+        {
+          "height": 954,
+          "id": "tienda"
+        },
+        {
+          "height": 637,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 507,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 1079,
+          "id": "modular"
+        },
+        {
+          "height": 828,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 486,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 1769,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 467,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 134,
+          "clase": "lb-pov-rotulo lb-pov-pendiente",
+          "der": 323,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 207,
+          "clase": "reveal",
+          "der": 437,
+          "tag": "LI"
+        },
+        {
+          "ancho": 207,
+          "clase": "lb-viene-foto",
+          "der": 437,
+          "tag": "FIGURE"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "H3"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "P"
+        },
+        {
+          "ancho": 105,
+          "clase": "status status-dim",
+          "der": 336,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "P"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1073,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1138,
+          "id": "como"
+        },
+        {
+          "height": 926,
+          "id": "oficina"
+        },
+        {
+          "height": 1046,
+          "id": "sin-senal"
+        },
+        {
+          "height": 561,
+          "id": "para-quien"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 520,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "en/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1216,
+          "id": "inicio"
+        },
+        {
+          "height": 290,
+          "id": "origen"
+        },
+        {
+          "height": 724,
+          "id": "mision"
+        },
+        {
+          "height": 1454,
+          "id": "quienes-somos"
+        },
+        {
+          "height": 613,
+          "id": "capacidades"
+        },
+        {
+          "height": 1228,
+          "id": "alba-vision"
+        },
+        {
+          "height": 1537,
+          "id": "alba-space"
+        },
+        {
+          "height": 392,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 5400,
+          "clase": "collage-row",
+          "der": 5400,
+          "tag": "UL"
+        },
+        {
+          "ancho": 219,
+          "clase": "postal",
+          "der": 458,
+          "tag": "LI"
+        },
+        {
+          "ancho": 194,
+          "clase": "",
+          "der": 447,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 192,
+          "clase": "postal-texto",
+          "der": 441,
+          "tag": "DIV"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-year",
+          "der": 435,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "",
+          "der": 434,
+          "tag": "B"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-nota",
+          "der": 433,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 177,
+          "clase": "postal-enlace",
+          "der": 432,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "en/visionops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1156,
+          "id": "sub-hero tema-dia r24-hallazgo"
+        },
+        {
+          "height": 889,
+          "id": "como"
+        },
+        {
+          "height": 518,
+          "id": "sub-seccion tema-dia concepto-uso vo-concepto"
+        },
+        {
+          "height": 1824,
+          "id": "recibes"
+        },
+        {
+          "height": 759,
+          "id": "un-dia"
+        },
+        {
+          "height": 825,
+          "id": "trabajamos"
+        },
+        {
+          "height": 599,
+          "id": "privacidad"
+        },
+        {
+          "height": 571,
+          "id": "empezamos"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 556,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "en/albaspace/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1405,
+          "id": "sub-hero sub-cielo tema-noche space-portada"
+        },
+        {
+          "height": 3119,
+          "id": "misiones"
+        },
+        {
+          "height": 1142,
+          "id": "baffle"
+        },
+        {
+          "height": 518,
+          "id": "sub-seccion tema-noche concepto-uso st-concepto"
+        },
+        {
+          "height": 694,
+          "id": "aplicaciones"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-noche"
+        },
+        {
+          "height": 528,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "en/albalabs/",
+    "revision": {
+      "altos": [
+        {
+          "height": 903,
+          "id": "dev-kit"
+        },
+        {
+          "height": 723,
+          "id": "como-funciona"
+        },
+        {
+          "height": 942,
+          "id": "sub-seccion tema-dia lb-pregunta"
+        },
+        {
+          "height": 823,
+          "id": "receta"
+        },
+        {
+          "height": 904,
+          "id": "tienda"
+        },
+        {
+          "height": 585,
+          "id": "lo-que-viene"
+        },
+        {
+          "height": 478,
+          "id": "sub-seccion tema-dia concepto-uso lb-concepto"
+        },
+        {
+          "height": 1031,
+          "id": "modular"
+        },
+        {
+          "height": 808,
+          "id": "sub-seccion tema-dia lb-configuraciones"
+        },
+        {
+          "height": 460,
+          "id": "sub-seccion tema-dia"
+        },
+        {
+          "height": 1662,
+          "id": "sub-seccion tema-dia lb-idea"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 467,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [
+        {
+          "ancho": 207,
+          "clase": "reveal",
+          "der": 437,
+          "tag": "LI"
+        },
+        {
+          "ancho": 207,
+          "clase": "lb-viene-foto",
+          "der": 437,
+          "tag": "FIGURE"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "IMG"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "H3"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "P"
+        },
+        {
+          "ancho": 98,
+          "clase": "status status-dim",
+          "der": 328,
+          "tag": "SPAN"
+        },
+        {
+          "ancho": 207,
+          "clase": "",
+          "der": 437,
+          "tag": "P"
+        },
+        {
+          "ancho": 109,
+          "clase": "btn-text",
+          "der": 340,
+          "tag": "A"
+        }
+      ],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  },
+  {
+    "ruta": "en/surfaceops/",
+    "revision": {
+      "altos": [
+        {
+          "height": 1074,
+          "id": "sub-hero tema-dia"
+        },
+        {
+          "height": 1081,
+          "id": "como"
+        },
+        {
+          "height": 930,
+          "id": "oficina"
+        },
+        {
+          "height": 1050,
+          "id": "sin-senal"
+        },
+        {
+          "height": 585,
+          "id": "para-quien"
+        },
+        {
+          "height": 285,
+          "id": "sigue tema-dia"
+        },
+        {
+          "height": 482,
+          "id": "contacto"
+        }
+      ],
+      "fuentes": "loaded",
+      "fuera": [],
+      "overflow": 0,
+      "rotas": [],
+      "size": [
+        320,
+        568
+      ]
+    }
+  }
+]

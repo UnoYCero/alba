@@ -1,0 +1,31 @@
+{
+  "index.html": [],
+  "Unblind/index.html": [],
+  "AlbaSpace/index.html": [
+    "Ark Light 1, separado del CubeSat para explorar su diseño",
+    "Acercarme al instrumento",
+    "Exploración conceptual del diseño óptico."
+  ],
+  "visionops/index.html": [
+    "Del momento al hallazgo.",
+    "Esperó 41 segundos y se fue.",
+    "Ver los 41 segundos",
+    "Recorre el momento",
+    "Preparar mi piloto",
+    "Cerrar formulario",
+    "Tu operación.",
+    "Tu primera pregunta.",
+    "Elige lo que te gustaría entender. Lo revisaremos juntos antes de definir un piloto.",
+    "Entre 1 y 50 cámaras. El alcance se confirma en el diagnóstico.",
+    "Revisar mi idea",
+    "Editar mi idea"
+  ],
+  "AlbaLabs/index.html": [
+    "Fragmento ilustrativo del manual elegido como contexto",
+    "Contexto elegido · Ilustración"
+  ],
+  "orbita/index.html": [],
+  "surfaceops/index.html": [
+    "Surface Ops, by Alba Vision"
+  ]
+}

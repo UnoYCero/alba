@@ -1,0 +1,166 @@
+/* Ronda 24. Extensiones locales: sin cambiar el comportamiento de UNBLIND. */
+.r24-nota, .r24-manual figcaption, .r24-hallazgo-figura figcaption, .r24-space-visual figcaption { color: var(--dim); font-size: 14px; line-height: 1.5; }
+/* Las opciones, sin raya: la elegida queda sombreada, como el menú de la portada, y el cambio
+   pasa con un fundido */
+.r24-opciones { display: flex; flex-wrap: wrap; gap: 4px; margin-inline: -14px; }
+.r24-opciones button { padding: 8px 14px; min-height: 44px; border: 0; border-radius: 999px; background: transparent; font-weight: 300; cursor: pointer; text-align: left; color: var(--dim); transition: background .4s var(--ease), color .4s var(--ease); }
+.r24-opciones button:hover { background: color-mix(in srgb, var(--soft) 7%, transparent); color: var(--paper); }
+.r24-opciones button[aria-pressed="true"] { background: color-mix(in srgb, var(--soft) 14%, transparent); color: var(--paper); }
+.r24-opciones button:focus-visible { outline: 2px solid var(--soft); outline-offset: 4px; }
+.r24-hero { padding: calc(var(--nav-h) + 40px) 0 0; }
+.r24-hero .hero-veil { background: rgba(3,8,26,.84); }
+.r24-entrada { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: var(--s7); align-items: center; }
+.r24-hero .hero-title { font-size: clamp(44px, 5.3vw, 76px); }
+.r24-hero .hero-sub { max-width: 38ch; }
+.r24-hero .hero-doors { padding-top: 32px; }
+.r24-puertas { position: relative; }
+.r24-pregunta { font-size: 20px; margin: 0 0 8px; }
+.r24-puertas .r24-opciones { gap: 4px; font-size: 15px; margin-bottom: 16px; }
+.r24-puerta img { width: 100%; height: 210px; object-fit: cover; object-position: center 18%; border-radius: 0; }
+.r24-puerta > p { margin: 8px 0 0; max-width: 40ch; }
+.r24-puerta .status { color: var(--soft); font-size: 14px; }
+.r24-puerta .btn-text { margin-top: 4px; }
+.r24-puerta [hidden], [data-receta] [hidden], [data-mision] [hidden], .r24-puertas [hidden] { display: none; }
+.r24-hallazgo .sub-title { font-size: clamp(40px, 4.6vw, 66px); }
+.r24-hallazgo-figura { margin: 0; }
+.r24-hallazgo-figura figcaption { margin-top: 12px; }
+.r24-dato { margin: 12px 0 0; font-size: clamp(56px, 6vw, 88px); line-height: 1; color: var(--soft); font-variant-numeric: tabular-nums; }
+.r24-dato span { font-size: 18px; color: var(--paper); }
+.space-portada:has(.r24-mision) .sub-title { max-width: 18ch; font-size: clamp(42px, 4.7vw, 68px); }
+/* Las tres misiones: cada una lleva a su parte de la galería. Sin raya: al pasar, un sombreado
+   suave como el del menú de la portada */
+.r24-mision { display: grid; gap: 2px; margin: 24px 0 0 -16px; padding: 0; list-style: none; max-width: 46ch; pointer-events: auto; }
+.r24-mision a { display: grid; gap: 2px; padding: 12px 16px; border-radius: 14px; color: var(--paper); text-decoration: none; transition: background .35s var(--ease); }
+.r24-mision a:hover, .r24-mision a:focus-visible { background: rgba(143,178,255,.1); }
+.r24-mision a:focus-visible { outline: 2px solid var(--soft); outline-offset: 2px; }
+.r24-mision b { font-weight: 300; font-size: 19px; }
+.r24-mision span { font-size: 15px; line-height: 1.5; color: var(--dim); }
+.r24-space-visual img { aspect-ratio: 3/2; object-fit: cover; border-radius: 0; }
+.r24-receta-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: var(--s7); margin-top: 32px; align-items: center; }
+.r24-manual { margin: 0; }
+.r24-manual-foto { position: relative; }
+.r24-manual-foto img { width: 100%; height: auto; }
+.r24-manual-elegir { position: absolute; left: 22%; top: 36%; width: 48%; height: 40%; min-height: 44px; background: transparent; border: 2px solid #2563eb; color: #f4f6fa; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding: 8px; font-weight: 300; }
+.r24-manual-elegir span { background: #0b1f3b; color: #f4f6fa; border-radius: 20px; padding: 4px 10px; }
+.r24-manual-elegir[aria-pressed="true"] { border-style: dashed; }
+.r24-manual figcaption { margin-top: 12px; }
+.r24-receta-lectura h3 { font-size: clamp(28px, 2.7vw, 38px); line-height: 1.12; letter-spacing: -.02em; }
+.r24-receta-lectura p { max-width: 42ch; }
+.r24-receta-salida { font-style: italic; color: var(--soft); }
+.r24-contexto { margin: 24px 0; }
+.r24-contexto div { margin-top: 12px; }
+.r24-contexto dt { font-size: 14px; color: var(--dim); }
+.r24-contexto dd { margin: 0; }
+.r24-receta-acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.r24-reiniciar { border: 0; background: none; cursor: pointer; padding: 0; font-weight: 300; }
+[data-receta] .btn { font-weight: 300; }
+[data-receta] button:disabled { opacity: .5; cursor: default; transform: none; }
+
+/* Surface Ops: la misma familia, con la foto y el plano como piezas principales. */
+.pagina-surface .sub-hero { min-height: min(100svh, 940px); }
+.pagina-surface .sub-title { font-size: clamp(44px, 5.5vw, 78px); }
+.surface-visual { margin: 0; }
+.surface-visual img { width: 100%; height: auto; }
+.surface-visual figcaption, .surface-app figcaption { font-size: 14px; color: var(--dim); margin-top: 12px; line-height: 1.5; }
+.surface-aviso { max-width: 60ch; font-size: 16px; color: var(--dim); margin-top: 24px; }
+.surface-aviso em { color: var(--soft); }
+.surface-proceso { position: relative; height: 300svh; }
+.surface-pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 24px; padding-block: calc(var(--nav-h) + 8px) 40px; }
+.surface-proceso h2 { max-width: 26ch; }
+.surface-proceso .r24-opciones { margin-top: 16px; }
+.surface-proceso-grid { display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 48px; }
+.surface-vista { position: relative; margin: 0; }
+.surface-vista > img { width: 100%; height: auto; aspect-ratio: 3/2; object-fit: cover; }
+.surface-capa { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.surface-capa path, .surface-capa rect, .surface-capa line { vector-effect: non-scaling-stroke; }
+.surface-contorno { fill: rgba(37,99,235,.17); stroke: #8fb2ff; stroke-width: 3; }
+.surface-corte { fill: none; stroke: #f4f6fa; stroke-width: 2; stroke-dasharray: 8 6; }
+.surface-cota { stroke: #f4f6fa; stroke-width: 1.5; }
+.surface-capa text { font: 300 34px "Hanken Grotesk",sans-serif; fill: #f4f6fa; paint-order: stroke; stroke: #0b1f3b; stroke-width: 6px; }
+.surface-vista figcaption { position: absolute; bottom: 12px; left: 16px; margin: 0; font-size: 13px; color: #f4f6fa; background: #0b1f3b; padding: 2px 8px; }
+.surface-lectura h3 { font-size: clamp(26px, 2.7vw, 36px); line-height: 1.15; }
+.surface-lectura p { color: var(--dim); max-width: 36ch; }
+.surface-numeros { display: flex; gap: 28px; margin-top: 24px; }
+.surface-numeros dt { color: var(--dim); font-size: 14px; }
+.surface-numeros dd { margin: 4px 0 0; font-size: 30px; font-variant-numeric: tabular-nums; }
+.surface-plano { display: none; position: absolute; inset: 0; background: #f4f6fa; }
+.surface-plano svg { width: 100%; height: 100%; }
+.surface-plano path { fill: rgba(37,99,235,.07); stroke: #2563eb; stroke-width: 2; }
+.surface-plano text { fill: #0b1f3b; font: 300 27px "Hanken Grotesk",sans-serif; }
+[data-surface-paso="0"] .surface-capa, [data-surface-paso="1"] .surface-medidas { display: none; }
+[data-surface-paso="3"] .surface-plano { display: block; }
+.surface-quieto { display: none; }
+.surface-oficina { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.surface-entregables { display: flex; flex-wrap: wrap; gap: 16px 32px; margin-top: 32px; font-size: clamp(24px, 2.7vw, 36px); color: var(--soft); }
+.surface-entregables a { min-height: 44px; text-decoration: underline; text-underline-offset: 7px; }
+.surface-app { margin: 0; }
+.surface-app-vista { width: min(100%, 340px); margin: 0 auto; aspect-ratio: 1/1; overflow: hidden; }
+.surface-app-vista img { width: 100%; height: auto; max-width: none; margin-top: -14%; }
+.surface-offline { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.surface-offline ol { list-style: none; padding: 0; display: grid; gap: 24px; }
+.surface-offline h3 { font-size: 24px; }
+.surface-offline p { margin: 8px 0 0; color: var(--dim); }
+.surface-offline .surface-app-vista { aspect-ratio: 1/1.4; }
+.surface-offline .surface-app-vista img { margin-top: -16%; }
+.pagina-surface .saltar-escena { position: absolute; top: auto; bottom: 12px; right: var(--gutter); }
+@media (max-width: 1080px) {
+  .r24-entrada { gap: 28px; }
+  .r24-hero .hero-title { font-size: clamp(42px, 5.7vw, 62px); }
+  .r24-puerta img { height: 180px; }
+}
+@media (max-width: 760px) {
+  body:has(.r24-hero) .vistas button, body:has(.r24-hero) .caps-botones button, .lb-clips button { min-height: 44px; height: auto; }
+  .lb-modular-grid > * { min-width: 0; }
+  .lb-clips-tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lb-clips-tarjetas button { grid-template-columns: 44px minmax(0, 1fr); }
+  .lb-clips-tarjetas b, .lb-clips-tarjetas span { min-width: 0; overflow-wrap: anywhere; }
+  .r24-hero { padding-top: calc(var(--nav-h) + 20px); }
+  .r24-entrada { grid-template-columns: 1fr; gap: 32px; }
+  .r24-hero .hero-title { font-size: clamp(36px, 10.8vw, 46px); }
+  .r24-puertas .r24-opciones { gap: 4px; }
+  .r24-puerta img { height: 200px; }
+  .r24-puerta > p { font-size: 16px; }
+  .r24-hallazgo .sub-hero-grid, .r24-receta-grid, .surface-oficina, .surface-offline { grid-template-columns: 1fr; gap: 28px; }
+  .r24-hallazgo-figura { order: -1; }
+  .r24-hallazgo { padding-top: calc(var(--nav-h) + 24px); }
+  .r24-hallazgo .sub-title { font-size: 39px; }
+  .r24-dato { font-size: 54px; }
+  .r24-dato span { font-size: 17px; }
+  .r24-space-visual { order: -1; }
+  .r24-space-visual img { aspect-ratio: 16/10; object-fit: cover; }
+  .r24-mision b { font-size: 17.5px; }
+  .r24-mision span { font-size: 14px; }
+  .space-portada:has(.r24-mision) .sub-title { font-size: 42px; }
+  .r24-receta-lectura { min-height: 310px; }
+  .r24-manual-elegir { font-size: 14px; }
+  .surface-proceso-grid { grid-template-columns: 1fr; gap: 16px; }
+  .surface-pin { justify-content: flex-start; gap: 16px; }
+  .surface-proceso h2 { font-size: 30px; }
+  .surface-proceso .r24-opciones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; font-size: 14px; margin-top: 8px; }
+  .surface-vista > img { max-height: 30svh; aspect-ratio: 3/2; object-fit: cover; }
+  .surface-lectura h3 { font-size: 25px; }
+  .surface-lectura p { font-size: 16px; margin: 8px 0 0; }
+  .surface-numeros { gap: 24px; margin-top: 12px; }
+  .surface-numeros dd { font-size: 24px; }
+  .pagina-surface .sub-hero-grid .surface-visual { order: -1; }
+  .pagina-surface .sub-title { font-size: 44px; }
+  .surface-oficina .surface-app { order: -1; }
+}
+@media (max-width: 360px) {
+  .lb-clips-tarjetas { grid-template-columns: 1fr; }
+}
+@media (max-height: 699px), (prefers-reduced-motion: reduce) {
+  .surface-proceso { height: auto; }
+  .surface-pin { position: relative; height: auto; padding-block: 48px; }
+  .surface-quieto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .surface-quieto h3 { font-size: 22px; }
+  .surface-quieto p { color: var(--dim); font-size: 16px; }
+  .pagina-surface .saltar-escena { display: none; }
+}
+@media (max-width: 760px) and (max-height: 699px), (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .surface-quieto { grid-template-columns: 1fr; gap: 16px; }
+  .surface-vista > img { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .r24-hero *, .r24-receta *, .r24-mision *, .pagina-surface * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,968 @@
+[
+  {
+    "pagina": "portada",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 8302,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Hablemos"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 14068,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Escríbenos"
+      },
+      {
+        "alto": 40,
+        "texto": "Restaurante"
+      },
+      {
+        "alto": 40,
+        "texto": "Almacén"
+      },
+      {
+        "alto": 40,
+        "texto": "Línea de producción"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 10656,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "En tu computadora"
+      },
+      {
+        "alto": 40,
+        "texto": "En la nube"
+      },
+      {
+        "alto": 36,
+        "texto": "«¿Dónde dejé esta herramienta?»"
+      },
+      {
+        "alto": 36,
+        "texto": "«Lee y resume este documento.»"
+      },
+      {
+        "alto": 36,
+        "texto": "«Guíame paso a paso mientras trabajo.»"
+      },
+      {
+        "alto": 36,
+        "texto": "Encontrar mis herramientas en el taller"
+      },
+      {
+        "alto": 36,
+        "texto": "Leer etiquetas en voz alta"
+      },
+      {
+        "alto": 36,
+        "texto": "Contar piezas sobre una mesa"
+      },
+      {
+        "alto": 36,
+        "texto": "Lo encuentro sin pedir ayuda"
+      },
+      {
+        "alto": 36,
+        "texto": "Me toma menos tiempo"
+      },
+      {
+        "alto": 36,
+        "texto": "Me equivoco menos"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 1952
+  },
+  {
+    "pagina": "space",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 10158,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Escríbenos"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "computadora",
+    "idioma": "es",
+    "alto": 6651,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Agenda una prueba"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 7709,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      },
+      {
+        "alto": 40,
+        "texto": "Ver"
+      },
+      {
+        "alto": 40,
+        "texto": "Detectar"
+      },
+      {
+        "alto": 40,
+        "texto": "Medir"
+      },
+      {
+        "alto": 40,
+        "texto": "Orientarse"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 14076,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 12025,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Laboratorio portátilMicroscopía · Sonda de inspección · Pant"
+      },
+      {
+        "alto": 40,
+        "texto": "Trabajo compartidoCámara · Proyección · Audio direccional"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 2122.39990234375
+  },
+  {
+    "pagina": "space",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 10146,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular",
+    "idioma": "es",
+    "alto": 7558,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 7595,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      },
+      {
+        "alto": 40,
+        "texto": "Ver"
+      },
+      {
+        "alto": 40,
+        "texto": "Detectar"
+      },
+      {
+        "alto": 40,
+        "texto": "Medir"
+      },
+      {
+        "alto": 40,
+        "texto": "Orientarse"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 12236,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 10692,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Laboratorio portátilMicroscopía · Sonda de inspección · Pant"
+      },
+      {
+        "alto": 40,
+        "texto": "Trabajo compartidoCámara · Proyección · Audio direccional"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 1745.5999755859375
+  },
+  {
+    "pagina": "space",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 8886,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular-bajo",
+    "idioma": "es",
+    "alto": 6804,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 8254,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Let's talk"
+      },
+      {
+        "alto": 40,
+        "texto": "What you see"
+      },
+      {
+        "alto": 40,
+        "texto": "What Alba sees"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 14127,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Message us"
+      },
+      {
+        "alto": 40,
+        "texto": "Restaurant"
+      },
+      {
+        "alto": 40,
+        "texto": "Warehouse"
+      },
+      {
+        "alto": 40,
+        "texto": "Production line"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 10714,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "On your computer"
+      },
+      {
+        "alto": 40,
+        "texto": "In the cloud"
+      },
+      {
+        "alto": 36,
+        "texto": "«Where did I leave this tool?»"
+      },
+      {
+        "alto": 36,
+        "texto": "«Read and summarize this document.»"
+      },
+      {
+        "alto": 36.00004959106445,
+        "texto": "«Guide me step by step while I work.»"
+      },
+      {
+        "alto": 36,
+        "texto": "Find my tools in the workshop"
+      },
+      {
+        "alto": 36,
+        "texto": "Read labels out loud"
+      },
+      {
+        "alto": 36,
+        "texto": "Count parts on a table"
+      },
+      {
+        "alto": 36,
+        "texto": "I find it without asking for help"
+      },
+      {
+        "alto": 36,
+        "texto": "It takes me less time"
+      },
+      {
+        "alto": 36,
+        "texto": "I make fewer mistakes"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 2496.800048828125
+  },
+  {
+    "pagina": "space",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 10126,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Message us"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "computadora",
+    "idioma": "en",
+    "alto": 6579,
+    "h": 900,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Book a trial"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1440,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 7821,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "What you see"
+      },
+      {
+        "alto": 40,
+        "texto": "What Alba sees"
+      },
+      {
+        "alto": 40,
+        "texto": "See"
+      },
+      {
+        "alto": 40,
+        "texto": "Detect"
+      },
+      {
+        "alto": 40,
+        "texto": "Measure"
+      },
+      {
+        "alto": 40,
+        "texto": "Find"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 14013,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 11904,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Portable labMicroscopy · Inspection probe · Display"
+      },
+      {
+        "alto": 40,
+        "texto": "Field explorationLiDAR · Camera · Haptic feedback"
+      },
+      {
+        "alto": 40,
+        "texto": "Shared workCamera · Projection · Directional audio"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 2448
+  },
+  {
+    "pagina": "space",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 10114,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular",
+    "idioma": "en",
+    "alto": 7482,
+    "h": 844,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 7707,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "What you see"
+      },
+      {
+        "alto": 40,
+        "texto": "What Alba sees"
+      },
+      {
+        "alto": 40,
+        "texto": "See"
+      },
+      {
+        "alto": 40,
+        "texto": "Detect"
+      },
+      {
+        "alto": 40,
+        "texto": "Measure"
+      },
+      {
+        "alto": 40,
+        "texto": "Find"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 12173,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 10528,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Portable labMicroscopy · Inspection probe · Display"
+      },
+      {
+        "alto": 40,
+        "texto": "Field explorationLiDAR · Camera · Haptic feedback"
+      },
+      {
+        "alto": 40,
+        "texto": "Shared workCamera · Projection · Directional audio"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 1843.199951171875
+  },
+  {
+    "pagina": "space",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 8853,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "celular-bajo",
+    "idioma": "en",
+    "alto": 6747,
+    "h": 660,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 390,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 8052,
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 12267,
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Restaurante"
+      },
+      {
+        "alto": 40,
+        "texto": "Almacén"
+      },
+      {
+        "alto": 40,
+        "texto": "Línea de producción"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 9966,
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "En tu computadora"
+      },
+      {
+        "alto": 40,
+        "texto": "En la nube"
+      },
+      {
+        "alto": 36,
+        "texto": "«¿Dónde dejé esta herramienta?»"
+      },
+      {
+        "alto": 36,
+        "texto": "«Lee y resume este documento.»"
+      },
+      {
+        "alto": 36,
+        "texto": "«Guíame paso a paso mientras trabajo.»"
+      },
+      {
+        "alto": 36,
+        "texto": "Encontrar mis herramientas en el taller"
+      },
+      {
+        "alto": 36,
+        "texto": "Leer etiquetas en voz alta"
+      },
+      {
+        "alto": 36,
+        "texto": "Contar piezas sobre una mesa"
+      },
+      {
+        "alto": 36,
+        "texto": "Lo encuentro sin pedir ayuda"
+      },
+      {
+        "alto": 36,
+        "texto": "Me toma menos tiempo"
+      },
+      {
+        "alto": 36,
+        "texto": "Me equivoco menos"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1024,
+    "y": 2354.39990234375
+  },
+  {
+    "pagina": "space",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 9608,
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "tableta",
+    "idioma": "es",
+    "alto": 6075,
+    "h": 768,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 1024,
+    "y": 0
+  },
+  {
+    "pagina": "portada",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 7878,
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [
+      {
+        "alto": 40,
+        "texto": "Lo que ves"
+      },
+      {
+        "alto": 40,
+        "texto": "Lo que ve Alba"
+      },
+      {
+        "alto": 40,
+        "texto": "Ver"
+      },
+      {
+        "alto": 40,
+        "texto": "Detectar"
+      },
+      {
+        "alto": 40,
+        "texto": "Medir"
+      },
+      {
+        "alto": 40,
+        "texto": "Orientarse"
+      }
+    ],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  },
+  {
+    "pagina": "visionops",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 11362,
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  },
+  {
+    "pagina": "labs",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 11016,
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 13,
+    "reducir": false,
+    "rotas": [],
+    "w": 320,
+    "y": 1851.199951171875
+  },
+  {
+    "pagina": "space",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 8585,
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  },
+  {
+    "pagina": "surfaceops",
+    "tag": "estrecho",
+    "idioma": "es",
+    "alto": 6971,
+    "h": 568,
+    "h1": 1,
+    "miniBotones": [],
+    "overflow": 0,
+    "reducir": false,
+    "rotas": [],
+    "w": 320,
+    "y": 0
+  }
+]

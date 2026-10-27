@@ -1,0 +1,191 @@
+/* ═══ Alba Labs: el concepto modular en 3D (labs-3d.js) y las configuraciones ═══ */
+
+.lb-modular-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--s7); align-items: center; margin-top: var(--s7); }
+.lb-modular-escena { position: relative; height: min(64svh, 560px); }
+.lb-modular-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+.lb-modular-respaldo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .6s var(--ease); }
+.con-3d .lb-modular-respaldo { opacity: 0; pointer-events: none; }
+.lb-modular-escena .marca-ilus, .labs-foto .marca-ilus, .lb-portada-foto .marca-ilus { top: auto; bottom: 8px; background: rgba(11,31,59,.08); color: rgba(11,31,59,.7); }
+.labs-foto, .lb-portada-foto { position: relative; }
+
+.lb-clips { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+/* Sin fondo de caja: el elegido se marca con su punto y su color */
+.lb-clips button { position: relative; width: 100%; display: grid; gap: 2px; padding: var(--s3) 0 var(--s3) var(--s6); border: 0; background: none; font: inherit; text-align: left; color: inherit; cursor: pointer; }
+.lb-clips button::before { content: ""; position: absolute; left: 6px; top: calc(var(--s3) + 8px); width: 8px; height: 8px; border-radius: 50%; background: #2563eb; opacity: .2; transition: opacity .35s var(--ease), transform .35s var(--ease); }
+.lb-clips button:hover b { color: #0b1f3b; }
+.lb-clips b { font-weight: 400; font-size: 17px; color: var(--dim); transition: color .3s; }
+.lb-clips span { font-size: 14px; color: var(--soft); }
+.lb-clips button[aria-pressed="true"]::before { opacity: 1; transform: scale(1.3); }
+.lb-clips button[aria-pressed="true"] b { color: #2563eb; }
+
+.lb-config { list-style: none; margin: var(--s7) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s7) var(--s6); }
+.lb-config li { display: grid; gap: var(--s1, 4px); align-content: start; }
+.lb-config figure { margin: 0 0 var(--s3); aspect-ratio: 16 / 10; display: grid; place-items: center; }
+.lb-config img { width: 100%; height: 100%; object-fit: contain; }
+.lb-config b { font-weight: 400; font-size: 18px; }
+.lb-config span { font-size: 14px; color: var(--soft); }
+.lb-config-nota { margin-top: var(--s6); font-size: 13px; color: var(--soft); }
+
+@media (max-width: 760px) {
+  .lb-modular-grid { grid-template-columns: 1fr; gap: var(--s4); margin-top: var(--s5); }
+  .lb-modular-escena { height: 46svh; }
+  .lb-clips { grid-template-columns: 1fr 1fr; }
+  .lb-clips button { padding: var(--s2) 0 var(--s2) var(--s5); }
+  .lb-clips button::before { top: calc(var(--s2) + 8px); }
+  .lb-clips b { font-size: 15px; }
+  .lb-clips span { display: none; }
+  .lb-config { grid-template-columns: 1fr 1fr; gap: var(--s5) var(--s4); }
+  .lb-config b { font-size: 15px; }
+  .lb-config span { font-size: 12.5px; }
+}
+
+/* Los renders en grafito ya traen fondo transparente: sin la máscara que difuminaba la foto anterior */
+.labs-foto img { -webkit-mask-image: none; mask-image: none; mix-blend-mode: normal; }
+.lb-escena-foto > img { -webkit-mask-image: none; mask-image: none; mix-blend-mode: normal; }
+.lb-escena-foto .marca-ilus { top: auto; bottom: 8px; background: rgba(11,31,59,.08); color: rgba(11,31,59,.7); }
+/* El cono de la cámara sale del clip del render en grafito */
+.lb-cono { left: 57%; height: 62%; }
+
+/* La portada: los lentes en 3D sobre el render; el render se va cuando el 3D está listo */
+.lb-portada-lienzo { position: absolute; top: 0; left: 0; width: 118%; height: 100%; display: block; opacity: 0; cursor: grab; transition: opacity .8s var(--ease); }
+@media (max-width: 1080px) { .lb-portada-lienzo { width: 100%; } }
+/* En celular el render es muy bajo para el 3D: la figura toma forma de 4:3 */
+@media (max-width: 760px) {
+  .lb-portada-foto[data-portada3d] { aspect-ratio: 4 / 3; }
+  .lb-portada-foto[data-portada3d] img { position: absolute; inset: 0; height: 100%; object-fit: contain; }
+}
+.lb-portada-foto img { transition: opacity .8s var(--ease); }
+.lb-portada-foto.con-3d img { opacity: 0; }
+.lb-portada-foto.con-3d .lb-portada-lienzo { opacity: 1; }
+
+/* Pregúntale al mundo: dónde corre la IA, la conversación y por dónde viaja la pregunta */
+.lb-ruta { display: inline-flex; gap: 4px; margin-top: var(--s6); padding: 4px; border-radius: 999px; background: rgba(11,31,59,.06); }
+.lb-ruta button { min-height: 40px; padding: 0 var(--s4); border: 0; border-radius: 999px; background: none; font: inherit; font-size: 14px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
+.lb-ruta button[aria-pressed="true"] { background: #0b1f3b; color: #f4f6fa; }
+.lb-ruta-datos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s4); margin: var(--s5) 0 0; }
+.lb-ruta-datos dt { font-size: 12.5px; color: var(--soft); }
+.lb-ruta-datos dd { margin: 2px 0 0; font-size: 15px; line-height: 1.4; color: #0b1f3b; }
+.lb-chat { position: relative; display: grid; gap: var(--s5); align-content: center; margin: 0; }
+.lb-camino { display: flex; align-items: center; margin: 0; font-size: 13px; color: var(--dim); }
+.lb-nodo { padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: 0 6px 18px rgba(11,31,59,.08); white-space: nowrap; }
+.lb-camino i { flex: 1; min-width: 24px; height: 2px; margin: 0 8px; background: repeating-linear-gradient(90deg, rgba(37,99,235,.55) 0 6px, transparent 6px 12px); background-size: 24px 2px; animation: lb-flujo .9s linear infinite; }
+@keyframes lb-flujo { to { background-position: 24px 0; } }
+[data-camino="local"] :is(.lb-tramo-nube, .lb-nodo-nube), [data-camino="nube"] :is(.lb-nodo-local, .lb-tramo-nube) { display: none; }
+.lb-mensajes { list-style: none; display: grid; gap: var(--s3); margin: 0; padding: 0; }
+.lb-tu, .lb-ellos { max-width: 85%; padding: 12px 16px; font-size: 16px; line-height: 1.45; }
+.lb-tu { justify-self: end; border-radius: 18px 18px 4px 18px; background: #0b1f3b; color: #f4f6fa; }
+.lb-ellos { justify-self: start; min-height: 3em; border-radius: 18px 18px 18px 4px; background: #fff; color: #0b1f3b; box-shadow: 0 8px 24px rgba(11,31,59,.08); }
+.lb-ellos.escribiendo::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -2px; background: #2563eb; animation: lb-cursor 1s steps(2) infinite; }
+@keyframes lb-cursor { 50% { opacity: 0; } }
+.lb-otras { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.lb-otras button { min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: rgba(11,31,59,.05); font: inherit; font-size: 13px; color: var(--dim); cursor: pointer; transition: color .3s, background .3s; }
+.lb-otras button[aria-pressed="true"] { background: #0b1f3b; color: #f4f6fa; }
+.lb-chat .marca-ilus { top: auto; bottom: -28px; right: 0; background: rgba(11,31,59,.08); color: rgba(11,31,59,.7); }
+@media (max-width: 760px) {
+  .lb-ruta-datos { grid-template-columns: 1fr; gap: var(--s2); }
+  .lb-ruta-datos div { display: grid; grid-template-columns: 7.5em 1fr; gap: var(--s3); align-items: baseline; }
+  .lb-pregunta .wrap.dos { gap: var(--s7); }
+  .lb-tu, .lb-ellos { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .lb-camino i { animation: none; } }
+
+/* Lo que ven los lentes: la escena y, encima, los recuadros y etiquetas en coordenadas de la
+   escena (1536 × 1024); cada tiempo es una capa con su foto */
+.lb-pov { aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; }
+.lb-pov .lb-capa img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lb-pov-caja { position: absolute; left: calc(var(--x) / 1536 * 100%); top: calc(var(--y) / 1024 * 100%); width: calc(var(--w) / 1536 * 100%); height: calc(var(--h) / 1024 * 100%); border: 2.5px solid #2563eb; border-radius: 7px; opacity: 0; transform: scale(1.04); transition: opacity .5s var(--ease) .15s, transform .6s var(--ease) .15s; }
+.lb-pov-rotulo { position: absolute; left: calc(var(--x) / 1536 * 100%); top: calc(var(--y) / 1024 * 100%); padding: 5px 11px; border-radius: 10px; background: #0b1f3b; color: #f4f6fa; font-size: 13.5px; white-space: nowrap; opacity: 0; transform: translateY(6px); transition: opacity .5s var(--ease) .35s, transform .6s var(--ease) .35s; }
+.lb-pov-pendiente { background: #2563eb; transition-delay: .9s; }
+.lb-capa.activa :is(.lb-pov-caja, .lb-pov-rotulo) { opacity: 1; transform: none; }
+.lb-pov .marca-ilus { top: auto; bottom: 10px; right: 10px; }
+@media (max-width: 760px) { .lb-pov-rotulo { padding: 3px 7px; font-size: 11px; border-radius: 7px; } .lb-pov-caja { border-width: 2px; } }
+.corrida .lb-pov .lb-capa:not(.activa) { opacity: 0; }
+
+/* Lo que viene: el render de cada idea arriba; en celular se desliza de lado */
+.lb-viene { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lb-viene-foto { margin: 0 0 var(--s4); aspect-ratio: 3 / 2; }
+.lb-viene-foto img { width: 100%; height: 100%; object-fit: contain; }
+@media (max-width: 760px) {
+  .lb-viene { display: flex; gap: var(--s5); overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scrollbar-width: none; }
+  .lb-viene::-webkit-scrollbar { display: none; }
+  .lb-viene > li { flex: 0 0 78%; scroll-snap-align: start; }
+}
+
+/* Entre ver y crear: la escena se acerca al manual y a un lado lo que recibiría tu aplicación */
+.lb-dato-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--s8); align-items: center; margin-top: var(--s7); }
+.lb-dato-escena { position: relative; margin: 0; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; }
+.lb-dato-lienzo { position: absolute; inset: 0; transform-origin: 0 0; transition: transform 1s var(--ease); }
+.lb-dato-lienzo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lb-dato .lb-pov-caja { opacity: 0; transform: none; transition: opacity .6s var(--ease) .4s; }
+/* Del paso «Objeto» en adelante, el manual llena la vista (su recuadro, centrado) */
+.lb-dato[data-paso]:not([data-paso="0"]) .lb-dato-lienzo { transform: scale(1.67) translate(-23.4%, -33.5%); }
+.lb-dato[data-paso]:not([data-paso="0"]) .lb-pov-caja { opacity: 1; }
+.lb-dato-escena .marca-ilus { top: auto; bottom: 10px; right: 10px; }
+.lb-dato-pasos { display: flex; flex-wrap: wrap; gap: var(--s5); }
+.lb-dato-pasos button { min-height: 44px; padding: 0; border: 0; background: none; font: inherit; font-size: clamp(18px, 1.6vw, 22px); color: var(--soft); cursor: pointer; transition: color .3s; }
+.lb-dato-pasos button[aria-pressed="true"] { color: #2563eb; font-style: italic; }
+.lb-dato-texto { display: grid; margin-top: var(--s5); }
+.lb-dato-texto > div { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .3s ease, transform .3s ease; }
+.lb-dato-texto > div.activo { opacity: 1; transform: none; pointer-events: auto; transition: opacity .5s var(--ease) .2s, transform .5s var(--ease) .2s; }
+.lb-dato-texto h3 { margin: 0; font-weight: 300; font-size: clamp(24px, 2.2vw, 32px); line-height: 1.15; letter-spacing: -.015em; color: #0b1f3b; }
+.lb-dato-texto p { margin: var(--s3) 0 0; max-width: 40ch; font-size: 16px; line-height: 1.55; color: var(--dim); }
+.lb-dato-texto dl { display: grid; gap: var(--s3); margin: var(--s4) 0 0; }
+.lb-dato-texto dt { font-size: 12.5px; color: var(--soft); }
+.lb-dato-texto dd { margin: 2px 0 0; font-size: 19px; color: #0b1f3b; }
+.lb-dato-salida { margin: var(--s4) 0 0; font: 400 14px/1.6 ui-monospace, "Cascadia Mono", Consolas, monospace; color: #2563eb; white-space: pre; }
+
+/* Tu idea en el laboratorio */
+.lb-idea-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s8); align-items: start; }
+.lb-idea-form { display: grid; gap: var(--s5); }
+.lb-idea-form h2 { margin: 0 0 var(--s2); }
+.lb-idea-form label { display: grid; gap: var(--s2); font-size: 14px; color: var(--dim); }
+.lb-idea-form :is(select, input, textarea) { width: 100%; min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid rgba(11,31,59,.28); border-radius: 0; background: none; font: inherit; font-size: 18px; color: #0b1f3b; resize: vertical; }
+.lb-idea-form :is(select, input, textarea):focus-visible { outline: none; border-bottom-color: #2563eb; box-shadow: 0 1px 0 #2563eb; }
+.lb-idea-hoja { display: grid; gap: var(--s5); align-content: start; padding-top: var(--s4); }
+.lb-idea-titulo { margin: 0; font-size: clamp(24px, 2.2vw, 32px); font-weight: 300; line-height: 1.15; color: #0b1f3b; }
+.lb-idea-hoja .btn { justify-self: start; }
+.lb-idea-hoja dl { display: grid; gap: var(--s4); margin: 0; }
+.lb-idea-hoja dt { font-size: 13px; color: #2563eb; }
+.lb-idea-hoja dd { margin: 2px 0 0; font-size: 18px; line-height: 1.45; color: #0b1f3b; }
+.piloto-dialogo .lb-idea-hoja { padding-top: 0; }
+.piloto-dialogo .lb-idea-form { gap: 20px; }
+.piloto-dialogo .lb-idea-form label { color: #3f5270; }
+.piloto-dialogo .lb-idea-form .btn, .piloto-dialogo .lb-idea-hoja .btn-text { justify-self: start; }
+
+@media (max-width: 760px) {
+  .lb-dato-grid, .lb-idea-grid { grid-template-columns: 1fr; gap: var(--s5); }
+  .lb-dato-pasos { gap: var(--s4); }
+  .lb-dato-pasos button { font-size: 17px; }
+  .lb-idea-grid { gap: var(--s7); }
+}
+@media (prefers-reduced-motion: reduce) { .lb-dato-lienzo { transition: none; } }
+
+/* Los clips como tarjetas que se arrastran hasta los lentes */
+.lb-clips-lado { display: grid; gap: var(--s4); align-content: start; }
+.lb-arrastra { margin: 0; font-size: 14px; color: var(--dim); }
+.lb-clips-tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s2); }
+.lb-clips-tarjetas button { grid-template-columns: 52px 1fr; grid-template-rows: auto auto; column-gap: var(--s3); align-items: center; padding: var(--s2) var(--s3); border-radius: 14px; background: #fff; box-shadow: 0 6px 18px rgba(11,31,59,.06); cursor: grab; touch-action: pan-y; transition: transform .25s var(--ease), box-shadow .25s var(--ease), opacity .25s; }
+.lb-clips-tarjetas button::before { display: none; }
+.lb-clips-tarjetas button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11,31,59,.1); }
+.lb-clips-tarjetas button[aria-pressed="true"] { box-shadow: 0 0 0 2px #2563eb, 0 10px 24px rgba(37,99,235,.14); }
+.lb-clips-tarjetas button.arrastrando { opacity: .4; }
+.lb-clip-dibujo { grid-row: 1 / span 2; width: 52px; height: 52px; object-fit: contain; touch-action: none; user-select: none; -webkit-user-drag: none; }
+.lb-clips-tarjetas b { align-self: end; font-size: 15px; }
+.lb-clips-tarjetas span { align-self: start; font-size: 12.5px; line-height: 1.35; }
+.lb-clip-fantasma { position: fixed; left: 0; top: 0; z-index: 50; width: 90px; height: 90px; object-fit: contain; pointer-events: none; filter: drop-shadow(0 14px 22px rgba(11,31,59,.25)); }
+.lb-clip-fantasma.regresa { transition: transform .35s var(--ease), opacity .35s; opacity: 0; }
+.lb-modular-escena::after { content: "Suéltalo en los lentes"; position: absolute; left: 50%; top: 12px; transform: translate(-50%, -6px); padding: 6px 14px; border-radius: 999px; background: #2563eb; color: #fff; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s var(--ease); }
+.lb-modular-escena.recibiendo::after { opacity: 1; transform: translate(-50%, 0); }
+html[lang="en"] .lb-modular-escena::after { content: "Drop it on the glasses"; }
+@media (max-width: 760px) {
+  .lb-clips-tarjetas { grid-template-columns: 1fr 1fr; }
+  .lb-clips-tarjetas button { grid-template-columns: 44px 1fr; padding: var(--s2); }
+  .lb-clip-dibujo { width: 44px; height: 44px; }
+  .lb-clips-tarjetas b { font-size: 13.5px; }
+}
+
+/* El cuestionario: la ruta en tarjetas y ejemplos que llenan los campos */
+.lb-ejemplos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s2); }
+.lb-ejemplo { min-height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: rgba(11,31,59,.05); font: inherit; font-size: 13px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
+.lb-ejemplo:hover { background: rgba(37,99,235,.09); color: #2563eb; }
+
