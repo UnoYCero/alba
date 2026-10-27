@@ -38,7 +38,14 @@ html:has(body.pagina-dia) { color-scheme: light; scrollbar-color: rgba(11,31,59,
 .sub-cielo .space-hud { top: 22%; }
 
 /* Secciones */
-.sub-seccion { position: relative; padding: var(--s10) 0; }
+/* El aire entre secciones: el mismo ritmo de UNBLIND en todas las páginas (antes 128 px por lado
+   en computadora y 96 en celular, con huecos de casi una pantalla) */
+.sub-seccion { position: relative; padding: var(--s8) 0; }
+/* Junto a una sección fija (que ya deja su propio aire al centrar su escena), casi nada */
+.sub-seccion:has(+ :is(.vo-reporte, .vo-crece, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos)) { padding-bottom: var(--s5); }
+:is(.vo-reporte, .vo-crece, .vo-operacion, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos) + .sub-seccion { padding-top: var(--s5); }
+/* El cierre de cada página: el contacto ya no ocupa casi una pantalla con el texto al centro */
+.sigue + .contact { min-height: 0; padding: var(--s9) 0; }
 .sub-seccion h2 { max-width: 22ch; }
 .sub-intro { margin: var(--s5) 0 0; max-width: 46ch; font-size: clamp(16px,1.35vw,19px); color: var(--dim); }
 .rasgos { list-style: none; padding: 0; margin: var(--s8) 0 0; display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s7) var(--s6); }
@@ -126,11 +133,11 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 /* Celular */
 @media (max-width: 760px) {
   .sub-hero { min-height: auto; padding: calc(var(--nav-h) + var(--s7)) 0 var(--s8); }
-  .sub-hero-grid, .dos, .producto { grid-template-columns: 1fr; gap: var(--s7); }
+  .sub-hero-grid, .dos, .producto { grid-template-columns: 1fr; gap: var(--s5); }
   .sub-title { font-size: clamp(38px,11vw,52px); }
   .sub-cielo { min-height: 100svh; align-items: flex-end; }
   .sub-cielo .space-veil { background: linear-gradient(0deg, rgba(3,8,26,.95) 0%, rgba(3,8,26,.7) 55%, rgba(3,8,26,.2) 100%); }
-  .sub-seccion { padding: var(--s9) 0; }
+  .sub-seccion { padding: var(--s8) 0; }
   .rasgos, .rasgos.cuatro { grid-template-columns: 1fr; gap: var(--s6); margin-top: var(--s7); }
   .rasgos h3 { font-size: 19px; }
   .rasgos p { font-size: 14.5px; }
@@ -186,9 +193,8 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .mision-invertida .mision-texto { order: 2; }
 .mision-texto h2 { max-width: 16ch; }
 
-.sim { margin: 0; }
+.sim { position: relative; margin: 0; }
 .sim canvas { display: block; width: 100%; height: auto; aspect-ratio: 680 / 460; border-radius: 16px; background: #040a17; }
-.sim figcaption, .galeria-par figcaption { margin-top: var(--s3); font-size: 13px; font-style: italic; color: var(--faint); }
 
 /* Las cuatro etapas: la activa se enciende, las demás esperan */
 .etapas { list-style: none; padding: 0; margin: var(--s6) 0 0; display: grid; gap: var(--s2); }
@@ -222,9 +228,6 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .escena-baffle.desplegado .estrella-baffle { opacity: 1; transform: none; }
 .estado-baffle { margin: 0; font-size: 14px; color: var(--dim); }
 
-.galeria-par { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s6); align-items: end; }
-.galeria-par figure { margin: 0; }
-.galeria-par img { width: 100%; height: auto; border-radius: 16px; }
 
 .space-contacto .space-tierra { position: absolute; left: 50%; bottom: -6%; width: min(1200px, 130%); height: auto; transform: translateX(-50%); opacity: .5; mix-blend-mode: screen; -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 45%, transparent 75%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 45%, transparent 75%); pointer-events: none; }
 .space-contacto .contact-inner { position: relative; z-index: 2; }
@@ -238,7 +241,6 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 @media (max-width: 760px) {
   .cifras { gap: var(--s4) var(--s6); margin-top: var(--s7); }
   .lecturas { gap: var(--s3); }
-  .galeria-par { grid-template-columns: 1fr; }
   .etapas b { font-size: 17px; }
   .etapas span { font-size: 14px; }
 }
@@ -252,7 +254,6 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .ub-portada-foto { position: relative; order: 2; margin: 0; min-height: 60svh; }
 .ub-portada-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .ub-portada-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,8,26,.78) 0%, rgba(3,8,26,0) 28%), linear-gradient(180deg, rgba(3,8,26,.6) 0%, rgba(3,8,26,0) 22%); pointer-events: none; }
-.ub-portada-foto figcaption { position: absolute; z-index: 1; left: var(--s5); right: var(--s5); bottom: var(--s5); font-size: 13px; font-style: italic; line-height: 1.4; color: rgba(244,246,250,.92); }
 .ub-portada-texto { align-self: center; padding: calc(var(--nav-h) + var(--s8)) var(--s8) var(--s9) max(var(--gutter), calc((100vw - var(--wrap)) / 2)); }
 .ub-portada .sub-title { max-width: 11ch; }
 
@@ -266,7 +267,6 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .ub-demo-boton[aria-pressed="true"] i { width: 12px; background: none; clip-path: none; border-left: 4px solid currentColor; border-right: 4px solid currentColor; }
 .ub-demo-avance { display: block; width: 160px; height: 3px; border-radius: 3px; background: rgba(244,246,250,.3); overflow: hidden; }
 .ub-demo-avance i { display: block; height: 100%; background: var(--paper); transform: scaleX(0); transform-origin: left; transition: transform .25s linear; }
-.ub-demo figcaption { margin-top: var(--s3); font-size: 13px; font-style: italic; color: var(--faint); }
 /* En vivo (unblind.js): la imagen se acerca un poco y se mueve al girar la cabeza; cada cosa que
    suena marca su lugar con una onda */
 .ub-demo-vista { position: relative; overflow: hidden; border-radius: 16px; touch-action: pan-y; }
@@ -300,7 +300,10 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .ub-escena { margin: 0; }
 .ub-escena-foto { position: relative; width: min(100%, 520px); aspect-ratio: 4 / 5; margin-left: auto; border-radius: 16px; overflow: hidden; }
 .ub-escena-foto > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.ub-escena figcaption { width: min(100%, 520px); margin: var(--s3) 0 0 auto; font-size: 13px; font-style: italic; color: var(--faint); }
+/* Lo que no es real lleva una etiqueta corta en la esquina («Ilustración», «Simulación»),
+   en lugar de un pie de foto descriptivo */
+.marca-ilus { position: absolute; z-index: 3; top: 12px; right: 12px; padding: 3px 10px; border-radius: 999px; background: rgba(11,31,59,.82); color: #f4f6fa; font-size: 12px; letter-spacing: .02em; pointer-events: none; }
+.marca-ilus-abajo { top: auto; bottom: 12px; }
 .capa { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease); }
 .capa.activa { opacity: 1; }
 .caja { position: absolute; left: calc(var(--x) * 100%); top: calc(var(--y) * 100%); width: calc(var(--w) * 100%); height: calc(var(--h) * 100%); border: 1.5px solid rgba(143,178,255,.95); border-radius: 10px; }
@@ -336,13 +339,15 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 
 @media (max-width: 1080px) {
   .ub-hace { grid-template-columns: 1fr; }
-  .ub-escena-foto, .ub-escena figcaption { margin-left: 0; }
+  .ub-escena-foto { margin-left: 0; }
   .ub-piezas { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 760px) {
   .ub-portada { grid-template-columns: 1fr; min-height: 0; }
   .ub-portada-foto { order: 0; min-height: 0; height: 64svh; }
   .ub-portada-texto { padding: var(--s7) var(--gutter) var(--s8); }
+  /* UNBLIND y Alba Space en celular: menos aire entre secciones */
+  .pagina-unblind .sub-seccion, .pagina-unblind .cita, .pagina-space .sub-seccion { padding: var(--s8) 0; }
   .ub-demo-control { position: static; margin-top: var(--s4); }
   .ub-demo-avance { width: 120px; background: rgba(244,246,250,.25); }
   .ub-fuente { gap: 4px; padding: 3px 7px 3px 3px; font-size: 10px; transform: translate(-6px, -50%); }
@@ -370,7 +375,7 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .lb-portada .sub-precio { margin-top: var(--s5); }
 
 /* Ve. Recuerda. Actúa.: pantalla fija */
-.lb-tiempos { position: relative; height: 300svh; }
+.lb-tiempos { position: relative; height: 230svh; }
 .lb-tiempos-pin { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
 .lb-tiempos-grid { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: var(--s8); align-items: center; }
 .lb-tiempos-texto h2 { max-width: 14ch; }
@@ -464,7 +469,7 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 .nav-panel-otros a { display: inline-flex; align-items: center; min-height: 44px; color: var(--dim); }
 
 /* «Sigue explorando», antes del contacto: el siguiente proyecto como título, los demás y volver */
-.sigue { padding: var(--s9) 0 var(--s8); }
+.sigue { padding: var(--s8) 0 var(--s7); }
 .sigue-siguiente { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 .28em; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -.03em; color: var(--paper); }
 .sigue-siguiente em { color: var(--soft); }
 .sigue-siguiente span { color: var(--soft); transition: transform .4s var(--ease); }
@@ -485,7 +490,8 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
   .nav-ruta-sep { margin: 0; font-size: 16px; }
   .nav:has(.nav-padre) .nav-brand-hija img { height: 30px; }
   .nav-brand-texto { font-size: 16px; }
-  .sigue { padding: var(--s8) 0 var(--s7); }
+  .sigue { padding: var(--s7) 0 var(--s6); }
+  .sigue + .contact { padding: var(--s8) 0; }
   .sigue-siguiente { font-size: clamp(30px, 9vw, 40px); }
   .sigue-demas { font-size: 15px; }
 }
@@ -494,3 +500,69 @@ main:has(.checkout-notice:not([hidden])) .sub-hero { padding-top: calc(var(--nav
 /* La marca empuja lo demás (carrito, EN, menú) a la orilla derecha */
 @media (max-width: 1080px) { .nav:has(.nav-padre) :is(.nav-brand-hija, .nav-brand-texto) { margin-right: auto; } .nav:has(.nav-padre) :is(.nav-carrito, .nav-idioma, .nav-toggle) { margin-left: 0; } }
 @media (prefers-reduced-motion: reduce) { .sigue-siguiente span, .sigue-volver::before { transition: none; } }
+
+/* Hacia dónde vamos: el concepto en uso de cada producto, sin pie (ronda 18) */
+.concepto-foto { position: relative; margin: var(--s7) 0 0; border-radius: 16px; overflow: hidden; }
+.concepto-foto img { display: block; width: 100%; height: auto; }
+.concepto-foto .marca-ilus { top: auto; bottom: 12px; }
+/* En computadora, el título a un lado y la imagen al otro: a todo el ancho se veía enorme */
+@media (min-width: 900px) {
+  .concepto-uso .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s8); align-items: center; }
+  .concepto-uso .concepto-foto { margin: 0; width: 100%; max-width: calc(70svh * 1.5); justify-self: end; }
+}
+
+/* ═══ Celular: ni huecos entre secciones ni media pantalla vacía en las escenas fijas ═══
+   Un solo estándar para todas las páginas: 40 px por lado entre secciones. En las escenas que se
+   quedan fijas al bajar, la imagen o el 3D se estira hasta llenar la pantalla y el texto queda
+   abajo (antes la escena medía media pantalla y el resto quedaba vacío); donde la imagen tiene
+   proporción fija, el contenido va centrado. */
+@media (max-width: 760px) {
+  .sub-seccion, .pagina-unblind .sub-seccion, .pagina-unblind .cita, .pagina-space .sub-seccion { padding: 40px 0; }
+  .sub-seccion:has(+ :is(.vo-reporte, .vo-crece, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos)) { padding-bottom: var(--s4); }
+  :is(.vo-reporte, .vo-crece, .vo-operacion, .st-galeria, .st-dentro, .st-baffle, .lb-tiempos) + .sub-seccion { padding-top: var(--s4); }
+  .sigue { padding: var(--s6) 0 var(--s5); }
+  .sigue + .contact { padding: var(--s7) 0; }
+
+  .js :is(.vo-operacion, .vo-crece, .vo-reporte):not(.corrida) .vo-pin { align-items: stretch; padding-bottom: var(--s5); }
+  .js :is(.vo-operacion, .vo-crece, .vo-reporte):not(.corrida) .vo-grid { height: 100%; grid-template-rows: minmax(0, 1fr) auto; align-items: stretch; }
+  .js :is(.vo-operacion, .vo-crece, .vo-reporte):not(.corrida) .vo-escena { height: auto; min-height: 0; }
+  .js .st-dentro:not(.corrida) .st-pin { align-items: stretch; padding-bottom: var(--s5); }
+  .js .st-dentro:not(.corrida) .st-grid { height: 100%; grid-template-rows: minmax(0, 1fr) auto; align-items: stretch; }
+  .js .st-dentro:not(.corrida) .st-escena { height: auto; min-height: 0; }
+  .js .st-galeria:not(.corrida) .st-panel { align-items: center; }
+  .lb-tiempos:not(.corrida) .lb-tiempos-pin { align-items: center; }
+}
+
+/* ═══ Lo secundario, plegado, y las escenas fijas que se pueden saltar ═══ */
+.plegable-boton { cursor: pointer; }
+button.plegable-boton.btn-text { padding: 0; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 400; color: inherit; }
+.plegable-boton .plegable-cerrar, .plegable-boton[aria-expanded="true"] .plegable-abrir { display: none; }
+.plegable-boton[aria-expanded="true"] .plegable-cerrar { display: inline; }
+.plegable-escena .plegable-boton[aria-expanded="true"] { display: none; }
+.lb-plegar { margin: var(--s5) 0 0; }
+/* En computadora hay lugar: lo que se pliega sólo en celular se ve completo */
+@media (min-width: 761px) {
+  .plegable-solo-celular > .plegable-boton { display: none; }
+  .plegable-solo-celular > .plegable-cuerpo[hidden] { display: block; }
+}
+@media (max-width: 760px) { .plegable-solo-celular > .plegable-cuerpo { margin-top: var(--s4); } }
+
+.saltar-escena { position: absolute; z-index: 5; right: var(--gutter); bottom: var(--s3); min-height: 44px; padding: 0 var(--s4); border: 0; border-radius: 999px; background: rgba(11,31,59,.06); font: inherit; font-size: 13px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
+.saltar-escena::after { content: " ↓"; }
+.saltar-escena:hover { color: var(--paper); background: rgba(11,31,59,.1); }
+.tema-noche .saltar-escena { background: rgba(244,246,250,.08); }
+.tema-noche .saltar-escena:hover { background: rgba(244,246,250,.16); }
+.corrida .saltar-escena, html:not(.js) .saltar-escena, .st-baffle:not(.guiada) .saltar-escena { display: none; }
+/* Las misiones de Space tienen su índice abajo al centro: el botón sube un poco */
+.st-galeria .saltar-escena { bottom: var(--s5); }
+@media (max-width: 760px) {
+  .saltar-escena { top: calc(var(--nav-h) + var(--s2)); bottom: auto; min-height: 36px; padding: 0 var(--s3); font-size: 12px; }
+}
+
+/* Inspección de Codex (ronda 22): en el celular, todo lo que se toca mide al menos 44 px */
+@media (max-width: 760px) {
+  /* Con «html» delante, para ganarle a los estilos de cada página, que cargan después */
+  html :is(.vo-escenas button, .vistas button, .lb-ruta button, .lb-otras button, .lb-ejemplo, .saltar-escena, .lb-dato-pasos button, .etapas button, .control-baffle input) { min-height: 44px; }
+  html.js .st-galeria:not(.corrida) :is(.etapas button, .control-baffle input, .vistas button) { min-height: 44px; }
+}
+

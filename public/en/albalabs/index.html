@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Alba Labs: the Dev Kit is a pair of open glasses with a camera to build your own computer vision and AI applications. $5,900 MXN.">
+  <meta name="description" content="Alba Labs: the Dev Kit will be open glasses with a camera to build your own computer vision and AI applications. In development.">
   <meta name="theme-color" content="#f4f6fa">
   <title>Alba Labs — Your eyes, any AI</title>
   <link rel="icon" type="image/svg+xml" href="/assets/marcas/alba-labs/favicon.svg">
@@ -19,19 +19,25 @@
   <meta property="og:url" content="https://albavision.tech/en/albalabs/">
   <meta property="og:title" content="Alba Labs — Your eyes, any AI">
   <meta property="og:description" content="Open glasses with a camera to build your own computer vision and AI applications.">
-  <meta property="og:image" content="https://albavision.tech/assets/marcas/alba-labs/compartir-1200x630.png">
+  <meta property="og:image" content="https://albavision.tech/assets/og-alba-labs-grafito.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Alba Labs brand, by Alba Vision">
+  <meta property="og:image:alt" content="The Alba Labs glasses in graphite with a camera clip (concept)">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/subpagina.css">
+  <link rel="stylesheet" href="/labs-3d.css">
+  <link rel="stylesheet" href="/ronda24.css?v=20261025c">
+  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
+  <script type="module" src="/ronda24.js?v=20261025c"></script>
   <link rel="stylesheet" href="/assets/marcas/menu.css">
   <script>document.documentElement.classList.add('js')</script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/labs.js"></script>
+  <script type="module" src="/labs.js?v=20261026i"></script>
+  <script type="module" src="/integral.js?v=20261026i"></script>
 </head>
 <body class="pagina-dia">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -46,10 +52,9 @@
       </a>
       <nav class="nav-links" aria-label="Alba Labs sections">
         <a href="#dev-kit">Dev Kit</a>
-        <a href="#tienda">Store</a>
+        <a href="#tienda">Let me know</a>
         <a href="#lo-que-viene">Coming next</a>
       </nav>
-      <button class="nav-carrito" type="button" data-cart-open><span class="nav-carrito-texto">Cart</span> <span data-cart-count>0</span></button>
       <a class="nav-idioma" href="/albalabs/" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
     </div>
@@ -57,32 +62,33 @@
       <a href="/albalabs/" hreflang="es" lang="es">Versión en español</a>
       <a class="nav-panel-volver" href="../#proyecto-alba-labs">Back to Alba Vision</a>
       <a href="#dev-kit">Dev Kit</a>
-      <a href="#tienda">Store</a>
+      <a href="#tienda">Let me know</a>
       <a href="#lo-que-viene">Coming next</a>
-      <button type="button" data-cart-open>View cart <span data-cart-count>0</span></button>
       <p class="nav-panel-titulo">Other projects</p>
-      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></div>
+      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../surfaceops/" translate="no">Surface Ops</a></div>
     </div>
   </header>
 
   <main id="contenido">
-    <div class="checkout-notice" data-checkout-notice role="status" hidden></div>
-
     <!-- Portada: los lentes en grande -->
     <section class="lb-portada tema-dia" id="dev-kit">
       <div class="wrap lb-portada-grid">
         <div class="lb-portada-texto">
           <h1 class="sub-title reveal">Your eyes. <em>Any AI.</em></h1>
-          <p class="sub-lead reveal">The <span translate="no">Alba Labs</span> Dev Kit is a pair of open glasses with a camera to build your own computer vision and AI applications.</p>
+          <p class="sub-lead reveal">The <span translate="no">Alba Labs</span> Dev Kit will be a pair of open glasses with a camera to build your own computer vision and AI applications.</p>
+          <p class="status reveal"><span class="dot" aria-hidden="true"></span>In development · not for sale yet</p>
           <div class="sub-cta reveal">
-            <a class="btn btn-solid" href="#tienda">Buy the Dev Kit</a>
+            <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20know%20when%20the%20Alba%20Labs%20Dev%20Kit%20is%20ready." target="_blank" rel="noopener" aria-label="Notify me on WhatsApp when the Dev Kit is ready">Notify me when it's ready</a>
             <a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20have%20questions%20about%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener" aria-label="Ask about the Dev Kit on WhatsApp">Ask about the Dev Kit</a>
           </div>
-          <p class="sub-precio reveal"><b>$5,900 MXN</b> · shipping calculated separately</p>
+          <p class="sub-precio reveal">Estimated price: <b>$5,900 MXN</b></p>
         </div>
-        <figure class="lb-portada-foto labs-foto reveal">
-          <img src="/assets/armazon.webp" alt="Alba Labs Dev Kit glasses with their camera (illustrative image)" width="1600" height="900" fetchpriority="high">
-          <figcaption>Illustrative image</figcaption>
+        <!-- Los lentes en 3D: el clip de cámara llega y se acopla al abrir (labs.js); mientras
+             carga, o sin 3D, el render -->
+        <figure class="lb-portada-foto labs-foto reveal" data-portada3d>
+          <img src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs glasses in graphite with a camera clip on the temple" width="1400" height="684" fetchpriority="high">
+          <canvas class="lb-portada-lienzo" aria-hidden="true"></canvas>
+          <span class="marca-ilus">Illustration</span>
         </figure>
       </div>
     </section>
@@ -100,53 +106,108 @@
               <li><button type="button" data-tiempo="2"><b>Act</b><span>Ask, get directions or connect your own tools.</span></button></li>
             </ol>
           </div>
-          <figure class="lb-escena" aria-describedby="notaTiempos">
-            <div class="lb-escena-foto">
-              <img src="/assets/armazon.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+          <figure class="lb-escena">
+            <!-- Lo que ven los lentes (ronda 21 de marca): Ve y Actúa en la mesa de trabajo, Recuerda en
+                 la cocina. Los recuadros y las etiquetas se dibujan encima, en coordenadas de la escena
+                 (1536 × 1024). Escenas de ejemplo: el Dev Kit todavía no existe -->
+            <div class="lb-escena-foto lb-pov">
               <div class="lb-capa activa" data-capa="0">
-                <span class="lb-cono" aria-hidden="true"></span>
-                <span class="lb-chip" style="--x:.74;--y:.06">Text</span>
-                <span class="lb-chip" style="--x:.84;--y:.16">Object</span>
-                <span class="lb-chip" style="--x:.64;--y:.13">Scene</span>
+                <img src="/assets/labs/vista-trabajo.webp" alt="What the person wearing the glasses would see: a printer and its manual open at page 3 on a work desk" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:620;--y:18;--w:675;--h:460" aria-hidden="true"></span><span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:660;--y:48">Printer</span><span class="lb-pov-rotulo" style="--x:460;--y:894">Printer manual · p. 3</span>
               </div>
               <div class="lb-capa" data-capa="1">
-                <span class="lb-nota" style="--x:.03;--y:.04">Keys · kitchen table</span>
-                <span class="lb-nota" style="--x:.08;--y:.17">Printer manual · p. 3</span>
-                <span class="lb-nota" style="--x:.13;--y:.3">To do: buy a filter</span>
+                <img src="/assets/labs/vista-cocina.webp" alt="What the person wearing the glasses would see: a set of keys on the kitchen table" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:610;--y:471;--w:325;--h:182" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:460;--y:686">Keys · kitchen table</span>
               </div>
               <div class="lb-capa" data-capa="2">
-                <span class="lb-chip lb-accion" style="--x:.7;--y:.68">Ask your AI</span>
-                <span class="lb-chip lb-accion" style="--x:.74;--y:.79">Save a note</span>
-                <span class="lb-chip lb-accion" style="--x:.78;--y:.9">Send a message</span>
+                <img src="/assets/labs/vista-trabajo.webp" alt="" width="1800" height="1200" loading="lazy" decoding="async">
+                <span class="lb-pov-caja" style="--x:382;--y:421;--w:870;--h:449" aria-hidden="true"></span>
+                <span class="lb-pov-rotulo" style="--x:460;--y:894">Printer manual · p. 3</span>
+                <span class="lb-pov-rotulo lb-pov-pendiente" style="--x:980;--y:330">To do: buy a filter</span>
               </div>
+              <span class="marca-ilus">Concept · Illustration</span>
             </div>
-            <figcaption id="notaTiempos">Illustration of what you can build with the Dev Kit</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
-    <section class="sub-seccion tema-dia">
+    <!-- Pregúntale al mundo: una conversación de ejemplo y por dónde viaja la pregunta, en tu
+         computadora o en la nube (labs.js). Es un concepto: el Dev Kit todavía no existe -->
+    <section class="sub-seccion tema-dia lb-pregunta" data-conversacion>
       <div class="wrap dos">
         <div>
           <h2 class="reveal">Ask the world <em>in front of you.</em></h2>
           <p class="sub-intro reveal">Connect models that run on your computer or cloud AI services, depending on what you need in privacy, speed and cost.</p>
+          <div class="lb-ruta reveal" role="group" aria-label="Where the artificial intelligence runs">
+            <button type="button" data-ruta="local" aria-pressed="true">On your computer</button>
+            <button type="button" data-ruta="nube" aria-pressed="false">In the cloud</button>
+          </div>
+          <dl class="lb-ruta-datos reveal" aria-live="polite">
+            <div><dt>Privacy</dt><dd data-dato="privacidad">What the glasses see stays on your network</dd></div>
+            <div><dt>Speed</dt><dd data-dato="velocidad">It depends on your computer</dd></div>
+            <div><dt>Cost</dt><dd data-dato="costo">No charge per question</dd></div>
+          </dl>
         </div>
-        <ul class="preguntas">
-          <li class="reveal">«Where did I leave this tool?»</li>
-          <li class="reveal">«Read and summarize this document.»</li>
-          <li class="reveal">«Guide me step by step while I work.»</li>
-        </ul>
+        <figure class="lb-chat reveal">
+          <p class="lb-camino" data-camino="local" aria-hidden="true">
+            <span class="lb-nodo">Glasses</span><i></i><span class="lb-nodo lb-nodo-local">Your computer</span><i class="lb-tramo-nube"></i><span class="lb-nodo lb-nodo-nube">Cloud service</span>
+          </p>
+          <ol class="lb-mensajes">
+            <li class="lb-tu" data-pregunta>«Where did I leave this tool?»</li>
+            <li class="lb-ellos" data-respuesta>On the workbench, next to the blue box. You saw it 12 minutes ago.</li>
+          </ol>
+          <ul class="lb-otras" aria-label="Other questions">
+            <li><button type="button" data-p="0" aria-pressed="true">«Where did I leave this tool?»</button></li>
+            <li><button type="button" data-p="1" aria-pressed="false">«Read and summarize this document.»</button></li>
+            <li><button type="button" data-p="2" aria-pressed="false">«Guide me step by step while I work.»</button></li>
+          </ul>
+          <span class="marca-ilus">Example · Concept</span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Ronda 24: reemplaza Entre ver y crear; selección manual, sin IA en vivo. -->
+    <section class="sub-seccion tema-dia r24-receta" id="receta" data-receta>
+      <div class="wrap">
+        <h2>From what you see <em>to what you want to build.</em></h2>
+        <p class="sub-intro">Select the manual and walk through an example recipe. Everything shown is still a concept.</p>
+        <div class="r24-receta-grid">
+          <figure class="r24-manual">
+            <div class="r24-manual-foto">
+              <img src="/assets/labs/vista-trabajo.webp" alt="Illustrative scene with a printer and its manual on a desk" width="1800" height="1200" loading="lazy" decoding="async">
+              <button type="button" class="r24-manual-elegir" data-receta-elegir aria-pressed="false"><span>Select the manual</span></button>
+            </div>
+            <figcaption>Concept · Illustration. The object is selected manually in this demonstration.</figcaption>
+          </figure>
+          <div class="r24-receta-lectura">
+            <figure class="receta-fragmento" hidden data-receta-fragmento>
+              <div><img src="/assets/labs/vista-trabajo.webp" alt="Illustrative crop of the manual selected as context" width="1200" height="800" loading="lazy"></div>
+              <figcaption>Selected context · Illustration</figcaption>
+            </figure>
+            <div aria-live="polite" aria-atomic="true">
+              <div data-receta-paso="0"><h3>Start with an object.</h3><p>Choose the part of the scene that gives your question context.</p><p class="r24-receta-salida">Your recipe has no context yet.</p></div>
+              <div data-receta-paso="1" hidden><h3>The manual is the context.</h3><p>A specific image prepares a specific question.</p><dl class="r24-contexto"><div><dt>Object</dt><dd>Printer manual</dd></div><div><dt>Place</dt><dd>Work desk</dd></div><div><dt>Example reference</dt><dd>Page 3</dd></div></dl></div>
+              <div data-receta-paso="2" hidden><h3>“What does this step say?”</h3><p>Your application could connect the question to the selected excerpt.</p><p class="r24-receta-salida">Example response: check the step in the manual in front of you and verify its instructions before acting.</p></div>
+            </div>
+            <div class="r24-receta-acciones"><button type="button" class="btn btn-solid" data-receta-siguiente disabled>Continue to the question</button><button type="button" class="btn-text r24-reiniciar" data-receta-reiniciar hidden>Choose context again</button></div>
+            <p class="r24-nota">No recognition or AI is running in this demonstration. The Dev Kit is in development.</p>
+          </div>
+        </div>
+        <noscript><p>This example connects a manual, its context and a question. Enable JavaScript to try it.</p></noscript>
       </div>
     </section>
 
     <section class="sub-seccion tema-dia" id="tienda">
       <div class="wrap">
-        <h2 class="reveal">Take <em>the lab home.</em></h2>
-        <p class="sub-intro reveal">We are starting with the glasses. The other kits will become available as they go into production.</p>
+        <h2 class="reveal">The first one <em>from the lab.</em></h2>
+        <p class="sub-intro reveal">We are starting with the glasses. They are still in development: leave us your contact and we will let you know when they are ready.</p>
         <div class="producto">
           <figure class="sub-figura labs-foto reveal">
-            <img src="/assets/armazon.webp" alt="Alba Labs Dev Kit glasses (illustrative image)" width="1600" height="900" loading="lazy" decoding="async">
+            <img src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs Dev Kit glasses (illustration)" width="1400" height="684" loading="lazy" decoding="async">
+            <span class="marca-ilus">Illustration</span>
           </figure>
           <div class="producto-copy">
             <h3 class="reveal">Smartglasses Dev Kit</h3>
@@ -157,12 +218,11 @@
               <li>Access to the software and documentation</li>
               <li>Compatible with Hermes</li>
             </ul>
-            <p class="precio reveal"><strong>$5,900</strong><span>MXN · shipping calculated separately</span></p>
+            <p class="precio reveal"><strong>$5,900</strong><span>MXN · estimated price</span></p>
             <div class="compra reveal">
-              <button class="btn btn-solid" type="button" data-add-cart="smartglasses-dev-kit">Add to cart</button>
-              <a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20have%20questions%20about%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener" aria-label="Ask before buying, on WhatsApp">Ask before buying</a>
+              <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20know%20when%20the%20Alba%20Labs%20Dev%20Kit%20is%20ready." target="_blank" rel="noopener" aria-label="Notify me on WhatsApp when the Dev Kit is ready">Notify me when it's ready</a>
+              <a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20have%20questions%20about%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener" aria-label="Ask about the Dev Kit on WhatsApp">Ask about the Dev Kit</a>
             </div>
-            <p class="pago-nota reveal">Payment is processed by Stripe.</p>
           </div>
         </div>
       </div>
@@ -171,26 +231,101 @@
     <section class="sub-seccion tema-dia" id="lo-que-viene">
       <div class="wrap">
         <h2 class="reveal">Coming next <em>in the lab.</em></h2>
-        <ul class="rasgos">
+        <ul class="rasgos lb-viene" aria-label="Coming next">
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="/assets/labs/viene-edge.webp" alt="Concept of the Alba Labs Edge camera module: a compact graphite camera with a blue top" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3>Edge camera module</h3>
             <p>Camera, compute and local inference for vision and robotics prototypes.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>Coming soon</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20know%20when%20the%20Edge%20camera%20module%20is%20ready." target="_blank" rel="noopener" aria-label="Let me know on WhatsApp when the Edge camera module is ready">Let me know</a></p>
           </li>
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="/assets/labs/viene-rover.webp" alt="Concept of the Alba Rover: a four-wheel educational robot with a camera, in graphite and blue" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3 translate="no">Alba Rover</h3>
             <p>An educational robot to learn perception, programming and autonomy.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>Coming soon</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20know%20when%20the%20Alba%20Rover%20is%20ready." target="_blank" rel="noopener" aria-label="Let me know on WhatsApp when the Alba Rover is ready">Let me know</a></p>
           </li>
           <li class="reveal">
+            <figure class="lb-viene-foto"><img src="/assets/labs/viene-core.webp" alt="Concept of the Vision Core: a compact box with a heat sink and ports for cameras and sensors" width="1200" height="800" loading="lazy" decoding="async"></figure>
             <h3 translate="no">Vision Core</h3>
             <p>A compact brain to connect cameras, sensors and artificial intelligence models.</p>
             <span class="status status-dim"><i aria-hidden="true"></i>In development</span>
             <p><a class="btn-text" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27m%20interested%20in%20the%20Alba%20Labs%20Vision%20Core." target="_blank" rel="noopener" aria-label="Ask about the Vision Core on WhatsApp">Learn about the project</a></p>
           </li>
         </ul>
+        <p class="lb-config-nota reveal">Concept · Illustration. These are ideas in development: neither their form nor their functions are defined.</p>
+      </div>
+    </section>
+
+    <!-- Hacia dónde vamos: cómo se vería el día que exista (concepto) -->
+    <section class="sub-seccion tema-dia concepto-uso lb-concepto" aria-labelledby="titulo-concepto-labs">
+      <div class="wrap">
+        <h2 class="reveal" id="titulo-concepto-labs">Where we are heading: <em>glasses for work.</em></h2>
+        <figure class="concepto-foto reveal">
+          <picture>
+            <source media="(max-width: 760px)" srcset="/assets/labs/concepto-en-uso-vertical.webp" width="720" height="900">
+            <img src="/assets/labs/concepto-en-uso.webp" alt="A technician checks a motor in her workshop wearing the Alba Labs glasses in graphite with a clip on" width="1800" height="1200" loading="lazy" decoding="async">
+          </picture>
+          <span class="marca-ilus">Concept · Illustration</span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Hacia dónde va: una base y clips que se cambian según el trabajo (concepto) -->
+    <section class="sub-seccion tema-dia lb-modular" id="modular" data-modular>
+      <div class="wrap">
+        <div class="dos">
+          <h2 class="reveal">One base. <em>Many modules.</em></h2>
+          <p class="sub-intro reveal">Where the lab is heading: glasses that stay and clips that change with the job. Pick one and watch it dock.</p>
+        </div>
+        <div class="lb-modular-grid">
+          <div class="lb-modular-escena">
+            <img class="lb-modular-respaldo" src="/assets/labs/labs-acoplado.webp" alt="The Alba Labs glasses base in graphite with a camera clip docked on the right temple" width="1400" height="684" loading="lazy" decoding="async">
+            <canvas class="lb-modular-lienzo" aria-hidden="true"></canvas>
+            <span class="marca-ilus">Concept</span>
+          </div>
+          <div class="lb-clips-lado">
+          <p class="lb-arrastra">Drag a module onto the glasses, or tap it.</p>
+          <ul class="lb-clips lb-clips-tarjetas" aria-label="The clips">
+            <li><button type="button" data-clip="camara" aria-pressed="true"><img class="lb-clip-dibujo" src="/assets/labs/clip-camara.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Camera</b><span>Captures what is in front of you.</span></button></li>
+            <li><button type="button" data-clip="eye-tracking" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-eye-tracking.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Eye tracking</b><span>Interaction with your gaze.</span></button></li>
+            <li><button type="button" data-clip="lidar" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-lidar.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>LiDAR</b><span>Depth and distance.</span></button></li>
+            <li><button type="button" data-clip="pantalla" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-pantalla.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Display</b><span>Information in your field of view.</span></button></li>
+            <li><button type="button" data-clip="termica" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-termica.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Thermal</b><span>The temperature of what you see.</span></button></li>
+            <li><button type="button" data-clip="audio-direccional" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-audio-direccional.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Directional audio</b><span>Listening and communicating.</span></button></li>
+            <li><button type="button" data-clip="sensores-ambientales" aria-pressed="false"><img class="lb-clip-dibujo" src="/assets/labs/clip-sensores-ambientales.webp" alt="" width="180" height="180" loading="lazy" decoding="async" draggable="false"><b>Environmental sensors</b><span>A record of your surroundings.</span></button></li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Distintas formas de trabajar: el configurador de las cinco configuraciones en 3D (labs-3d.js).
+         Sin 3D, el render de cada una -->
+    <section class="sub-seccion tema-dia lb-configuraciones" aria-labelledby="titulo-configuraciones" data-configurador>
+      <div class="wrap">
+        <div class="dos">
+          <h2 class="reveal" id="titulo-configuraciones">One base. <em>Different ways to work.</em></h2>
+          <p class="sub-intro reveal">With an adapter, the base carries three modules at once. Pick a way of working and watch it come together.</p>
+        </div>
+        <div class="lb-modular-grid">
+          <div class="lb-modular-escena">
+            <img class="lb-modular-respaldo" src="/assets/labs/config-laboratorio-portatil.webp" alt="The Alba Labs glasses with the three modules of the chosen setup (concept)" width="1000" height="617" loading="lazy" decoding="async">
+            <canvas class="lb-modular-lienzo" aria-hidden="true"></canvas>
+            <span class="marca-ilus">Concept</span>
+          </div>
+          <div>
+            <ul class="lb-clips" aria-label="The setups">
+              <li><button type="button" data-config="laboratorio-portatil" aria-pressed="true"><b>Portable lab</b><span>Microscopy · Inspection probe · Display</span></button></li>
+              <li><button type="button" data-config="mantenimiento-industrial" aria-pressed="false"><b>Industrial maintenance</b><span>Thermal · Ultrasound · Instruments</span></button></li>
+              <li><button type="button" data-config="exploracion-campo" aria-pressed="false"><b>Field exploration</b><span>LiDAR · Camera · Haptic feedback</span></button></li>
+              <li><button type="button" data-config="interaccion-experimental" aria-pressed="false"><b>Experimental interaction</b><span>Gaze · Gestures · Haptic feedback</span></button></li>
+              <li><button type="button" data-config="trabajo-compartido" aria-pressed="false"><b>Shared work</b><span>Camera · Projection · Directional audio</span></button></li>
+            </ul>
+            <p class="lb-config-nota reveal">Concept · Illustration. The modules are possibilities we are exploring: neither their shape nor how they work has been validated.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -207,11 +342,47 @@
       </div>
     </section>
 
+    <!-- Tu idea en el laboratorio (ronda 21-C4 de marca): con lo que escribe la persona se arma su
+         experimento y el mensaje de WhatsApp; no se manda nada sin que ella lo toque (labs.js) -->
+    <section class="sub-seccion tema-dia lb-idea" data-idea>
+      <div class="wrap lb-idea-grid">
+        <form class="lb-idea-form reveal" action="#" onsubmit="return false">
+          <h2>The lab starts <em>with what you want to create.</em></h2>
+          <fieldset class="lb-idea-rutas">
+            <legend>I want to explore</legend>
+            <div class="lb-tarjetas">
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aplicacion" checked data-i="ruta"><b>An app for the glasses</b><span>Something the glasses do for you while you work.</span></label>
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="modulo" data-i="ruta"><b>A module of your own</b><span>A new piece that attaches to the base.</span></label>
+              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aula" data-i="ruta"><b>A classroom experience</b><span>Something a group can observe and build.</span></label>
+            </div>
+          </fieldset>
+          <label>My idea
+            <textarea data-i="idea" rows="3" maxlength="240" placeholder="For example: finding the tools I left in the workshop"></textarea>
+            <span class="lb-ejemplos" aria-label="Examples"><button type="button" class="lb-ejemplo" data-para="idea">Find my tools in the workshop</button><button type="button" class="lb-ejemplo" data-para="idea">Read labels out loud</button><button type="button" class="lb-ejemplo" data-para="idea">Count parts on a table</button></span>
+          </label>
+          <label>How would I know it helped?
+            <input data-i="prueba" maxlength="160" placeholder="For example: finding a tool without asking for help">
+            <span class="lb-ejemplos" aria-label="Examples"><button type="button" class="lb-ejemplo" data-para="prueba">I find it without asking for help</button><button type="button" class="lb-ejemplo" data-para="prueba">It takes me less time</button><button type="button" class="lb-ejemplo" data-para="prueba">I make fewer mistakes</button></span>
+          </label>
+        </form>
+        <div class="lb-idea-hoja reveal" aria-live="polite">
+          <p class="lb-idea-titulo" data-h="titulo">An app for the glasses</p>
+          <ol>
+            <li><b>Idea</b><span data-h="idea">A scene and a concrete intention.</span></li>
+            <li><b>Experiment</b><span data-h="experimento">An example recipe and an answer you can check.</span></li>
+            <li><b>Test</b><span data-h="prueba">Check that the context helps with a task.</span></li>
+          </ol>
+          <a class="btn btn-solid" data-h="enviar" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20have%20questions%20about%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener">Send us your idea on WhatsApp</a>
+          <p class="lb-config-nota">WhatsApp opens with your idea already written; you decide whether to send it. It is to talk it over: the Dev Kit does not exist yet.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Sigue explorando: el siguiente proyecto, los demás y volver a la portada -->
     <section class="sigue tema-dia" aria-label="Keep exploring">
       <div class="wrap">
         <a class="sigue-siguiente" href="../unblind/">Continue with <em translate="no">UNBLIND</em>&nbsp;<span aria-hidden="true">→</span></a>
-        <p class="sigue-demas"><span>Also</span><a href="https://ops.albavision.tech/en" target="_blank" rel="noopener" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a></p>
+        <p class="sigue-demas"><span>Also</span><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../orbita/" translate="no">Órbita</a><a href="../surfaceops/" translate="no">Surface Ops</a></p>
         <a class="sigue-volver" href="../#proyecto-alba-labs">Back to Alba Vision</a>
       </div>
     </section>
@@ -220,7 +391,7 @@
       <div class="contact-orbits" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
       <div class="wrap contact-inner">
         <h2 class="contact-title reveal">Build something <em>that doesn't exist yet.</em></h2>
-        <p class="contact-lead reveal">Buy the kit, collaborate with <span translate="no">Alba Labs</span> or bring the platform to your university.</p>
+        <p class="contact-lead reveal">Ask us to let you know about the Dev Kit, collaborate with <span translate="no">Alba Labs</span> or bring the platform to your university.</p>
         <div class="contact-actions reveal">
           <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27d%20like%20to%20collaborate%20with%20Alba%20Labs." target="_blank" rel="noopener" aria-label="Message us on WhatsApp at +52 56 1690 8570">Message us on WhatsApp</a>
           <a class="btn btn-ghost" href="mailto:contacto@albavision.tech?subject=Alba%20Labs">Send us an email</a>
@@ -229,29 +400,16 @@
     </section>
   </main>
 
-  <aside class="cart-drawer tema-dia" data-cart-drawer aria-hidden="true" aria-label="Shopping cart">
-    <div class="cart-head"><h2>Your cart</h2><button type="button" data-cart-close aria-label="Close cart">×</button></div>
-    <div class="cart-body" data-cart-items></div>
-    <div class="cart-empty" data-cart-empty><h3>Your cart is empty.</h3><p>Add the Dev Kit to get started.</p></div>
-    <div class="cart-footer" data-cart-footer hidden>
-      <div class="cart-total"><span>Total</span><strong data-cart-total>$0 MXN</strong></div>
-      <p>Shipping and delivery details are confirmed in Stripe.</p>
-      <button class="btn btn-solid cart-checkout" type="button" data-cart-checkout>Continue to secure checkout </button>
-      <small>Payment is processed by Stripe.</small>
-      <a class="btn-text cart-whatsapp" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20want%20to%20buy%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener" aria-label="I'd rather buy on WhatsApp">I'd rather buy on WhatsApp</a>
-    </div>
-  </aside>
-  <button class="cart-overlay" type="button" data-cart-overlay aria-label="Close cart" tabindex="-1"></button>
-  <div class="cart-toast" data-cart-toast role="status" aria-live="polite">Product added to the cart.</div>
 
   <footer class="footer">
     <div class="wrap footer-grid">
       <img src="/assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
       <p class="footer-tag"><em>Beyond the visible.</em></p>
       <nav class="footer-links" aria-label="Other Alba sites">
+        <a href="../surfaceops/">Surface Ops</a>
         <a href="../">Home</a>
         <a href="../unblind/">UNBLIND</a>
-        <a href="https://ops.albavision.tech/en" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="../visionops/">Vision Ops</a>
         <a href="../albaspace/">Alba Space</a>
         <a href="../albalabs/" aria-current="page">Alba Labs</a>
       </nav>
@@ -266,6 +424,5 @@
       <span class="footer-copy">© <span data-year></span> Alba Vision</span>
     </div>
   </footer>
-  <script src="/labs-store.js"></script>
 </body>
 </html>

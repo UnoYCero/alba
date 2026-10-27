@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Surface Ops: measure a pothole using a photo and a scale reference. From the field to a drawing, with outlines, area and office exports. In testing.">
+  <meta name="theme-color" content="#f4f6fa">
+  <title>Surface Ops — From a photo to a drawing</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/marcas/surface-ops/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/marcas/surface-ops/apple-touch-icon-180.png">
+  <link rel="canonical" href="https://albavision.tech/en/surfaceops/">
+  <link rel="alternate" hreflang="es" href="https://albavision.tech/surfaceops/">
+  <link rel="alternate" hreflang="en" href="https://albavision.tech/en/surfaceops/">
+  <link rel="alternate" hreflang="x-default" href="https://albavision.tech/surfaceops/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Alba Vision">
+  <meta property="og:url" content="https://albavision.tech/en/surfaceops/">
+  <meta property="og:title" content="Surface Ops — From a photo to a drawing">
+  <meta property="og:description" content="A photo, a scale reference and a drawing to work with. In testing; AI depth estimation remains experimental.">
+  <meta property="og:image" content="https://albavision.tech/assets/surfaceops/compartir-plan-en.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Surface Ops: illustration of a pothole and its measured outline">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/landing.css">
+  <link rel="stylesheet" href="/amanecer.css">
+  <link rel="stylesheet" href="/subpagina.css">
+  <link rel="stylesheet" href="/ronda24.css?v=20261025c">
+  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
+  <script>document.documentElement.classList.add('js')</script>
+  <script type="module" src="/subpagina.js"></script>
+  <script type="module" src="/ronda24.js?v=20261025c"></script>
+  <link rel="stylesheet" href="/assets/marcas/menu.css">
+  <script type="module" src="/integral.js?v=20261026i"></script>
+</head>
+<body class="pagina-dia pagina-surface">
+  <a class="skip" href="#contenido">Skip to content</a>
+  <div class="cielo-alba" aria-hidden="true"></div>
+  <header class="nav claro" data-nav>
+    <div class="nav-pill">
+      <a class="nav-padre" href="../#proyecto-surface-ops" aria-label="Back to Alba Vision"><i aria-hidden="true"></i><span translate="no">Alba Vision</span></a><span class="nav-ruta-sep" aria-hidden="true">/</span>
+      <a class="nav-brand nav-brand-hija" href="/en/surfaceops/" aria-label="Surface Ops, by Alba Vision">
+        <img class="logo-noche" src="/assets/marcas/surface-ops/menu-oscuro.svg" alt="" width="992.2910216718267" height="200">
+        <img class="logo-dia" src="/assets/marcas/surface-ops/menu-claro.svg" alt="" width="992.2910216718267" height="200">
+      </a>
+      <nav class="nav-links" aria-label="Surface Ops sections"><a href="#como">How it works</a><a href="#oficina">In the office</a><a href="#sin-senal">Offline</a></nav>
+      <a class="btn btn-solid btn-small nav-cta" href="#contacto">Book a trial</a>
+      <a class="nav-idioma" href="/surfaceops/" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
+    </div>
+    <div class="nav-panel" id="menu-movil" data-nav-panel>
+      <a href="/surfaceops/" hreflang="es" lang="es">Versión en español</a>
+      <a class="nav-panel-volver" href="../#proyecto-surface-ops">Back to Alba Vision</a>
+      <a href="#como">How it works</a><a href="#oficina">In the office</a><a href="#sin-senal">Offline</a><a href="#contacto">Book a trial</a>
+      <p class="nav-panel-titulo">Other projects</p>
+      <div class="nav-panel-otros"><a href="../unblind/" translate="no">UNBLIND</a><a href="../visionops/" translate="no">Vision Ops</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../albalabs/" translate="no">Alba Labs</a><a href="../orbita/" translate="no">Órbita</a></div>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="sub-hero tema-dia">
+      <div class="wrap sub-hero-grid">
+        <div>
+          <h1 class="sub-title">One pothole.<br>One photo.<br><em>A drawing to work with.</em></h1>
+          <p class="sub-lead">Surface Ops takes measurements from the street to the office. Use a printed marker or a tape measurement as a scale reference; AI proposes the outline and you review it.</p>
+          <p class="status">In testing · no pilots or customers</p>
+          <div class="sub-cta"><a class="btn btn-solid" href="#como">From photo to drawing</a><a class="btn-text" href="#contacto">Book a trial</a></div>
+          <p class="surface-aviso"><em>Scale matters.</em> Without a reference of known size, a photo is not enough to obtain real measurements.</p>
+        </div>
+        <figure class="surface-visual">
+          <img src="/assets/surfaceops/bache-ilustracion.webp" alt="Top-down illustration of a pothole in asphalt with a scale card beside it" width="1440" height="960" fetchpriority="high">
+          <figcaption>Generated illustration · not a field measurement</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="surface-proceso tema-dia" id="como" data-surface data-surface-paso="0" aria-labelledby="proceso-titulo">
+      <div class="surface-pin wrap">
+        <div><h2 id="proceso-titulo">The photo changes.<br><em>The work takes shape.</em></h2>
+          <div class="r24-opciones" role="group" aria-label="From photo to drawing">
+            <button type="button" data-surface-elegir="0" aria-pressed="true">The photo</button><button type="button" data-surface-elegir="1" aria-pressed="false">The outline</button><button type="button" data-surface-elegir="2" aria-pressed="false">The measurements</button><button type="button" data-surface-elegir="3" aria-pressed="false">The drawing</button>
+          </div>
+        </div>
+        <div class="surface-proceso-grid">
+          <figure class="surface-vista">
+            <img src="/assets/surfaceops/bache-ilustracion.webp" alt="The same illustrated pothole, with layers explaining its outline, rectangular cut and drawing" width="1440" height="960" loading="lazy">
+            <svg class="surface-capa" viewBox="0 0 1536 1024" aria-hidden="true">
+              <path class="surface-contorno" d="M211 529 258 421 391 346 512 258 632 284 734 277 824 305 959 332 1055 367 1138 392 1230 442 1309 519 1232 609 1119 677 1003 697 875 718 756 726 653 687 549 678 438 639 321 628 245 591Z"/>
+              <g class="surface-medidas"><rect class="surface-corte" x="195" y="242" width="1130" height="505"/><path class="surface-cota" d="M195 205H1325M195 190V220M1325 190V220M1360 242V747M1345 242H1375M1345 747H1375"/><text x="650" y="180">1.20 m</text><text x="1385" y="500" transform="rotate(90 1385 500)">0.55 m</text></g>
+            </svg>
+            <div class="surface-plano" aria-hidden="true"><svg viewBox="0 0 1536 1024"><path d="M211 529 258 421 391 346 512 258 632 284 734 277 824 305 959 332 1055 367 1138 392 1230 442 1309 519 1232 609 1119 677 1003 697 875 718 756 726 653 687 549 678 438 639 321 628 245 591Z"/><rect class="plano-corte" x="195" y="242" width="1130" height="505"/><g class="plano-cotas"><path d="M195 205H1325M195 190V220M1325 190V220M1360 242V747M1345 242H1375M1345 747H1375"/><text x="650" y="175">1.20 m</text><text x="1380" y="500" transform="rotate(90 1380 500)">0.55 m</text></g><text class="plano-vertice" x="163.1" y="531.5">A</text><text class="plano-vertice" x="186.9" y="409.8">B</text><text class="plano-vertice" x="346.7" y="327.5">C</text><text class="plano-vertice" x="460.5" y="207.7">D</text><text class="plano-vertice" x="607.5" y="242.7">E</text><text class="plano-vertice" x="725.7" y="205.5">F</text><text class="plano-vertice" x="839.0" y="259.4">G</text><text class="plano-vertice" x="1014.0" y="285.6">H</text><text class="plano-vertice" x="1098.8" y="347.3">I</text><text class="plano-vertice" x="1207.2" y="372.2">J</text><text class="plano-vertice" x="1277.6" y="436.1">K</text><text class="plano-vertice" x="1381.0" y="521.5">L</text><text class="plano-vertice" x="1278.8" y="619.8">M</text><text class="plano-vertice" x="1183.6" y="708.8">N</text><text class="plano-vertice" x="1040.3" y="727.2">O</text><text class="plano-vertice" x="908.6" y="781.7">P</text><text class="plano-vertice" x="755.2" y="774.0">Q</text><text class="plano-vertice" x="617.2" y="749.5">R</text><text class="plano-vertice" x="512.3" y="709.0">S</text><text class="plano-vertice" x="371.9" y="667.5">T</text><text class="plano-vertice" x="274.9" y="641.4">U</text><text class="plano-vertice" x="174.1" y="603.5">V</text></svg></div>
+            <figcaption>Illustration · Example measurements</figcaption>
+          </figure>
+          <div class="surface-lectura" aria-live="polite" aria-atomic="true">
+            <div data-surface-texto="0"><h3>A photo with a scale reference.</h3><p>Place a printed marker beside the pothole or use a tape measurement. This reference converts pixels into measurements.</p></div>
+            <div data-surface-texto="1" hidden><h3>AI proposes; you review.</h3><p>Select the pothole and adjust the points if needed. The automatic outline can still be wrong.</p></div>
+            <div data-surface-texto="2" hidden><h3>Outline, cut, area and volume.</h3><p>From the outline to the rectangular cut. Volume depends on the depth used.</p><dl class="surface-numeros"><div><dt>Example rectangular cut</dt><dd>1.20 × 0.55 m</dd></div></dl><p class="r24-nota">AI depth estimation is experimental and has not been compared with an actual field measurement.</p></div>
+            <div data-surface-texto="3" hidden><h3>A drawing, side by side.</h3><p>The record shows a drawing with the length of each side. The office can export it to AutoCAD.</p><details class="surface-cotas"><summary>View the example dimensions</summary><p>Follow the outline from A, in the order shown on the plan. These are illustrative measurements.</p><dl><div><dt>A–B</dt><dd>0.13 m</dd></div><div><dt>B–C</dt><dd>0.16 m</dd></div><div><dt>C–D</dt><dd>0.16 m</dd></div><div><dt>D–E</dt><dd>0.13 m</dd></div><div><dt>E–F</dt><dd>0.11 m</dd></div><div><dt>F–G</dt><dd>0.10 m</dd></div><div><dt>G–H</dt><dd>0.15 m</dd></div><div><dt>H–I</dt><dd>0.11 m</dd></div><div><dt>I–J</dt><dd>0.09 m</dd></div><div><dt>J–K</dt><dd>0.11 m</dd></div><div><dt>K–L</dt><dd>0.12 m</dd></div><div><dt>L–M</dt><dd>0.13 m</dd></div><div><dt>M–N</dt><dd>0.14 m</dd></div><div><dt>N–O</dt><dd>0.13 m</dd></div><div><dt>O–P</dt><dd>0.14 m</dd></div><div><dt>P–Q</dt><dd>0.13 m</dd></div><div><dt>Q–R</dt><dd>0.12 m</dd></div><div><dt>R–S</dt><dd>0.11 m</dd></div><div><dt>S–T</dt><dd>0.13 m</dd></div><div><dt>T–U</dt><dd>0.12 m</dd></div><div><dt>U–V</dt><dd>0.09 m</dd></div><div><dt>V–A</dt><dd>0.08 m</dd></div></dl></details></div>
+          </div>
+        </div>
+        <div class="surface-quieto">
+          <div><h3>Review the outline.</h3><p>The automatic proposal can fail. Adjust the points before continuing.</p></div><div><h3>Check the depth.</h3><p>AI estimation is still experimental; a field comparison is pending.</p></div><div><h3>Take it to a drawing.</h3><p>Receive the outline, rectangular cut, area, volume and dimensions for each side.</p></div>
+        </div>
+        <button type="button" class="saltar-escena" data-surface-saltar>Skip this part</button>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-dia" id="oficina">
+      <div class="wrap surface-oficina">
+        <div><h2>The office receives<br><em>something to work with.</em></h2><p class="sub-intro">A dashboard with a map, filters and a record for each pothole. Photo, location, measurements and work stages in one place.</p><div class="surface-entregables" aria-label="Export formats"><span>PDF</span><span>AutoCAD · DXF</span><span>Excel</span></div><p class="surface-aviso">Calculated volume and materials depend on the recorded depth. AI estimation is not a field-validated measurement.</p></div>
+        <figure class="surface-app"><div class="surface-app-vista"><img src="/assets/surfaceops/app-resultado.webp" alt="Detail from an actual app screenshot: sample drawing with side dimensions" width="900" height="1948" loading="lazy"></div><figcaption>Illustration · Actual app screenshot using an internet sample, not a field measurement</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="sub-seccion tema-dia" id="sin-senal">
+      <div class="wrap"><h2>The street does not wait<br><em>for the signal to return.</em></h2><div class="surface-offline">
+        <figure class="surface-app"><div class="surface-app-vista"><img src="/assets/surfaceops/app-contorno.webp" alt="Detail from an actual app screenshot: an editable outline on a sample photo" width="900" height="1948" loading="lazy"></div><figcaption>Illustration · Internet sample photo inside the app</figcaption></figure>
+        <ol><li><h3>Capture and measure.</h3><p>Record the pothole offline. To use AI offline, download the models to the phone beforehand.</p></li><li><h3>It stays on the phone.</h3><p>Information is stored locally while there is no connection.</p></li><li><h3>The signal returns; it uploads automatically.</h3><p>Once the connection returns, records sync so the office can receive them.</p></li></ol>
+      </div></div>
+    </section>
+
+    <section class="sub-seccion tema-dia" id="para-quien"><div class="wrap"><h2>For those who work<br><em>on the street.</em></h2><ul class="rasgos"><li><h3>Municipalities</h3><p>Review locations and organize records coming in from the field.</p></li><li><h3>Construction companies</h3><p>Bring measurements and drawings into pothole repair work.</p></li><li><h3>Site supervision</h3><p>Review photos, measurements and stages recorded by the team.</p></li></ul><p class="nota">These are proposed uses. Surface Ops is in testing, with no pilots or customers.</p></div></section>
+
+    <section class="sigue tema-dia" aria-label="Keep exploring"><div class="wrap"><a class="sigue-siguiente" href="../visionops/">Continue with <em translate="no">Vision Ops</em>&nbsp;<span aria-hidden="true">→</span></a><p class="sigue-demas"><span>Also</span><a href="../unblind/" translate="no">UNBLIND</a><a href="../albaspace/" translate="no">Alba Space</a><a href="../albalabs/" translate="no">Alba Labs</a><a href="../orbita/" translate="no">Órbita</a></p><a class="sigue-volver" href="../#proyecto-surface-ops">Back to Alba Vision</a></div></section>
+    <section class="contact tema-noche" id="contacto"><div class="contact-orbits" aria-hidden="true"><i></i><i></i><i></i><b></b></div><div class="wrap contact-inner"><h2 class="contact-title">Book <em>a trial.</em></h2><p class="contact-lead">Tell us how your team measures today. Let's review what works, what remains to be tested and whether Surface Ops fits your work.</p><div class="contact-actions"><a class="btn btn-solid" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%27m%20interested%20in%20a%20Surface%20Ops%20trial%20to%20measure%20potholes." target="_blank" rel="noopener" aria-label="Book a Surface Ops trial on WhatsApp">Book a trial on WhatsApp</a><a class="btn-text" href="mailto:contacto@albavision.tech?subject=Surface%20Ops">Send us an email</a></div><p class="r24-nota">In testing. We do not offer field-validated accuracy or customer results.</p></div></section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <img src="/assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
+      <p class="footer-tag"><em>Beyond the visible.</em></p>
+      <nav class="footer-links" aria-label="Other Alba sites">
+        <a href="./" aria-current="page">Surface Ops</a>
+        <a href="../">Home</a>
+        <a href="../unblind/">UNBLIND</a>
+        <a href="../visionops/">Vision Ops</a>
+        <a href="../albaspace/">Alba Space</a>
+        <a href="../albalabs/">Alba Labs</a>
+      </nav>
+      <ul class="footer-redes" aria-label="Alba Vision contact and social media">
+        <li><a class="red" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech." target="_blank" rel="noopener" aria-label="Alba Vision on WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="trazo" d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><path class="lleno" d="M8.8 8.6c.2-.5.5-.6.8-.6h.6c.2 0 .4.1.5.4l.8 1.8c.1.2 0 .5-.1.7l-.5.6c-.1.2-.1.4 0 .5.7 1.2 1.6 2.1 2.8 2.8.2.1.4.1.5 0l.6-.5c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.3.4.5v.6c0 .3-.2.6-.6.8-.6.3-1.4.4-2.2.2-2.7-.8-5-3.1-5.8-5.8-.2-.8-.1-1.6.2-2.2Z"/></svg></a></li>
+        <li><a class="red" href="mailto:contacto@albavision.tech?subject=Surface%20Ops" aria-label="Email: contacto@albavision.tech" title="contacto@albavision.tech"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="trazo" x="3" y="5.5" width="18" height="13" rx="2.5"/><path class="trazo" d="m4 7.5 8 6 8-6"/></svg></a></li>
+        <li><a class="red" href="https://www.facebook.com/profile.php?id=61586255382710" target="_blank" rel="noopener" aria-label="Alba Vision on Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="trazo" cx="12" cy="12" r="9"/><path class="trazo" d="M15 8h-1.5A2 2 0 0 0 11.5 10v11M9 13h5"/></svg></a></li>
+        <li><a class="red" href="https://www.instagram.com/albavision_labs/" target="_blank" rel="noopener" aria-label="Alba Vision on Instagram, @albavision_labs" title="Instagram · @albavision_labs"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="trazo" x="3.5" y="3.5" width="17" height="17" rx="5"/><circle class="trazo" cx="12" cy="12" r="4"/><circle class="lleno" cx="17.2" cy="6.8" r="1.1"/></svg></a></li>
+        <li><a class="red red-con-nombre" href="https://www.instagram.com/alba_unblind/" target="_blank" rel="noopener" aria-label="UNBLIND on Instagram, @alba_unblind" title="Instagram · @alba_unblind"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="trazo" x="3.5" y="3.5" width="17" height="17" rx="5"/><circle class="trazo" cx="12" cy="12" r="4"/><circle class="lleno" cx="17.2" cy="6.8" r="1.1"/></svg><span translate="no">UNBLIND</span></a></li>
+      </ul>
+      <p class="footer-legal"><a href="/privacidad/" hreflang="es">Privacy notice (in Spanish)</a></p>
+      <span class="footer-copy">© <span data-year></span> Alba Vision</span>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -29,9 +29,13 @@
   <link rel="stylesheet" href="landing.css">
   <link rel="stylesheet" href="amanecer.css">
   <link rel="stylesheet" href="celular.css" media="(max-width: 760px)">
+  <link rel="stylesheet" href="ronda24.css?v=20261025c">
+  <link rel="stylesheet" href="ritmo.css?v=20261026l">
+  <script type="module" src="ronda24.js?v=20261025c"></script>
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="landing.js"></script>
+  <script type="module" src="integral.js?v=20261026i"></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -61,14 +65,16 @@
       <a href="#alba-vision">Alba Vision</a>
       <a href="#alba-space">Alba Space</a>
       <a href="#contacto">Hablemos</a>
+      <a href="surfaceops/" translate="no">Surface Ops</a>
     </div>
   </header>
 
   <main id="contenido">
     <!-- Portada -->
-    <section class="hero tema-noche" id="inicio">
+    <section class="hero tema-noche r24-hero" id="inicio">
       <div class="hero-veil" aria-hidden="true"></div>
-      <div class="wrap hero-inner">
+      <div class="wrap hero-inner r24-entrada">
+        <div>
         <h1 class="hero-title">
           <span class="line"><span>La visión que</span></span>
           <span class="line"><span><em>acompaña el trabajo.</em></span></span>
@@ -78,6 +84,38 @@
         <div class="hero-cta">
           <a class="btn btn-solid magnetic" href="#contacto">Hablemos</a>
           <a class="btn-text" href="#capacidades">Lo que hacemos</a>
+        </div>
+        </div>
+        <div class="r24-puertas" data-puertas>
+          <p class="r24-pregunta">¿Qué quieres hacer con visión?</p>
+          <div class="r24-opciones" role="group" aria-label="Encuentra tu proyecto">
+            <button type="button" data-puerta="0" aria-pressed="true" aria-controls="puerta-acompanar">Acompañar</button>
+            <button type="button" data-puerta="1" aria-pressed="false" aria-controls="puerta-operacion">Entender una operación</button>
+            <button type="button" data-puerta="2" aria-pressed="false" aria-controls="puerta-espacio">Orientarse en el espacio</button>
+          </div>
+          <div aria-live="polite">
+            <article class="r24-puerta" id="puerta-acompanar">
+              <img src="assets/unblind-en-la-calle.webp" width="1400" height="933" alt="Max y Alan prueban UNBLIND con Omar Ledezma y su perro guía">
+              <p class="status">UNBLIND · En desarrollo</p>
+              <p>Visión e IA para acompañar a personas con discapacidad visual.</p>
+              <a class="btn-text" href="unblind/">Conoce UNBLIND</a>
+            </article>
+            <article class="r24-puerta" id="puerta-operacion" hidden>
+              <img src="assets/visionops/restaurante-aerea.webp" width="1400" height="933" alt="Ilustración de un restaurante visto desde arriba">
+              <p class="status">Vision Ops · En operación</p>
+              <p>De las cámaras de tu negocio a tiempos, esperas y decisiones.</p>
+              <p class="r24-nota">Ilustración · Ejemplo de operación</p>
+              <a class="btn-text" href="visionops/">Explora Vision Ops</a>
+            </article>
+            <article class="r24-puerta" id="puerta-espacio" hidden>
+              <img src="assets/space/concepto-en-orbita.webp" width="1800" height="1200" alt="Concepto de un CubeSat sobre la Tierra">
+              <p class="status">Alba Space · En laboratorio</p>
+              <p>Un instrumento óptico, tres funciones para una misión.</p>
+              <p class="r24-nota">Concepto · Ilustración de integración</p>
+              <a class="btn-text" href="albaspace/">Explora Alba Space</a>
+            </article>
+          </div>
+          <noscript><p><a class="btn-text" href="visionops/">Vision Ops</a> · <a class="btn-text" href="albaspace/">Alba Space</a></p></noscript>
         </div>
       </div>
       <div class="wrap hero-doors">
@@ -290,8 +328,8 @@
           <li class="proyecto" id="proyecto-vision-ops" data-proyecto="1">
             <button type="button" class="proyecto-nombre" aria-expanded="false" aria-controls="detalle-1"><span translate="no">Vision Ops</span><small>En producción</small></button>
             <div class="proyecto-detalle" id="detalle-1"><div>
-              <p>Del vídeo de tus cámaras a tiempos, esperas y uso de cada área, con el fotograma que respalda cada número. Empezamos por las cocinas. Sin reconocimiento facial.</p>
-              <p class="proyecto-enlaces"><a class="btn-text" href="https://ops.albavision.tech" target="_blank" rel="noopener">Prueba con un vídeo</a><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20Vision%20Ops%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="Platícanos tu negocio por WhatsApp">Platícanos tu negocio</a></p>
+              <p>Analítica de datos con visión: del vídeo de tus cámaras a tiempos, zonas y hallazgos, con el fotograma que respalda cada número. Empezamos por restaurantes. Sin reconocimiento facial.</p>
+              <p class="proyecto-enlaces"><a class="btn-text" href="visionops/">Conoce Vision Ops</a><a class="btn-text" href="https://ops.albavision.tech" target="_blank" rel="noopener">Prueba con un vídeo</a><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20Vision%20Ops%20para%20mi%20negocio." target="_blank" rel="noopener" aria-label="Platícanos tu negocio por WhatsApp">Platícanos tu negocio</a></p>
             </div></div>
           </li>
           <li class="proyecto" id="proyecto-soluciones" data-proyecto="2">
@@ -309,7 +347,7 @@
             </div></div>
           </li>
           <li class="proyecto" id="proyecto-alba-labs" data-proyecto="4">
-            <button type="button" class="proyecto-nombre" aria-expanded="false" aria-controls="detalle-4"><span translate="no">Alba Labs</span><small>Dev Kit · $5,900 MXN</small></button>
+            <button type="button" class="proyecto-nombre" aria-expanded="false" aria-controls="detalle-4"><span translate="no">Alba Labs</span><small>En desarrollo</small></button>
             <div class="proyecto-detalle" id="detalle-4"><div>
               <p>Lentes abiertos con cámara para crear tus propias aplicaciones de visión e IA. Y estamos diseñando lentes industriales para mantenimiento, inspección y documentación; por ahora van como piloto bajo pedido.</p>
               <p class="proyecto-enlaces"><a class="btn-text" href="albalabs/">Entra al laboratorio</a></p>
@@ -318,8 +356,8 @@
           <li class="proyecto" id="proyecto-surface-ops" data-proyecto="5">
             <button type="button" class="proyecto-nombre" aria-expanded="false" aria-controls="detalle-5"><span translate="no">Surface Ops</span><small>En pruebas</small></button>
             <div class="proyecto-detalle" id="detalle-5"><div>
-              <p>Mide un bache con una foto: la oficina recibe el contorno, el área, el corte y la ubicación, sin cinta ni croquis. Funciona sin señal y entrega PDF y archivos para AutoCAD.</p>
-              <p class="proyecto-enlaces"><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20me%20interesa%20una%20prueba%20de%20Surface%20Ops%20para%20medir%20baches." target="_blank" rel="noopener" aria-label="Agenda una prueba de Surface Ops por WhatsApp">Agenda una prueba</a></p>
+              <p>Mide un bache con una foto: la oficina recibe el contorno, el área, el corte y la ubicación, con marcador impreso o cinta como escala. Funciona sin señal y entrega PDF y archivos para AutoCAD.</p>
+              <p class="proyecto-enlaces"><a class="btn-text" href="surfaceops/">Explora Surface Ops</a></p>
             </div></div>
           </li>
           </ol>
@@ -332,14 +370,7 @@
           </div>
           <div class="proy-visual" data-visual="1">
                   <div class="kitchen">
-                    <div class="floor">
-                      <div class="st" style="--x:6%;--y:8%;--w:36%;--h:22%;--d:0s"><span>Plancha</span></div>
-                      <div class="st" style="--x:60%;--y:6%;--w:30%;--h:20%;--d:1.2s"><span>Refrigerador</span></div>
-                      <div class="st" style="--x:6%;--y:44%;--w:24%;--h:22%;--d:2.4s"><span>Freidora</span></div>
-                      <div class="st" style="--x:42%;--y:40%;--w:48%;--h:22%;--d:.6s"><span>Mesa de armado</span></div>
-                      <div class="st" style="--x:28%;--y:76%;--w:40%;--h:16%;--d:1.8s"><span>Empaque</span></div>
-                      <i class="walker"></i><i class="walker walker-2"></i>
-                    </div>
+                    <img class="kitchen-aerea" src="assets/visionops/restaurante-aerea-transparente.webp" alt="Ilustración de un restaurante visto desde arriba: cocina, barra de entrega, caja y mesas" width="1200" height="835" loading="lazy" decoding="async">
                   </div>
                   <div class="report">
                     <p class="report-head"><span>Reporte del turno</span><span class="pill">Ejemplo</span></p>
@@ -364,8 +395,8 @@
                   </div>
           </div>
           <div class="proy-visual" data-visual="4">
-                  <figure class="marco marco-claro" style="--ar: 16 / 9">
-                    <img src="assets/armazon.webp" alt="Smartglasses del Dev Kit de Alba Labs (imagen ilustrativa)" loading="lazy" decoding="async" width="1600" height="900">
+                  <figure class="marco marco-claro" style="--ar: 1400 / 684">
+                    <img src="assets/labs/labs-acoplado.webp" alt="Los lentes del Dev Kit de Alba Labs (ilustración)" loading="lazy" decoding="async" width="1400" height="684">
                     <span class="etiqueta">Ilustración</span>
                   </figure>
           </div>
@@ -386,13 +417,17 @@
     <section class="space tema-noche" id="alba-space">
       <canvas class="space-canvas" data-3d="cielo" aria-hidden="true"></canvas>
       <div class="space-veil" aria-hidden="true"></div>
+      <figure class="space-instrumento">
+        <img src="assets/space/star-tracker-armado.webp" alt="Ark Light 1, el Star Tracker de Alba Space, con su baffle plegado" width="1047" height="1100" loading="lazy" decoding="async">
+        <span class="marca-ilus">Ilustración · Propuesta de diseño</span>
+      </figure>
       <div class="wrap space-inner">
         <h2 class="reveal"><span translate="no">Alba Space.</span> <em>Percepción más allá.</em></h2>
         <p class="space-lead reveal">Un instrumento 3 en 1 para satélites pequeños: una sola cámara que se orienta con las estrellas, detecta basura espacial y guía el acoplamiento con otro vehículo.</p>
         <ul class="systems">
-          <li class="reveal"><h3>Orientarse con las estrellas</h3><p>Fotografía el cielo, reconoce las estrellas y calcula hacia dónde apunta el satélite, sin saber nada antes.</p></li>
-          <li class="reveal"><h3>Detectar basura espacial</h3><p>Compara fotos seguidas, aísla lo que se mueve entre las estrellas y reporta su trayectoria.</p></li>
-          <li class="reveal"><h3>Acercarse y acoplarse</h3><p>Al extender su baffle cambia la distancia focal y pasa del cielo completo a una vista cercana del objetivo.</p></li>
+          <li class="reveal"><svg class="sistema-dibujo sistema-orientarse" viewBox="0 0 160 90" aria-hidden="true"><g class="estrellas"><circle cx="14" cy="18" r="1.6"/><circle cx="40" cy="62" r="1.2"/><circle cx="58" cy="24" r="2.2"/><circle cx="86" cy="54" r="1.4"/><circle cx="104" cy="16" r="1.8"/><circle cx="128" cy="66" r="1.3"/><circle cx="148" cy="30" r="2"/><circle cx="24" cy="78" r="1"/><circle cx="70" cy="82" r="1.1"/><circle cx="118" cy="40" r="1"/></g><path class="trazo" pathLength="1" d="M58 24 L104 16 L86 54 Z M86 54 L148 30 L104 16"/><g class="centros"><circle cx="58" cy="24" r="6"/><circle cx="104" cy="16" r="6"/><circle cx="86" cy="54" r="6"/><circle cx="148" cy="30" r="6"/></g></svg><h3>Orientarse con las estrellas</h3><p>Fotografía el cielo, reconoce las estrellas y calcula hacia dónde apunta el satélite, sin saber nada antes.</p></li>
+          <li class="reveal"><svg class="sistema-dibujo sistema-basura" viewBox="0 0 160 90" aria-hidden="true"><g class="estrellas"><circle cx="14" cy="18" r="1.6"/><circle cx="40" cy="62" r="1.2"/><circle cx="58" cy="24" r="2.2"/><circle cx="86" cy="54" r="1.4"/><circle cx="104" cy="16" r="1.8"/><circle cx="128" cy="66" r="1.3"/><circle cx="148" cy="30" r="2"/><circle cx="24" cy="78" r="1"/><circle cx="70" cy="82" r="1.1"/><circle cx="118" cy="40" r="1"/></g><g class="objeto"><path d="M-22 6 L0 0" class="estela"/><circle r="2.2"/><circle r="9" class="aro"/></g></svg><h3>Detectar basura espacial</h3><p>Compara fotos seguidas, aísla lo que se mueve entre las estrellas y reporta su trayectoria.</p></li>
+          <li class="reveal"><svg class="sistema-dibujo sistema-acoplarse" viewBox="0 0 160 90" aria-hidden="true"><g class="vehiculo"><rect x="72" y="38" width="16" height="14" rx="1.5"/><rect x="52" y="42" width="17" height="6"/><rect x="91" y="42" width="17" height="6"/><circle cx="80" cy="45" r="2.4" class="luz"/></g><g class="mira"><path d="M50 22 h10 M50 22 v10 M110 22 h-10 M110 22 v10 M50 68 h10 M50 68 v-10 M110 68 h-10 M110 68 v-10"/></g></svg><h3>Acercarse y acoplarse</h3><p>Al extender su baffle cambia la distancia focal y pasa del cielo completo a una vista cercana del objetivo.</p></li>
         </ul>
         <p class="space-estado reveal"><span class="status"><i aria-hidden="true"></i><span><span translate="no">Star Tracker Ark Light 1</span> · diseño de vuelo, en integración de laboratorio</span></span></p>
         <div class="space-actions reveal"><a class="btn btn-ghost" href="albaspace/">Explora Alba Space</a><a class="btn-text" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20quiero%20platicar%20de%20una%20misi%C3%B3n%20con%20Alba%20Space." target="_blank" rel="noopener" aria-label="Hablemos de tu misión por WhatsApp">Hablemos de tu misión</a></div>
@@ -420,8 +455,9 @@
       <img src="assets/alba-vision-lockup-on-dark.webp" alt="Alba Vision" width="504" height="69" loading="lazy">
       <p class="footer-tag"><em>Más allá de lo visible.</em></p>
       <nav class="footer-links" aria-label="Otros sitios de Alba">
+        <a href="surfaceops/">Surface Ops</a>
         <a href="unblind/">UNBLIND</a>
-        <a href="https://ops.albavision.tech" target="_blank" rel="noopener">Vision Ops</a>
+        <a href="visionops/">Vision Ops</a>
         <a href="albaspace/">Alba Space</a>
         <a href="albalabs/">Alba Labs</a>
         <a href="orbita/index.html">Órbita</a>
