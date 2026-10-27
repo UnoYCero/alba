@@ -28,16 +28,16 @@
   <link rel="stylesheet" href="/landing.css">
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/subpagina.css">
-  <link rel="stylesheet" href="/labs-3d.css">
-  <link rel="stylesheet" href="/ronda24.css?v=20261025c">
-  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
-  <script type="module" src="/ronda24.js?v=20261025c"></script>
+  <link rel="stylesheet" href="/labs-3d.css?v=20261027a">
+  <link rel="stylesheet" href="/ronda24.css?v=20261027a">
+  <link rel="stylesheet" href="/ritmo.css?v=20261027a">
+  <script type="module" src="/ronda24.js?v=20261027a"></script>
   <link rel="stylesheet" href="/assets/marcas/menu.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/labs.js?v=20261026i"></script>
-  <script type="module" src="/integral.js?v=20261026i"></script>
+  <script type="module" src="/labs.js?v=20261027a"></script>
+  <script type="module" src="/integral.js?v=20261027a"></script>
 </head>
 <body class="pagina-dia">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -342,20 +342,25 @@
       </div>
     </section>
 
-    <!-- Tu idea en el laboratorio (ronda 21-C4 de marca): con lo que escribe la persona se arma su
-         experimento y el mensaje de WhatsApp; no se manda nada sin que ella lo toque (labs.js) -->
-    <section class="sub-seccion tema-dia lb-idea" data-idea>
-      <div class="wrap lb-idea-grid">
-        <form class="lb-idea-form reveal" action="#" onsubmit="return false">
-          <h2>The lab starts <em>with what you want to create.</em></h2>
-          <fieldset class="lb-idea-rutas">
-            <legend>I want to explore</legend>
-            <div class="lb-tarjetas">
-              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aplicacion" checked data-i="ruta"><b>An app for the glasses</b><span>Something the glasses do for you while you work.</span></label>
-              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="modulo" data-i="ruta"><b>A module of your own</b><span>A new piece that attaches to the base.</span></label>
-              <label class="lb-tarjeta"><input type="radio" name="idea-ruta" value="aula" data-i="ruta"><b>A classroom experience</b><span>Something a group can observe and build.</span></label>
-            </div>
-          </fieldset>
+    <!-- Tu idea en el laboratorio: una ventana flotante, como la del piloto de Vision Ops (integral.js);
+         con lo que escribe la persona se arma su experimento y el mensaje de WhatsApp (labs.js) -->
+    <section class="sub-seccion tema-dia lb-idea">
+      <div class="wrap piloto-entrada">
+        <h2>The lab starts <em>with what you want to create.</em></h2>
+        <button type="button" class="btn btn-solid" data-piloto-abrir aria-haspopup="dialog">Tell us your idea</button>
+      </div>
+      <dialog class="piloto-dialogo" data-idea aria-labelledby="idea-titulo">
+        <button type="button" class="piloto-cerrar" data-piloto-cerrar aria-label="Close form"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+        <h2 id="idea-titulo">Your idea.<br><em>Your first experiment.</em></h2>
+        <form class="lb-idea-form" action="#">
+          <p class="piloto-ayuda">Tell us what you want to build. We talk it through before defining anything.</p>
+          <label>I want to explore
+            <select data-i="ruta">
+              <option value="aplicacion">An app for the glasses</option>
+              <option value="modulo">A module of your own</option>
+              <option value="aula">A classroom experience</option>
+            </select>
+          </label>
           <label>My idea
             <textarea data-i="idea" rows="3" maxlength="240" placeholder="For example: finding the tools I left in the workshop"></textarea>
             <span class="lb-ejemplos" aria-label="Examples"><button type="button" class="lb-ejemplo" data-para="idea">Find my tools in the workshop</button><button type="button" class="lb-ejemplo" data-para="idea">Read labels out loud</button><button type="button" class="lb-ejemplo" data-para="idea">Count parts on a table</button></span>
@@ -364,18 +369,20 @@
             <input data-i="prueba" maxlength="160" placeholder="For example: finding a tool without asking for help">
             <span class="lb-ejemplos" aria-label="Examples"><button type="button" class="lb-ejemplo" data-para="prueba">I find it without asking for help</button><button type="button" class="lb-ejemplo" data-para="prueba">It takes me less time</button><button type="button" class="lb-ejemplo" data-para="prueba">I make fewer mistakes</button></span>
           </label>
+          <button class="btn btn-solid" type="submit">Review my idea</button>
         </form>
-        <div class="lb-idea-hoja reveal" aria-live="polite">
+        <div class="lb-idea-hoja" data-piloto-resumen hidden>
           <p class="lb-idea-titulo" data-h="titulo">An app for the glasses</p>
-          <ol>
-            <li><b>Idea</b><span data-h="idea">A scene and a concrete intention.</span></li>
-            <li><b>Experiment</b><span data-h="experimento">An example recipe and an answer you can check.</span></li>
-            <li><b>Test</b><span data-h="prueba">Check that the context helps with a task.</span></li>
-          </ol>
+          <dl>
+            <div><dt>The idea</dt><dd data-h="idea">A scene and a concrete intention.</dd></div>
+            <div><dt>The experiment</dt><dd data-h="experimento">An example recipe and an answer you can check.</dd></div>
+            <div><dt>The test</dt><dd data-h="prueba">Check that the context helps with a task.</dd></div>
+          </dl>
+          <button class="btn-text r24-reiniciar" type="button" data-piloto-editar>Edit my idea</button>
           <a class="btn btn-solid" data-h="enviar" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20have%20questions%20about%20the%20Alba%20Labs%20Dev%20Kit." target="_blank" rel="noopener">Send us your idea on WhatsApp</a>
           <p class="lb-config-nota">WhatsApp opens with your idea already written; you decide whether to send it. It is to talk it over: the Dev Kit does not exist yet.</p>
         </div>
-      </div>
+      </dialog>
     </section>
 
     <!-- Sigue explorando: el siguiente proyecto, los demás y volver a la portada -->

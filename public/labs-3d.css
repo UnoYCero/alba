@@ -79,7 +79,7 @@
 @keyframes lb-cursor { 50% { opacity: 0; } }
 .lb-otras { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
 .lb-otras button { min-height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: rgba(11,31,59,.05); font: inherit; font-size: 13px; color: var(--dim); cursor: pointer; transition: color .3s, background .3s; }
-.lb-otras button[aria-pressed="true"] { background: rgba(37,99,235,.09); color: #2563eb; }
+.lb-otras button[aria-pressed="true"] { background: #0b1f3b; color: #f4f6fa; }
 .lb-chat .marca-ilus { top: auto; bottom: -28px; right: 0; background: rgba(11,31,59,.08); color: rgba(11,31,59,.7); }
 @media (max-width: 760px) {
   .lb-ruta-datos { grid-template-columns: 1fr; gap: var(--s2); }
@@ -143,12 +143,14 @@
 .lb-idea-form :is(select, input, textarea):focus-visible { outline: none; border-bottom-color: #2563eb; box-shadow: 0 1px 0 #2563eb; }
 .lb-idea-hoja { display: grid; gap: var(--s5); align-content: start; padding-top: var(--s4); }
 .lb-idea-titulo { margin: 0; font-size: clamp(24px, 2.2vw, 32px); font-weight: 300; line-height: 1.15; color: #0b1f3b; }
-.lb-idea-hoja ol { list-style: none; counter-reset: paso; display: grid; gap: var(--s4); margin: 0; padding: 0; }
-.lb-idea-hoja li { counter-increment: paso; display: grid; gap: 2px; }
-.lb-idea-hoja li b { font-weight: 400; font-size: 13px; color: #2563eb; }
-.lb-idea-hoja li b::before { content: counter(paso, decimal-leading-zero) " "; font-variant-numeric: tabular-nums; }
-.lb-idea-hoja li span { font-size: 17px; line-height: 1.45; color: #0b1f3b; }
 .lb-idea-hoja .btn { justify-self: start; }
+.lb-idea-hoja dl { display: grid; gap: var(--s4); margin: 0; }
+.lb-idea-hoja dt { font-size: 13px; color: #2563eb; }
+.lb-idea-hoja dd { margin: 2px 0 0; font-size: 18px; line-height: 1.45; color: #0b1f3b; }
+.piloto-dialogo .lb-idea-hoja { padding-top: 0; }
+.piloto-dialogo .lb-idea-form { gap: 20px; }
+.piloto-dialogo .lb-idea-form label { color: #3f5270; }
+.piloto-dialogo .lb-idea-form .btn, .piloto-dialogo .lb-idea-hoja .btn-text { justify-self: start; }
 
 @media (max-width: 760px) {
   .lb-dato-grid, .lb-idea-grid { grid-template-columns: 1fr; gap: var(--s5); }
@@ -183,19 +185,6 @@ html[lang="en"] .lb-modular-escena::after { content: "Drop it on the glasses"; }
 }
 
 /* El cuestionario: la ruta en tarjetas y ejemplos que llenan los campos */
-.lb-idea-rutas { margin: 0; padding: 0; border: 0; }
-.lb-idea-rutas legend { margin-bottom: var(--s3); padding: 0; font-size: 14px; color: var(--dim); }
-.lb-tarjetas { display: grid; gap: var(--s2); }
-.lb-tarjeta { position: relative; display: grid; gap: 2px; padding: var(--s4) var(--s4) var(--s4) calc(var(--s4) + 26px); border-radius: 14px; background: #fff; box-shadow: 0 6px 18px rgba(11,31,59,.06); cursor: pointer; transition: background .3s, color .3s, box-shadow .3s; }
-.lb-tarjeta input { position: absolute; opacity: 0; pointer-events: none; }
-.lb-tarjeta::before { content: ""; position: absolute; left: var(--s4); top: calc(var(--s4) + 5px); width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(11,31,59,.3); transition: box-shadow .3s; }
-.lb-tarjeta b { font-weight: 400; font-size: 17px; color: #0b1f3b; }
-.lb-tarjeta span { font-size: 13.5px; color: var(--dim); }
-.lb-tarjeta:has(input:checked) { background: #0b1f3b; }
-.lb-tarjeta:has(input:checked) b { color: #f4f6fa; }
-.lb-tarjeta:has(input:checked) span { color: rgba(244,246,250,.72); }
-.lb-tarjeta:has(input:checked)::before { box-shadow: inset 0 0 0 4px #8fb2ff; background: #f4f6fa; }
-.lb-tarjeta:has(input:focus-visible) { box-shadow: 0 0 0 2px #2563eb; }
 .lb-ejemplos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s2); }
 .lb-ejemplo { min-height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: rgba(11,31,59,.05); font: inherit; font-size: 13px; color: var(--dim); cursor: pointer; transition: background .3s, color .3s; }
 .lb-ejemplo:hover { background: rgba(37,99,235,.09); color: #2563eb; }

@@ -5,7 +5,7 @@ const texto = (es, ingles) => en ? ingles : es;
 
 // Si deja de caber una escena, esa visita continúa en lectura natural. No se vuelve
 // a fijar a mitad de la lectura al rotar o ampliar la ventana.
-const compacto=matchMedia('(max-width: 760px), (max-height: 699px)');
+const compacto=matchMedia('(max-height: 599px)');
 const lecturaNatural=()=>{
   const selectores=quieto.matches ? '.vo-reporte,.vo-crece,.st-galeria,.vo-operacion,.st-dentro' : '.vo-reporte,.vo-crece,.st-galeria';
   if(!compacto.matches && !quieto.matches) return;
@@ -20,10 +20,6 @@ compacto.addEventListener('change',lecturaNatural); quieto.addEventListener('cha
 // El presupuesto de avance es independiente de la altura visible. Al cambiar un texto,
 // crece la composición y su sección por igual: el cociente de avance no se realimenta.
 const escenas = [
-  ['.vo-reporte:not(.corrida)', '.vo-pin', '.vo-grid', 1.3],
-  ['.vo-crece:not(.corrida)', '.vo-pin', '.vo-grid', .9],
-  ['.st-galeria:not(.corrida)', '.st-galeria-pin', '.st-intro-grid,.mision-grid', 1.97],
-  ['.st-baffle.guiada', '.st-baffle-pin', '.mision-grid', .55],
   ['.surface-proceso', '.surface-pin', '.surface-pin > div:not(.surface-quieto)', 1.1],
 ];
 escenas.forEach(([selector, selectorPin, selectorContenido, pantallas]) => {
@@ -73,7 +69,7 @@ if (dialogo) {
   abrir.addEventListener('click', () => {
     desborde = document.body.style.overflow;
     dialogo.showModal(); document.body.style.overflow = 'hidden';
-    (resumen.hidden ? formulario.querySelector('select') : dialogo.querySelector('[data-piloto-editar]')).focus({preventScroll:true});
+    (resumen.hidden ? formulario.querySelector('select,input,textarea') : dialogo.querySelector('[data-piloto-editar]')).focus({preventScroll:true});
   });
   const cerrar = () => dialogo.close();
   dialogo.addEventListener('keydown',e=>{
@@ -101,7 +97,7 @@ if (dialogo) {
   });
   dialogo.querySelector('[data-piloto-editar]').addEventListener('click', () => {
     resumen.hidden = true; formulario.hidden = false;
-    formulario.querySelector('select').focus({preventScroll:true}); dialogo.scrollTop = 0;
+    formulario.querySelector('select,input,textarea').focus({preventScroll:true}); dialogo.scrollTop = 0;
   });
 }
 
@@ -157,15 +153,6 @@ const integracion = document.querySelector('[data-integracion]');
 if (integracion) {
   const abrir = integracion.querySelector('[data-integracion-abrir]');
   const pieza = integracion.querySelector('.integracion-instrumento');
-  const mision=document.querySelector('[data-mision]');
-  const origen=document.createComment('posición de los controles en computadora');
-  mision.before(origen);
-  const movil=matchMedia('(max-width: 760px)');
-  const ubicar=()=>{
-    if(movil.matches) integracion.prepend(mision);
-    else origen.parentNode.insertBefore(mision,origen.nextSibling);
-  };
-  movil.addEventListener('change',ubicar); ubicar();
   let visor = null, pedido = false;
   abrir.addEventListener('click',async()=>{
     const ampliado = abrir.getAttribute('aria-pressed') !== 'true';
@@ -180,10 +167,9 @@ if (integracion) {
       await visor.listo; visor.fijar(integracion.dataset.funcion==='2' ? 1 : 0); pieza.classList.add('con-modelo');
     } catch { pieza.classList.add('sin-modelo'); }
   });
-  document.querySelectorAll('[data-mision-opcion]').forEach((b,i)=>b.addEventListener('click',()=>{
-    if(abrir.getAttribute('aria-pressed')!=='true') abrir.click();
+  document.querySelectorAll('[data-mision-opcion]').forEach((a,i)=>['pointerenter','focus'].forEach(ev=>a.addEventListener(ev,()=>{
     integracion.dataset.funcion=String(i); visor?.fijar(i===2 ? 1 : 0);
-  }));
+  })));
 }
 
 // El recorte sale de la misma imagen que se elige, con una transición corta de contexto.

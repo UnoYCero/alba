@@ -55,8 +55,6 @@
 .vo-recibes li, .vo-camino li, .vo-garantias li { display: grid; gap: var(--s2); align-content: start; }
 .vo-recibes b, .vo-camino b, .vo-garantias b { font-weight: 400; font-size: 18px; }
 .vo-recibes span, .vo-camino span, .vo-garantias span { font-size: 15px; line-height: 1.55; color: var(--dim); }
-.vo-camino { counter-reset: paso; }
-.vo-camino li::before { counter-increment: paso; content: counter(paso, decimal-leading-zero); font-size: 13px; color: #2563eb; font-variant-numeric: tabular-nums; }
 .vo-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s5); margin-top: var(--s6); }
 
 /* De la primera cámara a toda la operación: fija mientras se baja; el paso activo se abre */
@@ -186,6 +184,13 @@
 .vo-barras i { position: absolute; left: 0; right: 0; bottom: 100%; padding-bottom: 4px; font-style: normal; font-size: 12px; text-align: center; color: var(--dim); opacity: var(--k, 1); }
 .vo-barras b { position: absolute; left: 0; right: 0; top: 100%; padding-top: 6px; font-weight: 400; font-size: 11px; text-align: center; white-space: nowrap; color: var(--soft); }
 .vo-barras-nota { margin: 30px 0 0; font-size: 12.5px; color: var(--soft); }
+/* En la escena fija, las barras se despliegan una tras otra; el pico se enciende al final */
+.js .vo-reporte:not(.corrida) .vo-barras span { height: 0; transition: height .9s var(--ease) calc(var(--n, 0) * 70ms), background .5s ease; }
+.js .vo-reporte:not(.corrida) .vo-barras.desplegadas span { height: calc(var(--v) / 46 * 100%); }
+.js .vo-reporte:not(.corrida) .vo-barras i { opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s var(--ease); }
+.js .vo-reporte:not(.corrida) .vo-barras.desplegadas i { opacity: 1; transform: none; transition-delay: calc(var(--n, 0) * 70ms + .45s); }
+.js .vo-reporte:not(.corrida) .vo-barras span.pico { background: rgba(11,31,59,.16); }
+.js .vo-reporte:not(.corrida) .vo-barras.desplegadas span.pico { background: #2563eb; transition-delay: calc(var(--n, 0) * 70ms), 1.3s; }
 
 /* ═══ Un día de operación: el mismo encuadre, hora por hora ═══ */
 .vo-dia-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: var(--s8); align-items: center; }

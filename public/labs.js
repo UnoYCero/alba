@@ -229,7 +229,7 @@ if (seccion) {
     aula: [t("Una experiencia para el aula", "A classroom experience"), t("Algo que el grupo quiera observar o entender.", "Something the group wants to observe or understand."), t("Una actividad corta, una escena de ejemplo y el registro de lo aprendido.", "A short activity, an example scene and a record of what was learned."), t("Definir qué podría explicar o construir cada estudiante.", "Define what each student could explain or build.")],
   };
   const actualizar = () => {
-    const [titulo, idea, experimento, prueba] = RUTAS[caja.querySelector('[data-i="ruta"]:checked').value];
+    const [titulo, idea, experimento, prueba] = RUTAS[campo("ruta").value];
     const suya = campo("idea").value.trim(), comprobar = campo("prueba").value.trim();
     hoja("titulo").textContent = titulo;
     hoja("idea").textContent = suya || idea;

@@ -30,14 +30,14 @@
   <link rel="stylesheet" href="/amanecer.css">
   <link rel="stylesheet" href="/subpagina.css">
   <link rel="stylesheet" href="/space-3d.css">
-  <link rel="stylesheet" href="/ronda24.css?v=20261025c">
-  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
-  <script type="module" src="/ronda24.js?v=20261025c"></script>
+  <link rel="stylesheet" href="/ronda24.css?v=20261027a">
+  <link rel="stylesheet" href="/ritmo.css?v=20261027a">
+  <script type="module" src="/ronda24.js?v=20261027a"></script>
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/space.js?v=20261026l"></script>
-  <script type="module" src="/integral.js?v=20261026i"></script>
+  <script type="module" src="/space.js?v=20261027a"></script>
+  <script type="module" src="/integral.js?v=20261027a"></script>
 </head>
 <body class="pagina-noche pagina-space">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -77,18 +77,11 @@
         <div>
           <h1 class="sub-title reveal">One camera.<br><em>A place in your mission.</em></h1>
           <p class="sub-lead reveal"><span translate="no">Ark Light 1</span> brings three optical functions into one CubeSat design. It is being integrated in the lab and has not flown yet.</p>
-          <div class="r24-mision" data-mision>
-            <div class="r24-opciones" role="group" aria-label="Mission phase">
-              <button type="button" data-mision-opcion="0" aria-pressed="true">Know where it is pointing</button>
-              <button type="button" data-mision-opcion="1" aria-pressed="false">Observe moving objects</button>
-              <button type="button" data-mision-opcion="2" aria-pressed="false">Approach another vehicle</button>
-            </div>
-            <div aria-live="polite" class="r24-mision-texto">
-              <p data-mision-texto="0">The design uses stars as a reference to estimate orientation.</p>
-              <p data-mision-texto="1" hidden>The design compares images to distinguish movement from the star background.</p>
-              <p data-mision-texto="2" hidden>Extending the baffle changes the design's view to study a nearby target.</p>
-            </div>
-          </div>
+          <ul class="r24-mision" data-mision aria-label="The three missions">
+            <li><a href="#orientacion" data-mision-opcion="0"><b>Know where it is pointing</b><span>Uses the stars as a reference to estimate its attitude.</span></a></li>
+            <li><a href="#basura" data-mision-opcion="1"><b>Observe moving objects</b><span>Compares images to separate motion from the star background.</span></a></li>
+            <li><a href="#acoplamiento" data-mision-opcion="2"><b>Approach another vehicle</b><span>By extending the baffle, it changes its view to study a nearby target.</span></a></li>
+          </ul>
           <span class="status reveal"><i aria-hidden="true"></i><span><span translate="no">Ark Light 1</span> · flight design, in lab integration</span></span>
           <div class="sub-cta reveal">
             <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20want%20to%20talk%20about%20a%20mission%20with%20Alba%20Space." target="_blank" rel="noopener" aria-label="Let's talk about your mission on WhatsApp">Let's talk about your mission</a>
@@ -214,26 +207,14 @@
       </div>
     </section>
 
-    <!-- Por dentro, plegado: se ve el título y una frase; quien quiera lo abre (subpagina.js) -->
-    <div class="plegable plegable-escena" data-plegable>
-      <section class="sub-seccion tema-noche plegable-cabeza">
-        <div class="wrap dos">
-          <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>inside.</em></h2>
-          <div>
-            <p class="sub-intro reveal">The flight computer, the sensor, the optics and the telescopic baffle, piece by piece.</p>
-            <p class="reveal"><button type="button" class="plegable-boton btn btn-ghost" aria-expanded="false" aria-controls="por-dentro-cuerpo"><span class="plegable-abrir">Open it up</span><span class="plegable-cerrar">Hide</span></button></p>
-          </div>
-        </div>
-      </section>
-      <div class="plegable-cuerpo" id="por-dentro-cuerpo" hidden>
-    <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja -->
+    <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja, como el despiece de UNBLIND -->
     <section class="st-dentro tema-noche" id="por-dentro" data-por-dentro>
       <div class="st-pin">
         <div class="wrap st-grid">
           <div class="st-texto">
             <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>inside.</em></h2>
             <ol class="st-pasos" aria-label="The parts of the instrument">
-              <li class="activa" data-paso="armado"><b>The instrument</b><span>A cube for 3U to 12U CubeSats: 175 g including the mechanism and 1.25 W. Select a part to explore the design.</span></li>
+              <li class="activa" data-paso="armado"><b>The instrument</b><span>A cube for 3U to 12U CubeSats: 175 g with the mechanism and 1.25 W.</span></li>
               <li data-paso="despiece"><b>It opens</b><span>Each part leaves its place so you can see how it fits inside.</span></li>
               <li data-paso="computadora"><b>Flight computer</b><span>It runs all three algorithms in parallel, with a real-time operating system.</span></li>
               <li data-paso="sensor"><b>Sensor</b><span>A single camera to orient itself, detect space debris and dock.</span></li>
@@ -251,8 +232,6 @@
         </div>
       </div>
     </section>
-      </div>
-    </div>
 
     <!-- El baffle: fijo mientras se baja, se despliega con el scroll (space.js); corrido, con su botón -->
     <section class="st-baffle tema-noche" id="baffle" data-baffle-seccion>

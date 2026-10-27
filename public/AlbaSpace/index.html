@@ -30,14 +30,14 @@
   <link rel="stylesheet" href="../amanecer.css">
   <link rel="stylesheet" href="../subpagina.css">
   <link rel="stylesheet" href="../space-3d.css">
-  <link rel="stylesheet" href="../ronda24.css?v=20261025c">
-  <link rel="stylesheet" href="../ritmo.css?v=20261026l">
-  <script type="module" src="../ronda24.js?v=20261025c"></script>
+  <link rel="stylesheet" href="../ronda24.css?v=20261027a">
+  <link rel="stylesheet" href="../ritmo.css?v=20261027a">
+  <script type="module" src="../ronda24.js?v=20261027a"></script>
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="../subpagina.js"></script>
-  <script type="module" src="../space.js?v=20261026l"></script>
-  <script type="module" src="../integral.js?v=20261026i"></script>
+  <script type="module" src="../space.js?v=20261027a"></script>
+  <script type="module" src="../integral.js?v=20261027a"></script>
 </head>
 <body class="pagina-noche pagina-space">
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -77,18 +77,11 @@
         <div>
           <h1 class="sub-title reveal">Una cámara.<br><em>Un lugar en tu misión.</em></h1>
           <p class="sub-lead reveal"><span translate="no">Ark Light 1</span> reúne tres funciones ópticas en un diseño para CubeSats. Está en integración de laboratorio; todavía no ha volado.</p>
-          <div class="r24-mision" data-mision>
-            <div class="r24-opciones" role="group" aria-label="Momento de la misión">
-              <button type="button" data-mision-opcion="0" aria-pressed="true">Saber hacia dónde apunta</button>
-              <button type="button" data-mision-opcion="1" aria-pressed="false">Observar lo que se mueve</button>
-              <button type="button" data-mision-opcion="2" aria-pressed="false">Acercarse a otro vehículo</button>
-            </div>
-            <div aria-live="polite" class="r24-mision-texto">
-              <p data-mision-texto="0">El diseño usa las estrellas como referencia para estimar la orientación.</p>
-              <p data-mision-texto="1" hidden>El diseño compara imágenes para separar el movimiento del fondo de estrellas.</p>
-              <p data-mision-texto="2" hidden>Al extender el baffle, el diseño cambia su vista para estudiar un objetivo cercano.</p>
-            </div>
-          </div>
+          <ul class="r24-mision" data-mision aria-label="Las tres misiones">
+            <li><a href="#orientacion" data-mision-opcion="0"><b>Saber hacia dónde apunta</b><span>Usa las estrellas como referencia para estimar la orientación.</span></a></li>
+            <li><a href="#basura" data-mision-opcion="1"><b>Observar lo que se mueve</b><span>Compara imágenes para separar el movimiento del fondo de estrellas.</span></a></li>
+            <li><a href="#acoplamiento" data-mision-opcion="2"><b>Acercarse a otro vehículo</b><span>Al extender el baffle, cambia su vista para estudiar un objetivo cercano.</span></a></li>
+          </ul>
           <span class="status reveal"><i aria-hidden="true"></i><span><span translate="no">Ark Light 1</span> · diseño de vuelo, en integración de laboratorio</span></span>
           <div class="sub-cta reveal">
             <a class="btn btn-solid" href="https://wa.me/525616908570?text=Hola%2C%20vengo%20de%20albavision.tech%20y%20quiero%20platicar%20de%20una%20misi%C3%B3n%20con%20Alba%20Space." target="_blank" rel="noopener" aria-label="Hablemos de tu misión por WhatsApp">Hablemos de tu misión</a>
@@ -214,26 +207,14 @@
       </div>
     </section>
 
-    <!-- Por dentro, plegado: se ve el título y una frase; quien quiera lo abre (subpagina.js) -->
-    <div class="plegable plegable-escena" data-plegable>
-      <section class="sub-seccion tema-noche plegable-cabeza">
-        <div class="wrap dos">
-          <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>por dentro.</em></h2>
-          <div>
-            <p class="sub-intro reveal">La computadora de vuelo, el sensor, la óptica y el baffle telescópico, pieza por pieza.</p>
-            <p class="reveal"><button type="button" class="plegable-boton btn btn-ghost" aria-expanded="false" aria-controls="por-dentro-cuerpo"><span class="plegable-abrir">Ábrelo por dentro</span><span class="plegable-cerrar">Ocultar</span></button></p>
-          </div>
-        </div>
-      </section>
-      <div class="plegable-cuerpo" id="por-dentro-cuerpo" hidden>
-    <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja -->
+    <!-- Por dentro: el instrumento se abre en sus piezas mientras se baja, como el despiece de UNBLIND -->
     <section class="st-dentro tema-noche" id="por-dentro" data-por-dentro>
       <div class="st-pin">
         <div class="wrap st-grid">
           <div class="st-texto">
             <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>por dentro.</em></h2>
             <ol class="st-pasos" aria-label="Las piezas del instrumento">
-              <li class="activa" data-paso="armado"><b>El instrumento</b><span>Un cubo para CubeSats de 3U a 12U: 175 g con el mecanismo y 1.25 W. Elige una pieza para explorar el diseño.</span></li>
+              <li class="activa" data-paso="armado"><b>El instrumento</b><span>Un cubo para CubeSats de 3U a 12U: 175 g con el mecanismo y 1.25 W.</span></li>
               <li data-paso="despiece"><b>Se abre</b><span>Cada pieza sale de su lugar para ver cómo se acomoda adentro.</span></li>
               <li data-paso="computadora"><b>Computadora de vuelo</b><span>Corre los tres algoritmos en paralelo, con un sistema operativo en tiempo real.</span></li>
               <li data-paso="sensor"><b>Sensor</b><span>Una sola cámara para orientarse, detectar basura espacial y acoplarse.</span></li>
@@ -251,8 +232,6 @@
         </div>
       </div>
     </section>
-      </div>
-    </div>
 
     <!-- El baffle: fijo mientras se baja, se despliega con el scroll (space.js); corrido, con su botón -->
     <section class="st-baffle tema-noche" id="baffle" data-baffle-seccion>

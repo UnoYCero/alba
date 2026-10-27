@@ -70,30 +70,18 @@ const DATOS = {
   };
   poner(actual);
 
-  let elegido = 0;
-  const avance = () => elegido;
-  const controles = document.createElement("div");
-  controles.className = "ritmo-controles";
-  controles.setAttribute("role", "group");
-  controles.setAttribute("aria-label", t("Explora de video a datos", "Explore video to data"));
-  const nombres = [t("El video", "Video"), ...etapas.slice(1).map(e => e.querySelector("b").textContent)];
-  const selectores = etapas.map((e, i) => {
-    const b = document.createElement("button");
-    b.type = "button"; b.textContent = nombres[i]; b.setAttribute("aria-pressed", String(i === 0));
-    b.addEventListener("click", () => { elegido = (i + .65) / etapas.length; mostrarEtapa(e.dataset.etapa); visor?.avanzar(elegido); });
-    controles.append(b); return b;
-  });
-  seccion.querySelector(".vo-texto").prepend(controles);
-  function mostrarEtapa(etapa) {
-    etapas.forEach((e, i) => {
-      const activa = e.dataset.etapa === etapa;
-      e.classList.toggle("activa", activa); e.inert = !activa;
-      e.setAttribute("aria-hidden", String(!activa)); selectores[i].setAttribute("aria-pressed", String(activa));
-    });
-  }
-  mostrarEtapa("inicio");
+  // El avance cuenta el tramo en que la escena está fija
+  const avance = () => {
+    const r = seccion.getBoundingClientRect();
+    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+  };
+  let etapaActual = "";
   const alAvance = ({ etapa, anclas, zonas, hallazgo: h, escena: nombre }) => {
     if (nombre !== actual) return;
+    if (etapa !== etapaActual) {
+      etapaActual = etapa;
+      etapas.forEach((e) => e.classList.toggle("activa", e.dataset.etapa === etapa));
+    }
     // Los rótulos siguen a su zona; el de la zona del hallazgo se queda más tiempo
     const ancho = escena.clientWidth, alto = escena.clientHeight;
     for (const [clave, el] of Object.entries(rotulos)) {
@@ -114,6 +102,20 @@ const DATOS = {
     }
     hallazgo.classList.toggle("visible", h > 0.4 && etapa !== "tablero");
     tablero.classList.toggle("visible", etapa === "tablero");
+    // Al final del recorrido, la escena pasa sola por las tres operaciones: el mismo motor
+    if (etapa === "tablero" && !tocado && !relevo) relevo = setInterval(siguiente, 4500);
+    else if (etapa !== "tablero" && relevo) { clearInterval(relevo); relevo = 0; }
+    if (etapa === "hallazgo") botones.forEach((b) => visor?.precargar(b.dataset.escena));
+  };
+  let relevo = 0, tocado = false;
+  const cambiar = (nombre) => {
+    poner(nombre);
+    escena.classList.remove("con-3d");
+    visor.cambiar(nombre).then(() => escena.classList.add("con-3d"));
+  };
+  const siguiente = () => {
+    const orden = botones.map((b) => b.dataset.escena);
+    cambiar(orden[(orden.indexOf(actual) + 1) % orden.length]);
   };
 
   let visor = null;
@@ -127,15 +129,13 @@ const DATOS = {
         const precargar = () => visor.precargar(b.dataset.escena);
         ["pointerenter", "focus", "touchstart"].forEach((ev) => b.addEventListener(ev, precargar, { passive: true }));
         b.addEventListener("click", () => {
-          poner(b.dataset.escena);
-          escena.classList.remove("con-3d");
-          visor.cambiar(b.dataset.escena).then(() => escena.classList.add("con-3d"));
+          tocado = true; clearInterval(relevo); relevo = 0;
+          cambiar(b.dataset.escena);
         });
       });
     })
     .catch((err) => {
       console.warn("No se pudo montar la escena de Vision Ops:", err); seccion.classList.add("corrida");
-      etapas.forEach(e => {e.inert=false; e.removeAttribute('aria-hidden');});
     });
   iniciar();
   addEventListener("scroll", () => visor?.avanzar(avance()), { passive: true });
@@ -145,7 +145,6 @@ const DATOS = {
 (function camino() {
   const seccion = document.querySelector("[data-camino]");
   if (!seccion) return;
-  if (matchMedia("(max-width: 760px), (max-height: 699px)").matches) { seccion.classList.add("corrida"); return; }
   const escena = seccion.querySelector(".vo-escena");
   const lienzo = seccion.querySelector(".vo-lienzo");
   const capa = seccion.querySelector(".vo-rotulos");
@@ -172,7 +171,7 @@ const DATOS = {
 
   const avance = () => {
     const r = seccion.getBoundingClientRect();
-    return Math.min(1, Math.max(0, -r.top / (r.height - (seccion.querySelector(".vo-pin")?.offsetHeight || innerHeight))));
+    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
   };
   let pasoActual = "";
   const alAvance = ({ paso, anclas, fuerza }) => {
@@ -241,7 +240,7 @@ const DATOS = {
 (function reporte() {
   const seccion = document.querySelector("[data-reporte]");
   if (!seccion) return;
-  if (reducir || matchMedia("(max-width: 760px), (max-height: 699px)").matches) { seccion.classList.add("corrida"); return; }
+  if (reducir || innerHeight < 600) { seccion.classList.add("corrida"); return; }
   const limitar = (v) => Math.min(1, Math.max(0, v));
   const tramo = (k, a, b) => limitar((k - a) / (b - a));
   const suave = (x) => x * x * (3 - 2 * x);
@@ -266,12 +265,13 @@ const DATOS = {
   const escrita = capas.pregunta.querySelector("[data-escribe]"), textoPregunta = escrita.textContent;
   const burbuja = capas.pregunta.querySelector(".vo-pregunta-texto"), respuesta = capas.pregunta.querySelector(".vo-pregunta-respuesta");
   const barras = capas.pregunta.querySelector(".vo-barras");
+  [...barras.children].forEach((span, j) => span.style.setProperty("--n", j));
 
   let actual = "";
   const pintar = () => {
     if (seccion.classList.contains('corrida')) { escrita.textContent=textoPregunta; burbuja.classList.remove('escribiendo'); return; }
     const r = seccion.getBoundingClientRect();
-    const p = limitar(-r.top / (r.height - (seccion.querySelector(".vo-pin")?.offsetHeight || innerHeight)));
+    const p = limitar(-r.top / (r.height - innerHeight));
     const i = Math.min(3, Math.floor(p * 4)), k = p * 4 - i, tiempo = TIEMPOS[i];
     if (tiempo !== actual) {
       actual = tiempo;
@@ -295,7 +295,9 @@ const DATOS = {
     escrita.textContent = textoPregunta.slice(0, letras);
     burbuja.classList.toggle("escribiendo", letras < textoPregunta.length);
     respuesta.style.setProperty("--o", tramo(k3, 0.34, 0.46));
-    barras.style.setProperty("--k", suave(tramo(k3, 0.42, 0.78)).toFixed(3));
+    // La gráfica no sigue al scroll: al llegar su momento se despliega sola, barra por barra,
+    // y el pico se enciende al final; al regresar, se recoge
+    barras.classList.toggle("desplegadas", k3 > 0.38);
   };
   addEventListener("scroll", pintar, { passive: true });
   addEventListener("resize", pintar);
@@ -377,7 +379,7 @@ const DATOS = {
   const actualizar = () => {
     const op = campo("operacion").value, obj = campo("objetivo").value;
     const n = Math.min(50, Math.max(1, parseInt(campo("camaras").value, 10) || 1));
-
+    if (campo("camaras").value !== "" && +campo("camaras").value !== n) campo("camaras").value = String(n);
     const [pregunta, evidencia] = PREGUNTAS[obj], zona = ZONAS[op][obj];
     salida("pregunta").textContent = pregunta;
     salida("zona").textContent = zona;

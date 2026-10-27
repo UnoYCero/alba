@@ -1,8 +1,11 @@
 /* Ronda 24. Extensiones locales: sin cambiar el comportamiento de UNBLIND. */
 .r24-nota, .r24-manual figcaption, .r24-hallazgo-figura figcaption, .r24-space-visual figcaption { color: var(--dim); font-size: 14px; line-height: 1.5; }
-.r24-opciones { display: flex; flex-wrap: wrap; gap: 4px 20px; }
-.r24-opciones button { padding: 8px 0; min-height: 44px; background: none; border: 0; font-weight: 300; cursor: pointer; text-align: left; color: var(--dim); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 7px; }
-.r24-opciones button:hover, .r24-opciones button[aria-pressed="true"] { color: var(--soft); text-decoration-color: currentColor; }
+/* Las opciones, sin raya: la elegida queda sombreada, como el menú de la portada, y el cambio
+   pasa con un fundido */
+.r24-opciones { display: flex; flex-wrap: wrap; gap: 4px; margin-inline: -14px; }
+.r24-opciones button { padding: 8px 14px; min-height: 44px; border: 0; border-radius: 999px; background: transparent; font-weight: 300; cursor: pointer; text-align: left; color: var(--dim); transition: background .4s var(--ease), color .4s var(--ease); }
+.r24-opciones button:hover { background: color-mix(in srgb, var(--soft) 7%, transparent); color: var(--paper); }
+.r24-opciones button[aria-pressed="true"] { background: color-mix(in srgb, var(--soft) 14%, transparent); color: var(--paper); }
 .r24-opciones button:focus-visible { outline: 2px solid var(--soft); outline-offset: 4px; }
 .r24-hero { padding: calc(var(--nav-h) + 40px) 0 0; }
 .r24-hero .hero-veil { background: rgba(3,8,26,.84); }
@@ -12,7 +15,7 @@
 .r24-hero .hero-doors { padding-top: 32px; }
 .r24-puertas { position: relative; }
 .r24-pregunta { font-size: 20px; margin: 0 0 8px; }
-.r24-puertas .r24-opciones { gap: 0 16px; font-size: 15px; margin-bottom: 16px; }
+.r24-puertas .r24-opciones { gap: 4px; font-size: 15px; margin-bottom: 16px; }
 .r24-puerta img { width: 100%; height: 210px; object-fit: cover; object-position: center 18%; border-radius: 0; }
 .r24-puerta > p { margin: 8px 0 0; max-width: 40ch; }
 .r24-puerta .status { color: var(--soft); font-size: 14px; }
@@ -25,10 +28,14 @@
 .r24-dato { margin: 12px 0 0; font-size: clamp(56px, 6vw, 88px); line-height: 1; color: var(--soft); font-variant-numeric: tabular-nums; }
 .r24-dato span { font-size: 18px; color: var(--paper); }
 .space-portada:has(.r24-mision) .sub-title { max-width: 18ch; font-size: clamp(42px, 4.7vw, 68px); }
-.r24-mision { margin-top: 24px; pointer-events: auto; }
-.r24-mision .r24-opciones { display: grid; gap: 0; }
-.r24-mision-texto { min-height: 80px; max-width: 40ch; color: var(--dim); }
-.r24-mision-texto p { margin: 12px 0 0; }
+/* Las tres misiones: cada una lleva a su parte de la galería. Sin raya: al pasar, un sombreado
+   suave como el del menú de la portada */
+.r24-mision { display: grid; gap: 2px; margin: 24px 0 0 -16px; padding: 0; list-style: none; max-width: 46ch; pointer-events: auto; }
+.r24-mision a { display: grid; gap: 2px; padding: 12px 16px; border-radius: 14px; color: var(--paper); text-decoration: none; transition: background .35s var(--ease); }
+.r24-mision a:hover, .r24-mision a:focus-visible { background: rgba(143,178,255,.1); }
+.r24-mision a:focus-visible { outline: 2px solid var(--soft); outline-offset: 2px; }
+.r24-mision b { font-weight: 300; font-size: 19px; }
+.r24-mision span { font-size: 15px; line-height: 1.5; color: var(--dim); }
 .r24-space-visual img { aspect-ratio: 3/2; object-fit: cover; border-radius: 0; }
 .r24-receta-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: var(--s7); margin-top: 32px; align-items: center; }
 .r24-manual { margin: 0; }
@@ -111,7 +118,7 @@
   .r24-hero { padding-top: calc(var(--nav-h) + 20px); }
   .r24-entrada { grid-template-columns: 1fr; gap: 32px; }
   .r24-hero .hero-title { font-size: clamp(36px, 10.8vw, 46px); }
-  .r24-puertas .r24-opciones { gap: 4px 14px; }
+  .r24-puertas .r24-opciones { gap: 4px; }
   .r24-puerta img { height: 200px; }
   .r24-puerta > p { font-size: 16px; }
   .r24-hallazgo .sub-hero-grid, .r24-receta-grid, .surface-oficina, .surface-offline { grid-template-columns: 1fr; gap: 28px; }
@@ -123,7 +130,8 @@
   .r24-dato span { font-size: 17px; }
   .r24-space-visual { order: -1; }
   .r24-space-visual img { aspect-ratio: 16/10; object-fit: cover; }
-  .r24-mision-texto { min-height: 100px; }
+  .r24-mision b { font-size: 17.5px; }
+  .r24-mision span { font-size: 14px; }
   .space-portada:has(.r24-mision) .sub-title { font-size: 42px; }
   .r24-receta-lectura { min-height: 310px; }
   .r24-manual-elegir { font-size: 14px; }

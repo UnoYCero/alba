@@ -11,32 +11,9 @@ body { caret-color: #2563eb; }
 .r24-receta-grid { align-items: start; }
 .lb-tiempos.corrida .lb-tiempos-pin { padding-block: var(--ritmo-capitulo); }
 .lb-tiempos .saltar-escena { display: none; }
-.vo-etapas, .vo-pasos, .st-pasos { display: block; }
-.js :is(.vo-operacion,.st-dentro):not(.corrida) :is(.vo-etapa,.st-pasos li):not(.activa) { display: none; }
-.vo-pasos li.activa, .st-pasos li.activa { display: grid; opacity: 1; transform: none; transition: none; }
-.vo-etapas > .activa { opacity: 1; transform: none; }
-.vo-operacion { height: auto; padding-block: var(--ritmo-capitulo); }
-.vo-operacion .vo-pin { position: relative; height: auto; padding: 0; overflow: visible; }
-.vo-operacion .vo-escena { height: min(60svh, 530px); }
-.js .vo-operacion:not(.corrida) .vo-grid { height: auto; grid-template-rows: auto auto; }
-.js .vo-operacion:not(.corrida) .vo-escena { height: clamp(260px, 42vw, 530px); }
 .vo-operacion .vo-texto .sub-title { font-size: clamp(32px, 3.7vw, 52px); }
 .vo-operacion .vo-texto .sub-lead { font-size: 18px; }
-.vo-operacion .vo-pista { display: none; }
-.vo-operacion .saltar-escena { display: none; }
 .vo-escena:has(.vo-tablero.visible) .vo-rotulos { visibility: hidden; }
-.ritmo-controles { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-block: 20px 0; }
-.ritmo-controles button { border: 0; border-radius: 0; padding: 8px 0; min-width: 44px; min-height: 44px; font: inherit; font-size: 15px; font-weight: 300; background: none; color: var(--dim); cursor: pointer; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 7px; }
-.ritmo-controles button[aria-pressed="true"], .ritmo-controles button:hover { color: var(--soft); text-decoration-color: currentColor; }
-.ritmo-controles button:focus-visible { outline: 2px solid #2563eb; outline-offset: 4px; }
-.corrida .ritmo-controles { display: none; }
-.vo-reporte { height: 230svh; }
-.vo-crece { height: 190svh; }
-:is(.vo-reporte,.vo-crece):not(.corrida) .vo-pin { height: var(--alto-pin, 100svh); top: var(--nav-h); align-items: flex-start; padding-block: 24px; }
-:is(.vo-reporte,.vo-crece):not(.corrida) .vo-escena { height: clamp(300px, 38vw, 560px); }
-.st-galeria:not(.corrida) .st-galeria-pin { height: var(--alto-pin, 100svh); top: var(--nav-h); }
-.st-galeria:not(.corrida) .st-panel { padding-block: 24px 72px; }
-.st-baffle.guiada .st-baffle-pin { height: var(--alto-pin, 100svh); top: var(--nav-h); padding-block: 24px; }
 .surface-proceso .surface-pin { height: var(--alto-pin, 100svh); top: var(--nav-h); padding-block: 24px 40px; }
 .surface-proceso.surface-flujo { height: auto; }
 .surface-flujo .surface-pin { position: relative; top: 0; height: auto; padding-block: var(--ritmo-capitulo); }
@@ -48,15 +25,7 @@ body { caret-color: #2563eb; }
 .vo-reporte.corrida .vo-texto { order: -1; }
 .vo-reporte.corrida .vo-escena { order: 0; }
 .st-galeria.corrida .st-panel { --o: 1 !important; --d: 0 !important; }
-.st-dentro { height: auto; padding-block: var(--ritmo-capitulo); }
-.st-dentro .st-pin { position: relative; height: auto; padding: 0; overflow: visible; }
-.st-dentro .st-escena { height: min(60svh, 520px); }
-.js .st-dentro:not(.corrida) .st-grid { height: auto; grid-template-rows: auto auto; }
-.js .st-dentro:not(.corrida) .st-escena { height: clamp(280px, 42vw, 520px); }
-.st-dentro .saltar-escena { display: none; }
-.st-pasos { margin-top: 20px; }
 .vo-camino li.activa span { max-height: none; }
-.st-baffle.guiada { height: 155svh; }
 .surface-proceso { height: 210svh; }
 .pagina-surface .nav .nav-brand-hija img { height: 40px; width: auto; }
 @media (max-width: 360px) { .pagina-surface .nav .nav-brand-hija img { height: 32px; } }
@@ -64,8 +33,9 @@ body { caret-color: #2563eb; }
 .r24-puerta { animation: ritmo-entrada .35s cubic-bezier(.16,1,.3,1); }
 /* Tarjeta funcional del piloto. El resto de la composición permanece abierto. */
 .piloto-entrada { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-top: var(--ritmo-capitulo); }
-.piloto-entrada h3 { font-size: clamp(28px, 3vw, 42px); font-weight: 300; line-height: 1.12; max-width: 23ch; margin: 0; }
-.piloto-entrada h3 em { color: #2563eb; }
+.piloto-entrada :is(h2,h3) { font-size: clamp(28px, 3vw, 42px); font-weight: 300; line-height: 1.12; max-width: 23ch; margin: 0; }
+.piloto-entrada :is(h2,h3) em { color: #2563eb; }
+.lb-idea .piloto-entrada { margin-top: 0; }
 .piloto-dialogo { width: min(620px, calc(100% - 40px)); max-height: min(88dvh, 820px); padding: 44px; border: 0; border-radius: 16px; margin: auto; background: #f4f6fa; color: #0b1f3b; box-shadow: 0 20px 80px rgba(3,8,26,.24); overscroll-behavior: contain; scrollbar-color: #2563eb #f4f6fa; }
 .piloto-dialogo::backdrop { background: rgba(3,8,26,.65); }
 .piloto-dialogo[open] { animation: ritmo-entrada .25s cubic-bezier(.16,1,.3,1); }
@@ -173,24 +143,7 @@ body { caret-color: #2563eb; }
   .receta-fragmento > div { width: min(100%, 240px); }
   .lb-clips-tarjetas button[aria-pressed="true"], .lb-clips-tarjetas button:hover { transform: none; }
   .sub-hero { min-height: auto; padding-top: calc(var(--nav-h) + 24px); }
-  .vo-operacion .vo-escena { height: min(43svh, 330px); }
-  .js .vo-operacion:not(.corrida) .vo-escena { height: clamp(240px, 70vw, 330px); }
-  .js .vo-operacion:not(.corrida) .vo-pin { padding: 0; }
-  .vo-operacion:not(.corrida) .vo-texto { display: contents; }
-  .vo-operacion:not(.corrida) .ritmo-controles { order: -2; margin-top: 0; }
-  .vo-operacion:not(.corrida) .vo-escena { order: -1; }
-  .vo-operacion .vo-texto .sub-title { font-size: 32px; }
-  .vo-operacion .vo-texto .sub-lead { font-size: 17px; }
   .vo-grid { gap: 20px; }
-  .st-dentro .st-escena { height: min(43svh, 340px); }
-  .js .st-dentro:not(.corrida) .st-escena { height: clamp(250px, 70vw, 340px); }
-  .st-dentro:not(.corrida) .st-texto { display: contents; }
-  .st-dentro:not(.corrida) .st-texto h2 { order: -3; }
-  .st-dentro:not(.corrida) .ritmo-controles { order: -2; margin-top: 0; }
-  .st-dentro .st-texto h2 { font-size: 30px; }
-  .st-dentro .st-pasos b { font-size: 26px; }
-  .ritmo-controles { gap: 0 14px; margin-top: 16px; }
-  .ritmo-controles button { font-size: 14px; }
   .vo-escenas button, .vistas button, .control-baffle input { min-height: 44px; }
   .vo-reporte.corrida .vo-pin, .vo-crece.corrida .vo-pin { padding-block: var(--ritmo-capitulo); }
   .st-galeria.corrida .st-panel { padding-block: var(--ritmo-capitulo); }

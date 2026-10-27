@@ -14,8 +14,6 @@ if (puertas) {
     puertas.querySelectorAll(".r24-puerta").forEach((panel, n) => { panel.hidden = n !== indice; });
   }));
 }
-const mision = document.querySelector("[data-mision]");
-if (mision) elegir([...mision.querySelectorAll("[data-mision-opcion]")], [...mision.querySelectorAll("[data-mision-texto]")], "data-mision-texto");
 
 const receta = document.querySelector("[data-receta]");
 if (receta) {

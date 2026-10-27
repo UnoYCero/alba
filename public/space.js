@@ -269,7 +269,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const seccion = document.querySelector("[data-galeria]");
   if (!seccion) return;
   // Con «menos movimiento» o en pantallas muy bajas (un teléfono acostado), una misión debajo de otra
-  if (reducir || matchMedia("(max-width: 760px), (max-height: 699px)").matches) { seccion.classList.add("corrida"); return; }
+  if (reducir || innerHeight < 600) { seccion.classList.add("corrida"); return; }
   const pista = seccion.querySelector(".st-galeria-pista");
   const paneles = [...seccion.querySelectorAll("[data-panel]")];
   const indice = [...seccion.querySelectorAll("[data-ir]")];
@@ -441,21 +441,24 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const boton = document.getElementById("botonBaffle");
   const estado = document.getElementById("estadoBaffle");
   if (!escena || !boton) return;
-  let desplegado = false, tocado = false;
+  let desplegado = false;
   let poner = (valor) => {
     desplegado = valor;
     escena.classList.toggle("desplegado", desplegado);
     boton.textContent = desplegado ? tr("Plegar el baffle", "Stow the baffle") : tr("Desplegar el baffle", "Deploy the baffle");
     boton.setAttribute("aria-pressed", String(desplegado));
     estado.textContent = desplegado ? tr("Desplegado · 0.28 dm³", "Deployed · 0.28 dm³") : tr("Plegado para el lanzamiento · 0.13 dm³", "Stowed for launch · 0.13 dm³");
+    const volumen = document.querySelector("[data-volumen]");
+    if (volumen) volumen.textContent = desplegado ? "0.28" : "0.13";
   };
-  boton.addEventListener("click", () => { tocado = true; poner(!desplegado); });
+  boton.addEventListener("click", () => poner(!desplegado));
   // El baffle en 3D (si carga) se despliega con el mismo botón; el dibujo queda de respaldo
   const caja = escena.closest("[data-baffle]");
   // Con la sección fija, el baffle se despliega mientras se baja: el volumen cuenta y cada rasgo
-  // se enciende a su tiempo. Con «menos movimiento» o en pantallas muy bajas, el botón
+  // se enciende a su tiempo. Con «menos movimiento» o en pantallas muy bajas (un teléfono
+  // acostado), el botón. Antes se desplegaba solo al asomar, y quien llegaba al botón lo plegaba.
   const seccion = caja.closest("[data-baffle-seccion]");
-  const guiada = !!seccion && !reducir && !matchMedia("(max-width: 760px), (max-height: 699px)").matches;
+  const guiada = !!seccion && !reducir && innerHeight >= 600;
   let visor3D = null, kd = 0;
   if (guiada) {
     seccion.classList.add("guiada");
@@ -481,10 +484,6 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     };
     addEventListener("scroll", pintar, { passive: true });
     pintar();
-  } else if (!reducir) {
-    new IntersectionObserver(([e], obs) => {
-      if (e.isIntersecting) { setTimeout(() => { if (!tocado) poner(true); }, 700); obs.disconnect(); }
-    }, { threshold: 0.5 }).observe(caja);
   }
   const lienzo3D = caja.querySelector(".baffle-lienzo");
   const montar = () => import("./space-3d.js?v=20261025e").then((m) => {
@@ -505,27 +504,15 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   if (reducir || !tiene3D()) { seccion.classList.add("corrida"); return; }
   const escena = seccion.querySelector(".st-escena");
   const pasos = [...seccion.querySelectorAll("[data-paso]")];
-  let elegido = 0;
-  const avance = () => elegido;
-  const controles = document.createElement("div");
-  controles.className = "ritmo-controles"; controles.setAttribute("role", "group");
-  controles.setAttribute("aria-label", document.documentElement.lang === "en" ? "Explore the instrument" : "Explora el instrumento");
-  const selectores = pasos.map((li, i) => {
-    const b = document.createElement("button"); b.type = "button"; b.textContent = li.querySelector("b").textContent;
-    b.setAttribute("aria-pressed", String(i === 0)); controles.append(b);
-    b.addEventListener("click", () => { elegido = (i + .65) / pasos.length; alPaso(li.dataset.paso); visor?.avanzar(elegido); });
-    return b;
-  });
-  seccion.querySelector(".st-texto").insertBefore(controles, seccion.querySelector(".st-pasos"));
+  const avance = () => {
+    const r = seccion.getBoundingClientRect();
+    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+  };
   let actual = "armado", visor = null;
   const alPaso = (paso) => {
-    if (paso !== pasos[Math.min(pasos.length - 1, Math.floor(elegido * pasos.length))].dataset.paso) return;
     if (paso === actual) return;
     actual = paso;
-    pasos.forEach((li, i) => {
-      const activa = li.dataset.paso === paso; li.classList.toggle("activa", activa);
-      li.inert = !activa; li.setAttribute("aria-hidden", String(!activa)); selectores[i].setAttribute("aria-pressed", String(activa));
-    });
+    pasos.forEach((li) => li.classList.toggle("activa", li.dataset.paso === paso));
   };
   new IntersectionObserver(([e], obs) => {
     if (!e.isIntersecting) return;
