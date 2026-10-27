@@ -260,7 +260,7 @@ export function montarOperacion({ escena: contenedor, lienzo, alAvance, reducir 
     cuadro = 0;
     avance = reducir ? objetivo : avance + (objetivo - avance) * 0.12;
     pintar();
-    if (visible) cuadro = requestAnimationFrame(bucle);
+    if (visible && !contenedor.closest(".corrida") && !matchMedia("(prefers-reduced-motion: reduce)").matches) cuadro = requestAnimationFrame(bucle);
   }
   const pedir = () => { if (!cuadro && visible) cuadro = requestAnimationFrame(bucle); };
   new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) pedir(); }, { rootMargin: "100px" }).observe(contenedor);

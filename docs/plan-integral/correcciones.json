@@ -1,0 +1,27 @@
+{
+  "es": {
+    "basuraTrasIdaVuelta": "true",
+    "baffleTrasHomeYIdaVuelta": "0",
+    "app": {
+      "aplicacion": "true",
+      "t": 1793016464822
+    },
+    "esperaMs": 75931
+  },
+  "en": {
+    "basuraTrasIdaVuelta": "true",
+    "baffleTrasHomeYIdaVuelta": "0",
+    "app": {
+      "aplicacion": "true",
+      "t": 1793016664982
+    },
+    "esperaMs": 49990
+  },
+  "menu": {
+    "ancho": 320,
+    "alto": 568,
+    "cabeceraFin": 69.6,
+    "primerEnlaceY": 92,
+    "desplazable": true
+  }
+}

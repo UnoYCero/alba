@@ -7,7 +7,7 @@ const tr = (es, en) => (EN ? en : es);
 // Cada lienzo dibuja sólo mientras se ve; con «menos movimiento» dibuja un cuadro y ya.
 
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const tiene3D = () => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } };
+const tiene3D = () => { if (document.documentElement.dataset.webgl === "off") return false; try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } };
 const LETRA = '"Hanken Grotesk", "Segoe UI", sans-serif';
 const C = { fondo: "#040a17", estrella: "220,232,255", claro: "143,178,255", azul: "37,99,235", papel: "244,246,250", tenue: "143,178,255" };
 // Lo que la galería de misiones mueve con el scroll: cada simulación recibe su avance (0 → 1)
@@ -71,7 +71,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   let manual = -1, manualDesde = 0, guiado = null;
   const etapaAhora = (t) => {
     if (reducir) return { p: manual >= 0 ? manual : 3, f: 1 };
-    if (manual >= 0 && t - manualDesde < 7000) return { p: manual, f: Math.min(1, (t - manualDesde) / 1200) };
+    if (manual >= 0) return { p: manual, f: Math.min(1, (t - manualDesde) / 1200) };
     manual = -1;
     if (guiado) return guiado;
     const total = t % (4 * ETAPA_MS);
@@ -144,7 +144,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const campo = Array.from({ length: 60 }, () => ({ x: r() * W, y: r() * H, m: r() }));
   const botones = [...document.querySelectorAll("[data-vista]")];
   const bitacora = document.getElementById("bitacoraBasura");
-  let vista = "sensor", ultimo = 0, lineas = [];
+  let vista = "sensor", ultimo = 0, lineas = [], manual = false;
   const objetos = [
     { sp: 0.000105, y0: 0.28, amp: 40, id: tr("Objeto 042", "Object 042"), ph: 0 },
     { sp: 0.000075, y0: 0.62, amp: -60, id: tr("Objeto 117", "Object 117"), ph: 2.1 },
@@ -184,12 +184,14 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     }
   });
   botones.forEach((b) => b.addEventListener("click", () => {
+    manual = true;
     vista = b.dataset.vista;
     botones.forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
     redibujar();
   }));
   // En la galería: la primera mitad, lo que ve el sensor; la segunda, lo que ve el algoritmo
   CONTROL.basura = (k) => {
+    if (manual) return;
     const v = k < 0.5 ? "sensor" : "algoritmo";
     if (v === vista) return;
     vista = v;
@@ -206,7 +208,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const r = azar(99);
   const campo = Array.from({ length: 70 }, () => ({ x: r() * W, y: r() * H, m: r() }));
   const lectura = { campo: document.getElementById("lecturaCampo"), focal: document.getElementById("lecturaFocal"), modo: document.getElementById("lecturaModo") };
-  let ext = +control.value, meta = +control.value;
+  let ext = +control.value, meta = +control.value, manual = false;
   const dibujar = (t) => {
     ext += reducir ? meta - ext : (meta - ext) * 0.08;
     const e = ext / 100, campoV = 22 - 17 * e, focal = 16 + 34 * e, zoom = 22 / campoV, cerca = e > 0.55;
@@ -255,10 +257,11 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     rotulo(x, tr("Lo que ve el sensor", "What the sensor sees"), sx - R, sy - R - 12, `rgba(${C.papel},.9)`, 14);
   };
   const redibujar = bucle(canvas, dibujar);
-  control.addEventListener("input", () => { meta = +control.value; redibujar(); });
+  control.addEventListener("input", () => { manual = true; meta = +control.value; redibujar(); });
+  ["focus", "pointerdown", "keydown"].forEach(ev => control.addEventListener(ev, () => { manual = true; }));
   dibujar(0);
   // En la galería, el baffle se extiende mientras se baja
-  CONTROL.acoplamiento = (k) => { meta = Math.round(Math.min(1, Math.max(0, (k - 0.12) / 0.7)) * 100); control.value = String(meta); };
+  CONTROL.acoplamiento = (k) => { if (manual) return; meta = Math.round(Math.min(1, Math.max(0, (k - 0.12) / 0.7)) * 100); control.value = String(meta); };
 })();
 
 // ── La galería de las tres misiones: pasa de lado mientras se baja ──
@@ -266,23 +269,24 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const seccion = document.querySelector("[data-galeria]");
   if (!seccion) return;
   // Con «menos movimiento» o en pantallas muy bajas (un teléfono acostado), una misión debajo de otra
-  if (reducir || innerHeight < 600) { seccion.classList.add("corrida"); return; }
+  if (reducir || matchMedia("(max-width: 760px), (max-height: 699px)").matches) { seccion.classList.add("corrida"); return; }
   const pista = seccion.querySelector(".st-galeria-pista");
   const paneles = [...seccion.querySelectorAll("[data-panel]")];
   const indice = [...seccion.querySelectorAll("[data-ir]")];
   const MISIONES = [null, "orientacion", "basura", "acoplamiento"];
   // Los tramos del recorrido: quieto en un panel, pasar al siguiente, quieto, pasar… (en pantallas)
-  const PESOS = [0.3, 0.45, 0.9, 0.45, 0.7, 0.45, 0.8];
+  const PESOS = [0.18, 0.18, 0.45, 0.18, 0.4, 0.18, 0.4];
   const SUMA = PESOS.reduce((a, b) => a + b, 0);
   seccion.style.height = `${(SUMA + 1) * 100}svh`;
   const suave = (x) => x * x * (3 - 2 * x);
   const avance = () => {
     const r = seccion.getBoundingClientRect();
-    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+    return Math.min(1, Math.max(0, -r.top / (r.height - seccion.querySelector(".st-galeria-pin").offsetHeight)));
   };
   const ultimo = {};
   let actual = -1;
   const pintar = () => {
+    if (seccion.classList.contains('corrida')) { paneles.forEach(el=>{el.inert=false;}); Object.values(CONTROL).forEach(fn=>fn(1)); return; }
     let u = avance() * SUMA, tramo = 0;
     while (tramo < PESOS.length - 1 && u > PESOS[tramo]) { u -= PESOS[tramo]; tramo++; }
     const local = Math.min(1, u / PESOS[tramo]);
@@ -309,7 +313,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   // Ir a una misión: al principio de su tramo quieto
   const irA = (j, suaveScroll = true) => {
     const u = PESOS.slice(0, 2 * j).reduce((a, b) => a + b, 0) + 0.02;
-    const y = seccion.getBoundingClientRect().top + scrollY + (u / SUMA) * (seccion.offsetHeight - innerHeight);
+    const y = seccion.getBoundingClientRect().top + scrollY + (u / SUMA) * (seccion.offsetHeight - seccion.querySelector(".st-galeria-pin").offsetHeight);
     scrollTo({ top: y, behavior: suaveScroll ? "smooth" : "auto" });
   };
   document.querySelectorAll('a[href="#orientacion"], a[href="#basura"], a[href="#acoplamiento"]').forEach((a) => a.addEventListener("click", (e) => {
@@ -351,7 +355,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     return { x: CX + px * Math.cos(g) - py * Math.sin(g), y: CY + px * Math.sin(g) + py * Math.cos(g), z: pz };
   };
   const tapado = (p) => p.z < 0 && Math.hypot(p.x - CX, p.y - CY) < RT;
-  let activa = 0, tocado = -1e9;
+  let activa = 0, tocado = false;
   const trazo = (o, atras, encendida) => {
     x.strokeStyle = `rgba(${C.claro},${encendida ? (atras ? 0.4 : 0.95) : atras ? 0.1 : 0.24})`;
     x.lineWidth = encendida ? 1.6 : 1;
@@ -375,8 +379,8 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   };
   const dibujar = (t) => {
     const s = t / 1000;
-    // Cambia sola cada 5.5 s, salvo cuando alguien acaba de elegir una
-    if (!reducir && performance.now() - tocado > 15000) activa = Math.floor(s / 5.5) % ORBITAS.length;
+    // La primera elección del visitante detiene el cambio automático de aplicaciones.
+    if (!reducir && !tocado) activa = Math.floor(s / 5.5) % ORBITAS.length;
     botones.forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.app === activa)));
     // Sin fondo propio: la Tierra y sus órbitas flotan sobre la página, sin recuadro
     x.clearRect(0, 0, W, H);
@@ -425,10 +429,10 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   };
   bucle(canvas, dibujar);
   tierra.addEventListener("load", () => { if (reducir) dibujar(9000); });
-  botones.forEach((b) => b.addEventListener("click", () => { activa = +b.dataset.app; tocado = performance.now(); if (reducir) dibujar(9000); }));
+  botones.forEach((b) => b.addEventListener("click", () => { activa = +b.dataset.app; tocado = true; if (reducir) dibujar(9000); }));
   // Quien se acerca con el mouse o el teclado quiere leer: deja de cambiar sola
   const lista = botones[0]?.closest("ul");
-  ["focusin", "pointerenter"].forEach((ev) => lista?.addEventListener(ev, () => { tocado = Infinity; }));
+  ["focusin", "pointerenter"].forEach((ev) => lista?.addEventListener(ev, () => { tocado = true; }));
 })();
 
 // ── El baffle que se despliega solo en órbita ──
@@ -437,7 +441,7 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   const boton = document.getElementById("botonBaffle");
   const estado = document.getElementById("estadoBaffle");
   if (!escena || !boton) return;
-  let desplegado = false;
+  let desplegado = false, tocado = false;
   let poner = (valor) => {
     desplegado = valor;
     escena.classList.toggle("desplegado", desplegado);
@@ -445,13 +449,13 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     boton.setAttribute("aria-pressed", String(desplegado));
     estado.textContent = desplegado ? tr("Desplegado · 0.28 dm³", "Deployed · 0.28 dm³") : tr("Plegado para el lanzamiento · 0.13 dm³", "Stowed for launch · 0.13 dm³");
   };
-  boton.addEventListener("click", () => poner(!desplegado));
+  boton.addEventListener("click", () => { tocado = true; poner(!desplegado); });
   // El baffle en 3D (si carga) se despliega con el mismo botón; el dibujo queda de respaldo
   const caja = escena.closest("[data-baffle]");
   // Con la sección fija, el baffle se despliega mientras se baja: el volumen cuenta y cada rasgo
   // se enciende a su tiempo. Con «menos movimiento» o en pantallas muy bajas, el botón
   const seccion = caja.closest("[data-baffle-seccion]");
-  const guiada = !!seccion && !reducir && innerHeight >= 600;
+  const guiada = !!seccion && !reducir && !matchMedia("(max-width: 760px), (max-height: 699px)").matches;
   let visor3D = null, kd = 0;
   if (guiada) {
     seccion.classList.add("guiada");
@@ -460,8 +464,9 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     const suave = (v) => v * v * (3 - 2 * v);
     let fase = "";
     const pintar = () => {
+      if (!seccion.classList.contains('guiada')) return;
       const r = seccion.getBoundingClientRect();
-      const k = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+      const k = Math.min(1, Math.max(0, -r.top / (r.height - seccion.querySelector(".st-baffle-pin").offsetHeight)));
       kd = suave(Math.min(1, Math.max(0, (k - 0.08) / 0.5)));
       visor3D?.fijar(kd);
       escena.classList.toggle("desplegado", kd > 0.5);
@@ -478,18 +483,16 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
     pintar();
   } else if (!reducir) {
     new IntersectionObserver(([e], obs) => {
-      if (e.isIntersecting) { setTimeout(() => poner(true), 700); obs.disconnect(); }
+      if (e.isIntersecting) { setTimeout(() => { if (!tocado) poner(true); }, 700); obs.disconnect(); }
     }, { threshold: 0.5 }).observe(caja);
   }
   const lienzo3D = caja.querySelector(".baffle-lienzo");
-  const montar = () => import("./space-3d.js").then((m) => {
+  const montar = () => import("./space-3d.js?v=20261025e").then((m) => {
     const visor = m.montarStarTracker({ contenedor: lienzo3D.parentElement, lienzo: lienzo3D, base: new URL("assets/space/", import.meta.url).href, modo: "baffle", reducir });
     if (guiada) { visor3D = visor; visor.fijar(kd); }
-    else {
-      const ponerDibujo = poner;
-      poner = (valor) => { ponerDibujo(valor); visor.desplegar(valor); };
-      visor.desplegar(desplegado);
-    }
+    const ponerDibujo = poner;
+    poner = (valor) => { ponerDibujo(valor); visor.desplegar(valor); };
+    if (!guiada) visor.desplegar(desplegado);
     return visor.listo.then(() => caja.classList.add("con-3d"));
   }).catch((err) => console.warn("No se pudo montar el baffle en 3D:", err));
   if (lienzo3D && tiene3D()) new IntersectionObserver(([e], obs) => { if (e.isIntersecting) { obs.disconnect(); montar(); } }, { rootMargin: "100% 0px" }).observe(caja);
@@ -502,20 +505,32 @@ function rotulo(x, texto, px, py, color = `rgba(${C.tenue},.85)`, tam = 13) {
   if (reducir || !tiene3D()) { seccion.classList.add("corrida"); return; }
   const escena = seccion.querySelector(".st-escena");
   const pasos = [...seccion.querySelectorAll("[data-paso]")];
-  const avance = () => {
-    const r = seccion.getBoundingClientRect();
-    return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-  };
+  let elegido = 0;
+  const avance = () => elegido;
+  const controles = document.createElement("div");
+  controles.className = "ritmo-controles"; controles.setAttribute("role", "group");
+  controles.setAttribute("aria-label", document.documentElement.lang === "en" ? "Explore the instrument" : "Explora el instrumento");
+  const selectores = pasos.map((li, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = li.querySelector("b").textContent;
+    b.setAttribute("aria-pressed", String(i === 0)); controles.append(b);
+    b.addEventListener("click", () => { elegido = (i + .65) / pasos.length; alPaso(li.dataset.paso); visor?.avanzar(elegido); });
+    return b;
+  });
+  seccion.querySelector(".st-texto").insertBefore(controles, seccion.querySelector(".st-pasos"));
   let actual = "armado", visor = null;
   const alPaso = (paso) => {
+    if (paso !== pasos[Math.min(pasos.length - 1, Math.floor(elegido * pasos.length))].dataset.paso) return;
     if (paso === actual) return;
     actual = paso;
-    pasos.forEach((li) => li.classList.toggle("activa", li.dataset.paso === paso));
+    pasos.forEach((li, i) => {
+      const activa = li.dataset.paso === paso; li.classList.toggle("activa", activa);
+      li.inert = !activa; li.setAttribute("aria-hidden", String(!activa)); selectores[i].setAttribute("aria-pressed", String(activa));
+    });
   };
   new IntersectionObserver(([e], obs) => {
     if (!e.isIntersecting) return;
     obs.disconnect();
-    import("./space-3d.js").then((m) => {
+    import("./space-3d.js?v=20261025e").then((m) => {
       visor = m.montarStarTracker({ contenedor: escena, lienzo: escena.querySelector(".st-lienzo"), base: new URL("assets/space/", import.meta.url).href, modo: "despiece", pasos: pasos.map((li) => li.dataset.paso), alPaso });
       visor.avanzar(avance());
       return visor.listo.then(() => escena.classList.add("con-3d"));

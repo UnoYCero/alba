@@ -6,8 +6,8 @@
   <meta name="description" content="Surface Ops: mide un bache con una foto y una escala. Del campo al plano, con contorno, área y exportaciones para la oficina. En pruebas.">
   <meta name="theme-color" content="#f4f6fa">
   <title>Surface Ops — De una foto al plano</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/marcas/surface-ops/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/marcas/surface-ops/apple-touch-icon-180.png">
   <link rel="canonical" href="https://albavision.tech/surfaceops/">
   <link rel="alternate" hreflang="es" href="https://albavision.tech/surfaceops/">
   <link rel="alternate" hreflang="en" href="https://albavision.tech/en/surfaceops/">
@@ -18,7 +18,7 @@
   <meta property="og:url" content="https://albavision.tech/surfaceops/">
   <meta property="og:title" content="Surface Ops — De una foto al plano">
   <meta property="og:description" content="Una foto, una escala y un plano para trabajar. En pruebas; la profundidad con IA sigue siendo experimental.">
-  <meta property="og:image" content="https://albavision.tech/assets/surfaceops/compartir-es.jpg">
+  <meta property="og:image" content="https://albavision.tech/assets/surfaceops/compartir-plan-es.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Surface Ops: ilustración de un bache y su contorno medido">
@@ -28,9 +28,12 @@
   <link rel="stylesheet" href="../amanecer.css">
   <link rel="stylesheet" href="../subpagina.css">
   <link rel="stylesheet" href="../ronda24.css?v=20261025c">
+  <link rel="stylesheet" href="../ritmo.css?v=20261026l">
   <script>document.documentElement.classList.add('js')</script>
   <script type="module" src="../subpagina.js"></script>
-  <script type="module" src="../ronda24.js"></script>
+  <script type="module" src="../ronda24.js?v=20261025c"></script>
+  <link rel="stylesheet" href="../assets/marcas/menu.css">
+  <script type="module" src="../integral.js?v=20261026i"></script>
 </head>
 <body class="pagina-dia pagina-surface">
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -38,7 +41,10 @@
   <header class="nav claro" data-nav>
     <div class="nav-pill">
       <a class="nav-padre" href="../#proyecto-surface-ops" aria-label="Volver a Alba Vision"><i aria-hidden="true"></i><span translate="no">Alba Vision</span></a><span class="nav-ruta-sep" aria-hidden="true">/</span>
-      <a class="nav-brand nav-brand-texto" href="./" translate="no">Surface Ops</a>
+      <a class="nav-brand nav-brand-hija" href="./" aria-label="Surface Ops, by Alba Vision">
+        <img class="logo-noche" src="../assets/marcas/surface-ops/menu-oscuro.svg" alt="" width="992.2910216718267" height="200">
+        <img class="logo-dia" src="../assets/marcas/surface-ops/menu-claro.svg" alt="" width="992.2910216718267" height="200">
+      </a>
       <nav class="nav-links" aria-label="Secciones de Surface Ops"><a href="#como">Cómo funciona</a><a href="#oficina">En la oficina</a><a href="#sin-senal">Sin señal</a></nav>
       <a class="btn btn-solid btn-small nav-cta" href="#contacto">Agenda una prueba</a>
       <a class="nav-idioma" href="/en/surfaceops/" hreflang="en" lang="en" aria-label="English version">EN</a>
@@ -83,14 +89,14 @@
               <path class="surface-contorno" d="M211 529 258 421 391 346 512 258 632 284 734 277 824 305 959 332 1055 367 1138 392 1230 442 1309 519 1232 609 1119 677 1003 697 875 718 756 726 653 687 549 678 438 639 321 628 245 591Z"/>
               <g class="surface-medidas"><rect class="surface-corte" x="195" y="242" width="1130" height="505"/><path class="surface-cota" d="M195 205H1325M195 190V220M1325 190V220M1360 242V747M1345 242H1375M1345 747H1375"/><text x="650" y="180">1.20 m</text><text x="1385" y="500" transform="rotate(90 1385 500)">0.55 m</text></g>
             </svg>
-            <div class="surface-plano" aria-hidden="true"><svg viewBox="0 0 900 600"><path d="M170 330 200 230 290 150 390 170 480 160 570 195 660 220 740 285 710 360 620 410 510 425 410 410 315 400 240 370Z"/><g><text x="175" y="215">0.24 m</text><text x="290" y="130">0.22 m</text><text x="440" y="140">0.18 m</text><text x="610" y="190">0.26 m</text><text x="735" y="310">0.17 m</text><text x="605" y="453">0.23 m</text><text x="410" y="465">0.20 m</text><text x="220" y="420">0.21 m</text></g></svg></div>
+            <div class="surface-plano" aria-hidden="true"><svg viewBox="0 0 1536 1024"><path d="M211 529 258 421 391 346 512 258 632 284 734 277 824 305 959 332 1055 367 1138 392 1230 442 1309 519 1232 609 1119 677 1003 697 875 718 756 726 653 687 549 678 438 639 321 628 245 591Z"/><rect class="plano-corte" x="195" y="242" width="1130" height="505"/><g class="plano-cotas"><path d="M195 205H1325M195 190V220M1325 190V220M1360 242V747M1345 242H1375M1345 747H1375"/><text x="650" y="175">1.20 m</text><text x="1380" y="500" transform="rotate(90 1380 500)">0.55 m</text></g><text class="plano-vertice" x="163.1" y="531.5">A</text><text class="plano-vertice" x="186.9" y="409.8">B</text><text class="plano-vertice" x="346.7" y="327.5">C</text><text class="plano-vertice" x="460.5" y="207.7">D</text><text class="plano-vertice" x="607.5" y="242.7">E</text><text class="plano-vertice" x="725.7" y="205.5">F</text><text class="plano-vertice" x="839.0" y="259.4">G</text><text class="plano-vertice" x="1014.0" y="285.6">H</text><text class="plano-vertice" x="1098.8" y="347.3">I</text><text class="plano-vertice" x="1207.2" y="372.2">J</text><text class="plano-vertice" x="1277.6" y="436.1">K</text><text class="plano-vertice" x="1381.0" y="521.5">L</text><text class="plano-vertice" x="1278.8" y="619.8">M</text><text class="plano-vertice" x="1183.6" y="708.8">N</text><text class="plano-vertice" x="1040.3" y="727.2">O</text><text class="plano-vertice" x="908.6" y="781.7">P</text><text class="plano-vertice" x="755.2" y="774.0">Q</text><text class="plano-vertice" x="617.2" y="749.5">R</text><text class="plano-vertice" x="512.3" y="709.0">S</text><text class="plano-vertice" x="371.9" y="667.5">T</text><text class="plano-vertice" x="274.9" y="641.4">U</text><text class="plano-vertice" x="174.1" y="603.5">V</text></svg></div>
             <figcaption>Ilustración · medidas de ejemplo</figcaption>
           </figure>
           <div class="surface-lectura" aria-live="polite" aria-atomic="true">
             <div data-surface-texto="0"><h3>Una foto con escala.</h3><p>Coloca un marcador impreso junto al bache o usa una medida tomada con cinta. La referencia permite pasar de píxeles a medidas.</p></div>
             <div data-surface-texto="1" hidden><h3>La IA propone; tú revisas.</h3><p>Selecciona el bache y ajusta los puntos si hace falta. El contorno automático todavía puede equivocarse.</p></div>
             <div data-surface-texto="2" hidden><h3>Contorno, corte, área y volumen.</h3><p>Del contorno al corte rectangular. El volumen depende de la profundidad que se use.</p><dl class="surface-numeros"><div><dt>Corte rectangular de ejemplo</dt><dd>1.20 × 0.55 m</dd></div></dl><p class="r24-nota">La profundidad con IA es experimental y no se ha comparado con una medición real en campo.</p></div>
-            <div data-surface-texto="3" hidden><h3>Un plano, lado por lado.</h3><p>La ficha muestra el dibujo con la medida de cada lado. La oficina puede exportarlo a AutoCAD.</p></div>
+            <div data-surface-texto="3" hidden><h3>Un plano, lado por lado.</h3><p>La ficha muestra el dibujo con la medida de cada lado. La oficina puede exportarlo a AutoCAD.</p><details class="surface-cotas"><summary>Ver las cotas de ejemplo</summary><p>Recorrido del contorno desde A, en el orden del plano. Son medidas ilustrativas.</p><dl><div><dt>A–B</dt><dd>0.13 m</dd></div><div><dt>B–C</dt><dd>0.16 m</dd></div><div><dt>C–D</dt><dd>0.16 m</dd></div><div><dt>D–E</dt><dd>0.13 m</dd></div><div><dt>E–F</dt><dd>0.11 m</dd></div><div><dt>F–G</dt><dd>0.10 m</dd></div><div><dt>G–H</dt><dd>0.15 m</dd></div><div><dt>H–I</dt><dd>0.11 m</dd></div><div><dt>I–J</dt><dd>0.09 m</dd></div><div><dt>J–K</dt><dd>0.11 m</dd></div><div><dt>K–L</dt><dd>0.12 m</dd></div><div><dt>L–M</dt><dd>0.13 m</dd></div><div><dt>M–N</dt><dd>0.14 m</dd></div><div><dt>N–O</dt><dd>0.13 m</dd></div><div><dt>O–P</dt><dd>0.14 m</dd></div><div><dt>P–Q</dt><dd>0.13 m</dd></div><div><dt>Q–R</dt><dd>0.12 m</dd></div><div><dt>R–S</dt><dd>0.11 m</dd></div><div><dt>S–T</dt><dd>0.13 m</dd></div><div><dt>T–U</dt><dd>0.12 m</dd></div><div><dt>U–V</dt><dd>0.09 m</dd></div><div><dt>V–A</dt><dd>0.08 m</dd></div></dl></details></div>
           </div>
         </div>
         <div class="surface-quieto">

@@ -6,3 +6,8 @@ dist/
 .DS_Store
 __pycache__/
 *.pyc
+
+# El informe conserva sólo texto; sus capturas viven en marca.
+/docs/plan-integral/*
+!/docs/plan-integral/*.md
+!/docs/plan-integral/*.json

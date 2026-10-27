@@ -30,12 +30,14 @@
   <link rel="stylesheet" href="/subpagina.css">
   <link rel="stylesheet" href="/labs-3d.css">
   <link rel="stylesheet" href="/ronda24.css?v=20261025c">
-  <script type="module" src="/ronda24.js"></script>
+  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
+  <script type="module" src="/ronda24.js?v=20261025c"></script>
   <link rel="stylesheet" href="/assets/marcas/menu.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/labs.js"></script>
+  <script type="module" src="/labs.js?v=20261026i"></script>
+  <script type="module" src="/integral.js?v=20261026i"></script>
 </head>
 <body class="pagina-dia">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -181,6 +183,10 @@
             <figcaption>Concept · Illustration. The object is selected manually in this demonstration.</figcaption>
           </figure>
           <div class="r24-receta-lectura">
+            <figure class="receta-fragmento" hidden data-receta-fragmento>
+              <div><img src="/assets/labs/vista-trabajo.webp" alt="Illustrative crop of the manual selected as context" width="1200" height="800" loading="lazy"></div>
+              <figcaption>Selected context · Illustration</figcaption>
+            </figure>
             <div aria-live="polite" aria-atomic="true">
               <div data-receta-paso="0"><h3>Start with an object.</h3><p>Choose the part of the scene that gives your question context.</p><p class="r24-receta-salida">Your recipe has no context yet.</p></div>
               <div data-receta-paso="1" hidden><h3>The manual is the context.</h3><p>A specific image prepares a specific question.</p><dl class="r24-contexto"><div><dt>Object</dt><dd>Printer manual</dd></div><div><dt>Place</dt><dd>Work desk</dd></div><div><dt>Example reference</dt><dd>Page 3</dd></div></dl></div>

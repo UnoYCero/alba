@@ -31,11 +31,13 @@
   <link rel="stylesheet" href="/subpagina.css">
   <link rel="stylesheet" href="/space-3d.css">
   <link rel="stylesheet" href="/ronda24.css?v=20261025c">
-  <script type="module" src="/ronda24.js"></script>
+  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
+  <script type="module" src="/ronda24.js?v=20261025c"></script>
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/space.js"></script>
+  <script type="module" src="/space.js?v=20261026l"></script>
+  <script type="module" src="/integral.js?v=20261026i"></script>
 </head>
 <body class="pagina-noche pagina-space">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -93,8 +95,21 @@
             <a class="btn-text" href="#orientacion">See how it works</a>
           </div>
         </div>
-        <figure class="sub-visual r24-space-visual reveal">
+        <figure class="sub-visual r24-space-visual reveal" data-integracion data-funcion="0">
+          <div class="integracion-escena">
           <picture><source media="(max-width: 760px)" srcset="/assets/space/concepto-en-orbita-vertical.webp"><img src="/assets/space/concepto-en-orbita.webp" alt="Concept of Ark Light 1 integrated into a CubeSat above Earth" width="1800" height="1200" fetchpriority="high"></picture>
+          <div class="integracion-instrumento" hidden>
+            <img src="/assets/space/star-tracker-armado.webp" alt="Ark Light 1, separated from the CubeSat to explore its design" width="1047" height="1100" loading="lazy">
+            <canvas aria-hidden="true"></canvas>
+          </div>
+          <svg class="integracion-optica" viewBox="0 0 900 600" aria-hidden="true">
+            <g class="optica-estrellas"><path d="M110 90 180 180 285 140 385 230 480 100"/><circle cx="110" cy="90" r="5"/><circle cx="180" cy="180" r="7"/><circle cx="285" cy="140" r="5"/><circle cx="385" cy="230" r="6"/><circle cx="480" cy="100" r="5"/></g>
+            <g class="optica-movimiento"><path d="M90 220 350 150"/><circle cx="350" cy="150" r="8"/></g>
+            <g class="optica-objetivo"><rect x="190" y="100" width="140" height="140"/><path d="M160 170H360M260 70V270"/></g>
+          </svg>
+          </div>
+          <button class="btn-text integracion-abrir" type="button" data-integracion-abrir aria-pressed="false">Explore the instrument</button>
+          <p class="integracion-nota">Conceptual exploration of the optical design.</p>
           <figcaption>Concept · Integration illustration; not an actual mission</figcaption>
         </figure>
       </div>
@@ -218,7 +233,7 @@
           <div class="st-texto">
             <h2 class="reveal"><span translate="no">Ark Light 1</span>, <em>inside.</em></h2>
             <ol class="st-pasos" aria-label="The parts of the instrument">
-              <li class="activa" data-paso="armado"><b>The instrument</b><span>A cube for 3U to 12U CubeSats: 175 g with the mechanism and 1.25 W. Scroll to open it.</span></li>
+              <li class="activa" data-paso="armado"><b>The instrument</b><span>A cube for 3U to 12U CubeSats: 175 g including the mechanism and 1.25 W. Select a part to explore the design.</span></li>
               <li data-paso="despiece"><b>It opens</b><span>Each part leaves its place so you can see how it fits inside.</span></li>
               <li data-paso="computadora"><b>Flight computer</b><span>It runs all three algorithms in parallel, with a real-time operating system.</span></li>
               <li data-paso="sensor"><b>Sensor</b><span>A single camera to orient itself, detect space debris and dock.</span></li>

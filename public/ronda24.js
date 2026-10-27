@@ -51,9 +51,9 @@ if (proceso) {
   proceso.querySelector(".r24-opciones").addEventListener("focusin", () => { manual = true; });
   const actualizar = () => {
     pendiente = false;
-    if (manual || reducir.matches || bajo.matches) return;
+    if (manual || reducir.matches || bajo.matches || proceso.classList.contains("surface-flujo")) return;
     const rect = proceso.getBoundingClientRect();
-    const recorrido = rect.height - innerHeight;
+    const recorrido = rect.height - proceso.querySelector(".surface-pin").offsetHeight;
     if (recorrido > 0) mostrar(Math.min(3, Math.max(0, Math.floor(-rect.top / recorrido * 4))));
   };
   addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } }, { passive: true });

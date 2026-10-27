@@ -120,6 +120,7 @@ def traducir(origen, destino, es_pub, en_pub):
     html = re.sub(r'wa\.me/525616908570\?text=([^"]+)', wa, html)
 
     html = html.replace("assets/surfaceops/compartir-es.jpg", "assets/surfaceops/compartir-en.jpg")
+    html = html.replace("assets/surfaceops/compartir-plan-es.jpg", "assets/surfaceops/compartir-plan-en.jpg")
     html = html.replace('<html lang="es">', '<html lang="en">', 1)
     html = html.replace('content="es_MX"', 'content="en_US"')
     html = html.replace(f'<link rel="canonical" href="{SITIO}{es_pub}">', f'<link rel="canonical" href="{SITIO}{en_pub}">')

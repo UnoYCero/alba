@@ -31,10 +31,12 @@
   <link rel="stylesheet" href="/subpagina.css">
   <link rel="stylesheet" href="/visionops.css">
   <link rel="stylesheet" href="/ronda24.css?v=20261025c">
+  <link rel="stylesheet" href="/ritmo.css?v=20261026l">
   <script>document.documentElement.classList.add('js')</script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script type="module" src="/subpagina.js"></script>
-  <script type="module" src="/visionops.js"></script>
+  <script type="module" src="/visionops.js?v=20261026i"></script>
+  <script type="module" src="/integral.js?v=20261026i"></script>
 </head>
 <body class="pagina-dia pagina-visionops">
   <a class="skip" href="#contenido">Skip to content</a>
@@ -79,9 +81,17 @@
           <p class="r24-nota">Data analytics with computer vision. We are starting with restaurants and food businesses, without facial recognition.</p>
         </div>
         <figure class="r24-hallazgo-figura">
-          <picture><source media="(max-width: 760px)" srcset="/assets/visionops/paleteria-camara-vertical.webp"><img src="/assets/visionops/paleteria-camara.webp" width="1800" height="1200" fetchpriority="high" alt="Illustration of an ice pop shop with people queuing and one person leaving"></picture>
+          <div class="hallazgo-escena" data-hallazgo><img src="/assets/visionops/paleteria-camara.webp" width="1800" height="1200" fetchpriority="high" alt="Illustration of an ice pop shop with people queuing and one person leaving">
+            <svg class="hallazgo-trazos" viewBox="0 0 1800 1200" aria-hidden="true">
+              <path class="hallazgo-zona" d="m720 570 240-230 540 360-230 260Z"/>
+              <path class="hallazgo-ruta" d="M950 1000Q760 800 880 650T1470 770" pathLength="1"/>
+              <circle class="hallazgo-punto" cx="950" cy="1000" r="19"/>
+              <g class="hallazgo-reloj"><rect x="1100" y="85" width="560" height="150" rx="12"/><text x="1140" y="183"><tspan data-hallazgo-segundos>41</tspan> s</text></g>
+            </svg>
+            <div class="hallazgo-reporte"><p>From a moment to a finding.</p><p><em>They waited 41 seconds and left.</em></p></div>
+          </div>
           <figcaption>Recreated illustration · not the frame from the real finding</figcaption>
-          <p class="r24-dato">41 <span>seconds of waiting</span></p>
+          <div class="hallazgo-control"><button type="button" data-hallazgo-play>Watch the 41 seconds</button><label>Explore the moment<input type="range" min="0" max="41" value="41" step="1" data-hallazgo-control></label></div>
         </figure>
       </div>
     </section>
@@ -307,9 +317,15 @@
         </div>
       </div>
       <!-- El piloto empieza con una pregunta: arma tu idea y mándala por WhatsApp si quieres (visionops.js) -->
-      <div class="wrap vo-piloto" data-piloto>
-        <form class="vo-piloto-form reveal" action="#" onsubmit="return false">
-          <h3>The pilot starts <em>with a question.</em></h3>
+      <div class="wrap piloto-entrada">
+        <h3>The pilot starts <em>with a question.</em></h3>
+        <button type="button" class="btn btn-solid" data-piloto-abrir aria-haspopup="dialog">Prepare my pilot</button>
+      </div>
+      <dialog class="piloto-dialogo" data-piloto aria-labelledby="piloto-titulo">
+        <button type="button" class="piloto-cerrar" data-piloto-cerrar aria-label="Close form"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+        <h2 id="piloto-titulo">Your operation.<br><em>Your first question.</em></h2>
+        <form class="vo-piloto-form" id="piloto-campos" action="#">
+          <p class="piloto-ayuda">Choose what you would like to understand. We will review it together before defining a pilot.</p>
           <label>My operation
             <select data-p="operacion">
               <option value="restaurante">Restaurant or food business</option>
@@ -325,10 +341,10 @@
             </select>
           </label>
           <label>Cameras I want to review
-            <input type="number" min="1" max="50" value="1" inputmode="numeric" data-p="camaras">
+            <input required aria-describedby="piloto-limite" type="number" min="1" max="50" value="1" inputmode="numeric" data-p="camaras">
           </label>
-        </form>
-        <div class="vo-piloto-resumen reveal" aria-live="polite">
+        <p class="piloto-ayuda" id="piloto-limite">Between 1 and 50 cameras. We confirm the scope in the assessment.</p><button class="btn btn-solid" type="submit" data-piloto-resumir>Review my idea</button></form>
+        <div class="vo-piloto-resumen" data-piloto-resumen hidden>
           <p class="vo-piloto-titulo">We can start <em>here.</em></p>
           <dl>
             <div><dt>The question</dt><dd data-r="pregunta">Where does the wait build up?</dd></div>
@@ -336,10 +352,12 @@
             <div><dt>What you would get</dt><dd data-r="evidencia">Frames, wait times and walk-outs</dd></div>
           </dl>
           <p class="vo-piloto-alcance" data-r="alcance">To start: 1 camera. We confirm it together in the assessment.</p>
+          <button class="btn-text r24-reiniciar" type="button" data-piloto-editar>Edit my idea</button>
           <a class="btn btn-solid" data-r="enviar" href="https://wa.me/525616908570?text=Hi%2C%20I%27m%20coming%20from%20albavision.tech%20and%20I%20want%20to%20talk%20about%20Vision%20Ops%20for%20my%20business." target="_blank" rel="noopener">Send us your idea on WhatsApp</a>
           <p class="vo-piloto-nota">WhatsApp opens with your idea already written; you decide whether to send it.</p>
         </div>
-      </div>
+      
+      </dialog>
     </section>
 
     <!-- Sigue explorando -->

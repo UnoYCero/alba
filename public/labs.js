@@ -4,46 +4,25 @@
 const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
 // La misma página sirve en español y en inglés (public/en/): el idioma sale de <html lang>
 const t = (es, en) => (document.documentElement.lang === "en" ? en : es);
-const tiene3D = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
+const tiene3D = (() => { if (document.documentElement.dataset.webgl === "off") return false; try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch { return false; } })();
 const celular = matchMedia("(max-width: 760px)");
 const seccion = document.querySelector("[data-tiempos]");
 
+// Tres elecciones conservadas durante la visita, en lectura natural: no hace falta
+// consumir varias pantallas para pasar de la escena al recuerdo y a la acción.
 if (seccion) {
-  const botones = [...seccion.querySelectorAll("[data-tiempo]")];
-  const capas = [...seccion.querySelectorAll("[data-capa]")];
-  const corrida = () => reducir || (celular.matches && innerHeight < 700);
-  let actual = -1;
-
-  const mostrar = (i) => {
-    if (i === actual) return;
-    actual = i;
-    botones.forEach((b, j) => b.setAttribute("aria-current", j === i ? "true" : "false"));
-    capas.forEach((c, j) => c.classList.toggle("activa", j === i));
+  seccion.classList.add("corrida");
+  const botones=[...seccion.querySelectorAll("[data-tiempo]")];
+  const capas=[...seccion.querySelectorAll("[data-capa]")];
+  const mostrar=i=>{
+    botones.forEach((b,j)=>b.setAttribute("aria-current",String(j===i)));
+    capas.forEach((c,j)=>{
+      c.classList.toggle("activa",j===i); c.inert=j!==i;
+      c.setAttribute("aria-hidden",String(j!==i));
+    });
   };
-
-  const alBajar = () => {
-    seccion.classList.toggle("corrida", corrida());
-    if (corrida()) return;
-    const r = seccion.getBoundingClientRect();
-    const avance = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-    mostrar(Math.min(botones.length - 1, Math.floor(avance * botones.length)));
-  };
-
-  botones.forEach((b, j) => b.addEventListener("click", () => {
-    if (corrida()) { mostrar(j); return; }
-    const recorrido = seccion.offsetHeight - innerHeight;
-    scrollTo({ top: seccion.getBoundingClientRect().top + scrollY + recorrido * ((j + 0.5) / botones.length), behavior: "smooth" });
-  }));
-
-  let pendiente = false;
-  addEventListener("scroll", () => {
-    if (pendiente) return;
-    pendiente = true;
-    requestAnimationFrame(() => { pendiente = false; alBajar(); });
-  }, { passive: true });
-  addEventListener("resize", alBajar);
+  botones.forEach((b,i)=>b.addEventListener("click",()=>mostrar(i)));
   mostrar(0);
-  alBajar();
 }
 
 // ── Una base, muchos módulos: el concepto en 3D; al elegir un clip, entra y se acopla ──
@@ -232,7 +211,7 @@ if (seccion) {
   new IntersectionObserver(([e], obs) => {
     if (!e.isIntersecting) return;
     obs.disconnect();
-    preguntar(0);
+    if (!tocado) preguntar(0);
     reloj = setInterval(() => { if (!tocado && !document.hidden) preguntar((actual + 1) % otras.length); }, 6500);
   }, { threshold: 0.5 }).observe(caja.querySelector(".lb-chat"));
 })();

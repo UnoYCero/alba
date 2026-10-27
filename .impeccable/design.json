@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T12:00:56.208Z",
+  "title": "Design System: Alba Vision",
+  "extensions": {
+    "colorMeta": {
+      "marino": {
+        "role": "neutral",
+        "displayName": "Marino",
+        "tonalRamp": [
+          "oklch(15.00% 0.0598 257.30)",
+          "oklch(26.43% 0.0598 257.30)",
+          "oklch(37.86% 0.0598 257.30)",
+          "oklch(49.29% 0.0598 257.30)",
+          "oklch(60.71% 0.0598 257.30)",
+          "oklch(72.14% 0.0598 257.30)",
+          "oklch(83.57% 0.0598 257.30)",
+          "oklch(95.00% 0.0598 257.30)"
+        ]
+      },
+      "azul": {
+        "role": "primary",
+        "displayName": "Azul",
+        "tonalRamp": [
+          "oklch(15.00% 0.2152 262.88)",
+          "oklch(26.43% 0.2152 262.88)",
+          "oklch(37.86% 0.2152 262.88)",
+          "oklch(49.29% 0.2152 262.88)",
+          "oklch(60.71% 0.2152 262.88)",
+          "oklch(72.14% 0.2152 262.88)",
+          "oklch(83.57% 0.2152 262.88)",
+          "oklch(95.00% 0.2152 262.88)"
+        ]
+      },
+      "azul-claro": {
+        "role": "primary",
+        "displayName": "Azul claro",
+        "tonalRamp": [
+          "oklch(15.00% 0.1176 265.06)",
+          "oklch(26.43% 0.1176 265.06)",
+          "oklch(37.86% 0.1176 265.06)",
+          "oklch(49.29% 0.1176 265.06)",
+          "oklch(60.71% 0.1176 265.06)",
+          "oklch(72.14% 0.1176 265.06)",
+          "oklch(83.57% 0.1176 265.06)",
+          "oklch(95.00% 0.1176 265.06)"
+        ]
+      },
+      "papel": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "tonalRamp": [
+          "oklch(15.00% 0.0057 264.53)",
+          "oklch(26.43% 0.0057 264.53)",
+          "oklch(37.86% 0.0057 264.53)",
+          "oklch(49.29% 0.0057 264.53)",
+          "oklch(60.71% 0.0057 264.53)",
+          "oklch(72.14% 0.0057 264.53)",
+          "oklch(83.57% 0.0057 264.53)",
+          "oklch(95.00% 0.0057 264.53)"
+        ]
+      },
+      "noche": {
+        "role": "neutral",
+        "displayName": "Noche",
+        "tonalRamp": [
+          "oklch(15.00% 0.0411 264.97)",
+          "oklch(26.43% 0.0411 264.97)",
+          "oklch(37.86% 0.0411 264.97)",
+          "oklch(49.29% 0.0411 264.97)",
+          "oklch(60.71% 0.0411 264.97)",
+          "oklch(72.14% 0.0411 264.97)",
+          "oklch(83.57% 0.0411 264.97)",
+          "oklch(95.00% 0.0411 264.97)"
+        ]
+      },
+      "profundo": {
+        "role": "neutral",
+        "displayName": "Profundo",
+        "tonalRamp": [
+          "oklch(15.00% 0.0348 260.04)",
+          "oklch(26.43% 0.0348 260.04)",
+          "oklch(37.86% 0.0348 260.04)",
+          "oklch(49.29% 0.0348 260.04)",
+          "oklch(60.71% 0.0348 260.04)",
+          "oklch(72.14% 0.0348 260.04)",
+          "oklch(83.57% 0.0348 260.04)",
+          "oklch(95.00% 0.0348 260.04)"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "tonalRamp": [
+          "oklch(15.00% 0.0431 257.48)",
+          "oklch(26.43% 0.0431 257.48)",
+          "oklch(37.86% 0.0431 257.48)",
+          "oklch(49.29% 0.0431 257.48)",
+          "oklch(60.71% 0.0431 257.48)",
+          "oklch(72.14% 0.0431 257.48)",
+          "oklch(83.57% 0.0431 257.48)",
+          "oklch(95.00% 0.0431 257.48)"
+        ]
+      },
+      "texto-secundario-noche": {
+        "role": "neutral",
+        "displayName": "Texto secundario de noche",
+        "tonalRamp": [
+          "oklch(15.00% 0.0250 263.33)",
+          "oklch(26.43% 0.0250 263.33)",
+          "oklch(37.86% 0.0250 263.33)",
+          "oklch(49.29% 0.0250 263.33)",
+          "oklch(60.71% 0.0250 263.33)",
+          "oklch(72.14% 0.0250 263.33)",
+          "oklch(83.57% 0.0250 263.33)",
+          "oklch(95.00% 0.0250 263.33)"
+        ]
+      },
+      "texto-terciario-noche": {
+        "role": "neutral",
+        "displayName": "Texto terciario de noche",
+        "tonalRamp": [
+          "oklch(15.00% 0.0250 263.33)",
+          "oklch(26.43% 0.0250 263.33)",
+          "oklch(37.86% 0.0250 263.33)",
+          "oklch(49.29% 0.0250 263.33)",
+          "oklch(60.71% 0.0250 263.33)",
+          "oklch(72.14% 0.0250 263.33)",
+          "oklch(83.57% 0.0250 263.33)",
+          "oklch(95.00% 0.0250 263.33)"
+        ]
+      },
+      "linea-noche": {
+        "role": "neutral",
+        "displayName": "Línea de noche",
+        "tonalRamp": [
+          "oklch(15.00% 0.1176 265.06)",
+          "oklch(26.43% 0.1176 265.06)",
+          "oklch(37.86% 0.1176 265.06)",
+          "oklch(49.29% 0.1176 265.06)",
+          "oklch(60.71% 0.1176 265.06)",
+          "oklch(72.14% 0.1176 265.06)",
+          "oklch(83.57% 0.1176 265.06)",
+          "oklch(95.00% 0.1176 265.06)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Titular de portada",
+        "purpose": "Escala de escritorio de la portada actual; sus variantes móviles permanecen en CSS."
+      },
+      "headline": {
+        "displayName": "Título de capítulo",
+        "purpose": "Jerarquía común; las entradas de cada producto conservan sus variantes."
+      },
+      "body": {
+        "displayName": "Lectura",
+        "purpose": "Cuerpo ligero sobre los temas de luz existentes."
+      },
+      "label-piloto": {
+        "displayName": "Etiqueta del piloto",
+        "purpose": "Etiqueta permanente en los tres campos del diálogo."
+      }
+    },
+    "shadows": [
+      {
+        "name": "navegacion-al-bajar",
+        "value": "0 12px 40px rgba(0,0,0,.3)",
+        "purpose": "Sombra difusa de la pastilla al compactarse; fuente landing.css."
+      },
+      {
+        "name": "piloto-modal",
+        "value": "0 20px 80px rgba(3,8,26,.24)",
+        "purpose": "Separación funcional del diálogo sobre el fondo; fuente ritmo.css."
+      }
+    ],
+    "motion": [
+      {
+        "name": "curva-alba",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Curva existente compartida por las entradas breves."
+      },
+      {
+        "name": "puerta",
+        "value": ".35s",
+        "purpose": "Entrada del contenido elegido en portada; ritmo.css."
+      },
+      {
+        "name": "dialogo",
+        "value": ".25s",
+        "purpose": "Apertura del piloto; ritmo.css."
+      },
+      {
+        "name": "fragmento",
+        "value": ".45s",
+        "purpose": "Traslado visual del recorte elegido en Labs; ritmo.css."
+      },
+      {
+        "name": "contorno",
+        "value": ".7s",
+        "purpose": "Dibujo finito del contorno de Surface; ritmo.css."
+      },
+      {
+        "name": "acercamiento",
+        "value": ".8s",
+        "purpose": "Acercamiento al instrumento de Space; ritmo.css."
+      },
+      {
+        "name": "hallazgo",
+        "value": "5200ms",
+        "purpose": "Traduce 41 segundos a una secuencia breve con pausa y range; integral.js."
+      },
+      {
+        "name": "quieto",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Anula movimiento y conserva lectura y respaldo; comprobación sólo de código."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "firma-surface-reducida",
+        "value": "360px"
+      },
+      {
+        "name": "celular",
+        "value": "760px"
+      },
+      {
+        "name": "navegacion-colapsada",
+        "value": "1080px"
+      },
+      {
+        "name": "pantalla-baja",
+        "value": "699px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón sólido de día",
+      "kind": "button",
+      "refersTo": "boton-solido-dia",
+      "description": "Acción sobre papel; peso ligero explícito en piloto y receta.",
+      "html": "<button class=\"ds-boton ds-dia\">Revisar mi idea</button>",
+      "css": ".ds-boton{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border:0;border-radius:999px;font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:300;cursor:pointer;transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1)}.ds-boton:active{transform:scale(.98)}.ds-boton:focus-visible{outline:2px solid var(--blue,#2563eb);outline-offset:4px}.ds-dia{background:var(--marino,#0b1f3b);color:#f4f6fa}.ds-dia:hover{background:#12305a}"
+    },
+    {
+      "name": "Botón sólido de noche",
+      "kind": "button",
+      "refersTo": "boton-solido-noche",
+      "description": "Acción clara en el tema de noche.",
+      "html": "<button class=\"ds-boton ds-noche\">Hablemos de tu misión</button>",
+      "css": ".ds-boton{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border:0;border-radius:999px;font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:300;cursor:pointer;transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1)}.ds-boton:active{transform:scale(.98)}.ds-boton:focus-visible{outline:2px solid var(--blue,#2563eb);outline-offset:4px}.ds-noche{background:#f4f6fa;color:var(--marino,#0b1f3b)}.ds-noche:hover{background:#fff}"
+    },
+    {
+      "name": "Control textual de paso",
+      "kind": "button",
+      "description": "Selección ligera con subrayado y estado explícito; muestra la forma sin ejecutar la demostración.",
+      "html": "<button class=\"ds-paso\" aria-pressed=\"true\">El tablero</button>",
+      "css": ".ds-paso{border:0;border-radius:0;padding:8px 0;min-width:44px;min-height:44px;font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:300;background:none;color:var(--dim,rgba(222,231,248,.8));cursor:pointer;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:7px}.ds-paso[aria-pressed=true],.ds-paso:hover{color:var(--soft,#8fb2ff);text-decoration-color:currentColor}.ds-paso:focus-visible{outline:2px solid var(--blue,#2563eb);outline-offset:4px}"
+    },
+    {
+      "name": "Campo del piloto",
+      "kind": "input",
+      "refersTo": "campo-piloto",
+      "description": "Etiqueta permanente y campo numérico de tres campos originales; sin recopilación adicional.",
+      "html": "<label class=\"ds-campo\">Cámaras que quiero revisar<input type=\"number\" min=\"1\" max=\"50\" value=\"1\" required aria-describedby=\"ds-ayuda\"><span id=\"ds-ayuda\">Entre 1 y 50 cámaras.</span></label>",
+      "css": ".ds-campo{display:grid;gap:8px;padding:16px;background:#f4f6fa;color:#3f5270;font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:300}.ds-campo input{width:100%;min-height:44px;padding:8px 0;border:0;border-bottom:1px solid rgba(11,31,59,.28);border-radius:0;background:none;font:inherit;font-size:18px;line-height:1.5;color:var(--marino,#0b1f3b)}.ds-campo input:focus-visible{outline:none;border-bottom-color:var(--blue,#2563eb);box-shadow:0 1px 0 var(--blue,#2563eb)}.ds-campo input:hover{border-bottom-color:var(--blue,#2563eb)}"
+    },
+    {
+      "name": "Tarjeta funcional del piloto",
+      "kind": "card",
+      "refersTo": "dialogo-piloto",
+      "description": "Muestra la forma de la excepción modal. El foco, cierre, resumen y WhatsApp viven en HTML/JS de Vision Ops.",
+      "html": "<section class=\"ds-dialogo\" aria-labelledby=\"ds-titulo\"><h2 id=\"ds-titulo\">Tu operación.<br><em>Tu primera pregunta.</em></h2><p>Elige lo que te gustaría entender. Lo revisaremos juntos antes de definir un piloto.</p><button class=\"ds-boton ds-dia\">Revisar mi idea</button></section>",
+      "css": ".ds-boton{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border:0;border-radius:999px;font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:300;cursor:pointer;transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1)}.ds-boton:active{transform:scale(.98)}.ds-boton:focus-visible{outline:2px solid var(--blue,#2563eb);outline-offset:4px}.ds-dialogo{width:min(620px,calc(100% - 40px));max-height:min(88dvh,820px);overflow:auto;padding:44px;border:0;border-radius:16px;background:#f4f6fa;color:var(--marino,#0b1f3b);box-shadow:0 20px 80px rgba(3,8,26,.24);font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-weight:300}.ds-dialogo h2{font-size:clamp(32px,4vw,44px);line-height:1.05;font-weight:300;margin:0 44px 24px 0;letter-spacing:-.025em}.ds-dialogo em{color:var(--blue,#2563eb)}.ds-dialogo p{font-size:15px;line-height:1.5;color:#3f5270}.ds-dia{background:var(--marino,#0b1f3b);color:#f4f6fa}.ds-dia:hover{background:#12305a}@media(max-width:760px){.ds-dialogo{width:100%;max-height:calc(100dvh - 12px);border-radius:16px 16px 0 0;padding:32px 24px max(24px,env(safe-area-inset-bottom))}}"
+    },
+    {
+      "name": "Navegación: control de idioma",
+      "kind": "nav",
+      "description": "Primitivo textual existente de cabecera; la firma vectorial real se conserva en sus archivos oficiales.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Idioma\"><a class=\"ds-idioma\" href=\"#idioma\">EN</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;font-family:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;font-weight:300}.ds-idioma{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;padding:0 10px;border-radius:999px;font-size:13px;letter-spacing:.08em;color:var(--dim,rgba(222,231,248,.8));text-decoration:none;transition:color .3s,background .3s}.ds-idioma:hover{color:var(--paper,#f4f6fa);background:rgba(143,178,255,.1)}.ds-idioma:focus-visible{outline:2px solid var(--soft,#8fb2ff);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El amanecer de Alba",
+    "overview": "La portada existente es la referencia: ojo, cambio de luz y puertas hacia los proyectos. Hanken ligera, papel, marino y azules sostienen una composición abierta en la que la fotografía, el instrumento y la demostración explican el trabajo. El nombre del mundo recoge el amanecer ya descrito por la guía y el código; no introduce una identidad nueva.\n\nRegistro extraído el 26-oct-2026 de la implementación. Su alcance normativo es la portada, Vision Ops, Alba Space, Alba Labs y Surface Ops, incluidas sus versiones generadas en inglés. La extensión aprobada cambia el ritmo y añade una tarjeta funcional para el piloto; conserva el mundo visual. No autoriza cambios en UNBLIND, Órbita ni sus dependencias compartidas. La estrategia de cada página y las comprobaciones de esta entrega están en [DISENO.md](docs/plan-integral/DISENO.md).",
+    "keyCharacteristics": [
+      "Composición abierta con el objeto y la evidencia como protagonistas.",
+      "Voz ligera y énfasis en itálica verdadera.",
+      "Luz de día, amanecer y noche dentro de la misma familia.",
+      "Movimiento que explica una relación y conserva una alternativa quieta completa."
+    ],
+    "rules": [
+      {
+        "name": "Regla de la luz",
+        "body": "Conservar la relación papel/marino y azul/azul claro de cada tema; los cambios de luz pertenecen al mundo existente, no son permiso para añadir degradados decorativos de otros colores.",
+        "section": "colors"
+      },
+      {
+        "name": "Regla de la voz",
+        "body": "Mantener Hanken 300 e itálica en la extensión; Construcción Alba se limita a la firma vectorial de Surface y no se convierte en letra de interfaz.",
+        "section": "typography"
+      },
+      {
+        "name": "Regla de la altura visible",
+        "body": "El texto activo determina la altura de la composición. Los estados ocultos de operación/despiece salen del flujo y del teclado. El presupuesto de avance se calcula aparte; si el contenido no cabe en el espacio disponible, la sección pasa a lectura natural y no vuelve a fijarse durante esa lectura.",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "Conservar la portada y sus cambios de luz como referencia del mundo existente.",
+      "Aplicar ritmo y altura visible sólo a las cinco páginas autorizadas y sus traducciones.",
+      "Mostrar el objeto, su relación con el dato y el estado real del producto.",
+      "Conservar texto completo, foco visible, selección manual y alternativa quieta.",
+      "Respetar las proporciones y variantes originales de las firmas de marca."
+    ],
+    "donts": [
+      "No convertir la excepción funcional del formulario en una sucesión de cajas para los capítulos.",
+      "No redibujar la firma de Surface ni usar Construcción Alba en textos de interfaz.",
+      "No heredar reservas de altura de estados ocultos ni forzar una escena fija que no cabe.",
+      "No presentar conceptos, recreaciones o medidas ilustrativas como evidencia validada en campo.",
+      "No usar este registro como autorización para modificar UNBLIND, Órbita o sus dependencias."
+    ]
+  }
+}
