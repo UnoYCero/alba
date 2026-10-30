@@ -2,7 +2,8 @@ import {boundedBody,equalSecret,openCredentials} from './security.mjs';
 import {isPublishedProduction} from './netlify-runtime.mjs';
 import {commerceStoreFor,createCommerceConnector} from './commerce.mjs';
 import {portalPage} from './portal-page.mjs';
-const ROOT='/orbita/panel',ORIGIN='https://albavision.tech',COOKIE='orbita_portal';
+import {publicOrigin} from './deployment.mjs';
+const ROOT='/orbita/panel',COOKIE='orbita_portal';
 const uuid=s=>/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(s||'');
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY',
  'Content-Security-Policy':"default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"};
@@ -13,6 +14,7 @@ const role=a=>a.role==='admin'?'admin':'tenant';
 const scope=a=>role(a)==='admin'?'platform':a.tenantId;
 const cookie=v=>`${COOKIE}=${v}; Path=${ROOT}; HttpOnly; Secure; SameSite=Strict; Max-Age=${v?3600:0}`;
 export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,productionCheck=isPublishedProduction}={}) {
+ const ORIGIN=publicOrigin(env);
  let accounts;try{accounts=JSON.parse(env.ORBITA_PORTAL_ACCOUNTS||'[]');}catch{accounts=[];}
  const commerceEnabled=env.ORBITA_COMMERCE_ENABLED==='true';
  const ready=env.ORBITA_PORTAL_ENABLED==='true' &&
@@ -31,7 +33,7 @@ export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,pro
  }
  return async(request,context)=>{
   const url=new URL(request.url),route=url.pathname.slice(ROOT.length);
-  if(!ready || !productionCheck(context) || (url.pathname!==ROOT && !url.pathname.startsWith(ROOT+'/')))return json({error:'NOT_FOUND'},404);
+  if(!ready || !ORIGIN || !productionCheck(context,env) || url.origin!==ORIGIN || (url.pathname!==ROOT && !url.pathname.startsWith(ROOT+'/')))return json({error:'NOT_FOUND'},404);
   try {
    if((route===''||route==='/')&&request.method==='GET')return new Response(portalPage,{headers:{...headers,'Content-Type':'text/html; charset=utf-8'}});
    let body;

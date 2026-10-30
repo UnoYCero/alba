@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "node scripts/build.mjs",
+    "build:orbita": "node scripts/build-orbita-standalone.mjs",
     "build:next": "next build",
     "start": "next start",
     "test:orbita": "node --test tests/orbita-*.test.mjs"
