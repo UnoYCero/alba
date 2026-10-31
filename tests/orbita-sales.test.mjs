@@ -61,6 +61,28 @@ test('FAQ interruptions answer the question and return to the pending field with
  assert(!faq.reply.includes('llamar'));assert(!faq.reply.includes('sankalpa pedido'));
  assert.match((await f.turn('Cliente Ficticio',{topic:'datos'})).reply,/correo/);
 });
+test('weekly duration is not silently treated as number of packages',async t=>{
+ const f=await fixture(t);await f.turn('CDMX quiero pedir',{topic:'comprar'});
+ assert.match((await f.turn('Para toda la semana')).reply,/semana/);
+ assert.match((await f.turn('7')).reply,/7 paquetes o a 7 días/);
+ assert.match((await f.turn('días')).reply,/Cuántos paquetes/);
+ assert.match((await f.turn('dos paquetes',{topic:'cantidad'})).reply,/nombre/);
+});
+test('ambiguous name, explicit correction, denial and frustration receive useful replies',async t=>{
+ const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ const ambiguous=await f.turn('Mio',{topic:'datos',slots:{name:'Mio'}});assert.match(ambiguous.reply,/cuál es tu nombre/);
+ await f.turn('Cliente Ficticio',{topic:'datos'});await f.turn('cliente@example.invalid',{topic:'datos'});
+ await f.turn('Calle Ficticia 10, Colonia de Prueba',{topic:'datos'});await f.turn('54080',{topic:'datos'});
+ const corrected=await f.turn('Mi nombre es Alan, no Mio',{topic:'datos'});assert.match(corrected.reply,/actualicé el nombre/);
+ assert.match((await f.turn('sí',{topic:'confirmar'})).reply,/para Alan/);
+ const denied=await f.turn('No');assert.match(denied.reply,/no confirmaré/);
+ assert.match((await f.turn('mejor quiero tres paquetes',{topic:'comprar'})).reply,/3 paquete/);
+ assert.match((await f.turn('sí',{topic:'confirmar'})).reply,/3 paquete/);
+ assert.match((await f.turn('😠')).reply,/Perdón/);
+ const {job,owner}=await f.turn('ya te lo dije',{finish:false});
+ assert.match((await f.store.context(job,owner)).state.sales.customer.name,/^Alan$/);
+ assert.equal(f.counts.register,0);
+});
 async function collect(f){
  await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
  await f.turn('Cliente Ficticio',{topic:'datos'});await f.turn('cliente@example.invalid',{topic:'datos'});

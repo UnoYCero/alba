@@ -116,6 +116,29 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  if(!menu&&['comprar','cantidad','confirmar'].includes(plan.topic))return save(`Todavía no tengo un menú disponible para ${branch.name}. Conservé tu ciudad para cuando esté publicado.`);
  const isQuestion=faqTopics.has(plan.topic);
  const takeName=safeField(plan.name,text,80),takeEmail=safeField(plan.email,text,254),takeAddress=safeField(plan.address,text,500);
+ // Corrections must work even after all fields have been collected: a model
+ // classification alone must never turn an unconfirmed change into consent.
+ const nameCorrection=text.match(/\b(?:mi nombre es|me llamo|soy)\s+([\p{L}][\p{L}' -]{0,78}?)(?=\s*,|\s+no\s|[.!?]|$)/iu);
+ const summary=()=>`Prepararé ${state.quantity} paquete(s) para ${state.customer.name} en ${branch.name}. Correo: ${state.customer.email}. Dirección: ${state.customer.address}, CP ${state.customer.postalCode}. Usaremos el teléfono de este WhatsApp. ¿Confirmas estos datos y que los usemos para tu registro y pedido?`;
+ if(['consent','reviewCorrections'].includes(state.stage)&&nameCorrection){
+  state.customer.name=nameCorrection[1].trim();
+  state.stage='reviewCorrections';
+  return save(`Gracias por corregirme, ${state.customer.name}. Ya actualicé el nombre en esta prueba. ¿Quieres revisar el resumen actualizado?`);
+ }
+ if(['consent','reviewCorrections'].includes(state.stage)&&/\b(?:paquete|paquetes)\b/.test(t)&&/\b(?:no|cambia|cambiar|corrige|corregir|quiero|son|serian|mejor)\b/.test(t)){
+  const correctedQuantity=parseQuantity(text);
+  if(correctedQuantity){state.quantity=correctedQuantity;state.stage='reviewCorrections';
+   return save(`Entendido, actualicé la selección a ${correctedQuantity} paquete(s) en esta prueba. ¿Quieres revisar el resumen actualizado?`);}
+  state.stage='quantity';delete state.quantity;delete state.pendingQuantity;
+  return save('Claro, corrijamos la cantidad. ¿Cuántos paquetes quieres pedir?');
+ }
+ if(state.stage==='reviewCorrections'&&yes(text)){state.stage='consent';return save(summary());}
+ if(state.stage==='reviewCorrections'&&/^(?:no)[.!\s]*$/.test(t))return save('De acuerdo, no confirmaré los datos. Puedes decirme qué más quieres corregir cuando gustes.');
+ if(state.stage==='consent'&&/^(?:no|no confirmo|no es correcto)[.!\s]*$/.test(t))
+  return save('Entendido, no confirmaré los datos. ¿Qué parte quieres corregir?');
+ if((['consent','reviewCorrections','quantity'].includes(state.stage))&&(/ya te lo dije|ya te dije|no me entiendes|no entiendes/.test(t)||/^[😠😡😤]+$/u.test(text)))
+  return save('Perdón, no te entendí bien. Quiero corregirlo. ¿Qué dato entendí mal?');
+ if(state.stage==='name'&&!isQuestion&&/^(?:mio|mia|yo|si|no)$/i.test(t))return save('Para anotarlo bien, ¿cuál es tu nombre?');
  if(takeName)state.customer.name=takeName;
  if(takeEmail&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(takeEmail))state.customer.email=takeEmail.toLowerCase();
  if(takeAddress)state.customer.address=takeAddress;
@@ -124,7 +147,20 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  if(state.stage==='email'&&!isQuestion&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text))state.customer.email=text.toLowerCase();
  if(state.stage==='address'&&!isQuestion&&text.length>=8&&!/[?¿]/.test(text))state.customer.address=text;
  if(state.stage==='postal'&&!isQuestion&&/^\d{5}$/.test(text))state.customer.postalCode=text;
- const quantity=parseQuantity(text);
+ let quantity=parseQuantity(text);
+ if(state.stage==='quantity'&&!quantity&&/\b(?:semana|dias|dia)\b/.test(t)){
+  state.quantityTimeAmbiguous=true;
+  return save('Entiendo, buscas comida para la semana. ¿Cuántos paquetes te gustaría pedir? Si aún no sabes, puedo mostrarte el menú.');
+ }
+ if(state.stage==='quantity'&&state.pendingQuantity){
+  if(/\b(?:paquete|paquetes)\b/.test(t)||yes(text)){quantity=state.pendingQuantity;delete state.pendingQuantity;delete state.quantityTimeAmbiguous;}
+  else if(/\b(?:dia|dias|semana)\b/.test(t)||/^(?:no)[.!\s]*$/.test(t)){delete state.pendingQuantity;return save('Entendido, hablabas de días. ¿Cuántos paquetes quieres pedir? Si no lo sabes aún, puedo mostrarte el menú.');}
+  else return save('Para anotarlo bien, ¿te refieres a paquetes o a días?');
+ }
+ if(state.stage==='quantity'&&state.quantityTimeAmbiguous&&quantity&&/^\d{1,2}$/.test(t)){
+  state.pendingQuantity=quantity;
+  return save(`¿Te refieres a ${quantity} paquetes o a ${quantity} días?`);
+ }
  if(quantity&&!isQuestion&&(['discovery','quantity'].includes(state.stage)||/\b(cambia|mejor)\b/.test(t))){
   if(state.order)return handoff('change_registered_order','Para cambiar un pedido ya registrado, la persona responsable debe revisarlo. Conservé su referencia para evitar duplicarlo.');
   state.quantity=quantity;delete state.quote;state.stage='quantity';
@@ -148,7 +184,7 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
   else if(!state.customer.email){state.stage='email';next='¿Qué correo quieres usar para tu registro? No necesito tu contraseña.';}
   else if(!state.customer.address){state.stage='address';next='¿Cuál es la dirección de entrega: calle, número, colonia y municipio?';}
   else if(!state.customer.postalCode){state.stage='postal';next='¿Cuál es tu código postal?';}
-  else{state.stage='consent';next=`Prepararé ${state.quantity} paquete(s) para ${state.customer.name} en ${branch.name}. Correo: ${state.customer.email}. Dirección: ${state.customer.address}, CP ${state.customer.postalCode}. Usaremos el teléfono de este WhatsApp. ¿Confirmas estos datos y que los usemos para tu registro y pedido?`;}
+  else{state.stage='consent';next=summary();}
  }
  if(!next&&state.stage==='consent'){
   if(isQuestion)next='¿Confirmas los datos que revisamos para continuar?';
