@@ -1,4 +1,5 @@
 import {sealCredentials,openCredentials} from './security.mjs';
+import {replyText} from './reply-media.mjs';
 export function createCommerceStore(database,key,app) {
  const seal=(value,scope,id)=>sealCredentials(value,key,scope,id);
  const open=(value,scope,id)=>openCredentials(value,key,scope,id);
@@ -24,7 +25,7 @@ export function createCommerceStore(database,key,app) {
    return Promise.all(rows.map(async r=>{
     const message=await open(r.body,'orbita-inbound-v1',`${app}:${r.phone_number_id}:${r.provider_id}`);
     return {id:r.id,message,direction:r.direction,held:r.held,needsHuman:r.needs_human,delivery:r.delivery,
-      reply:r.reply ? (await open(r.reply,'orbita-reply-v1',r.id)).reply : null};
+      reply:r.reply ? replyText((await open(r.reply,'orbita-reply-v1',r.id)).reply) : null};
    }));
   },
   async inbox(tenant) {

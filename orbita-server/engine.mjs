@@ -2,6 +2,9 @@ import {openCredentials,canonicalPhone} from './security.mjs';
 import {classificationConfig} from './ai.mjs';
 import {createSankalpaConnector,prepareSankalpaReply} from './sankalpa.mjs';
 import {prepareCommerceReply,createCommerceConnector,commerceStoreFor} from './commerce.mjs';
+import {salesAllowedForJob,prepareSalesReply} from './sales.mjs';
+import {createSalesConnector} from './sales-connector.mjs';
+import {outboundReply} from './reply-media.mjs';
 export async function sendReply(job, reply, credentials, fetcher = fetch) {
   const age = Date.now()-Date.parse(job.message.receivedAt);
   if (!Number.isFinite(age) || age < -300000 || age >= 24*60*60*1000) return {status:'expired',error:'REPLY_WINDOW_CLOSED'};
@@ -12,7 +15,7 @@ export async function sendReply(job, reply, credentials, fetcher = fetch) {
     response = await fetcher(`https://graph.facebook.com/v25.0/${job.phoneNumberId}/messages`, {method:'POST',redirect:'error',
       headers:{Authorization:`Bearer ${credentials.metaAccessToken}`,'Content-Type':'application/json'},
       body:JSON.stringify({messaging_product:'whatsapp',recipient_type:'individual',to:canonicalPhone(job.message.from),
-        context:{message_id:job.message.id},type:'text',text:{preview_url:false,body:reply.slice(0,4000)}}),signal:AbortSignal.timeout(10000)});
+        context:{message_id:job.message.id},...outboundReply(reply)}),signal:AbortSignal.timeout(10000)});
     const result = await response.json();
     if (!response.ok) return {status:response.status >= 500?'unknown':'rejected',error:'META_SEND_FAILED',code:Number.isSafeInteger(result?.error?.code)?result.error.code:null};
     const messageId = result?.messages?.[0]?.id;
@@ -35,7 +38,12 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
     }
     const credentials = await openCredentials(job.credentials,env.ORBITA_CREDENTIAL_KEY,job.tenantId,job.channelId);
     let decision = job.decision;
-    if (!job.reply && !decision && !job.message.mediaId && job.message.body && job.jevEnabled) {
+    let reply=job.reply;
+    if(!reply&&job.connector==='sankalpa-guided-v1'&&await salesAllowedForJob(env,job,database)){
+      const result=await prepareSalesReply(job,{env,database,owner,fetcher,connector:createSalesConnector(credentials,fetcher),store:commerceStoreFor(database,env)});
+      if(result?.held)return {processed:1,status:'held'};reply=result?.reply;
+    }
+    if (!reply && !decision && !job.message.mediaId && job.message.body && job.jevEnabled) {
       const ai=classificationConfig(env);
       const estimateTokens=ai.estimate(job.message.body,job.tenantName);
       const request=ai.reserve(job.id,owner,estimateTokens);
@@ -46,7 +54,6 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
         await database.rpc('orbita_save_decision',{p_message_id:job.id,p_owner:owner,p_decision:decision});
       } else decision={status:'budget_blocked',provider:ai.provider,model:ai.model,routable:false};
     }
-    let reply = job.reply;
     if (!reply) {
       if (job.connector === 'sankalpa-guided-v1') {
         if (env.ORBITA_COMMERCE_ENABLED==='true') {
@@ -61,8 +68,8 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
         await database.rpc('orbita_handoff',{p_message_id:job.id,p_owner:owner});
         reply = 'Recibimos tu mensaje. Un responsable del negocio debe revisar esta conversación.';
       } else throw new Error('CONNECTOR_UNSUPPORTED');
-      await database.rpc('orbita_prepare_reply',{p_message_id:job.id,p_owner:owner,p_reply:reply});
     }
+    if(!job.reply)await database.rpc('orbita_prepare_reply',{p_message_id:job.id,p_owner:owner,p_reply:reply});
     // Persist the uncertain state before the irreversible provider call.
     if (job.coexistence) {
       if (!await database.rpc('orbita_coexistence_begin_send',{p_message_id:job.id,p_owner:owner})) return {processed:1,status:'held'};

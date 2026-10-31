@@ -1,5 +1,6 @@
 import * as jev from './jev.mjs';
 import * as openai from './openai.mjs';
+import {salesProfile} from './sales-profile.mjs';
 export function classificationConfig(env){
  const provider=env.ORBITA_AI_PROVIDER||'jev';
  if(provider==='jev')return {provider,model:jev.MODEL,
@@ -14,5 +15,7 @@ export function classificationConfig(env){
 export function presentAgentSummary(summary,env){
  const ai=classificationConfig(env);
  return {...summary,costBasis:'Estimación de IA: entrada de Jev y entrada/salida de OpenAI; excluye WhatsApp, alojamiento y facturación comercial.',
-  tenants:summary.tenants.map(t=>({...t,agents:t.agents.map(a=>({...a,aiProvider:ai.provider,model:ai.model}))}))};
+  tenants:summary.tenants.map(t=>{const profile=env.ORBITA_SALES_ENABLED==='true'&&ai.provider==='openai'?salesProfile(env,t.id):null;
+   return {...t,agents:t.agents.map(a=>({...a,aiProvider:ai.provider,model:ai.model,
+    ...(profile?{salesMode:profile.mode,pendingSetup:profile.pending||[],registrationReady:profile.mode==='production'&&!!profile.capabilities?.registration,ordersReady:profile.mode==='production'&&!!profile.capabilities?.orders}:{} )}))};})};
 }

@@ -1,0 +1,18 @@
+{
+  "version":1,
+  "businessName":"Sankalpa",
+  "ownerName":"Diana",
+  "mode":"test",
+  "faq":{
+    "funcionamiento":"Preparamos comida semanal en paquetes. Eliges la cantidad de paquetes y puedes agregar platillos adicionales. Revisamos la cobertura para la entrega y el pago antes de confirmar el pedido.",
+    "pago":"El recorrido contempla transferencia bancaria o un enlace de pago de Clip. Los datos y enlaces reales todavía están pendientes de configurar. Una captura de transferencia requiere revisión de Diana antes de confirmar el pago.",
+    "paquetes":"Los paquetes conservan todos sus platillos. Puedes agregar adicionales; quitar un platillo requiere que Diana revise la excepción."
+  },
+  "branches":[
+    {"id":"cdmx","name":"CDMX","aliases":["Ciudad de México","ciudad de mexico"],"address":null,"deliveryDays":null,"coverage":[],"menuImage":null},
+    {"id":"merida","name":"Mérida","aliases":["Merida"],"address":null,"deliveryDays":null,"coverage":[],"menuImage":null}
+  ],
+  "payments":{"bank":null,"holder":null,"clabe":null,"clipEnabled":false},
+  "capabilities":{"registration":false,"orders":false,"payments":false,"ownerNotification":false},
+  "pending":["Dirección y horarios por ciudad","Cobertura vigente y costos","Menú e imagen vigentes","Banco, titular y CLABE","Conexión de registro y creación de pedidos","Enlace de Clip","Destino de notificación de Diana"]
+}
