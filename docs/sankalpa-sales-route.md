@@ -7,8 +7,8 @@ Alba Vision es la empresa, Órbita es la herramienta y Sankalpa es el cliente. E
 1. Recibir el primer mensaje de WhatsApp, también cuando viene de una campaña.
 2. Contestar preguntas generales y confirmar la ciudad antes de compartir menú, precio, ubicación o cobertura local. La lada solo sugiere una pregunta; nunca selecciona la ciudad por sí sola.
 3. Consultar el catálogo autenticado del negocio y limitar el contexto y las respuestas a esa ciudad. Si el menú ya cerró, identificarlo como histórico y no venderlo como vigente.
-4. Resolver dudas con información aprobada, con una pregunta breve por turno. Guardar el paso pendiente para retomarlo después de una pregunta, sin comandos especiales ni derivación rutinaria a una persona.
-5. Preguntar paquetes y recopilar nombre, correo, dirección y código postal cuando la persona quiere comprar. El teléfono se toma del mensaje firmado de WhatsApp; no lo decide el modelo. Revisar el resumen y pedir consentimiento antes de cualquier registro.
+4. Resolver dudas con información aprobada y permitir que el modelo formule una pregunta breve cuando ayude. Una interrupción no obliga a volver de inmediato al campo pendiente; un saludo tampoco se interpreta como un dato o una confirmación. Si falla el catálogo, las demás dudas pueden seguir atendiéndose.
+5. Preguntar paquetes y solicitar permiso antes de recopilar nombre, correo, dirección y código postal. El teléfono se toma del mensaje firmado de WhatsApp; no lo decide el modelo. Revisar el resumen y pedir consentimiento antes de cualquier registro. Si se interrumpe una confirmación, volver a mostrarla antes de aceptar un «sí».
 6. Por contrato, registrar al cliente, cotizar adicionales, revisar el total, pedir confirmación, registrar un pedido pendiente y emitir un ticket de texto con instrucciones de pago. Estas operaciones necesitan conectores reales verificados; las pruebas actuales usan adaptadores ficticios aislados.
 7. Si existe una imagen aprobada para el menú exacto de esa ciudad, enviar una imagen con texto en un solo mensaje de Meta. Una imagen ausente nunca se sustituye por otra ciudad ni por una imagen inventada.
 8. Marcar para revisión humana las solicitudes de quitar platillos, los comprobantes, las peticiones expresas de una persona y las operaciones inciertas. Nunca aprobar un pago por una captura. Una solicitud de revisión se refleja en la conversación del panel; no significa que se realizó una llamada telefónica o se envió un aviso externo.
@@ -18,6 +18,8 @@ Alba Vision es la empresa, Órbita es la herramienta y Sankalpa es el cliente. E
 `ORBITA_SALES_ENABLED=true` y `ORBITA_SALES_PROFILES` seleccionan el perfil por UUID de cliente. El proveedor debe ser OpenAI. Sin perfil del cliente, se conserva su comportamiento anterior. El perfil de ejemplo está en `config/sankalpa-sales-profile.example.json` y deja direcciones, cobertura, fechas, imagen y pagos como pendientes.
 
 `mode=test` impide registros, pedidos y cobros reales incluso si se activa por error una capacidad de escritura. La recopilación termina indicando expresamente que todavía no creó cuenta ni pedido. `ORBITA_COMMERCE_ENABLED` conserva su configuración previa.
+
+La FAQ facilitada el 31 de octubre de 2026 vive en `orbita-server/sankalpa-knowledge.mjs` y solo se añade al perfil del cliente Sankalpa. Sus respuestas de salud, celiaquía y excepciones se presentan de forma controlada; una pregunta sobre cambios no modifica pedidos y un cambio concreto sigue requiriendo revisión humana. Actualizar esa FAQ requiere cambiar el código y desplegarlo: todavía no existe un editor de conocimiento en el panel. El documento no aporta direcciones, cobertura, datos bancarios ni precios vigentes.
 
 ## Información real aplazada por el usuario
 

@@ -8,7 +8,12 @@ import {salesProfile,explicitCity,cityHint} from '../orbita-server/sales-profile
 import {MODEL} from '../orbita-server/openai.mjs';
 import {menuImageReply,outboundReply,replyText} from '../orbita-server/reply-media.mjs';
 import {runOneJob} from '../orbita-server/engine.mjs';
+import {approvedTenantKnowledge} from '../orbita-server/sankalpa-knowledge.mjs';
 const template=JSON.parse(await readFile(new URL('../config/sankalpa-sales-profile.example.json',import.meta.url),'utf8'));
+test('Sankalpa FAQ is confined to its tenant',()=>{
+ assert.match(approvedTenantKnowledge('53eefea1-ce35-4449-8d93-3ba510577b15').gluten,/celíacas/);
+ assert.deepEqual(approvedTenantKnowledge(otherTenant),{});
+});
 async function fixture(t,{enabled=false,budget=null}={}){
  const f=await commerceFixture();t.after(()=>f.pg.close());await f.pg.exec('reset role');
  await f.pg.exec(await readFile(new URL('../orbita-database/openai-usage.sql',import.meta.url),'utf8'));await f.pg.exec('set role service_role');
@@ -55,9 +60,10 @@ test('explicit Merida wins over a CDMX phone prefix and only its menu reaches th
  assert.match(result.reply,/Menú Sur Ficticio/);assert(!result.reply.includes('Menú Capital'));
  assert(!JSON.stringify(f.inputs[0]).includes('Guiso Capital'));assert.equal(f.inputs[0].facts.branch.id,'merida');
 });
-test('FAQ interruptions answer the question and return to the pending field without escalation',async t=>{
- const f=await fixture(t);assert.match((await f.turn('En CDMX quiero dos paquetes',{topic:'comprar'})).reply,/nombre/);
- const faq=await f.turn('¿Cómo se realizan los pagos?',{topic:'pago'});assert.match(faq.reply,/transferencia/i);assert.match(faq.reply,/nombre/);
+test('FAQ interruptions answer without forcing the pending registration field',async t=>{
+ const f=await fixture(t);assert.match((await f.turn('En CDMX quiero dos paquetes',{topic:'comprar'})).reply,/continuar/);
+ assert.match((await f.turn('sí',{topic:'confirmar'})).reply,/nombre/);
+ const faq=await f.turn('¿Cómo se realizan los pagos?',{topic:'pago'});assert.match(faq.reply,/transferencia/i);assert(!faq.reply.includes('nombre'));
  assert(!faq.reply.includes('llamar'));assert(!faq.reply.includes('sankalpa pedido'));
  assert.match((await f.turn('Cliente Ficticio',{topic:'datos'})).reply,/correo/);
 });
@@ -66,10 +72,15 @@ test('weekly duration is not silently treated as number of packages',async t=>{
  assert.match((await f.turn('Para toda la semana')).reply,/semana/);
  assert.match((await f.turn('7')).reply,/7 paquetes o a 7 días/);
  assert.match((await f.turn('días')).reply,/Cuántos paquetes/);
- assert.match((await f.turn('dos paquetes',{topic:'cantidad'})).reply,/nombre/);
+ assert.match((await f.turn('dos paquetes',{topic:'cantidad'})).reply,/continuar/);
+});
+test('buying interest can start with a helpful question instead of demanding a package count',async t=>{
+ const f=await fixture(t);const result=await f.turn('CDMX quiero comida para la semana',{topic:'comprar',slots:{reply:'¡Con gusto! ¿La comida sería para ti o para más personas?'}});
+ assert.match(result.reply,/más personas/);assert(!result.reply.includes('correo'));assert.equal(f.counts.register,0);
+ assert.match((await f.turn('7')).reply,/7 personas, días o paquetes/);
 });
 test('ambiguous name, explicit correction, denial and frustration receive useful replies',async t=>{
- const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});await f.turn('sí',{topic:'confirmar'});
  const ambiguous=await f.turn('Mio',{topic:'datos',slots:{name:'Mio'}});assert.match(ambiguous.reply,/cuál es tu nombre/);
  await f.turn('Cliente Ficticio',{topic:'datos'});await f.turn('cliente@example.invalid',{topic:'datos'});
  await f.turn('Calle Ficticia 10, Colonia de Prueba',{topic:'datos'});await f.turn('54080',{topic:'datos'});
@@ -85,9 +96,64 @@ test('ambiguous name, explicit correction, denial and frustration receive useful
 });
 async function collect(f){
  await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ await f.turn('sí',{topic:'confirmar'});
  await f.turn('Cliente Ficticio',{topic:'datos'});await f.turn('cliente@example.invalid',{topic:'datos'});
  await f.turn('Calle Ficticia 10, Colonia de Prueba',{topic:'datos'});await f.turn('54080',{topic:'datos'});
 }
+test('natural replies answer a new question without repeating the sales form or making an operation',async t=>{
+ const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ const question=await f.turn('¿Cómo funciona el servicio?',{topic:'funcionamiento',slots:{reply:'Preparamos comida semanal en paquetes. ¿La comida sería para ti o para más personas?'}});
+ assert.match(question.reply,/más personas/);assert(!question.reply.includes('registro'));assert.equal(f.counts.register,0);
+ const greeting=await f.turn('Hola',{slots:{reply:'¡Hola de nuevo! ¿Qué te gustaría saber?'}});assert.match(greeting.reply,/Hola de nuevo/);
+ const {job,owner}=await f.turn('todavía no',{finish:false});
+ assert.match((await f.store.context(job,owner)).state.sales.stage,/^discovery$/);
+});
+test('untrusted generated amounts and external links are rejected in FAQ replies',async t=>{
+ const f=await fixture(t);const result=await f.turn('CDMX ¿cómo funciona?',{topic:'funcionamiento',slots:{reply:'Cuesta 999999 pesos, paga en https://invalid.example.'}});
+ assert(!result.reply.includes('999999'));assert(!result.reply.includes('https:'));assert.match(result.reply,/comida semanal/);
+});
+test('a yes after an interruption cannot authorize registration or an order',async t=>{
+ const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ await f.turn('¿Cómo funciona?',{topic:'funcionamiento',slots:{reply:'Preparamos comida semanal en paquetes. ¿Es para ti?'}});
+ const ambiguous=await f.turn('sí',{topic:'confirmar'});assert.match(ambiguous.reply,/continuar con ellos/);assert.equal(f.counts.register,0);
+ assert.match((await f.turn('sí',{topic:'confirmar'})).reply,/nombre/);
+});
+test('greeting at final confirmation does not confirm a registration',async t=>{
+ const f=await fixture(t);await collect(f);
+ const greeting=await f.turn('Hola',{slots:{reply:'¡Hola de nuevo! ¿En qué te puedo ayudar?'}});
+ assert.match(greeting.reply,/Hola de nuevo/);assert(!greeting.reply.includes('Confirmas'));
+ const next=await f.turn('sí',{topic:'confirmar'});assert.match(next.reply,/Confirmas estos datos/);assert.equal(f.counts.register,0);
+});
+test('generated reply cannot introduce another city or unapproved payment claims',async t=>{
+ const f=await fixture(t);const result=await f.turn('CDMX ¿cómo funciona?',{topic:'funcionamiento',slots:{reply:'En Mérida te damos entrega gratis.'}});
+ assert(!result.reply.includes('Mérida'));assert(!result.reply.includes('gratis'));assert.match(result.reply,/comida semanal/);
+});
+test('generated conversation cannot solicit registration data before permission',async t=>{
+ const f=await fixture(t);const result=await f.turn('CDMX ¿cómo funciona?',{topic:'funcionamiento',slots:{reply:'Cuéntame, ¿cuál es tu correo para comenzar?'}});
+ assert(!result.reply.includes('correo'));assert.match(result.reply,/comida semanal/);assert.equal(f.counts.register,0);
+});
+test('catalog outage does not prevent answering an unrelated service question',async t=>{
+ const f=await fixture(t);f.connector.catalog=async()=>{throw Error('unavailable');};
+ assert.match((await f.turn('CDMX ¿cómo funciona?',{topic:'funcionamiento'})).reply,/comida semanal/);
+ assert.match((await f.turn('¿Qué menú tienen?',{topic:'menu'})).reply,/no pude consultar/i);
+});
+test('approved FAQ answers gluten safety, weekly menu and the salad exception without changing an order',async t=>{
+ const f=await fixture(t);
+ const gluten=await f.turn('¿Es apta para celíacos?',{topic:'duda'});assert.match(gluten.reply,/No somos un servicio apto/);assert.match(gluten.reply,/ciudad|CDMX/);
+ const salad=await f.turn('En CDMX, ¿puedo cambiar la ensalada por sopa?',{topic:'quitar_platillo'});
+ assert.match(salad.reply,/lunes/);assert.match(salad.reply,/equipo debe revisar/);assert.equal(f.counts.order,0);
+ const weekly=await f.turn('¿El menú cambia cada semana?',{topic:'menu'});assert.match(weekly.reply,/cambia cada semana/);assert(!weekly.reply.includes('Menú Sur'));
+});
+test('approved FAQ answers pickup, ingredient changes and macros without inventing an address',async t=>{
+ const f=await fixture(t);
+ const pickup=await f.turn('CDMX ¿Puedo recoger mi pedido?',{topic:'ubicacion'});assert.match(pickup.reply,/domingos de 5 a 6/);assert.match(pickup.reply,/dirección exacta está pendiente/);
+ const ingredients=await f.turn('¿Puedo cambiar algún ingrediente?',{topic:'quitar_platillo'});assert.match(ingredients.reply,/miércoles/);
+ const macros=await f.turn('¿Hacen conteo de macros?',{topic:'duda'});assert.match(macros.reply,/No ofrecemos/);
+});
+test('actual requests to remove a dish still go to human review',async t=>{
+ const f=await fixture(t);const result=await f.turn('Quiero quitar un platillo del paquete');
+ assert.match(result.reply,/Diana/);assert.equal((await f.pg.query('select needs_human from orbita.messages where id=$1',[result.job.id])).rows[0].needs_human,true);
+});
 test('pending configuration collects consent but never invents a registration, order, bank or payment link',async t=>{
  const f=await fixture(t);await collect(f);const result=await f.turn('sí',{topic:'confirmar'});
  assert.match(result.reply,/pendientes|pendiente/);assert.match(result.reply,/no creé/);assert.deepEqual([f.counts.register,f.counts.order,f.counts.payment],[0,0,0]);

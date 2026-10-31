@@ -1,3 +1,4 @@
+import {approvedTenantKnowledge} from './sankalpa-knowledge.mjs';
 const safeText=(value,max=2000)=>typeof value==='string'&&value.length<=max&&!/[\u0000-\u0008]/.test(value);
 export function salesProfile(env,tenantId){
  let profiles;try{profiles=JSON.parse(env.ORBITA_SALES_PROFILES||'{}');}catch{throw Error('SALES_PROFILE_INVALID');}
@@ -7,7 +8,7 @@ export function salesProfile(env,tenantId){
   new Set(p.branches.map(b=>b.id)).size!==p.branches.length||!p.faq||typeof p.faq!=='object'||Array.isArray(p.faq)||
   Object.values(p.capabilities||{}).some(v=>typeof v!=='boolean')||
   !Object.values(p.faq).every(v=>safeText(v))||JSON.stringify(p).length>12000)throw Error('SALES_PROFILE_INVALID');
- return p;
+ return {...p,faq:{...p.faq,...approvedTenantKnowledge(tenantId)}};
 }
 export const normalize=value=>String(value||'').normalize('NFD').replace(/\p{M}/gu,'').toLowerCase().replace(/\s+/g,' ').trim();
 export function explicitCity(text,branches){
