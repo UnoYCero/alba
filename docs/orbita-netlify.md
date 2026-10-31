@@ -20,6 +20,8 @@ netlify deploy --prod --no-build --dir dist-orbita --functions netlify/functions
 
 Comprobar siempre la cuenta seleccionada antes de publicar. No conectar el build de la web Next.js de Alba Vision por error: el receptor y el panel son funciones autónomas. La configuración local de Netlify y las carpetas generadas están excluidas de Git.
 
+En Windows, instalar las dependencias físicas del servicio antes de empaquetar: no reutilizar `node_modules` ni OpenAI mediante uniones con otro checkout. El empaquetador de funciones puede omitir esas dependencias y producir un deploy que figure listo pero falle al arrancar. La publicación con OpenAI del 31 de octubre se preparó desde una copia independiente fuera del checkout, con las mismas funciones y archivos públicos, y una instalación física de `openai@7.47.0` y `@netlify/blobs@11.1.3`. Se comprobó el paquete ejecutable generado, además del estado de Netlify.
+
 ## Configuración de producción
 
 - `ORBITA_NETLIFY_SITE_ID`: ID del proyecto independiente autorizado.
