@@ -1,5 +1,5 @@
 import {openCredentials,canonicalPhone} from './security.mjs';
-import {classify,intentRequest,MODEL} from './jev.mjs';
+import {classificationConfig} from './ai.mjs';
 import {createSankalpaConnector,prepareSankalpaReply} from './sankalpa.mjs';
 import {prepareCommerceReply,createCommerceConnector,commerceStoreFor} from './commerce.mjs';
 export async function sendReply(job, reply, credentials, fetcher = fetch) {
@@ -36,13 +36,15 @@ export async function runOneJob(env, database, {fetcher=fetch}={}) {
     const credentials = await openCredentials(job.credentials,env.ORBITA_CREDENTIAL_KEY,job.tenantId,job.channelId);
     let decision = job.decision;
     if (!job.reply && !decision && !job.message.mediaId && job.message.body && job.jevEnabled) {
-      const estimateTokens = new TextEncoder().encode(JSON.stringify(intentRequest(job.message.body,job.tenantName))).length+512;
-      const reservation = await database.rpc('orbita_reserve_usage',{p_message_id:job.id,p_owner:owner,p_tokens:estimateTokens});
+      const ai=classificationConfig(env);
+      const estimateTokens=ai.estimate(job.message.body,job.tenantName);
+      const request=ai.reserve(job.id,owner,estimateTokens);
+      const reservation=await database.rpc(request.name,request.parameters);
       if (reservation) {
-        try { decision = await classify(job.message.body,job.tenantName,env.ORBITA_TYPESAFE_API_KEY,fetcher); }
-        catch { decision = {status:'unavailable',model:MODEL,routable:false}; }
+        try { decision=await ai.classify(job.message.body,job.tenantName,fetcher); }
+        catch { decision={status:'unavailable',provider:ai.provider,model:ai.model,routable:false}; }
         await database.rpc('orbita_save_decision',{p_message_id:job.id,p_owner:owner,p_decision:decision});
-      } else decision = {status:'budget_blocked',model:MODEL,routable:false};
+      } else decision={status:'budget_blocked',provider:ai.provider,model:ai.model,routable:false};
     }
     let reply = job.reply;
     if (!reply) {

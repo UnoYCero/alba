@@ -3,6 +3,7 @@ import {isPublishedProduction} from './netlify-runtime.mjs';
 import {commerceStoreFor,createCommerceConnector} from './commerce.mjs';
 import {portalPage} from './portal-page.mjs';
 import {publicOrigin} from './deployment.mjs';
+import {presentAgentSummary} from './ai.mjs';
 const ROOT='/orbita/panel',COOKIE='orbita_portal';
 const uuid=s=>/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(s||'');
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY',
@@ -57,7 +58,7 @@ export function createPortalHandler({env,database,fetcher=fetch,now=Date.now,pro
    const tenant=admin?(body?.tenantId||selected):s.account.tenantId,store=commerceStoreFor(database,env);
    if(route==='/session'&&request.method==='GET')return json({name:s.account.name,role:role(s.account),tenantId:admin?null:tenant,csrf:s.csrf,commerceEnabled});
    if(route==='/logout'&&request.method==='POST')return json({signedOut:true},200,{'Set-Cookie':cookie('')});
-   if(route==='/agents'&&request.method==='GET')return json(await database.rpc('orbita_management_summary',{p_tenant_id:admin?null:tenant}));
+   if(route==='/agents'&&request.method==='GET')return json(presentAgentSummary(await database.rpc('orbita_management_summary',{p_tenant_id:admin?null:tenant}),env));
    if(['/tenant-settings','/clients'].includes(route)&&!admin)return json({error:'ADMIN_REQUIRED'},403);
    if(route==='/clients'&&request.method==='POST') {
     if(Object.keys(body).some(k=>!['name','slug','budgetUsd'].includes(k))||typeof body.name!=='string'||!body.name.trim()||body.name.length>80||!/^[a-z0-9][a-z0-9_-]{0,39}$/.test(body.slug||'')||

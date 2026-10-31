@@ -45,3 +45,17 @@ Cuando no existen variables del nuevo destino se conserva el destino histórico 
 La migración reutiliza la base de Órbita. No requiere cambios de esquema ni de datos en la base de Sankalpa. Los trabajos usan las concesiones y controles de idempotencia existentes.
 
 El ERP debe configurar `ORBITA_PLATFORM_ORIGIN` con el origen nuevo después de publicar su proxy compatible. Esto cambia la dirección del proveedor y no concede al cliente credenciales de administrador.
+
+## Interpretación con OpenAI
+
+`ORBITA_AI_PROVIDER=openai` selecciona OpenAI para interpretar los mensajes en los canales con IA habilitada. `ORBITA_OPENAI_API_KEY` se guarda como secreto de producción de este proyecto; nunca lleva prefijo público. Se usa el SDK oficial y la Responses API directamente contra OpenAI, con `store:false`, sin herramientas, sin reintentos automáticos y con un tiempo máximo de 15 segundos.
+
+El modelo fijado es `gpt-4.1-mini-2025-04-14`. Se comprobó su acceso y clasificación real el 31 de octubre de 2026. La documentación lo marca como deprecated: revisar la fecha de retirada y validar un reemplazo antes de actualizarlo. No cambiar el modelo sin actualizar también sus tarifas y las pruebas.
+
+Solo se envían el texto entrante y el nombre del negocio: no se adjuntan teléfono, nombre del contacto, historial, claves ni registros del ERP. El texto podría contener datos personales escritos por la persona. El aviso de privacidad enumera OpenAI y TypeSafe. `store:false` no equivale a retención cero del proveedor.
+
+Antes de activar OpenAI se aplica `orbita-database/openai-usage.sql` **exclusivamente al proyecto de Órbita**. Añade una reserva privada que considera entrada y salida y conserva los límites globales y por cliente. El consumo real ajusta la reserva una sola vez. Se estima sin descuento de caché a USD 0.40/1M de entrada y USD 1.60/1M de salida; no representa una factura. Las reservas sin uso verificable permanecen conservadoras.
+
+El campo histórico `jev_enabled` conserva su nombre por compatibilidad, pero controla la IA seleccionada. El panel muestra el modelo configurado y etiquetas generales de IA. Sin `ORBITA_AI_PROVIDER` se conserva Jev; para volver a él se guarda `ORBITA_AI_PROVIDER=jev` y se vuelve a publicar, conservando su clave existente.
+
+OpenAI produce únicamente intención y confianza; no crea texto comercial, precios, pedidos ni verificaciones de pago. Las respuestas usan los conectores y reglas existentes. Un fallo, rechazo o presupuesto insuficiente conserva la atención guiada. La base de Sankalpa no requiere ninguna modificación.
