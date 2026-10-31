@@ -150,6 +150,41 @@ test('approved FAQ answers pickup, ingredient changes and macros without inventi
  const ingredients=await f.turn('¿Puedo cambiar algún ingrediente?',{topic:'quitar_platillo'});assert.match(ingredients.reply,/miércoles/);
  const macros=await f.turn('¿Hacen conteo de macros?',{topic:'duda'});assert.match(macros.reply,/No ofrecemos/);
 });
+test('after a pickup question the agent offers the selected city menu and treats yes only as a menu request',async t=>{
+ const f=await fixture(t);const pickup=await f.turn('CDMX ¿Puedo recoger mi pedido?',{topic:'ubicacion'});
+ assert.match(pickup.reply,/domingos de 5 a 6/);assert.match(pickup.reply,/conocer el menú de CDMX/);
+ const menu=await f.turn('sí',{topic:'confirmar'});assert.match(menu.reply,/Menú Capital Ficticio/);assert(!menu.reply.includes('Menú Sur'));
+ assert.equal(f.counts.register,0);assert.equal(f.counts.order,0);
+ assert.match(menu.reply,/preparar una selección/);
+ assert.match((await f.turn('sí',{topic:'confirmar'})).reply,/Cuántos paquetes/);
+ const count=await f.turn('2',{topic:'cantidad'});assert.match(count.reply,/continuar con ellos/);assert.equal(f.counts.register,0);
+});
+test('declining a menu suggestion is respected and never treated as purchase consent',async t=>{
+ const f=await fixture(t);await f.turn('CDMX ¿Puedo recoger mi pedido?',{topic:'ubicacion'});
+ assert.match((await f.turn('No gracias')).reply,/sin problema/);
+ const answer=await f.turn('¿Es vegetariana?',{topic:'duda'});assert(!answer.reply.includes('conocer el menú'));
+ assert.equal(f.counts.register,0);assert.equal(f.counts.order,0);
+});
+test('food safety questions and their follow-up do not trigger a sales suggestion',async t=>{
+ const f=await fixture(t);const gluten=await f.turn('CDMX ¿Es apta para celíacos?',{topic:'duda'});
+ assert.match(gluten.reply,/No somos un servicio apto/);assert(!gluten.reply.includes('conocer el menú'));
+ const pickup=await f.turn('¿Puedo recoger mi pedido?',{topic:'ubicacion'});assert(!pickup.reply.includes('conocer el menú'));
+ for(let i=0;i<4;i++)assert(!/conocer los paquetes|preparar una selección/i.test((await f.turn('Hola')).reply));
+ const injected=await f.turn('¿Cómo funciona?',{topic:'funcionamiento',slots:{reply:'Preparamos comida semanal. ¿Quieres comprar un paquete?'}});
+ assert(!/comprar un paquete/i.test(injected.reply));
+});
+test('a menu suggestion in a pending confirmation never counts as registration or order consent',async t=>{
+ const f=await fixture(t);await collect(f);
+ const question=await f.turn('¿Puedo recoger mi pedido?',{topic:'ubicacion'});assert.match(question.reply,/conocer el menú/);
+ const menu=await f.turn('sí',{topic:'confirmar'});assert.match(menu.reply,/Menú Capital/);assert.equal(f.counts.register,0);assert.equal(f.counts.order,0);
+ assert.match((await f.turn('sí',{topic:'confirmar'})).reply,/Confirmas estos datos/);assert.equal(f.counts.register,0);
+});
+test('an untracked model suggestion cannot make an ambiguous yes start a purchase',async t=>{
+ const f=await fixture(t);const first=await f.turn('CDMX hola',{slots:{reply:'¿Quieres comprar un paquete?'}});
+ assert.match(first.reply,/conocer el menú/);assert(!first.reply.includes('comprar un paquete'));
+ const answer=await f.turn('sí',{topic:'confirmar'});assert.match(answer.reply,/Menú Capital/);assert(!answer.reply.includes('Cuántos paquetes'));
+ assert.equal(f.counts.register,0);assert.equal(f.counts.order,0);
+});
 test('actual requests to remove a dish still go to human review',async t=>{
  const f=await fixture(t);const result=await f.turn('Quiero quitar un platillo del paquete');
  assert.match(result.reply,/Diana/);assert.equal((await f.pg.query('select needs_human from orbita.messages where id=$1',[result.job.id])).rows[0].needs_human,true);

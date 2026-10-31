@@ -13,6 +13,8 @@ Alba Vision es la empresa, Órbita es la herramienta y Sankalpa es el cliente. E
 7. Si existe una imagen aprobada para el menú exacto de esa ciudad, enviar una imagen con texto en un solo mensaje de Meta. Una imagen ausente nunca se sustituye por otra ciudad ni por una imagen inventada.
 8. Marcar para revisión humana las solicitudes de quitar platillos, los comprobantes, las peticiones expresas de una persona y las operaciones inciertas. Nunca aprobar un pago por una captura. Una solicitud de revisión se refleja en la conversación del panel; no significa que se realizó una llamada telefónica o se envió un aviso externo.
 
+Cuando corresponde, después de responder una duda se ofrece el menú de la ciudad confirmada y, después de mostrarlo, se puede ofrecer preparar una selección. Se respeta el rechazo. La aceptación del menú no autoriza registro ni pedido: cada paso tiene su propia confirmación. Ante posibles alergias, celiaquía o incompatibilidades se desactivan las propuestas comerciales proactivas en esa conversación. En modo de prueba, un menú cerrado siempre se identifica como referencia histórica.
+
 ## Qué se puede activar con la configuración actual
 
 `ORBITA_SALES_ENABLED=true` y `ORBITA_SALES_PROFILES` seleccionan el perfil por UUID de cliente. El proveedor debe ser OpenAI. Sin perfil del cliente, se conserva su comportamiento anterior. El perfil de ejemplo está en `config/sankalpa-sales-profile.example.json` y deja direcciones, cobertura, fechas, imagen y pagos como pendientes.

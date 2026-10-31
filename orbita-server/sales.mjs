@@ -49,6 +49,7 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  let revision=context.revision;const all=structuredClone(context.state),state=all.sales||{stage:'discovery',customer:{},extras:[],history:[],operations:{}};
  all.sales=state;const text=job.message.body?.trim()||'',t=normalize(text);
  if(state.lastMessageId===job.message.id&&state.lastReply)return {reply:state.lastReply};
+ state.conversationTurn=(state.conversationTurn||0)+1;
  const persist=async()=>{await store.commit(job,owner,revision,all);revision++;};
  const save=async reply=>{
   state.lastMessageId=job.message.id;state.lastReply=reply;
@@ -80,6 +81,41 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  const branch=profile.branches.find(b=>b.id===state.cityId);
  const facts={...publicSalesFacts(profile,state.cityId),menu:menu?{id:menu.id,name:menu.name,priceMxn:menu.priceMxn,status:menu.status,
   dishes:(menu.dishIds||[]).map(id=>catalog.dishes.find(d=>d.id===id)?.name).filter(Boolean)}:null};
+ const menuText=()=>`${menu.status!=='abierto'?'Menú anterior de referencia para esta prueba':'Menú disponible'} de ${branch.name}: ${menu.name}, ${money(menu.priceMxn)} por paquete.${facts.menu.dishes.length?' Incluye '+facts.menu.dishes.join(', ')+'.':''}${menu.status!=='abierto'?' Aún no puedo aceptar pedidos reales con este menú.':''}`;
+ const sensitivity=/celiac|gluten|alerg|anafil|diabet|enfermed|medic|intoleran/;
+ // Preserve only a generic opt-out from proactive offers, not a diagnosis.
+ if(sensitivity.test([text,...(state.history||[]).filter(h=>h.role==='user').map(h=>h.text)].map(normalize).join(' ')))state.suppressProactiveSales=true;
+ const recentSensitive=()=>state.suppressProactiveSales===true;
+ const safeGenerated=reply=>{const candidate=supportedReply(reply,facts,profile.branches);
+  if(candidate&&/[?¿]/.test(candidate)&&/\b(?:quieres|gustaria|deseas|te interesa|te muestro|te envio)\b.*\b(?:pedido|pedir|compra|comprar|paquete|menu|seleccion)\b/i.test(normalize(candidate)))return null;
+  return candidate&&recentSensitive()&&/[?¿]/.test(candidate)&&/pedido|pedir|compra|comprar|paquete|menu/i.test(normalize(candidate))?null:candidate;};
+ const offerPurchase=reply=>{
+  if(!menu||!branch||state.stage!=='discovery'||recentSensitive()||state.purchaseOfferDeclined||state.order||menu.status!=='abierto'&&profile.mode!=='test')return reply;
+  state.offeredPurchase={cityId:state.cityId,menuId:menu.id};
+  return `${reply}\n\n${profile.mode==='test'?'¿Te gustaría probar cómo preparar una selección?':'¿Te gustaría preparar una selección?'}`;
+ };
+ if(state.offeredPurchase){
+  const offered=state.offeredPurchase;delete state.offeredPurchase;
+  if(yes(text)){
+   if(offered.cityId!==state.cityId||!menu||offered.menuId!==menu.id||menu.status!=='abierto'&&profile.mode!=='test')return save('El menú que íbamos a revisar ya no está disponible. Puedo ayudarte con otra duda.');
+   state.stage='quantity';delete state.quantity;delete state.quote;state.extras=[];
+   return save('¡Claro! ¿Cuántos paquetes te gustaría preparar?');
+  }
+  if(/^(?:no|no gracias|ahora no|todavia no)[.!\s]*$/.test(t)){state.purchaseOfferDeclined=true;return save('Claro, sin problema. ¿Qué más te gustaría saber?');}
+ }
+ if(state.offeredMenu){
+  const offered=state.offeredMenu;delete state.offeredMenu;
+  if(yes(text)){
+   if(offered.cityId!==state.cityId||!menu||offered.menuId!==menu.id||menu.status!=='abierto'&&profile.mode!=='test')return save('El menú que íbamos a revisar ya no está disponible. Puedo ayudarte con otra duda.');
+   const reply=offerPurchase(menuText());return save(branch.menuImage?.menuId===menu.id?menuImageReply(branch.menuImage.url,reply):reply);
+  }
+  if(/^(?:no|no gracias|ahora no|todavia no)[.!\s]*$/.test(t)){state.menuOfferDeclined=true;return save('Claro, sin problema. ¿Qué más te gustaría saber?');}
+ }
+ const offerMenu=answer=>{
+  if(!answer||/[?¿]/.test(answer)||recentSensitive()||state.menuOfferDeclined||!menu||!branch||state.order||['payment','confirmOrder','ready','review'].includes(state.stage)||menu.status!=='abierto'&&profile.mode!=='test'||state.conversationTurn-(state.lastMenuOfferTurn||-99)<3)return answer;
+  state.offeredMenu={cityId:state.cityId,menuId:menu.id};state.lastMenuOfferTurn=state.conversationTurn;
+  return `${answer}\n\n${menu.status==='abierto'?`¿Te gustaría conocer el menú de ${branch.name}?`:`¿Te gustaría ver el menú anterior de ${branch.name} como referencia para esta prueba?`}`;
+ };
  let plan,decision=job.decision;
  if(decision?.salesPlan)plan=await openCredentials(decision.salesPlan,env.ORBITA_CREDENTIAL_KEY,'orbita-sales-plan-v1',job.id);
  if(!plan){
@@ -104,7 +140,7 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  if(knowledge&&asksPolicy&&!directChange){
   if(['offerRegistration','consent','confirmOrder'].includes(state.stage))state.confirmationInterrupted=true;
   if(!state.cityId){state.pendingCityHint=cityHint(job.message.from,profile.branches);return save(`${knowledge}\n\n${cityQuestion(profile,job.message.from)}`);}
-  return save(knowledge);
+  return save(offerMenu(knowledge));
  }
  // Explicit requests win over model wording and cannot be converted into a sale.
  const simple=fallbackPlan(text);
@@ -118,14 +154,13 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  }
  const askCity=()=>{if(state.rejectedCityHint)return '¿En qué ciudad necesitas la entrega?';state.pendingCityHint=cityHint(job.message.from,profile.branches);return cityQuestion(profile,job.message.from);};
  const faq=()=>{
-  if(plan.topic==='funcionamiento')return supportedReply(plan.reply,facts,profile.branches)||profile.faq.funcionamiento;
-  if(plan.topic==='duda')return supportedReply(plan.reply,facts,profile.branches)||'Ese dato todavía está pendiente de cargar en la información del negocio.';
+  if(plan.topic==='funcionamiento')return safeGenerated(plan.reply)||profile.faq.funcionamiento;
+  if(plan.topic==='duda')return safeGenerated(plan.reply)||'Ese dato todavía está pendiente de cargar en la información del negocio.';
   if(plan.topic==='pago')return profile.faq.pago||'Los datos de pago todavía están pendientes de configurar.';
   if(plan.topic==='ubicacion')return branch?.address?`Para ${branch.name}: ${branch.address}.`:(branch?`La dirección exacta de ${branch.name} todavía está pendiente de cargar.`:'');
   if(plan.topic==='cobertura')return branch?.coverage?.length?`En ${branch.name} tenemos registradas estas zonas: ${branch.coverage.map(z=>typeof z==='string'?z:z.name).join(', ')}.`:(branch?`La cobertura exacta de ${branch.name} todavía está pendiente de cargar.`:'');
   if((plan.topic==='precio'||plan.topic==='menu')&&menu){
-   const historical=menu.status!=='abierto';
-   return `${historical?'Menú anterior de referencia para esta prueba':'Menú disponible'} de ${branch.name}: ${menu.name}, ${money(menu.priceMxn)} por paquete.${facts.menu.dishes.length?' Incluye '+facts.menu.dishes.join(', ')+'.':''}${historical?' Aún no puedo aceptar pedidos reales con este menú.':''}`;
+   return menuText();
   }
   if(plan.topic==='menu'||plan.topic==='precio')return branch?(catalogUnavailable?'En este momento no pude consultar el menú. Puedes volver a preguntarme en un momento.':`No tengo un menú disponible para ${branch.name} en este momento.`):'';
   return '';
@@ -139,10 +174,10 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
  const isQuestion=faqTopics.has(plan.topic);
  // Interruptions do not advance the order or reinterpret ordinary conversation
  // as a name, address, confirmation, or other pending form field.
- const conversational=supportedReply(plan.reply,facts,profile.branches);
+ const conversational=safeGenerated(plan.reply);
  const interrupt=async reply=>{if(['offerRegistration','consent','confirmOrder'].includes(state.stage))state.confirmationInterrupted=true;return save(reply);};
  if(state.stage!=='discovery'&&isQuestion&&!(state.stage==='payment'&&/clip|tarjeta/.test(t)&&profile.capabilities?.payments))
-  return interrupt(answer||conversational||'No tengo ese dato confirmado todavía. ¿Hay algo más del servicio que quieras saber?');
+  return interrupt(['menu','precio'].includes(plan.topic)?answer:offerMenu(answer||conversational||'No tengo ese dato confirmado todavía. ¿Hay algo más del servicio que quieras saber?'));
  if(state.stage!=='discovery'&&/^(hola|buenos dias|buenas tardes|buenas noches|gracias|muchas gracias)[!.\s]*$/.test(t))
   return interrupt(conversational||(/gracias/.test(t)?'¡Con gusto! ¿Qué más te gustaría saber?':'¡Hola de nuevo! ¿En qué te puedo ayudar?'));
  const takeName=safeField(plan.name,text,80),takeEmail=safeField(plan.email,text,254),takeAddress=safeField(plan.address,text,500);
@@ -203,11 +238,12 @@ export async function prepareSalesReply(job,{env,database,owner,connector,store,
   if(state.order)return handoff('change_registered_order','Para cambiar un pedido ya registrado, la persona responsable debe revisarlo. Conservé su referencia para evitar duplicarlo.');
   state.quantity=quantity;delete state.quote;state.stage='quantity';
  }
- const start=['comprar','cantidad'].includes(plan.topic)||(state.stage==='discovery'&&yes(text)&&!cityJustSelected);
+ const start=['comprar','cantidad'].includes(plan.topic);
  if(state.stage==='discovery'&&start){state.stage='quantity';if(!quantity&&/\b(?:semana|dias|dia)\b/.test(t))state.quantityTimeAmbiguous=true;}
  if(state.stage==='discovery'){
-  const next=menu?(menu.status==='abierto'?'¿Te gustaría conocer los paquetes?':profile.mode==='test'?'Si quieres, podemos explorar el menú de prueba.':'¿Te gustaría saber cómo funciona?'):'¿Qué te gustaría saber del servicio?';
-  let reply=answer||conversational||[`Con gusto te ayudo con ${profile.businessName} en ${branch.name}.`,next].join('\n\n');
+  const greeting=`Con gusto te ayudo con ${profile.businessName} en ${branch.name}.`;
+  let reply=answer?(plan.topic==='menu'?offerPurchase(answer):plan.topic==='precio'?answer:offerMenu(answer)):conversational||offerMenu(greeting);
+  if(reply===greeting)reply+=' ¿Qué te gustaría saber del servicio?';
   if(plan.topic==='menu'&&menu&&branch.menuImage?.menuId===menu.id)reply=menuImageReply(branch.menuImage.url,reply);
   return save(reply);
  }
