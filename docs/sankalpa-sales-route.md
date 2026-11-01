@@ -15,6 +15,8 @@ Alba Vision es la empresa, Órbita es la herramienta y Sankalpa es el cliente. E
 
 Cuando corresponde, después de responder una duda se ofrece el menú de la ciudad confirmada y, después de mostrarlo, se puede ofrecer preparar una selección. Se respeta el rechazo. La aceptación del menú no autoriza registro ni pedido: cada paso tiene su propia confirmación. Ante posibles alergias, celiaquía o incompatibilidades se desactivan las propuestas comerciales proactivas en esa conversación. En modo de prueba, un menú cerrado siempre se identifica como referencia histórica.
 
+Las consultas explícitas de menú prevalecen sobre etiquetas del modelo que no correspondan. Si no se dispone de ingredientes confirmados para un platillo, se indica esa ausencia en lugar de ofrecer detalles desconocidos. Una frase ambigua sobre pedir o quitar un producto se aclara antes de enviar el chat a revisión. La opción de empezar de nuevo descarta solamente la selección no confirmada y conserva el historial; no reinicia operaciones con resultado incierto.
+
 ## Qué se puede activar con la configuración actual
 
 `ORBITA_SALES_ENABLED=true` y `ORBITA_SALES_PROFILES` seleccionan el perfil por UUID de cliente. El proveedor debe ser OpenAI. Sin perfil del cliente, se conserva su comportamiento anterior. El perfil de ejemplo está en `config/sankalpa-sales-profile.example.json` y deja direcciones, cobertura, fechas, imagen y pagos como pendientes.

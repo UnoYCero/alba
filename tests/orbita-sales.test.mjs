@@ -137,6 +137,57 @@ test('catalog outage does not prevent answering an unrelated service question',a
  assert.match((await f.turn('CDMX ¿cómo funciona?',{topic:'funcionamiento'})).reply,/comida semanal/);
  assert.match((await f.turn('¿Qué menú tienen?',{topic:'menu'})).reply,/no pude consultar/i);
 });
+test('explicit requests for packages and soup override an unrelated payment label',async t=>{
+ const f=await fixture(t);f.catalog.menus[0].status='cerrado';
+ const packages=await f.turn('CDMX quisiera conocer los paquetes que tienen',{topic:'pago'});
+ assert.match(packages.reply,/Menú anterior de referencia/);assert(!packages.reply.includes('transferencia bancaria'));
+ const soup=await f.turn('Quiero sopa',{topic:'pago'});assert.match(soup.reply,/Menú anterior de referencia/);assert(!soup.reply.includes('Menú disponible'));
+});
+test('soup ingredient questions do not promise missing details or claim a historical menu is current',async t=>{
+ const f=await fixture(t);f.catalog.menus[0].status='cerrado';
+ const details=await f.turn('CDMX ¿De qué son las sopas?',{topic:'duda',slots:{reply:'El menú actual tiene sopa de verduras. Te comparto ingredientes.'}});
+ assert.match(details.reply,/No tengo confirmados los ingredientes/);assert(!details.reply.includes('menú actual'));
+ const unsafe=await f.turn('Háblame de la comida',{topic:'funcionamiento',slots:{reply:'El menú actual tiene sopas deliciosas.'}});
+ assert(!unsafe.reply.includes('menú actual'));assert.match(unsafe.reply,/comida semanal/);
+});
+test('an ingredient question interrupts confirmation and cannot authorize registration',async t=>{
+ const f=await fixture(t);await collect(f);
+ assert.match((await f.turn('¿Qué ingredientes lleva la sopa?')).reply,/No tengo confirmados/);
+ const next=await f.turn('sí',{topic:'confirmar'});assert.match(next.reply,/Confirmas estos datos/);assert.equal(f.counts.register,0);
+});
+test('ambiguous removal intent is clarified without pausing the conversation',async t=>{
+ const f=await fixture(t);await f.turn('CDMX ¿qué menú tienen?',{topic:'menu'});
+ const ambiguous=await f.turn('Lo quieto',{topic:'quitar_platillo'});
+ assert.match(ambiguous.reply,/quitar un platillo.*quieres pedirlo/);
+ assert.equal((await f.pg.query('select needs_human from orbita.messages where id=$1',[ambiguous.job.id])).rows[0].needs_human,false);
+ const next=await f.turn('sí',{topic:'confirmar'});assert(!next.reply.includes('Cuántos paquetes'));
+ assert.equal(f.counts.order,0);
+});
+test('asking to know everything starts with service information and offers the historical menu honestly',async t=>{
+ const f=await fixture(t);f.catalog.menus[0].status='cerrado';await f.turn('CDMX ¿cómo funciona?',{topic:'funcionamiento',slots:{reply:'Preparamos comida semanal. ¿Qué te gustaría saber?'}});
+ const answer=await f.turn('Todo');assert.match(answer.reply,/comida semanal/);assert.match(answer.reply,/menú anterior.*referencia/);
+ const correction=await f.turn('Todo dije');assert.match(correction.reply,/Perdón/);assert.match(correction.reply,/comida semanal/);
+ assert.equal(f.counts.order,0);
+});
+test('restart clears an uncommitted selection but keeps history and does not create an order',async t=>{
+ const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ const result=await f.turn('Hola! Empezamos de nuevo',{topic:'otro',finish:false});
+ assert.match(result.reply,/empezamos de nuevo/i);assert.match(result.reply,/ciudad/i);
+ const state=(await f.store.context(result.job,result.owner)).state.sales;assert.equal(state.stage,'discovery');assert.equal(state.quantity,undefined);assert(state.history.length>=2);assert.equal(f.counts.order,0);
+});
+test('restart after a completed registration requires review to avoid repeating it',async t=>{
+ const f=await fixture(t,{enabled:true});await collect(f);await f.turn('sí',{topic:'confirmar'});
+ assert.equal(f.counts.register,1);
+ const result=await f.turn('Empezamos de nuevo');assert.match(result.reply,/revisar la operación anterior/);
+ assert.equal(f.counts.register,1);assert.equal((await f.pg.query('select needs_human from orbita.messages where id=$1',[result.job.id])).rows[0].needs_human,true);
+});
+test('empty unsupported messages receive a clear request for text',async t=>{
+ const f=await fixture(t);const result=await f.turn('');assert.match(result.reply,/No pude leer ese mensaje/);assert.equal(f.counts.planner,0);
+});
+test('feedback on an unwanted reply is acknowledged rather than ignored',async t=>{
+ const f=await fixture(t);await f.turn('CDMX hola');
+ const result=await f.turn('No digas eso');assert.match(result.reply,/Entendido, disculpa/i);assert.equal(f.counts.order,0);
+});
 test('approved FAQ answers gluten safety, weekly menu and the salad exception without changing an order',async t=>{
  const f=await fixture(t);
  const gluten=await f.turn('¿Es apta para celíacos?',{topic:'duda'});assert.match(gluten.reply,/No somos un servicio apto/);assert.match(gluten.reply,/ciudad|CDMX/);
@@ -188,6 +239,14 @@ test('an untracked model suggestion cannot make an ambiguous yes start a purchas
 test('actual requests to remove a dish still go to human review',async t=>{
  const f=await fixture(t);const result=await f.turn('Quiero quitar un platillo del paquete');
  assert.match(result.reply,/Diana/);assert.equal((await f.pg.query('select needs_human from orbita.messages where id=$1',[result.job.id])).rows[0].needs_human,true);
+});
+test('a manually resumed review allows conversation to continue without replaying an operation',async t=>{
+ const f=await fixture(t);await f.turn('CDMX quiero dos paquetes',{topic:'comprar'});
+ await f.turn('Quiero quitar un platillo del paquete');
+ await f.database.rpc('orbita_commerce_hold',{p_tenant_id:tenant,p_channel_id:channel,p_sender:sender,p_held:false});
+ const resumed=await f.turn('Hola',{finish:false});assert(!resumed.held);
+ assert.equal((await f.store.context(resumed.job,resumed.owner)).state.sales.stage,'discovery');
+ assert.equal(f.counts.order,0);assert.equal(f.counts.register,0);
 });
 test('pending configuration collects consent but never invents a registration, order, bank or payment link',async t=>{
  const f=await fixture(t);await collect(f);const result=await f.turn('sí',{topic:'confirmar'});
