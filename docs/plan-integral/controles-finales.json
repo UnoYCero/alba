@@ -1,0 +1,21 @@
+{
+  "portada320": {
+    "es": {
+      "menu": [
+        44,
+        44
+      ],
+      "overflow": 0
+    },
+    "en": {
+      "menu": [
+        44,
+        44
+      ],
+      "overflow": 0
+    }
+  },
+  "cortina": {
+    "nota": "El range1x1 está recortado visualmente para teclado. La figura data-cortina completa es la superficie de puntero y el tirador mide44px."
+  }
+}

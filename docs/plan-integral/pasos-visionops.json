@@ -1,0 +1,38 @@
+[
+  {
+    "alto": 354.7875061035156,
+    "etapa": "inicio",
+    "inactivas": true,
+    "overflow": 0
+  },
+  {
+    "alto": 114.875,
+    "etapa": "detecta",
+    "inactivas": true
+  },
+  {
+    "alto": 90.8499984741211,
+    "etapa": "recorridos",
+    "inactivas": true
+  },
+  {
+    "alto": 90.8499984741211,
+    "etapa": "zonas",
+    "inactivas": true
+  },
+  {
+    "alto": 90.8499984741211,
+    "etapa": "patrones",
+    "inactivas": true
+  },
+  {
+    "alto": 90.8499984741211,
+    "etapa": "hallazgo",
+    "inactivas": true
+  },
+  {
+    "alto": 90.8499984741211,
+    "etapa": "tablero",
+    "inactivas": true
+  }
+]

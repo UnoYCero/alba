@@ -1,0 +1,120 @@
+[
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/integral.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/visionops.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/space.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/labs.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/ronda24.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/space-3d.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/visionops-3d.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "node",
+      "--check",
+      "public/visionops-camino.js"
+    ],
+    "salida": "",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "python",
+      "scripts/version-en/revisar_en.py"
+    ],
+    "salida": "Sin texto en espa�ol en las p�ginas en ingl�s.\n",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "python",
+      "docs/plan-integral/verificar_archivos.py"
+    ],
+    "salida": "{\n  \"paginas\": [\n    {\n      \"ruta\": \"index.html\",\n      \"h1\": 1,\n      \"ids\": 27,\n      \"recursos\": 66\n    },\n    {\n      \"ruta\": \"visionops/index.html\",\n      \"h1\": 1,\n      \"ids\": 15,\n      \"recursos\": 27\n    },\n    {\n      \"ruta\": \"AlbaSpace/index.html\",\n      \"h1\": 1,\n      \"ids\": 25,\n      \"recursos\": 22\n    },\n    {\n      \"ruta\": \"AlbaLabs/index.html\",\n      \"h1\": 1,\n      \"ids\": 11,\n      \"recursos\": 38\n    },\n    {\n      \"ruta\": \"surfaceops/index.html\",\n      \"h1\": 1,\n      \"ids\": 8,\n      \"recursos\": 18\n    },\n    {\n      \"ruta\": \"en/index.html\",\n      \"h1\": 1,\n      \"ids\": 27,\n      \"recursos\": 66\n    },\n    {\n      \"ruta\": \"en/visionops/index.html\",\n      \"h1\": 1,\n      \"ids\": 15,\n      \"recursos\": 27\n    },\n    {\n      \"ruta\": \"en/albaspace/index.html\",\n      \"h1\": 1,\n      \"ids\": 25,\n      \"recursos\": 22\n    },\n    {\n      \"ruta\": \"en/albalabs/index.html\",\n      \"h1\": 1,\n      \"ids\": 11,\n      \"recursos\": 38\n    },\n    {\n      \"ruta\": \"en/surfaceops/index.html\",\n      \"h1\": 1,\n      \"ids\": 8,\n      \"recursos\": 18\n    }\n  ],\n  \"frontera_protegida\": [\n    \"public/Unblind\",\n    \"public/en/unblind\",\n    \"public/orbita\",\n    \"public/en/orbita\",\n    \"public/subpagina.css\",\n    \"public/subpagina.js\",\n    \"public/landing.css\",\n    \"public/amanecer.css\"\n  ],\n  \"errores\": []\n}\n",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "npm.cmd",
+      "run",
+      "build"
+    ],
+    "salida": "\n> alba-vision-web@1.0.0 build\n> node scripts/build.mjs\n\nSites worker and static assets prepared in dist/\n",
+    "errores": "",
+    "codigo": 0
+  },
+  {
+    "comando": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "salida": "",
+    "errores": "warning: in the working copy of 'public/en/albalabs/index.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'public/en/albaspace/index.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'public/en/index.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'public/en/surfaceops/index.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'public/en/visionops/index.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'public/ritmo.css', LF will be replaced by CRLF the next time Git touches it\n",
+    "codigo": 0
+  }
+]

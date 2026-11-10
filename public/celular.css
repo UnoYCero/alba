@@ -119,3 +119,7 @@
 .footer-redes { grid-column: 1 / -1; margin-left: -8px; }
 .footer-legal { grid-column: 1; font-size: 13px; }
 .footer-copy { grid-column: 2; justify-self: end; align-self: center; }
+
+/* Alba Space: el instrumento en el cielo despejado de arriba, chico, sin tapar las estrellas */
+.space-instrumento { right: auto; left: 50%; top: calc(var(--nav-h) + var(--s8)); width: min(34vw, 150px); transform: translateX(-50%); }
+.space-instrumento .marca-ilus { right: 50%; transform: translateX(50%); bottom: -24px; }

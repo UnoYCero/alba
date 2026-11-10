@@ -1,0 +1,116 @@
+{
+  "version": "propuesta-02",
+  "unidad": "mm",
+  "eje_vertical_glb": "Y",
+  "ilustracion": true,
+  "propuesta_de_diseno": true,
+  "despiece_mm": {
+    "carcasa": [
+      -30,
+      0,
+      0
+    ],
+    "computadora": [
+      -30,
+      -24,
+      0
+    ],
+    "sensor": [
+      -30,
+      46,
+      0
+    ],
+    "optica": [
+      -30,
+      60,
+      0
+    ],
+    "tapa": [
+      -30,
+      58,
+      0
+    ],
+    "baffle-1": [
+      25,
+      82,
+      0
+    ],
+    "baffle-2": [
+      40,
+      118,
+      0
+    ],
+    "baffle-3": [
+      55,
+      154,
+      0
+    ],
+    "baffle-4": [
+      70,
+      190,
+      0
+    ],
+    "liberacion": [
+      55,
+      12,
+      0
+    ],
+    "bujes": [
+      -85,
+      66,
+      0
+    ],
+    "tornillos": [
+      -78,
+      97,
+      0
+    ]
+  },
+  "baffle_despliegue_mm": {
+    "baffle-1": [
+      0,
+      0,
+      0
+    ],
+    "baffle-2": [
+      0,
+      20,
+      0
+    ],
+    "baffle-3": [
+      0,
+      40,
+      0
+    ],
+    "baffle-4": [
+      0,
+      60,
+      0
+    ]
+  },
+  "cifras_publicadas": {
+    "masa_con_mecanismo_g": 175,
+    "potencia_W": 1.25,
+    "volumen_plegado_dm3": 0.13,
+    "volumen_desplegado_dm3": 0.28,
+    "CubeSats": "3U a 12U",
+    "baffle_plegado": "menos de 50 mm",
+    "diseno": "Ark Light 1"
+  },
+  "decisiones_visuales": {
+    "cuerpo_mm": [
+      50,
+      50,
+      50
+    ],
+    "baffle_plegado_mm": 32,
+    "recorridos_mm": [
+      0,
+      20,
+      40,
+      60
+    ],
+    "solape_final_mm": 12
+  },
+  "alcance": "Propuesta visual para desarrollar el diseño y el relato del sitio. Cotas e interiores propuestos, sin CAD previo. No acredita funcionamiento."
+}

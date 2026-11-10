@@ -1,0 +1,35 @@
+[
+  {
+    "caso": "Surface móvil",
+    "botonAlto": 44,
+    "botonBottom": "12px",
+    "botonTop": "788px",
+    "h": 844,
+    "pin": 0,
+    "w": 390
+  },
+  {
+    "caso": "Labs estrecho",
+    "idioma": "es",
+    "botonesMin": 60,
+    "desborde": 0,
+    "h": 568,
+    "modularAncho": 264.8000183105469,
+    "w": 320,
+    "columnas": 1,
+    "textoSinCorteInterior": true,
+    "lote": 2
+  },
+  {
+    "caso": "Labs estrecho",
+    "idioma": "en",
+    "botonesMin": 44,
+    "desborde": 0,
+    "h": 568,
+    "modularAncho": 264.8000183105469,
+    "w": 320,
+    "columnas": 1,
+    "textoSinCorteInterior": true,
+    "lote": 2
+  }
+]

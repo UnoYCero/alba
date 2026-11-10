@@ -1,0 +1,548 @@
+[
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "cramped-padding",
+    "name": "Cramped padding",
+    "description": "Text is too close to the edge of its container. Two shapes: (1) an element with its own text where the space between the rendered text and the border box is too small for the font size, and (2) a wrapper whose children's text lands flush against a visible boundary (border, outline, or non-transparent background) with nothing to inset it. Add at least 8px (ideally 12–16px) of space inside bordered, outlined, or colored containers.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "<section> \"about\": children flush against bg on right/left (no inset)"
+  },
+  {
+    "antipattern": "cramped-padding",
+    "name": "Cramped padding",
+    "description": "Text is too close to the edge of its container. Two shapes: (1) an element with its own text where the space between the rendered text and the border box is too small for the font size, and (2) a wrapper whose children's text lands flush against a visible boundary (border, outline, or non-transparent background) with nothing to inset it. Add at least 8px (ideally 12–16px) of space inside bordered, outlined, or colored containers.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "<div> \"viz\": children flush against bg on top/bottom (no inset)"
+  },
+  {
+    "antipattern": "cramped-padding",
+    "name": "Cramped padding",
+    "description": "Text is too close to the edge of its container. Two shapes: (1) an element with its own text where the space between the rendered text and the border box is too small for the font size, and (2) a wrapper whose children's text lands flush against a visible boundary (border, outline, or non-transparent background) with nothing to inset it. Add at least 8px (ideally 12–16px) of space inside bordered, outlined, or colored containers.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "<div> \"viz\": children flush against bg on top/bottom (no inset)"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "11px body text"
+  },
+  {
+    "antipattern": "clipped-overflow-container",
+    "name": "Positioned child clipped by overflow container",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "body clips a positioned child"
+  },
+  {
+    "antipattern": "clipped-overflow-container",
+    "name": "Positioned child clipped by overflow container",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "section.space.tema-noche clips a positioned child"
+  },
+  {
+    "antipattern": "nested-cards",
+    "name": "Nested cards",
+    "description": "Cards inside cards create visual noise and excessive depth. Flatten the hierarchy — use spacing, typography, and dividers instead of nesting containers.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "Card inside card (b)"
+  },
+  {
+    "antipattern": "marquee",
+    "name": "Auto-scrolling marquee",
+    "description": "Continuously auto-scrolling content demands attention it has not earned and hides half its content at any moment. Reserve motion for content that changes; let readers move at their own pace.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": ".logos-lista — infinite horizontal loop animation \"logos-desfile\""
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#0b1f3b) on dark page"
+  },
+  {
+    "antipattern": "codex-grid-background",
+    "name": "Decorative grid-line background",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\index.html",
+    "line": 0,
+    "snippet": "two-axis grid-line gradient background",
+    "advisory": true
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.2:1 (need 4.5:1) — text #0b1f3b on #2563eb"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #2563eb on #2563eb"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "3.5:1 (need 4.5:1) — text #2563eb on #cfd4db"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #f4f6fa on #f4f6fa"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #f4f6fa on #f4f6fa"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "11px body text"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "11.5px body text"
+  },
+  {
+    "antipattern": "clipped-overflow-container",
+    "name": "Positioned child clipped by overflow container",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "body.pagina-dia.pagina-visionops clips a positioned child"
+  },
+  {
+    "antipattern": "marquee",
+    "name": "Auto-scrolling marquee",
+    "description": "Continuously auto-scrolling content demands attention it has not earned and hides half its content at any moment. Reserve motion for content that changes; let readers move at their own pace.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": ".logos-lista — infinite horizontal loop animation \"logos-desfile\""
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#0b1f3b) on dark page"
+  },
+  {
+    "antipattern": "codex-grid-background",
+    "name": "Decorative grid-line background",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\visionops\\index.html",
+    "line": 0,
+    "snippet": "two-axis grid-line gradient background",
+    "advisory": true
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaSpace\\index.html",
+    "line": 0,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "clipped-overflow-container",
+    "name": "Positioned child clipped by overflow container",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaSpace\\index.html",
+    "line": 0,
+    "snippet": "body.pagina-noche.pagina-space clips a positioned child"
+  },
+  {
+    "antipattern": "marquee",
+    "name": "Auto-scrolling marquee",
+    "description": "Continuously auto-scrolling content demands attention it has not earned and hides half its content at any moment. Reserve motion for content that changes; let readers move at their own pace.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaSpace\\index.html",
+    "line": 0,
+    "snippet": ".logos-lista — infinite horizontal loop animation \"logos-desfile\""
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaSpace\\index.html",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#0b1f3b) on dark page"
+  },
+  {
+    "antipattern": "codex-grid-background",
+    "name": "Decorative grid-line background",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaSpace\\index.html",
+    "line": 0,
+    "snippet": "two-axis grid-line gradient background",
+    "advisory": true
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #f4f6fa on #f4f6fa"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #f4f6fa on #f4f6fa"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "11px body text"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "11px body text"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "11px body text"
+  },
+  {
+    "antipattern": "tiny-text",
+    "name": "Tiny body text",
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "11px body text"
+  },
+  {
+    "antipattern": "clipped-overflow-container",
+    "name": "Positioned child clipped by overflow container",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "body.pagina-dia clips a positioned child"
+  },
+  {
+    "antipattern": "marquee",
+    "name": "Auto-scrolling marquee",
+    "description": "Continuously auto-scrolling content demands attention it has not earned and hides half its content at any moment. Reserve motion for content that changes; let readers move at their own pace.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": ".logos-lista — infinite horizontal loop animation \"logos-desfile\""
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#0b1f3b) on dark page"
+  },
+  {
+    "antipattern": "repeating-stripes-gradient",
+    "name": "Repeating-gradient stripes",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "repeating-gradient decorative stripes",
+    "advisory": true
+  },
+  {
+    "antipattern": "codex-grid-background",
+    "name": "Decorative grid-line background",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\AlbaLabs\\index.html",
+    "line": 0,
+    "snippet": "two-axis grid-line gradient background",
+    "advisory": true
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #f4f6fa on #f4f6fa"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": "1.0:1 (need 4.5:1) — text #f4f6fa on #f4f6fa"
+  },
+  {
+    "antipattern": "layout-transition",
+    "name": "Layout property animation",
+    "description": "Animating width, height, padding, or margin causes layout thrash and janky performance. Use transform and opacity instead, or grid-template-rows for height animations.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": "transition: width"
+  },
+  {
+    "antipattern": "clipped-overflow-container",
+    "name": "Positioned child clipped by overflow container",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": "body.pagina-dia.pagina-surface clips a positioned child"
+  },
+  {
+    "antipattern": "marquee",
+    "name": "Auto-scrolling marquee",
+    "description": "Continuously auto-scrolling content demands attention it has not earned and hides half its content at any moment. Reserve motion for content that changes; let readers move at their own pace.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": ".logos-lista — infinite horizontal loop animation \"logos-desfile\""
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#0b1f3b) on dark page"
+  },
+  {
+    "antipattern": "codex-grid-background",
+    "name": "Decorative grid-line background",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "C:\\Users\\rmaxm\\Desktop\\alba-vision\\sitio-web\\public\\surfaceops\\index.html",
+    "line": 0,
+    "snippet": "two-axis grid-line gradient background",
+    "advisory": true
+  }
+]

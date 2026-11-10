@@ -1,0 +1,75 @@
+{
+  "paginas": [
+    {
+      "ruta": "index.html",
+      "h1": 1,
+      "ids": 27,
+      "recursos": 66
+    },
+    {
+      "ruta": "visionops/index.html",
+      "h1": 1,
+      "ids": 15,
+      "recursos": 27
+    },
+    {
+      "ruta": "AlbaSpace/index.html",
+      "h1": 1,
+      "ids": 25,
+      "recursos": 22
+    },
+    {
+      "ruta": "AlbaLabs/index.html",
+      "h1": 1,
+      "ids": 11,
+      "recursos": 38
+    },
+    {
+      "ruta": "surfaceops/index.html",
+      "h1": 1,
+      "ids": 8,
+      "recursos": 18
+    },
+    {
+      "ruta": "en/index.html",
+      "h1": 1,
+      "ids": 27,
+      "recursos": 66
+    },
+    {
+      "ruta": "en/visionops/index.html",
+      "h1": 1,
+      "ids": 15,
+      "recursos": 27
+    },
+    {
+      "ruta": "en/albaspace/index.html",
+      "h1": 1,
+      "ids": 25,
+      "recursos": 22
+    },
+    {
+      "ruta": "en/albalabs/index.html",
+      "h1": 1,
+      "ids": 11,
+      "recursos": 38
+    },
+    {
+      "ruta": "en/surfaceops/index.html",
+      "h1": 1,
+      "ids": 8,
+      "recursos": 18
+    }
+  ],
+  "frontera_protegida": [
+    "public/Unblind",
+    "public/en/unblind",
+    "public/orbita",
+    "public/en/orbita",
+    "public/subpagina.css",
+    "public/subpagina.js",
+    "public/landing.css",
+    "public/amanecer.css"
+  ],
+  "errores": []
+}

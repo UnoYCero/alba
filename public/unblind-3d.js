@@ -84,9 +84,10 @@ function estudio(renderer) {
 function acabado(original) {
   const n = original.name || "";
   const base = { color: original.color, map: original.map, alphaMap: original.alphaMap, name: n, side: original.side, alphaTest: original.alphaTest };
-  // El nylon impreso: satinado, para que los reflejos del estudio corran largos y suaves
+  // El nylon: el acabado comercial de la ronda 18 (más satinado; la forma no cambia), para que
+  // los reflejos del estudio corran largos y suaves
   if (n.startsWith("Nylon impreso") || n.startsWith("Tapa impresa")) {
-    return new THREE.MeshStandardMaterial({ ...base, roughness: n.startsWith("Tapa") ? 0.66 : 0.56, metalness: 0, envMapIntensity: 0.7 });
+    return new THREE.MeshStandardMaterial({ ...base, roughness: n.startsWith("Tapa") ? 0.46 : 0.42, metalness: 0, envMapIntensity: 0.7 });
   }
   // La óptica de la cámara y la ventana del LiDAR: vidrio negro con barniz, que refleja el estudio
   if (n.startsWith("Óptica")) {

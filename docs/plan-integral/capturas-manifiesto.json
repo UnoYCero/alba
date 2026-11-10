@@ -1,0 +1,1080 @@
+[
+  {
+    "nombre": "labs-es-1440-entrada",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-1",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 900,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-2",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 1800,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-3",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 2700,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-4",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 3600,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-5",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 4500,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-6",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 5400,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-pie",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 7922,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-8",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 7022,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "labs-es-1440-recorrido-7",
+    "alto": 8822,
+    "dialogo": false,
+    "scroll": 6122,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaLabs/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-entrada",
+    "alto": 7595,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-recorrido-1",
+    "alto": 7595,
+    "dialogo": false,
+    "scroll": 900,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-mision-orientacion",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 1392,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-mision-basura",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 1959,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-mision-acoplamiento",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 2742,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-recorrido-2",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 2859,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-recorrido-3",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 3759,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-recorrido-4",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 4659,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-recorrido-5",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 5559,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-recorrido-6",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 6459,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "space-es-1440-pie",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 6737,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-entrada",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-recorrido-1",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 900,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-contorno",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 718,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-medidas",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 666,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-plano",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 666,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-recorrido-2",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 1566,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-recorrido-3",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 2466,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-recorrido-4",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 3366,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-recorrido-5",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 4266,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "surface-es-1440-pie",
+    "alto": 5572,
+    "dialogo": false,
+    "scroll": 4672,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-entrada",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-reporte-aviso",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 2523,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-reporte-evidencia",
+    "alto": 8594,
+    "dialogo": false,
+    "scroll": 2816,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-reporte-cuentas",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 3108,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-reporte-pregunta",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 3402,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-reporte-salida",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 3851,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-camino-diagnostico",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 4950,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-camino-piloto",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 5153,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-camino-integracion",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 5355,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-camino-escalamiento",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 5532,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-recorrido-privacidad",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 6432,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-recorrido-piloto",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 7332,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-pie",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 7720,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-entrada",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-1",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 900,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-2",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 1800,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-3",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 2700,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-4",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 3600,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-5",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 4500,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-6",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 5400,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-7",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 6300,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-recorrido-8",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 7200,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "portada-es-1440-pie",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 7402,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=capturas-completas"
+  },
+  {
+    "nombre": "visionops-es-1440-operacion-inicial",
+    "alto": 8620,
+    "dialogo": false,
+    "scroll": 812,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=operacion-final#como"
+  },
+  {
+    "nombre": "visionops-es-1440-tablero",
+    "alto": 8583,
+    "dialogo": false,
+    "scroll": 612,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=tablero-corregido"
+  },
+  {
+    "nombre": "visionops-es-1440-operacion-salida",
+    "alto": 8583,
+    "dialogo": false,
+    "scroll": 1062,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/visionops/?plan=operacion-final#como"
+  },
+  {
+    "nombre": "portada-en-1440-entrada",
+    "alto": 8254,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/?plan=ingles-final"
+  },
+  {
+    "nombre": "visionops-en-1440-entrada",
+    "alto": 8653,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/visionops/?plan=ingles-final"
+  },
+  {
+    "nombre": "visionops-en-1440-formulario",
+    "alto": 8653,
+    "dialogo": true,
+    "scroll": 6856,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/visionops/?plan=ingles-final"
+  },
+  {
+    "nombre": "space-en-1440-entrada",
+    "alto": 7480,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=ingles-final"
+  },
+  {
+    "nombre": "space-en-1440-instrumento",
+    "alto": 7480,
+    "dialogo": false,
+    "scroll": 168,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=ingles-final"
+  },
+  {
+    "nombre": "labs-en-1440-entrada",
+    "alto": 8858,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albalabs/?plan=ingles-final"
+  },
+  {
+    "nombre": "labs-en-1440-contexto",
+    "alto": 9002,
+    "dialogo": false,
+    "scroll": 2091,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albalabs/?plan=ingles-final"
+  },
+  {
+    "nombre": "labs-en-1440-pregunta",
+    "alto": 8900,
+    "dialogo": false,
+    "scroll": 2375,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albalabs/?plan=ingles-final"
+  },
+  {
+    "nombre": "surface-en-1440-entrada",
+    "alto": 5500,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/surfaceops/?plan=ingles-final"
+  },
+  {
+    "nombre": "surface-en-1440-plano",
+    "alto": 5500,
+    "dialogo": false,
+    "scroll": 666,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/surfaceops/?plan=ingles-final"
+  },
+  {
+    "nombre": "portada-en-390-entrada",
+    "alto": 7813,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "visionops-en-390-entrada",
+    "alto": 8565,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/visionops/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "visionops-en-390-formulario",
+    "alto": 8607,
+    "dialogo": true,
+    "scroll": 6886,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/visionops/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "space-en-390-entrada",
+    "alto": 8526,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "space-en-390-instrumento",
+    "alto": 8526,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "labs-en-390-entrada",
+    "alto": 10239,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/albalabs/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "labs-en-390-contexto",
+    "alto": 10606,
+    "dialogo": false,
+    "scroll": 2275,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/albalabs/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "labs-en-390-pregunta",
+    "alto": 10477,
+    "dialogo": false,
+    "scroll": 2953,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/albalabs/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "surface-en-390-entrada",
+    "alto": 6308,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/surfaceops/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "surface-en-390-plano",
+    "alto": 6341,
+    "dialogo": false,
+    "scroll": 746,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/surfaceops/?plan=ingles-final-movil"
+  },
+  {
+    "nombre": "surface-es-320-identidad",
+    "alto": 6012,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      320,
+      568
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=identidad-320"
+  },
+  {
+    "nombre": "surface-es-320-menu-oscuro",
+    "alto": 5893,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      320,
+      568
+    ],
+    "url": "http://localhost:8771/surfaceops/?plan=menu-corregido"
+  },
+  {
+    "nombre": "space-es-390-entrada",
+    "alto": 8658,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=ultima-verificacion"
+  },
+  {
+    "nombre": "space-es-390-aproximacion",
+    "alto": 8658,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=ultima-verificacion"
+  },
+  {
+    "nombre": "visionops-es-390-reporte-inicio-final",
+    "alto": 8622,
+    "dialogo": false,
+    "scroll": 2526,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/visionops/?plan=reporte-movil-final#recibes"
+  },
+  {
+    "nombre": "visionops-es-390-reporte-evidencia-final",
+    "alto": 8622,
+    "dialogo": false,
+    "scroll": 3370,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/visionops/?plan=reporte-movil-final#recibes"
+  },
+  {
+    "nombre": "visionops-es-390-reporte-pregunta-final",
+    "alto": 8622,
+    "dialogo": false,
+    "scroll": 4214,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/visionops/?plan=reporte-movil-final#recibes"
+  },
+  {
+    "nombre": "portada-es-320-menu-final",
+    "alto": 7870,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      320,
+      568
+    ],
+    "url": "http://localhost:8771/?plan=menu-final"
+  },
+  {
+    "nombre": "space-es-1440-eleccion-persistente",
+    "alto": 7595,
+    "dialogo": false,
+    "scroll": 1624,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=persistencia"
+  },
+  {
+    "nombre": "portada-es-1440-espacio",
+    "alto": 8302,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/?plan=puerta-space-final"
+  },
+  {
+    "nombre": "surface-en-320-menu-oscuro",
+    "alto": 5898,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      320,
+      568
+    ],
+    "url": "http://localhost:8771/en/surfaceops/?plan=menu-corregido"
+  },
+  {
+    "nombre": "visionops-es-390-tablero",
+    "alto": 8358,
+    "dialogo": false,
+    "scroll": 838,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/visionops/?plan=tablero-corregido"
+  },
+  {
+    "nombre": "visionops-en-390-tablero",
+    "alto": 8306,
+    "dialogo": false,
+    "scroll": 838,
+    "size": [
+      390,
+      844
+    ],
+    "url": "http://localhost:8771/en/visionops/?plan=tablero-ingles-confirmacion"
+  },
+  {
+    "nombre": "visionops-en-1440-tablero",
+    "alto": 8340,
+    "dialogo": false,
+    "scroll": 762,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/visionops/?plan=tablero-corregido"
+  },
+  {
+    "nombre": "matriz-portada-1024x768",
+    "alto": 8052,
+    "dialogo": false,
+    "scroll": 0,
+    "size": [
+      1024,
+      768
+    ],
+    "url": "http://localhost:8771/?plan=matriz-portada-recaptura"
+  },
+  {
+    "nombre": "space-es-1440-manual-basura",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 1959,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=basura-captura-asentada"
+  },
+  {
+    "nombre": "space-es-1440-manual-acoplamiento",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 2610,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=manual-final"
+  },
+  {
+    "nombre": "space-es-1440-manual-aplicacion",
+    "alto": 7637,
+    "dialogo": false,
+    "scroll": 5748,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/AlbaSpace/?plan=manual-final"
+  },
+  {
+    "nombre": "space-en-1440-manual-basura",
+    "alto": 7605,
+    "dialogo": false,
+    "scroll": 1959,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=manual-final"
+  },
+  {
+    "nombre": "space-en-1440-manual-acoplamiento",
+    "alto": 7605,
+    "dialogo": false,
+    "scroll": 2592,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=manual-final"
+  },
+  {
+    "nombre": "space-en-1440-manual-aplicacion",
+    "alto": 7605,
+    "dialogo": false,
+    "scroll": 5748,
+    "size": [
+      1440,
+      900
+    ],
+    "url": "http://localhost:8771/en/albaspace/?plan=manual-final"
+  }
+]

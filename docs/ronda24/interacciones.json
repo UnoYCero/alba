@@ -1,0 +1,50 @@
+[
+  {
+    "prueba": "Portada: puerta de operación",
+    "enlace": "visionops/",
+    "seleccion": "true",
+    "visible": true
+  },
+  {
+    "prueba": "Portada: Space con teclado",
+    "visible": true
+  },
+  {
+    "prueba": "Labs: reinicio y foco",
+    "deshabilitado": true,
+    "foco": true,
+    "inicial": true
+  },
+  {
+    "prueba": "Space: función de aproximación",
+    "seleccion": "true",
+    "visible": true
+  },
+  {
+    "prueba": "Labs: elegir con teclado",
+    "contextoVisible": true,
+    "siguienteHabilitado": true
+  },
+  {
+    "prueba": "Labs: pregunta con teclado",
+    "respuestaVisible": true
+  },
+  {
+    "prueba": "Surface: medidas",
+    "imagenAlto": 223.46250915527344,
+    "panelVisible": true,
+    "paso": "2"
+  },
+  {
+    "prueba": "Surface: plano computadora",
+    "altoImagen": 496.6625061035156,
+    "paso": "3",
+    "pin": 0
+  },
+  {
+    "prueba": "Surface: escena móvil encuadrada",
+    "imagen": 223.46250915527344,
+    "paso": "1",
+    "pin": 498.7625122070313
+  }
+]

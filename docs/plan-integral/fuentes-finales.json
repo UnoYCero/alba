@@ -1,0 +1,32 @@
+{
+  "pendiente": {
+    "fuentes": "loading",
+    "overflow": 0,
+    "pins": [
+      {
+        "alto": 1808,
+        "pin": 638
+      },
+      {
+        "alto": 1448,
+        "pin": 638
+      }
+    ]
+  },
+  "cargada": {
+    "fuentes": "loaded",
+    "overflow": 0,
+    "pins": [
+      {
+        "alto": 1867,
+        "pin": 697
+      },
+      {
+        "alto": 1507,
+        "pin": 697
+      }
+    ]
+  },
+  "demoraSegundos": 12,
+  "servidor": 8774
+}

@@ -17,7 +17,7 @@ conservando los nombres de las 80 mallas y su `extras.pieza` (12 conjuntos), que
 ```bash
 npx @gltf-transform/cli@4.1.1 weld unblind.glb 1-soldado.glb
 npx @gltf-transform/cli@4.1.1 simplify 1-soldado.glb 2-simple.glb --ratio 0.1 --error 0.0003
-npx @gltf-transform/cli@4.1.1 meshopt 2-simple.glb lentes.glb --level medium
+npx @gltf-transform/cli@4.1.1 meshopt 2-simple.glb lentes.glb --level high
 ```
 
 El resultado usa `EXT_meshopt_compression`: en la página se carga con el `MeshoptDecoder` de
@@ -51,3 +51,7 @@ La ronda 11 entregó después `fase-c/unblind-texturas.glb` (relieve y oclusión
 probó con la misma receta y no se usa: los mapas de relieve salieron casi planos (varían 1 de
 255) y no se ven; la oclusión oscurece los lentes y el logo, se queda dentro de las carcasas al
 separarlos y el modelo pasa de 674 KB a 1 MB.
+
+**24-oct-2026:** todos los modelos 3D del sitio (lentes, Vision Ops, Star Tracker y Labs) se
+comprimen con `meshopt --level high`: pesan entre 20 y 25 % menos que con `medium` y, comparados con
+la misma cámara, se ven igual (también sus animaciones).

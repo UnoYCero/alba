@@ -1,0 +1,28 @@
+{
+  "pendiente": {
+    "estado": "loading",
+    "overflow": 0,
+    "pins": [
+      1896,
+      1536
+    ]
+  },
+  "cargada": {
+    "estado": "loaded",
+    "overflow": 0,
+    "pins": [
+      {
+        "alto": 1955,
+        "clase": "vo-reporte tema-dia",
+        "pin": 785
+      },
+      {
+        "alto": 1595,
+        "clase": "vo-crece tema-dia",
+        "pin": 785
+      }
+    ]
+  },
+  "demoraSegundos": 12,
+  "servidor": "8773"
+}
