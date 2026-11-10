@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Ilustración provisional: un equipo propio con un chip de IA; los datos llegan a él y no salen a la nube">
+  <style>
+    .pulso { transform-origin: 600px 470px; animation: pulso 3.6s ease-out infinite; }
+    .pulso.b { animation-delay: 1.8s; }
+    .flujo { stroke-dasharray: 6 14; animation: flujo 1.6s linear infinite; }
+    @keyframes pulso { from { transform: scale(.6); opacity: .55; } to { transform: scale(1.6); opacity: 0; } }
+    @keyframes flujo { to { stroke-dashoffset: -40; } }
+    @media (prefers-reduced-motion: reduce) { .pulso, .flujo { animation: none; } .pulso { opacity: .25; } }
+  </style>
+  <defs>
+    <radialGradient id="brillo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#8FB2FF" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- La nube, afuera: el camino hacia ella está cortado -->
+  <g opacity=".45" fill="none" stroke="#7d8da6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path transform="translate(600 72) scale(.6) translate(-605 -22)" d="M545 100h120a46 46 0 0 0 0-92 66 66 0 0 0-126-14 52 52 0 0 0 6 106z"/>
+    <path d="M600 300 L600 232" stroke-dasharray="4 16"/>
+    <path d="M587 192 l26 26 M613 192 l-26 26"/>
+  </g>
+
+  <!-- El negocio: todo pasa adentro -->
+  <rect x="150" y="150" width="900" height="650" rx="64" fill="#0B1F3B" fill-opacity=".04" stroke="#2563EB" stroke-opacity=".45" stroke-width="4" stroke-dasharray="18 14"/>
+
+  <!-- Lo que entra: documentos, una cámara, una conversación -->
+  <g fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path class="flujo" d="M330 300 C420 320 470 380 520 420"/>
+    <path class="flujo" d="M300 640 C400 620 460 560 520 520"/>
+    <path class="flujo" d="M900 650 C800 630 740 570 680 520"/>
+  </g>
+  <g fill="#fff" stroke="#0B1F3B" stroke-width="5" stroke-linejoin="round">
+    <path d="M232 230h70l30 30v90h-100z"/><path d="M302 230v30h30" fill="none"/>
+    <path d="M254 290h56M254 314h56M254 338h36" fill="none" stroke="#8FB2FF"/>
+    <rect x="215" y="600" width="104" height="76" rx="14"/><circle cx="267" cy="638" r="22" fill="#8FB2FF"/><circle cx="267" cy="638" r="9" fill="#0B1F3B" stroke="none"/>
+    <path d="M880 610h110a20 20 0 0 1 20 20v52a20 20 0 0 1-20 20h-70l-30 24v-24h-10a20 20 0 0 1-20-20v-52a20 20 0 0 1 20-20z"/>
+    <path d="M905 646h80M905 668h50" fill="none" stroke="#8FB2FF"/>
+  </g>
+
+  <!-- El equipo propio con el chip de IA -->
+  <circle class="pulso" cx="600" cy="470" r="150" fill="none" stroke="#2563EB" stroke-width="3"/>
+  <circle class="pulso b" cx="600" cy="470" r="150" fill="none" stroke="#2563EB" stroke-width="3"/>
+  <rect x="470" y="340" width="260" height="260" rx="40" fill="#0B1F3B"/>
+  <g stroke="#8FB2FF" stroke-width="6" stroke-linecap="round">
+    <path d="M540 320v20M580 320v20M620 320v20M660 320v20M540 600v20M580 600v20M620 600v20M660 600v20M450 410h20M450 450h20M450 490h20M450 530h20M730 410h20M730 450h20M730 490h20M730 530h20"/>
+  </g>
+  <circle cx="600" cy="470" r="95" fill="url(#brillo)"/>
+  <rect x="545" y="415" width="110" height="110" rx="22" fill="none" stroke="#F4F6FA" stroke-width="6"/>
+  <circle cx="600" cy="470" r="20" fill="#F4F6FA"/>
+</svg>

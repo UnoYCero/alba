@@ -33,6 +33,7 @@ WA = {
     "Hola, vengo de albavision.tech y me interesa el Vision Core de Alba Labs.": "Hi, I'm coming from albavision.tech and I'm interested in the Alba Labs Vision Core.",
     "Hola, vengo de albavision.tech y me interesa un piloto de lentes para mi empresa.": "Hi, I'm coming from albavision.tech and I'm interested in a glasses pilot for my company.",
     "Hola, vengo de albavision.tech y me interesa una prueba de Surface Ops para medir baches.": "Hi, I'm coming from albavision.tech and I'm interested in a Surface Ops trial to measure potholes.",
+    "Hola, vengo de albavision.tech y me interesa IA Local para mi negocio.": "Hi, I'm coming from albavision.tech and I'm interested in Local AI for my business.",
     "Hola, vengo de albavision.tech y me interesa Órbita para mi negocio.": "Hi, I'm coming from albavision.tech and I'm interested in Órbita for my business.",
     "Hola, vengo de albavision.tech y quiero comprar el Dev Kit de Alba Labs.": "Hi, I'm coming from albavision.tech and I want to buy the Alba Labs Dev Kit.",
     "Hola, vengo de albavision.tech y quiero platicar de Vision Ops para mi negocio.": "Hi, I'm coming from albavision.tech and I want to talk about Vision Ops for my business.",
