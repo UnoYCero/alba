@@ -2,11 +2,9 @@ import {createBlobState} from './blob-state.mjs';
 import {createHandler} from './handler.mjs';
 import {createEncryptedDatabase} from './encrypted-database.mjs';
 import {equalSecret} from './security.mjs';
-const SITE = 'aa3eb206-3126-4e99-bc91-46a4bb2d59d2';
-// accountId from this site's Netlify production build, not its Visual Editor team ID.
-const TEAM = '6864502cf6cc9967e3dac6db';
-const available = context => context?.site?.id===SITE && context?.account?.id===TEAM && context?.deploy?.context==='production' && context?.deploy?.published===true;
-export function isPublishedProduction(context) { return available(context); }
+import {deploymentTarget} from './deployment.mjs';
+const available=(context,env)=>{const target=deploymentTarget(env);return !!target&&context?.site?.id===target.siteId&&context?.account?.id===target.teamId&&context?.deploy?.context==='production'&&context?.deploy?.published===true;};
+export function isPublishedProduction(context,env={}) { return available(context,env); }
 const json = (data,status=200) => Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
 export function checkedStorageFetch(fetcher=fetch) {
   return async (input,options={}) => {
@@ -32,7 +30,7 @@ export function createNetlifyHandler({env,getStore,fetcher=fetch}) {
     const url=new URL(request.url);
     if (!url.pathname.startsWith('/orbita/api/')) return json({error:'NOT_FOUND'},404);
     url.pathname=url.pathname.slice('/orbita/api'.length);
-    if (!available(context)) {
+    if (!available(context,env)) {
       if (url.pathname==='/health' && request.method==='GET') return json({service:'orbita',enabled:false,environment:'inactive'});
       return json({error:'DEPLOYMENT_NOT_ACTIVE'},503);
     }
@@ -54,18 +52,19 @@ export function createNetlifyRecovery({env,fetcher=fetch}) {
     // Scheduled invocations report published=false even for the current production
     // deploy. They must never open storage directly. Dispatch to the canonical
     // receiver, which independently enforces its published-deployment guard.
-    const permitted=context?.site?.id===SITE && context?.account?.id===TEAM &&
+    const target=deploymentTarget(env);
+    const permitted=!!target && context?.site?.id===target.siteId && context?.account?.id===target.teamId &&
       context?.deploy?.context==='production' && env.ORBITA_ENABLED==='true' &&
       /^[A-Za-z0-9_-]{32,256}$/.test(env.ORBITA_WORKER_TOKEN || '');
     if (!permitted) {
-      console.info('ORBITA_RECOVERY_SKIPPED',JSON.stringify({siteMatches:context?.site?.id===SITE,
-        accountMatches:context?.account?.id===TEAM,production:context?.deploy?.context==='production',
+      console.info('ORBITA_RECOVERY_SKIPPED',JSON.stringify({siteMatches:!!target&&context?.site?.id===target.siteId,
+        accountMatches:!!target&&context?.account?.id===target.teamId,production:context?.deploy?.context==='production',
         published:context?.deploy?.published===true,enabled:env.ORBITA_ENABLED==='true'}));
       return;
     }
     // One job per scheduled invocation, processed by the published receiver.
     try {
-      const response=await fetcher('https://albavision.tech/orbita/api/jobs/run',{
+      const response=await fetcher(target.origin+'/orbita/api/jobs/run',{
         method:'POST',redirect:'error',headers:{Authorization:`Bearer ${env.ORBITA_WORKER_TOKEN}`},
         signal:AbortSignal.timeout(15000)});
       if (!response.ok) throw new Error('RECOVERY_TRIGGER_FAILED');

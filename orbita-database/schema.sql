@@ -246,7 +246,7 @@ begin
 end $$;
 create function public.orbita_operator_channel(p_id uuid) returns jsonb
 language sql security invoker set search_path='' as $$
-select jsonb_build_object('id',id,'tenantId',tenant_id,'wabaId',waba_id,'phoneNumberId',phone_number_id,'credentials',credentials) from orbita.channels where id=p_id;
+select jsonb_build_object('id',id,'tenantId',tenant_id,'wabaId',waba_id,'phoneNumberId',phone_number_id,'mode',mode,'credentials',credentials) from orbita.channels where id=p_id;
 $$;
 create function public.orbita_activate_channel(p_id uuid,p_credentials text) returns jsonb
 language plpgsql security invoker set search_path='' as $$
